@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { FC, useEffect, useState } from "react"
 import { useMenu, UseMenuProps } from 'react-instantsearch-hooks-web';
 import Link from 'next/link'

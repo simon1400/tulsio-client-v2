@@ -1,25 +1,23 @@
 import Page from '../../layout/Page'
 import Image from '../../components/Image'
-import ShareButtons from '../../components/ShareButtons'
+// import ShareButtons from '../../components/ShareButtons'
 import Head from 'next/head'
 import {useRouter} from 'next/router'
 import getArticle from '../../queries/article';
 import { client, getStrapiURL } from '../../lib/api'
-import Button from '../../components/Button'
-import Breadcrumb from '../../components/Breadcrumb'
 import { NextPage } from 'next'
 import Label from '../../components/Label'
 import { useContext, useEffect } from 'react'
 import { DataStateContext } from '../../context/dataStateContext'
 import getBaners from '../../queries/baners'
-import Banner from '../../components/Banner'
+// import Banner from '../../components/Banner'
 // import Rating from '../../components/Rating';
 // import Author from '../../components/Author'
 // import Comments from '../../components/Comments'
 
 const DOMAIN = process.env.APP_DOMAIN;
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: any) {
 
   if(!context.query.article) {
     return {
@@ -43,7 +41,7 @@ export async function getServerSideProps(context) {
     }
   });
 
-  const baners = banersData.baners.data.map(item => item.attributes)
+  const baners = banersData.baners.data.map((item: any) => item.attributes)
 
   const baner = baners[Math.floor(Math.random() * baners.length)]
 
@@ -67,23 +65,23 @@ const Article: NextPage = ({
 }) => {
   const router = useRouter();
 
-  const { dispatch } = useContext(DataStateContext)
+  // const { dispatch } = useContext(DataStateContext)
 
   useEffect(() => {
     if(article){
-      dispatch({ state: [
-        {
-          title: 'Blog',
-          link: 'blog'
-        },
-        {
-          title: article.categories.data[0].attributes.title,
-          link: article.categories.data[0].attributes.slug
-        },
-        {
-          title: article?.title
-        }
-      ], type: 'breadcrumbs' })
+      // dispatch({ state: [
+      //   {
+      //     title: 'Blog',
+      //     link: 'blog'
+      //   },
+      //   {
+      //     title: article.categories.data[0].attributes.title,
+      //     link: article.categories.data[0].attributes.slug
+      //   },
+      //   {
+      //     title: article?.title
+      //   }
+      // ], type: 'breadcrumbs' })
     }
   }, [article])
 
@@ -99,7 +97,7 @@ const Article: NextPage = ({
 
       <div className="breadcrumb-wrap">
         <div className="uk-container uk-container-large">
-          <Breadcrumb article />
+          {/* <Breadcrumb article /> */}
         </div>
       </div>
 
@@ -120,7 +118,7 @@ const Article: NextPage = ({
                   </div>
                 </div>
                 <div className="perex-wrap">
-                  {!!article?.labels?.data?.length && article.labels.data.map((item, index) => <Label key={index} data={{
+                  {!!article?.labels?.data?.length && article.labels.data.map((item: any, index: number) => <Label key={index} data={{
                     title: item.attributes.title,
                     slug: item.attributes.slug,
                     color: item.attributes.color
@@ -135,9 +133,9 @@ const Article: NextPage = ({
         <section className="content">
           <div className="uk-container uk-container-xsmall">
 
-            <ShareButtons data={article} />
+            {/* <ShareButtons data={article} /> */}
 
-            {!!article.chapters?.length && article.chapters.map((item, index) => <div key={index}>
+            {/* {!!article.chapters?.length && article.chapters.map((item, index) => <div key={index}>
               {!!item.title && <h2>{item.title}</h2>}
               <div className="text-content" dangerouslySetInnerHTML={{__html: item.text}}></div>
               {!!item.galery?.data?.length && item.galery.data.map((img, indexImg) => <figure key={indexImg}>
@@ -148,7 +146,7 @@ const Article: NextPage = ({
                 <Button link={item.button.link} text={item.button.text}/>
               </div>}
               {!!item.baner && baner && <Banner format="&width=750" data={baner} />}
-            </div>)}
+            </div>)} */}
 
             {/* <Rating rating={2.5}/> */}
             {/* <Author name="name" description="description" publishDate="publishDate" /> */}
