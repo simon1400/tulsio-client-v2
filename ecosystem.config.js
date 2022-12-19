@@ -12,7 +12,7 @@ module.exports = {
       ref  : 'origin/main',
       repo : 'git@github.com:simon1400/tulsio-client-v2.git',
       path : '/var/www/tulsio/client-v2',
-      'post-deploy' : 'yarn && yarn build && yarn populate && pm2 reload ecosystem.config.js --env production',
+      'post-deploy' : 'yarn && yarn build && pm2 reload ecosystem.config.js --env production',
     }
   }
 };
