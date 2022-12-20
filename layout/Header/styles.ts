@@ -25,7 +25,7 @@ export const ControlWrap = styled.div`
     width: 27px;
     height: 27px;
     display: block;
-    fill: rgba(255, 255, 255, 0.85);
-    color: rgba(255, 255, 255, 0.85);
+    fill: rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.75);
   }
 `

@@ -12,11 +12,16 @@ export const CSubMenu = styled.div`
       border-radius: 20px;
     }
     a{
-      color: rgba(255, 255, 255, 0.85);
+      color: rgba(255, 255, 255, 0.75);
       text-decoration: none;
       font-size: 20px;
       font-weight: 600;
-      padding: 7px 15px;
+      padding: 3px 15px;
+      display: block;
+      transition: all .5s ease;
+      &:hover{
+        color: white;
+      }
     }
   }
 `

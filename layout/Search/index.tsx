@@ -1,17 +1,17 @@
-import {
-  InstantSearch,
-  Index,
-  Configure
-} from "react-instantsearch-dom";
-import { searchClient } from "../../lib/typesenseAdapter";
+// import {
+//   InstantSearch,
+//   Index,
+//   Configure
+// } from "react-instantsearch-dom";
+// import { searchClient } from "../../lib/typesenseAdapter";
 import closeCanvas from "../../helpers/closeCanvas";
 import { useEffect, useRef } from "react";
-import dynamic from "next/dynamic";
+// import dynamic from "next/dynamic";
 import Link from "next/link";
 
-const SearchItems = dynamic(() => import('./SearchItems'), {suspense: true}) 
-const SearchBox = dynamic(() => import('./SearchBox'), {suspense: true}) ;
-const HasResult = dynamic(() => import('./HasResult'), {suspense: true}) ;
+// const SearchItems = dynamic(() => import('./SearchItems'), {suspense: true}) 
+// const SearchBox = dynamic(() => import('./SearchBox'), {suspense: true}) ;
+// const HasResult = dynamic(() => import('./HasResult'), {suspense: true}) ;
 
 const Search = () => {
 
@@ -35,26 +35,23 @@ const Search = () => {
           </Link>
         </div>
 
-        <InstantSearch indexName="articles" searchClient={searchClient}>
+        {/* <InstantSearch indexName="articles" searchClient={searchClient}>
 
-          {/* @ts-ignore */}
           <SearchBox searchInput={searchInput} />
 
            <Index indexName="categories">
             <Configure hitsPerPage={5} />
-            {/* @ts-ignore */}
             <SearchItems title="Kategorie" />
           </Index>
 
           <Index indexName="articles">
             <Configure hitsPerPage={5}/>
-            {/* @ts-ignore */}
             <SearchItems title="Články" />
           </Index>
 
           <HasResult />
 
-        </InstantSearch>
+        </InstantSearch> */}
       </div>
     </div>
   )

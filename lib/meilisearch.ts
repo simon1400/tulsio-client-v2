@@ -10,6 +10,4 @@ const searchClient = instantMeiliSearch(
   }
 );
 
-
-
 export default searchClient

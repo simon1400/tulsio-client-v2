@@ -53,7 +53,6 @@ export const ArticleWrap = styled(Link)<{background?: string;}>(({background}) =
     border-radius: 16px;
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
-    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
     background-color: rgba(255, 255, 255, .2);
     color: rgba(32, 32, 32, 0.7);
     font-size: 15px;

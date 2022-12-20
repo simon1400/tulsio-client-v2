@@ -14,10 +14,14 @@ export const Nav = styled.nav`
         padding-right: 20px;
       }
       a{
-        color: rgba(255, 255, 255, 0.85);
+        color: rgba(255, 255, 255, 0.75);
         text-decoration: none;
         font-weight: 600;
         font-size: 20px;
+        transition: all .5s ease;
+        &:hover{
+          color: white;
+        }
       }
     }
   }
