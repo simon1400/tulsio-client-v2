@@ -1,5 +1,4 @@
 import { FC } from "react"
-import dynamic from "next/dynamic"
 import Label from "components/Label"
 import { ArticleWrap } from "./styles"
 
@@ -48,22 +47,25 @@ const ArticleShort: FC<ArticleShortProps> = ({
     imgUrl = image+`?format=webp&${size}`
   }
 
-  let convert = "#4545ff"
+  let convert = "#4545ff", color: string = '#fff'
 
   if(background === 'green') {
     convert = "#9f9"
+    color = '#202020'
   }else if(background === 'yellow') {
     convert = "#fff899"
+    color = '#202020'
   }else if(background === 'purple') {
     convert = "#a50d5935"
   }else if(background === 'bluePurpleG') {
     convert = "linear-gradient(125deg, #a50d5a, #4545ff)"
   }else if(background === 'greenYellowG') {
     convert = "linear-gradient(to bottom, #fff899, #9f9);"
+    color = '#202020'
   }
 
   return (
-    <ArticleWrap background={convert} href={link} passHref>
+    <ArticleWrap background={convert} color={color} href={link} passHref>
 
       <div className="img-wrap-back" style={{backgroundImage: `url(${imgUrl})`}}></div>
       <div className="content-wrap-art">

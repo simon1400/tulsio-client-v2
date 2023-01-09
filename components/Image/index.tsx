@@ -29,7 +29,6 @@ interface ImageProps {
 const ImageComponent: FC<ImageProps> = ({ 
   image = undefined, 
   url = '/assets/placeholder.svg', 
-  svg = false,
   format = ''
 }) => {
 
@@ -40,8 +39,7 @@ const ImageComponent: FC<ImageProps> = ({
     altText = image.attributes.alternativeText || ''
   }
   
-  if(svg) return <img uk-svg="" src={url} hidden />
-  else return <img src={url+'?format=webp'+format} alt={altText} />
+  return <img src={url+'?format=webp'+format} alt={altText} />
 };
 
 export default ImageComponent;

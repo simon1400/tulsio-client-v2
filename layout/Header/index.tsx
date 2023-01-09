@@ -13,7 +13,7 @@ const Header = () => {
         <HeaderWrap>
           <Logo>
             <Link href="/">
-              <img src="assets/logo-tulsio.svg" width="211" height="61" alt="Tulsio" />
+              <img src="/assets/logo-tulsio.svg" width="211" height="61" alt="Tulsio" />
             </Link>
           </Logo>
           <NavWrap>

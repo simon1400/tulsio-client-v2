@@ -1,27 +1,14 @@
 import {useRouter} from 'next/router'
 import Head from 'next/head'
 import PageHead from '../../components/PageHead'
-import { NextPage } from 'next'
-import {InstantSearch} from 'react-instantsearch-hooks-web'
-import searchClient from "../../lib/meilisearch";
-import InfiniteArticles from '../../components/InfiniteArticles'
-import { useEffect, useState } from 'react'
-import axios from 'axios'
-import qs from 'qs'
+import { FC, useEffect, useState } from 'react'
+import getCategoryNav from 'queries/categoriesNav'
+import { client } from 'lib/api'
+import { getAllArticles, getArticlesCategory } from 'queries/articles';
+import Articles from 'components/Articles'
 
-const APP_API = process.env.APP_API;
+// const APP_API = process.env.APP_API;
 const DOMAIN = process.env.APP_DOMAIN;
-
-const controlQs = (router: any) => {
-  return qs.stringify({
-    filters: {
-      slug: {
-        $eq: router.query.category,
-      }
-    },
-    fields: ['slug']
-  })
-}
 
 export async function getServerSideProps(context: any) {
 
@@ -31,50 +18,105 @@ export async function getServerSideProps(context: any) {
     }
   }
 
-  const res = await axios.get(`${APP_API}/api/categories?${controlQs(context)}`)
+  const { data: navData } = await client.query({query: getCategoryNav});
 
-  if(!res.data.data.length && context.query.category !== 'blog') {
-    return {
-      notFound: true
-    }
+  let articles = {}, 
+      dataTitle = 'Blog',
+      dataDescription = 'Blog';
+  
+  if(context.query.category === 'blog') {
+    const { data: articleData } = await client.query({query: getAllArticles});
+    articles = articleData.articles.data.map((item: any) => ({...item.attributes}))
+  }else{
+    const { data: articleData } = await client.query({
+      query: getArticlesCategory,
+      variables: {
+        slug: context.query.category
+      }
+    });
+    articles = articleData.articles.data.map((item: any) => ({...item.attributes}))
   }
 
+  const nav = navData.categories.data.map((item: any) => (
+    {
+      title: item.attributes.title, 
+      slug: item.attributes.slug
+    }
+  ))
+
   return {
-    props: {}
+    props: {
+      nav,
+      dataArticles: articles,
+      dataTitle,
+      dataDescription
+    }
   }
 }
 
-const Category: NextPage = () => {
+interface ICategoryNav {
+  title: string;
+  slug: string;
+}
+
+interface IDataArticles {
+
+}
+
+interface ICategoryPage {
+  nav: ICategoryNav,
+  dataArticles: any,
+  dataTitle: string,
+  dataDescription: string
+}
+
+const Category: FC<ICategoryPage> = ({
+  nav,
+  dataArticles,
+  dataTitle,
+  dataDescription
+}) => {
 
   const router = useRouter()
 
-  const [title, setTitle] = useState('Blog')
-  const [description, setDescription] = useState('')
+  const [title, setTitle] = useState(dataTitle)
+  const [description, setDescription] = useState(dataDescription)
 
-  useEffect(() => {
-    return () => {
-      setTitle('Blog')
+  const [articles, setArticles] = useState<any[]>(dataArticles)
+
+  const handleChange = async (link: string) => {
+    router.push(link)
+    if(link === 'blog') {
+      const { data: articleData } = await client.query({query: getAllArticles});
+      setArticles(articleData.articles.data.map((item: any) => ({...item.attributes})))
+    }else{
+      const { data } = await client.query({
+        query: getArticlesCategory,
+        variables: {
+          slug: link
+        }
+      });
+      setArticles(data.articles.data.map((item: any) => ({...item.attributes})))
     }
-  }, [])
+  }
 
   return (
-    <InstantSearch 
-      indexName="article"
-      searchClient={searchClient}
-    >
-        <Head>
-          <link rel="alternate" hrefLang="cs" href={`${DOMAIN}/cs${router.asPath}`} />
-        </Head>
+    <main>
+      <Head>
+        <title>{title}</title>
+        <link rel="alternate" hrefLang="cs" href={`${DOMAIN}/cs${router.asPath}`} />
+      </Head>
+      
+      <PageHead 
+        title={title} 
+        nav={nav} 
+        category
+        handleChange={handleChange}
+      />
         
-        <PageHead 
-          title={title}
-          setTitle={setTitle}
-          setDescription={setDescription}
-          category />
-          
-        <InfiniteArticles />
+      {!!articles?.length && <Articles data={articles} />}
         
-    </InstantSearch>
+    </main>
   )
 }
 

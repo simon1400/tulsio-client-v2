@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 const getFaq = gql`
   query getFaq {
-    faq {
+    faqPage {
       data {
         attributes {
           title

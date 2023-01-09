@@ -5,7 +5,9 @@ const getCategory = gql`
     categories(filters: {slug:{eq:$slug}}) {
       data {
         attributes {
+          title
           slug
+          meta
         }
       }
     }

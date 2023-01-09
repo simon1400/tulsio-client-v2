@@ -6,27 +6,12 @@ const nextConfig = {
   env: {
     APP_API: process.env.APP_API
   },
-  // i18n: {
-  //   locales: ['cs', 'catchAll'],
-  //   defaultLocale: 'catchAll',
-  //   localeDetection: false
-  // },
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: '/catchAll',
-  //       destination: '/cs',
-  //       locale: false,
-  //       permanent: false,
-  //     },
-  //     {
-  //       source: '/catchAll/:slug*',
-  //       destination: '/cs/:slug*',
-  //       locale: false,
-  //       permanent: false,
-  //     },
-  //   ]
-  // },
+  i18n: {
+    locales: ['default', 'cs'],
+    defaultLocale: 'default',
+    localeDetection: false
+  },
+  trailingSlash: false
 }
 
 module.exports = nextConfig

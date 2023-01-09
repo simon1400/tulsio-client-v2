@@ -1,13 +1,13 @@
 import styled from '@emotion/styled'
 import Link from 'next/link'
 
-export const ArticleWrap = styled(Link)<{background?: string;}>(({background}) => `
+export const ArticleWrap = styled(Link)<{background: string; color: string;}>(({background, color}) => `
   padding: 40px;
   display: block;
   height: 100%;
   background: ${background};
   border-radius: 60px;
-  color: white;
+  color: ${color};
   overflow: hidden;
   text-decoration: none;
   position: relative;
@@ -38,7 +38,9 @@ export const ArticleWrap = styled(Link)<{background?: string;}>(({background}) =
     z-index: 1;
     left: 0;
     top: 0;
-    mix-blend-mode: screen;
+    /* mix-blend-mode: screen; */
+    mix-blend-mode: luminosity;
+    opacity: .7;
   }
   .article-short-content{
     font-size: 19px;

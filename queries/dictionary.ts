@@ -1,6 +1,30 @@
 import { gql } from "@apollo/client";
 
-const getDictionary = gql`
+export const getAllDictionaries = gql`
+  query getDictionary {
+    dictionaries {
+      data {
+        attributes {
+          title
+          content
+          image{
+            data{
+              attributes{
+                url
+              }
+            }
+          }
+          button{
+            text
+            link
+          }
+        }
+      }
+    }
+  }
+`
+
+export const getDictionaryPage = gql`
   query getDictionary {
     dictionaryPage {
       data {
@@ -23,5 +47,3 @@ const getDictionary = gql`
     }
   }
 `
-
-export default getDictionary

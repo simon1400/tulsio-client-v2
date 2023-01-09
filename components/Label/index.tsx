@@ -1,5 +1,5 @@
 import { FC } from "react"
-// import { useRouter } from "next/router"
+import { LabelS } from "./styles"
 
 export interface LabelProps {
   title: string
@@ -14,18 +14,10 @@ export interface LabelDataProps {
 const Label: FC<LabelDataProps> = ({
   data
 }) => {
-
-  // const router = useRouter()
-
-  // const handleLink = (e: any) => {
-  //   e.preventDefault()
-  //   router.push(data.slug)
-  // }
-
   return (
-    <label className={`label ${data.color}`}>
+    <LabelS>
       {data.title}
-    </label>
+    </LabelS>
   )
 }
 

@@ -7,10 +7,10 @@ export const Nav = styled.nav`
     li{
       display: inline-block;
       list-style-type: none;
-      &:not(:first-child) {
+      &:not(:first-of-type) {
         padding-left: 20px;
       }
-      &:not(:last-child) {
+      &:not(:last-of-type) {
         padding-right: 20px;
       }
       a{

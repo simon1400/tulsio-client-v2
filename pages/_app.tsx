@@ -14,9 +14,8 @@ import createEmotionCache from 'lib/createEmotionCache';
 import 'styles/global.scss'
 
 const Header = dynamic(() => import('layout/Header'), {suspense: true})
-const Footer = dynamic(() => import('layout/Footer'), {suspense: true}) 
-const Search = dynamic(() => import('layout/Search'), {suspense: true}) 
-const CookieConsent = dynamic(() => import('components/CookieConsent'), {suspense: true})
+// const Footer = dynamic(() => import('layout/Footer'), {suspense: true}) 
+// const CookieConsent = dynamic(() => import('components/CookieConsent'), {suspense: true})
 
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
@@ -145,9 +144,8 @@ const MyApp: FC<MyAppProps> = (props) => {
 
             <Header />
             <Component {...pageProps} />
-            <Footer />
-            {/* <Search /> */}
-            <CookieConsent />
+            {/* <Footer /> */}
+            {/* <CookieConsent /> */}
           </WithGraphQL>
         </DataProvider>
       </ThemeProvider>

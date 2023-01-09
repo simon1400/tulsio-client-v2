@@ -19,7 +19,7 @@ const TopNav: FC<ITopNav> = ({ mobile, menu }) => {
   return (
     <Nav>
       <ul>
-        {data.navigation.data.attributes.topNav.item.map((item: any) => <li key={item.id}>
+        {data.navigation.data.attributes.topNav.item.map((item: any, idx: number) => <li key={idx}>
           <Link href={item.link} className={item.link === router.asPath ? 'active' : ''}>
             {item.name}
           </Link>
