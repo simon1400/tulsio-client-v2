@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 
-export const ContentS = styled.div`
+export const ContentS = styled.div<{removePadding: boolean}>(({removePadding}) => `
   color: rgba(255,255,255, .85);
-  padding: 100px 0;
+  padding: ${removePadding ? '0' : '100px 0'};
   figure {
     display: block;
     margin: 0;
@@ -18,4 +18,4 @@ export const ContentS = styled.div`
       }
     }
   }
-`
+`)

@@ -21,7 +21,7 @@ export const SubMenu = styled.div`
     a{
       color: rgba(255, 255, 255, 0.75);
       text-decoration: none;
-      font-size: 20px;
+      font-size: 1.25em;
       font-weight: 600;
       padding: 3px 15px;
       display: block;

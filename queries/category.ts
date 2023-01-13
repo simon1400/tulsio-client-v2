@@ -1,17 +1,38 @@
 import { gql } from "@apollo/client";
 
-const getCategory = gql`
-  query category($slug:String!) {
-    categories(filters: {slug:{eq:$slug}}) {
+export const getCategoryNav = gql`
+  query categoryNav {
+    categories {
       data {
         attributes {
           title
           slug
-          meta
         }
       }
     }
   }
 `
 
-export default getCategory
+export const getCategory = gql`
+  query category( $slug: String! ) {
+    categories(filters: { slug: { eq: $slug } }) {
+      data {
+        attributes {
+          title
+          meta{
+            title
+            description
+            image{
+              data{
+                attributes{
+                  url
+                  alternativeText
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`

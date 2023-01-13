@@ -9,18 +9,48 @@ export const baseBody = (theme: any) => ({
     backgroundColor: theme.palette.primary.main,
   },
   p: paragraph(theme),
-  // [theme.breakpoints.down('lg')]: {
-  //   fontSize: '24px',
-  // },
-  // [theme.breakpoints.down('sm')]: {
-  //   fontSize: '19px!important',
-  //   lineHeight: "1.63",
-  //   ul: {
-  //     li: {
-  //       "&:before": {
-  //         top: "13px"
-  //       }
-  //     }
-  //   }
-  // },
+  [theme.breakpoints.down('xxl')]: {
+    fontSize: '17px',
+    lineHeight: "1.82",
+    // ul: {
+    //   li: {
+    //     "&:before": {
+    //       top: "13px"
+    //     }
+    //   }
+    // }
+  },
+  [theme.breakpoints.down('lg')]: {
+    fontSize: '16px',
+    lineHeight: 1.81,
+    // ul: {
+    //   li: {
+    //     "&:before": {
+    //       top: "13px"
+    //     }
+    //   }
+    // }
+  },
+  [theme.breakpoints.down('md')]: {
+    fontSize: '14px',
+    lineHeight: 1.79,
+    // ul: {
+    //   li: {
+    //     "&:before": {
+    //       top: "13px"
+    //     }
+    //   }
+    // }
+  },
+  [theme.breakpoints.down('sm')]: {
+    fontSize: '13px',
+    lineHeight: 1.77,
+    // ul: {
+    //   li: {
+    //     "&:before": {
+    //       top: "13px"
+    //     }
+    //   }
+    // }
+  }
 })

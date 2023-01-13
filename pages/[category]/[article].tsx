@@ -1,9 +1,8 @@
-import Page from '../../layout/Page'
 import Image from '../../components/Image'
 import Head from 'next/head'
 import {useRouter} from 'next/router'
-import getArticle from '../../queries/article';
-import { client, getStrapiURL } from '../../lib/api'
+import {getArticle} from '../../queries/articles';
+import { client } from '../../lib/api'
 import { NextPage } from 'next'
 // import Label from '../../components/Label'
 import { useEffect } from 'react'
@@ -88,7 +87,7 @@ const Article: NextPage = ({
   console.log(article.chapters)
 
   return (
-    <main>
+    <>
       <Head>
         <link rel="alternate" hrefLang="cs" href={`${DOMAIN}/cs${router.asPath}`} />
       </Head>
@@ -131,7 +130,7 @@ const Article: NextPage = ({
         {/* <Comments /> */}
 
       </article>}
-    </main>
+    </>
   )
 }
 

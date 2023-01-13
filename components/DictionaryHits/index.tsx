@@ -1,8 +1,9 @@
-import { Container } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import dynamic from "next/dynamic";
 import { FC } from "react";
 import { AlphabetWrap, Box } from "./styles";
-import Grid2 from '@mui/material/Unstable_Grid2';
+import Masonry from "react-responsive-masonry"
+import Content from "components/Content";
 
 const Image = dynamic(() => import("../Image"), {suspense: true});
 
@@ -13,16 +14,18 @@ const DictionaryHits: FC<{data: any}> = ({data}) => {
   return (
     <Container maxWidth="xl">
       {Object.keys(data).map((key, index) => <AlphabetWrap id={key} key={index}>
-        <Grid2 container spacing={5}>
-          {data[key].map((item: any, indexChild: number) => <Grid2 sm={4} key={indexChild}>
+        <Masonry columnsCount={3} gutter="30px">
+          {data[key].map((item: any, indexChild: number) => <div key={indexChild}>
             <Box>
-              {item.image && <Image format="&width=440" url={APP_API+item.image} />}
-              <h3>{item.title}</h3>
-              <div dangerouslySetInnerHTML={{__html: item.content}} />
-              {item.textLink && item.link && <a href={item.link}>{item.textLink}</a>}
+              <Content removePadding>
+                {item.image?.data && <Image format="&width=440" url={APP_API+item.image.data.attributes} />}
+                <Typography variant="h2">{item.title}</Typography>
+                <Typography variant="body1" dangerouslySetInnerHTML={{__html: item.content}} />
+                {item.textLink && item.link && <a href={item.link}>{item.textLink}</a>}
+              </Content>
             </Box>
-          </Grid2>)}
-        </Grid2>
+          </div>)}
+        </Masonry>
       </AlphabetWrap>)}
     </Container>
   )

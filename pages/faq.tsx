@@ -8,8 +8,9 @@ import PageHead from 'components/PageHead';
 import FaqHits from 'components/FaqHits';
 import SearchBox from 'components/SearchBox';
 import { Container } from '@mui/material';
+import Head from 'next/head';
 
-// const DOMAIN = process.env.APP_DOMAIN;
+const DOMAIN = process.env.APP_DOMAIN;
 
 export async function getServerSideProps() {
   
@@ -28,13 +29,6 @@ const Faq: NextPage = ({
 }) => {  
 
   const router = useRouter()
-  // const { dispatch } = useContext(DataStateContext)
-
-  // useEffect(() => {
-  //   return () => {
-  //     dispatch({ state: '', type: 'slug'})
-  //   }
-  // }, [])
 
   return (
     <InstantSearch 
@@ -44,9 +38,9 @@ const Faq: NextPage = ({
 
       <Configure hitsPerPage={50} />
 
-      {/* <Head>
+      <Head>
         <link rel="alternate" hrefLang="cs" href={`${DOMAIN}/cs${router.asPath}`} />
-      </Head> */}
+      </Head>
       
       <PageHead title={faq.title} />
 

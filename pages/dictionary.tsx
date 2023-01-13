@@ -80,8 +80,10 @@ const Dictionary: NextPage<IDictionary> = ({
 
   const router = useRouter()
 
+  
+
   return (
-    <main>
+    <>
       <Head>
         <link rel="alternate" hrefLang="cs" href={`${DOMAIN}/cs${router.asPath}`} />
       </Head>
@@ -90,7 +92,7 @@ const Dictionary: NextPage<IDictionary> = ({
 
       <DictionaryHits data={dictionaries} />
         
-    </main>
+    </>
   )
 }
 

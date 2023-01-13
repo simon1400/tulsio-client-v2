@@ -7,7 +7,7 @@ export const Search = styled.div`
   }
   input{
     color: white;
-    font-size: 20px;
+    font-size: 1.25em;
     font-weight: 600;
     &::placeholder{
       color: rgba(255, 255, 255, 0.85);
@@ -38,7 +38,9 @@ export const Search = styled.div`
     }
     &.activeInput{
       &::after {
-        transform: scaleX(1)
+        transform: scaleX(1) translateX(0);
+        left: 0;
+        right: none;
       }
     }
   }

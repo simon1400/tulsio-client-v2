@@ -17,7 +17,7 @@ export const AccordionSummary = styled(MuiAccordionSummary)`
   p{
     margin: 0;
     padding: 40px;
-    font-size: 30px;
+    font-size: 1.875em;
     font-weight: 600;
     line-height: 1.3;
   }

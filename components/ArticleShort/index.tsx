@@ -1,6 +1,7 @@
 import { FC } from "react"
 import Label from "components/Label"
 import { ArticleWrap } from "./styles"
+import { Typography } from "@mui/material"
 
 const APP_API = process.env.APP_API
 
@@ -67,14 +68,16 @@ const ArticleShort: FC<ArticleShortProps> = ({
   return (
     <ArticleWrap background={convert} color={color} href={link} passHref>
 
-      <div className="img-wrap-back" style={{backgroundImage: `url(${imgUrl})`}}></div>
+      <div className="img-wrap">
+        <div className="img-art" style={{backgroundImage: `url(${imgUrl})`}}></div>
+      </div>
+
       <div className="content-wrap-art">
         <div>
-          {text && <h2><span>{title}</span></h2>}
-          {!text && <h3><span>{title}</span></h3>}
-          {!!text.length && <div className="article-short-content" dangerouslySetInnerHTML={{__html: text}}></div>}
+          {text && <Typography variant="h1"><span>{title}</span></Typography>}
+          {!text && <Typography variant="h2"><span>{title}</span></Typography>}
+          {!!text.length && <Typography variant="body1" className="article-short-content" dangerouslySetInnerHTML={{__html: text}} />}
         </div>
-        
         <div className="label-wrap">
           {!!label && !Array.isArray(label) && <Label data={label}/>}
           {!!label && Array.isArray(label) && label.map((item, idx) => <Label key={idx} data={item}/>)}

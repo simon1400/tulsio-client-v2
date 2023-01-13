@@ -76,12 +76,10 @@ const Homepage: FC<IHomepage> = ({
   // console.log('baner2', baner2)
 
   return (
-    <main id="homepage">
+    <>
       <Head>
         <link rel="alternate" hrefLang="cs" href={DOMAIN+'/cs'} />
       </Head>
-
-      {/* <ModalNewsletter title="Všechno co se ve světě CBD děje ve vašem mailu." /> */}
 
       <section>
         <GridTop>
@@ -106,7 +104,7 @@ const Homepage: FC<IHomepage> = ({
           </div>)}
         </GridTop>
       </section>
-    </main>
+    </>
   )
 }
 

@@ -1,8 +1,8 @@
 import {useRouter} from 'next/router'
 import Head from 'next/head'
 import PageHead from '../../components/PageHead'
-import { FC, useEffect, useState } from 'react'
-import getCategoryNav from 'queries/categoriesNav'
+import { FC, useState } from 'react'
+import {getCategory, getCategoryNav} from 'queries/category'
 import { client } from 'lib/api'
 import { getAllArticles, getArticlesCategory } from 'queries/articles';
 import Articles from 'components/Articles'
@@ -20,7 +20,7 @@ export async function getServerSideProps(context: any) {
 
   const { data: navData } = await client.query({query: getCategoryNav});
 
-  let articles = {}, 
+  let articles = {}, categoryData = {},
       dataTitle = 'Blog',
       dataDescription = 'Blog';
   
@@ -28,13 +28,25 @@ export async function getServerSideProps(context: any) {
     const { data: articleData } = await client.query({query: getAllArticles});
     articles = articleData.articles.data.map((item: any) => ({...item.attributes}))
   }else{
-    const { data: articleData } = await client.query({
+    const { data: articlesData } = await client.query({
       query: getArticlesCategory,
       variables: {
         slug: context.query.category
       }
     });
-    articles = articleData.articles.data.map((item: any) => ({...item.attributes}))
+
+    const { data: categoryDataReq } = await client.query({
+      query: getCategory,
+      variables: {
+        slug: context.query.category
+      }
+    });
+
+    articles = articlesData.articles.data.map((item: any) => ({...item.attributes}))
+
+    dataTitle = categoryDataReq.categories.data[0]?.attributes.meta.title
+    dataDescription = categoryDataReq.categories.data[0]?.attributes.meta.description
+
   }
 
   const nav = navData.categories.data.map((item: any) => (
@@ -48,8 +60,8 @@ export async function getServerSideProps(context: any) {
     props: {
       nav,
       dataArticles: articles,
-      dataTitle,
-      dataDescription
+      dataTitle: dataTitle || null,
+      dataDescription: dataDescription || null,
     }
   }
 }
@@ -64,9 +76,9 @@ interface IDataArticles {
 }
 
 interface ICategoryPage {
-  nav: ICategoryNav,
-  dataArticles: any,
-  dataTitle: string,
+  nav: ICategoryNav
+  dataArticles: any
+  dataTitle: string
   dataDescription: string
 }
 
@@ -89,6 +101,8 @@ const Category: FC<ICategoryPage> = ({
     if(link === 'blog') {
       const { data: articleData } = await client.query({query: getAllArticles});
       setArticles(articleData.articles.data.map((item: any) => ({...item.attributes})))
+      setTitle('Blog')
+      setDescription('Blog')
     }else{
       const { data } = await client.query({
         query: getArticlesCategory,
@@ -96,14 +110,23 @@ const Category: FC<ICategoryPage> = ({
           slug: link
         }
       });
+      const { data: categoryDataReq } = await client.query({
+        query: getCategory,
+        variables: {
+          slug: router.query.category
+        }
+      });
       setArticles(data.articles.data.map((item: any) => ({...item.attributes})))
+      setTitle(categoryDataReq.categories.data[0]?.attributes.meta.title)
+      setDescription(categoryDataReq.categories.data[0]?.attributes.meta.description)
     }
   }
 
   return (
-    <main>
+    <>
       <Head>
         <title>{title}</title>
+        <meta name="description" content={description} />
         <link rel="alternate" hrefLang="cs" href={`${DOMAIN}/cs${router.asPath}`} />
       </Head>
       
@@ -116,7 +139,7 @@ const Category: FC<ICategoryPage> = ({
         
       {!!articles?.length && <Articles data={articles} />}
         
-    </main>
+    </>
   )
 }
 

@@ -1,8 +1,9 @@
-import router from "next/router"
+import { Drawer, List, ListItem, ListItemButton, ListItemText } from "@mui/material"
 import Link from "next/link"
 import { FC } from "react"
-import { connectHits } from "react-instantsearch-core";
-import closeCanvas from "../../helpers/closeCanvas";
+import { CloseMenuS, MenuS } from "./styles"
+import CloseIcon from '@mui/icons-material/Close';
+import { Logo } from "./styles";
 
 export interface INavItem {
   id: string
@@ -10,35 +11,89 @@ export interface INavItem {
   link: string
 }
 
-export interface ITopNav {
-  hits?: INavItem[]
-  mobile?: boolean
-  menu?: boolean
+const drawerWidth = '100%';
+
+interface Props {
+  mobileOpen: boolean;
+  handleDrawerToggle: () => void
+  data: any;
+  loading: boolean;
 }
 
-const Menu: FC<ITopNav> = ({ hits }) => {
+const Menu: FC<Props> = (props) => {
+
+  const { mobileOpen, handleDrawerToggle, data, loading } = props;
+
+  console.log(data);
+
+  if(loading) {
+    return <></>
+  }
 
   return (
-    <div id="responsive-nav" className="uk-offcanvas canvas" uk-offcanvas="flip: true; overlay: true">
-      {/* <div className="uk-offcanvas-bar">
-        <div className="canvas-head">
-          <h3></h3>
-          <Link href="/" onClick={e => closeCanvas(e, '#responsive-nav')}>
-            <img className="uk-svg" hidden src="/assets/times.svg" uk-svg="" />
-            <svg></svg>
+    <>
+      <Drawer
+        variant="temporary"
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
+        ModalProps={{
+          keepMounted: true, // Better open performance on mobile.
+        }}
+        sx={{
+          display: { xs: 'block', sm: 'none' },
+          '& .MuiDrawer-paper': { 
+            boxSizing: 'border-box', 
+            width: drawerWidth,
+            background: '#202020',
+            paddingTop: "150px",
+            position: 'relative'
+          }
+        }}
+      >
+        <Logo>
+          <Link href="/">
+            <img src="/assets/logo-tulsio.svg" width="211" height="61" alt="Tulsio" />
           </Link>
-        </div>
-        <nav className="menu-responsive">
-          <ul>
-            {hits.map(item => <li key={item.id}>
-              <Link href={item.link} className={item.link === router.asPath ? 'active' : ''}>
-                {item.title}
-              </Link>
-            </li>)}
-          </ul>
-        </nav>
-      </div> */}
-    </div>
+        </Logo>
+        <CloseMenuS>
+          <CloseIcon 
+            sx={{ fontSize: 44 }} 
+            onClick={() => handleDrawerToggle()} />
+        </CloseMenuS>
+        <MenuS>
+          <List component="nav">
+            {data.navigation.data.attributes.topNav.item.map((item: any, idx: number) => (
+              <ListItem key={idx} disablePadding>
+                <ListItemButton component="a" href={item.link}>
+                  <ListItemText primary={item.name} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </MenuS>
+      </Drawer>
+      {/* <Drawer
+        variant="permanent"
+        sx={{
+          display: { xs: 'none', sm: 'block' },
+          background: '#202020',
+          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+        }}
+        open
+      >
+        <MenuS>
+          <List>
+            {['All mail', 'Trash', 'Spam'].map((text, idx) => (
+              <ListItem key={idx} disablePadding>
+                <ListItemButton>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </MenuS>
+      </Drawer> */}
+    </>
   )
 }
 

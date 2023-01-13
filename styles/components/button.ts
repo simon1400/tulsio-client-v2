@@ -1,7 +1,7 @@
 export const button = (theme: any) => ({
   styleOverrides: {
     root: {
-      fontSize: "19px",
+      fontSize: "1.1875em",
       boxShadow: '0 3px 6px 0 rgba(0, 0, 0, 0.16)',
       fontWeight: 600,
       // textTransform: 'none',

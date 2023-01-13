@@ -17,7 +17,7 @@ export const Nav = styled.nav`
         color: rgba(255, 255, 255, 0.75);
         text-decoration: none;
         font-weight: 600;
-        font-size: 20px;
+        font-size: 1.25em;
         transition: all .5s ease;
         &:hover{
           color: white;

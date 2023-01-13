@@ -6,10 +6,18 @@ export const HeaderWrap = styled.div`
   justify-content: space-between;
   margin-bottom: 20px;
   align-items: center;
+  @media (max-width: 960px) {
+    padding: 50px 0;
+  }
 `
 
 export const Logo = styled.div`
-
+  @media (max-width: 960px) {
+    img{
+      width: 110px;
+      height: 32px;
+    }
+  }
 `
 
 export const NavWrap = styled.div`

@@ -1,11 +1,17 @@
+import { FC, ReactElement } from "react"
 import { ContentS } from "./styles"
 
-const Content = ({
-  // @ts-ignore
-  children
+interface IContent {
+  children: ReactElement | ReactElement[];
+  removePadding?: boolean;
+}
+
+const Content: FC<IContent> = ({
+  children,
+  removePadding = false
 }) => {
   return (
-    <ContentS>
+    <ContentS removePadding={removePadding}>
       {children}
     </ContentS>
   )

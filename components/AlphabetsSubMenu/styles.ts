@@ -23,7 +23,7 @@ export const TabS = styled(Tab)`
   color: rgba(255, 255, 255, 0.75);
   text-decoration: none;
   text-transform: none;
-  font-size: 20px;
+  font-size: 1.25em;
   font-weight: 600;
   padding: 3px 15px 5px;
   min-width: auto;

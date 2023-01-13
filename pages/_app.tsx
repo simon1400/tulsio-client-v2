@@ -11,9 +11,10 @@ import {DataProvider} from '../context/dataStateContext.js'
 import { WithGraphQL } from 'lib/api'
 import theme from 'styles/theme';
 import createEmotionCache from 'lib/createEmotionCache';
+import Header from 'layout/Header'
 import 'styles/global.scss'
 
-const Header = dynamic(() => import('layout/Header'), {suspense: true})
+// const Header = dynamic(() => import(''), {suspense: true})
 // const Footer = dynamic(() => import('layout/Footer'), {suspense: true}) 
 // const CookieConsent = dynamic(() => import('components/CookieConsent'), {suspense: true})
 
@@ -141,11 +142,12 @@ const MyApp: FC<MyAppProps> = (props) => {
             <noscript><iframe src={`https://www.googletagmanager.com/ns.html?id='GTM-PQFGK4R'}`}
               height="0" width="0" style={{display:'none', visibility:'hidden'}}></iframe></noscript>
             {/*<!-- End Google Tag Manager (noscript) -->*/}
-
-            <Header />
-            <Component {...pageProps} />
-            {/* <Footer /> */}
-            {/* <CookieConsent /> */}
+            <main>
+              <Header />
+              <Component {...pageProps} />
+              {/* <Footer /> */}
+              {/* <CookieConsent /> */}
+            </main>
           </WithGraphQL>
         </DataProvider>
       </ThemeProvider>
