@@ -27,9 +27,6 @@ export const ArticleWrap = styled(Link)<{background: string; color: string;}>(({
     z-index: -1;
     transform: scale(1);
     transition: all .4s ease-in-out;
-    @media(max-width: 960px) {
-      border-radius: 20px;
-    }
     .img-art{
       background-size: cover;
       height: 110%;
