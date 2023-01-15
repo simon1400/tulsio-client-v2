@@ -92,12 +92,6 @@ const Article: NextPage = ({
         <link rel="alternate" hrefLang="cs" href={`${DOMAIN}/cs${router.asPath}`} />
       </Head>
 
-      <div className="breadcrumb-wrap">
-        <div className="uk-container uk-container-large">
-          {/* <Breadcrumb article /> */}
-        </div>
-      </div>
-
       {!!article && <article className="blog-article">
         <Container maxWidth="xxl">
           <ArticleTop article={article} />
@@ -111,7 +105,9 @@ const Article: NextPage = ({
               {!!item.title && <Typography variant="h2">{item.title}</Typography>}
               <Typography variant="body2" dangerouslySetInnerHTML={{__html: item.text}} />
               {!!item.galery?.data?.length && item.galery.data.map((img: any, indexImg: number) => <figure key={indexImg}>
-                <div><Image format="&width=960" image={img} /></div>
+                <div>
+                  <Image format="&width=960" image={img} />
+                </div>
                 {!!img.caption?.length && <figcaption>{img.caption}</figcaption>}
               </figure>)}
               {!!item.button && <div className="uk-text-center uk-margin-bottom">

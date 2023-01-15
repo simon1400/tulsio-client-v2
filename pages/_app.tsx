@@ -13,6 +13,7 @@ import theme from 'styles/theme';
 import createEmotionCache from 'lib/createEmotionCache';
 import Header from 'layout/Header'
 import 'styles/global.scss'
+import { globalVariables } from 'styles/var';
 
 // const Header = dynamic(() => import(''), {suspense: true})
 // const Footer = dynamic(() => import('layout/Footer'), {suspense: true}) 
@@ -79,7 +80,7 @@ const MyApp: FC<MyAppProps> = (props) => {
 
   return (
     <CacheProvider value={emotionCache}>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={{...theme, ...globalVariables}}>
         <CssBaseline />
         <DataProvider>
           <WithGraphQL>

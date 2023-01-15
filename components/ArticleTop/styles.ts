@@ -1,11 +1,23 @@
 import styled from "@emotion/styled";
 
-export const ArticleTopS = styled.div`
+export const ArticleTopS = styled.div(({theme}) => `
   position: relative;
-  border-radius: 60px;
+  border-radius: ${theme.borderRadius['base']};
   overflow: hidden;
   padding: 240px 200px;
   background: #4545ff;
+  ${theme.breakpoints.down('xxl')} {
+    border-radius: ${theme.borderRadius['xxl']};
+  }
+  ${theme.breakpoints.down('xl')} {
+    border-radius: ${theme.borderRadius['xl']};
+  }
+  ${theme.breakpoints.down('lg')} {
+    border-radius: ${theme.borderRadius['lg']};
+  }
+  ${theme.breakpoints.down('sm')} {
+    border-radius: ${theme.borderRadius['sm']};
+  }
   img {
     position: absolute;
     object-fit: cover;
@@ -21,11 +33,33 @@ export const ArticleTopS = styled.div`
   }
   h1{
     position: relative;
+    font-size: 60px;
+    line-height: 1.15;
     z-index: 2;
     margin-bottom: 30px;
+    ${theme.breakpoints.down('xxl')} {
+      font-size: 50px;
+      line-height: 1.14;
+    }
+    ${theme.breakpoints.down('xl')} {
+      font-size: 45px;
+      line-height: 1.13;
+    }
+    ${theme.breakpoints.down('lg')} {
+      font-size: 36px;
+      line-height: 1.14;
+    }
+    ${theme.breakpoints.down('md')} {
+      font-size: 32px;
+      line-height: 1.13;
+    }
+    ${theme.breakpoints.down('sm')} {
+      font-size: 28px;
+      line-height: 1.18;
+    }
   }
   label{
     position: relative;
     z-index: 2;
   }
-`
+`)

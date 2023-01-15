@@ -1,12 +1,10 @@
-import styled from '@emotion/styled'
-import Link from 'next/link'
+import styled from "@emotion/styled";
+import Link from "next/link";
 
-export const ArticleWrap = styled(Link)<{background: string; color: string;}>(({background, color, theme}) => `
+export const BannerS = styled(Link)(({theme}) => `
   display: block;
   height: 100%;
   min-height: 300px;
-  color: ${color};
-  text-decoration: none;
   position: relative;
   &:hover{
     .img-wrap {
@@ -18,7 +16,6 @@ export const ArticleWrap = styled(Link)<{background: string; color: string;}>(({
     }
   }
   .img-wrap{
-    background: ${background};
     height: 100%;
     width: 100%;
     border-radius: ${theme.borderRadius['base']};
@@ -48,32 +45,8 @@ export const ArticleWrap = styled(Link)<{background: string; color: string;}>(({
       top: 50%;
       position: absolute;
       z-index: -2;
-      mix-blend-mode: luminosity;
-      opacity: .7;
       transform: translate(-50%, -50%);
       transition: all .7s ease;
     }
-  }
-  .content-wrap-art{
-    height: 100%;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-    z-index: 2;
-  }
-  h1{
-    margin-top: 0;
-    margin-bottom: 40px;
-  }
-  h2{
-    margin-top: 0;
-    margin-bottom: 20px;
-  }
-  .label-wrap{
-    margin-bottom: -8px;
-    display: flex;
-    flex-wrap: wrap;
   }
 `)

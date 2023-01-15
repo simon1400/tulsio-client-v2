@@ -2,6 +2,7 @@ import { Theme as MuiTheme, ThemeOptions } from '@mui/material/styles';
 import {createTheme} from '@mui/material'
 import { typography } from './typography';
 import { components } from './components';
+import { IBorderRadius } from './types';
 
 let theme = createTheme({
   breakpoints: {
@@ -38,7 +39,9 @@ theme = createTheme(theme, themeOption)
 export default theme;
 
 declare module '@emotion/react' {
-  export interface Theme extends MuiTheme {}
+  export interface Theme extends MuiTheme {
+    borderRadius: IBorderRadius;
+  }
 }
 
 declare module '@mui/material/Button' {

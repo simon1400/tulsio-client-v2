@@ -5,11 +5,24 @@ import { client, getStrapiURL } from "../lib/api";
 import getBaners from "../queries/baners";
 import homepageQuery from "../queries/homepage";
 import { GridTop } from "styles/grid";
+import Banner from "components/Baner";
+import GridButton from "components/GridButton";
 
 enum BANER_POSITION {
   POSITION_1='Home_1',
   POSITION_2='Home_2',
 }
+
+const gridButtonData = [
+  {
+    title: 'CBD slovník',
+    link: '/dictionary'
+  },
+  {
+    title: 'FAQ',
+    link: '/faq'
+  }
+]
 
 const DOMAIN = process.env.APP_DOMAIN;
 
@@ -70,20 +83,17 @@ const Homepage: FC<IHomepage> = ({
   meta
 }) => {
 
-  // console.log('mainArticle', mainArticle)
-  // console.log('seccondArticles', seccondArticles)
-  // console.log('baner1', baner1)
-  // console.log('baner2', baner2)
-
   return (
     <>
       <Head>
+        <title>{meta.title}</title>
         <link rel="alternate" hrefLang="cs" href={DOMAIN+'/cs'} />
+        <meta name="description" content={meta.description} />
       </Head>
 
       <section>
         <GridTop>
-          <div className="div1">
+          <div className="div0">
             <ArticleShort 
               title={mainArticle.title}
               link={`/blog/${mainArticle?.slug}`}
@@ -93,15 +103,55 @@ const Homepage: FC<IHomepage> = ({
               text={mainArticle.perex}
             />
           </div>
-          {!!seccondArticles?.length && seccondArticles.map((item: any, idx: number) => <div key={idx} className={`div${idx+2}`}>
-            <ArticleShort 
-              title={item.title}
-              link={`/blog/${item?.slug}`}
-              image={item.image.data}
-              background={item.background}
-              label={item?.labels?.data.map((item: any) => item.attributes)}
-            />
-          </div>)}
+          {!!seccondArticles?.length && seccondArticles.map((item: any, idx: number) => {
+            if(idx === 1) {
+              return <>
+                <div key={'banner'+idx}>
+                  <Banner data={baner1} />
+                </div>
+                <div key={'gridButton'+idx}>
+                  <GridButton data={gridButtonData[0]} />
+                </div>
+                <div key={'article'+idx}>
+                  <ArticleShort 
+                    title={item.title}
+                    link={`/blog/${item?.slug}`}
+                    image={item.image.data}
+                    background={item.background}
+                    label={item?.labels?.data.map((item: any) => item.attributes)}
+                  />
+                </div>
+                <div key={'gridButton'+idx+1}>
+                  <GridButton data={gridButtonData[1]} />
+                </div>
+              </>
+            }else if(idx === 4) {
+              return <>
+                <div key={'banner'+idx}>
+                  <Banner data={baner2} />
+                </div>
+                <div key={'article'+idx}>
+                  <ArticleShort 
+                    title={item.title}
+                    link={`/blog/${item?.slug}`}
+                    image={item.image.data}
+                    background={item.background}
+                    label={item?.labels?.data.map((item: any) => item.attributes)}
+                  />
+                </div>
+              </>
+            }else{
+              return <div key={'article'+idx}>
+                <ArticleShort 
+                  title={item.title}
+                  link={`/blog/${item?.slug}`}
+                  image={item.image.data}
+                  background={item.background}
+                  label={item?.labels?.data.map((item: any) => item.attributes)}
+                />
+              </div>
+            }
+          })}
         </GridTop>
       </section>
     </>

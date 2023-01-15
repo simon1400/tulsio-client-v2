@@ -12,15 +12,12 @@ export interface ILabel {
 }
 
 interface ArticleShortProps {
-  link: string,
-  image: string,
-  background?: string;
-  label?: ILabel | ILabel[],
+  link: string
+  image: string
+  background?: string
+  label?: ILabel | ILabel[]
   title: string
-  horizontal?: boolean,
-  text?: string,
-  alt?: string,
-  sticky?: string
+  text?: string
 }
 
 const ArticleShort: FC<ArticleShortProps> = ({
@@ -28,15 +25,12 @@ const ArticleShort: FC<ArticleShortProps> = ({
   image,
   title,
   background,
-  alt = '',
   text = '',
   label = undefined,
-  horizontal = false,
-  sticky = '',
 }) => {
 
   let imgUrl = '/assets/placeholder.svg'
-  const size = horizontal ? 'resize=221x221' : 'height=720'
+  const size = 'resize=1000x1000'
 
   if(typeof image === 'object') {
     if(image['attributes']) {
@@ -69,14 +63,14 @@ const ArticleShort: FC<ArticleShortProps> = ({
     <ArticleWrap background={convert} color={color} href={link} passHref>
 
       <div className="img-wrap">
-        <div className="img-art" style={{backgroundImage: `url(${imgUrl})`}}></div>
+        <div className="img-art" style={{backgroundImage: `url(${imgUrl})`}} />
       </div>
 
       <div className="content-wrap-art">
         <div>
           {text && <Typography variant="h1"><span>{title}</span></Typography>}
           {!text && <Typography variant="h2"><span>{title}</span></Typography>}
-          {!!text.length && <Typography variant="body1" className="article-short-content" dangerouslySetInnerHTML={{__html: text}} />}
+          {!!text.length && <Typography variant="body1" component="div" className="article-short-content" dangerouslySetInnerHTML={{__html: text}} />}
         </div>
         <div className="label-wrap">
           {!!label && !Array.isArray(label) && <Label data={label}/>}
