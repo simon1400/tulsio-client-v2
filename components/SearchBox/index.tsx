@@ -1,7 +1,7 @@
-import { Input, InputAdornment, InputBase, Paper, TextField } from '@mui/material';
+import { Input, InputAdornment, InputBase, OutlinedInput, Paper, TextField } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useSearchBox, UseSearchBoxProps } from 'react-instantsearch-hooks-web';
-import { Search } from './styled';
+import { Search, SearchWrap } from './styled';
 import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
 
@@ -22,24 +22,24 @@ const SearchBox = (props: UseSearchBoxProps) => {
     setValue('')
   }
 
-  return <Search>
-    <Input
+  return <SearchWrap>
+    <Search
+      id="search-faq"
       placeholder="Hledat dotaz..." 
       value={value}
-      className={value.length ? "activeInput" : ''}
       onChange={e => setValue(e.target.value)} 
       startAdornment={
         <InputAdornment position="start">
-          <SearchIcon />
+          <SearchIcon sx={{ color: "white" }} />
         </InputAdornment>
       }
       endAdornment={
-        value.length ? <InputAdornment position="end" onClick={e => handleClear()}>
-          <ClearIcon />
+        value.length ? <InputAdornment position="end" onClick={() => handleClear()}>
+          <ClearIcon sx={{ color: "white", cursor: 'pointer' }} />
         </InputAdornment> : null
       }
     />
-  </Search>;
+  </SearchWrap>;
 }
 
 export default SearchBox

@@ -44,7 +44,7 @@ const Faq: NextPage = ({
       
       <PageHead title={faq.title} />
 
-      <Container>
+      <Container maxWidth="md">
         <SearchBox />
       </Container>
       

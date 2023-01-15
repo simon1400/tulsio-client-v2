@@ -1,47 +1,30 @@
 import styled from "@emotion/styled";
+import { OutlinedInput } from "@mui/material";
 
-export const Search = styled.div`
+export const SearchWrap = styled.div`
   margin-bottom: 80px;
-  svg{
-    fill: white;
+`
+
+export const Search = styled(OutlinedInput)(({theme}) => `
+  border-radius: 60px;
+  height: 65px;
+  width: 100%;
+  &:hover{
+    fieldset {
+      border-color: ${theme.palette.primary.main};
+    }
+  }
+  fieldset {
+    border-color: ${theme.palette.primary.main};
   }
   input{
     color: white;
-    font-size: 1.25em;
+    font-size: 20px;
+    line-height: 1.25;
     font-weight: 600;
     &::placeholder{
       color: rgba(255, 255, 255, 0.85);
       opacity: 1;
     }
   }
-  .MuiInputBase-root{
-    padding: 12px 15px;
-    max-width: 480px;
-    width: 100%;
-    &:before{
-      display: none;
-    }
-    &::after {
-      background: #2b2b2b;
-      border-radius: 33px;
-      z-index: -1;
-      height: 100%;
-      border-bottom: none;
-    }
-    &:hover{
-      &:before{
-        visibility: hidden;
-      }
-    }
-    .MuiInputAdornment-positionEnd{
-      cursor: pointer;
-    }
-    &.activeInput{
-      &::after {
-        transform: scaleX(1) translateX(0);
-        left: 0;
-        right: none;
-      }
-    }
-  }
-`
+`)

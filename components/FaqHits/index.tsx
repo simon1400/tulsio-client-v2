@@ -6,6 +6,7 @@ import {
 } from 'react-instantsearch-hooks-web';
 import Grid2 from '@mui/material/Unstable_Grid2';
 import FaqItem from "components/FaqItem";
+import { FaqHitsS } from "./styles";
 
 const FaqHits = (props: UseHitsProps) => {
 
@@ -13,7 +14,9 @@ const FaqHits = (props: UseHitsProps) => {
 
   return (
     <Container maxWidth="md">
-      {hits.map((item: any, idx: number) => <FaqItem key={idx} data={item} />)}
+      <FaqHitsS>
+        {hits.map((item: any, idx: number) => <FaqItem key={idx} data={item} />)}
+      </FaqHitsS>
     </Container>
   )
 }
