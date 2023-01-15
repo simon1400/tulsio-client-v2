@@ -17,7 +17,6 @@ const Articles: FC<IArticles> = ({data}) => {
         {!!data.length && data.map((item: any, idx: number) => <div key={idx} className={`div${idx+1}`}>
           <ArticleShort 
             title={item?.title}
-            alt={item?.image.data.attributes.alternativeText}
             link={`/blog/${item.slug}`}
             background={item.background}
             image={item?.image.data.attributes}
