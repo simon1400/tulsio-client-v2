@@ -42,7 +42,7 @@ const Faq: NextPage = ({
         <link rel="alternate" hrefLang="cs" href={`${DOMAIN}/cs${router.asPath}`} />
       </Head>
       
-      <PageHead title={faq.title} />
+      <PageHead title={faq.title} center />
 
       <Container maxWidth="md">
         <SearchBox />

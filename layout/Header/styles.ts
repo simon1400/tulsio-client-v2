@@ -28,12 +28,15 @@ export const NavWrap = styled.div`
 export const ControlWrap = styled.div`
   display: block;
   width: 27px;
-  margin-left: 40px;
+  /* margin-left: 40px; */
   svg{
     width: 27px;
     height: 27px;
     display: block;
     fill: rgba(255, 255, 255, 0.75);
     color: rgba(255, 255, 255, 0.75);
+    &:hover{
+      color: white;
+    }
   }
 `

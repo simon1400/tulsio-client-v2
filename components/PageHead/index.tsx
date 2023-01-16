@@ -10,19 +10,26 @@ interface PageHeadProps {
   nav?: any;
   handleChange?: (link: string) => void
   category?: boolean
+  center?: boolean
+  prefix?: string
 }
 
 const PageHead: FC<PageHeadProps> = ({
   title,
   nav,
   handleChange,
-  category
+  category,
+  center,
+  prefix
 }) => {
   return (
     <CategoryTop>
       <Container max-width="xl">
 
-        <Typography variant="h1">{title}</Typography>
+        <Typography textAlign={center ? 'center' : 'left'} variant="h1">
+          {prefix ? <span>{prefix}</span> : ''}
+          {title}
+        </Typography>
 
         {category && <SubMenu 
           data={nav} 

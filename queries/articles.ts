@@ -150,3 +150,53 @@ export const getArticle = gql`
     }
   }
 `
+
+export const getArticleBase = gql`
+  query getArticleBase($slug: String!) {
+    articlesBase(filters: { slug: { eq: $slug } }) {
+      data {
+        attributes {
+          title
+          slug
+          perex
+          meta{
+            title
+            description
+            image{
+              data{
+                attributes{
+                  url
+                }
+              }
+            }
+          }
+          chapters(pagination: { pageSize: 50 }){
+            title
+            text
+            galery{
+              data{
+                attributes{
+                  url
+                  alternativeText
+                }
+              }
+            }
+            button{
+              link
+              text
+            }
+            baner
+          }
+          image {
+            data {
+              attributes {
+                url
+                alternativeText
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`

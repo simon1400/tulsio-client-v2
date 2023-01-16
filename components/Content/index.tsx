@@ -4,14 +4,16 @@ import { ContentS } from "./styles"
 interface IContent {
   children: ReactElement | ReactElement[];
   removePadding?: boolean;
+  smallPadding?: boolean;
 }
 
 const Content: FC<IContent> = ({
   children,
-  removePadding = false
+  removePadding = false,
+  smallPadding = false
 }) => {
   return (
-    <ContentS removePadding={removePadding}>
+    <ContentS removePadding={removePadding} smallPadding={smallPadding}>
       {children}
     </ContentS>
   )

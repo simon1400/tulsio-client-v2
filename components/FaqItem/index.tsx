@@ -16,7 +16,9 @@ const FaqItem: FC<{data: IFaqItem}> = ({ data }) => {
         <AccordionSummary 
           aria-controls="panel1a-content"
           expandIcon={<ExpandMoreIcon fontSize="large" sx={{ color: "white" }} />}>
-          <Typography variant="h3">{data.title}</Typography>
+          <Typography variant="h3">
+            {data.title}
+          </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Content removePadding>
