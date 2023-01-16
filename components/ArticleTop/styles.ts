@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
 
-export const ArticleTopS = styled.div(({theme}) => `
+export const ArticleTopS = styled.div<{background: string; color: string;}>(({theme, background, color}) => `
   position: relative;
   border-radius: ${theme.borderRadius['base']};
   overflow: hidden;
   padding: 240px 200px;
-  background: #4545ff;
+  background: ${background};
   ${theme.breakpoints.down('xxl')} {
     border-radius: ${theme.borderRadius['xxl']};
   }
@@ -37,6 +37,7 @@ export const ArticleTopS = styled.div(({theme}) => `
     line-height: 1.15;
     z-index: 2;
     margin-bottom: 30px;
+    color: ${color};
     ${theme.breakpoints.down('xxl')} {
       font-size: 50px;
       line-height: 1.14;

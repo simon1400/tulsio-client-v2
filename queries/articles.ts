@@ -77,6 +77,7 @@ export const getArticle = gql`
           title
           slug
           perex
+          background
           meta{
             title
             description

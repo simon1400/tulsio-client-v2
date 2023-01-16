@@ -5,6 +5,7 @@ import Content from 'components/Content';
 import ShareButton from 'components/ShareButtons';
 import { useRouter } from "next/router";
 import Image from 'components/Image'
+import styled from "@emotion/styled";
 
 const DOMAIN = process.env.APP_DOMAIN;
 
@@ -31,7 +32,7 @@ const Article = ({
           <Content smallPadding={!article.image.data}>
             {!article.image.data && <Typography variant="h1">{article.title}</Typography>}
             {!!article.perex.length && <Typography component="div" variant="body1" dangerouslySetInnerHTML={{__html: article.perex}} />}
-            {!!article.chapters?.length && article.chapters.map((item: any, index: number) => <div key={index}>
+            {!!article.chapters?.length && article.chapters.map((item: any, index: number) => <Chapter key={index}>
               {!!item.title && <Typography variant="h2">{item.title}</Typography>}
               <Typography component="div" variant="body1" dangerouslySetInnerHTML={{__html: item.text}} />
               {!!item.galery?.data?.length && item.galery.data.map((img: any, indexImg: number) => <figure key={indexImg}>
@@ -44,8 +45,8 @@ const Article = ({
                 <Button href={item.button.link} variant="contained">{item.button.text}</Button>
               </div>}
               {/* {!!item.baner && baner && <Banner format="&width=750" data={baner} />} */}
-            </div>)}
-            <ShareButton data={article} />
+            </Chapter>)}
+            {article.image.data && <ShareButton data={article} />}
           </Content>
 
           {/* <Rating rating={2.5}/> */}
@@ -59,5 +60,9 @@ const Article = ({
     </>
   )
 }
+
+const Chapter = styled.div`
+  margin-bottom: 60px;
+`
 
 export default Article

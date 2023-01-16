@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-const globalGap = {
+export const globalGap = {
   xxl: '25px',
   xl: '20px',
   lg: '15px',
