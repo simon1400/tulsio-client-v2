@@ -14,8 +14,8 @@ export const Accordion = styled(MuiAccordion)`
 `;
 
 export const AccordionSummary = styled(MuiAccordionSummary)`
-  padding-top: 45px;
-  padding-bottom: 45px;
+  padding-top: 30px;
+  padding-bottom: 30px;
   .Mui-expanded, .MuiAccordionSummary-content{
     margin: 0 0;
   }
