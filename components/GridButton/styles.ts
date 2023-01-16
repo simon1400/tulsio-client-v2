@@ -42,10 +42,15 @@ export const GridButtonS = styled(Link)(({theme}) => `
     padding: 40px;
     display: flex;
     position: relative;
+    overflow: hidden;
     z-index: 2;
     text-align: center;
+    ${theme.breakpoints.down('sm')} {
+      padding: 15px;
+    }
     h2{
       font-size: 50px;
+      word-break: break-word;
       display: block;
       margin: auto;
       line-height: 1.2;

@@ -62,6 +62,9 @@ export const ArticleWrap = styled(Link)<{background: string; color: string;}>(({
     justify-content: space-between;
     position: relative;
     z-index: 2;
+    ${theme.breakpoints.down('sm')} {
+      padding: 15px;
+    }
   }
   h1{
     margin-top: 0;
