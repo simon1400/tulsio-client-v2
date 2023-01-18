@@ -7,7 +7,10 @@ import { useRouter } from "next/router";
 import { ICategoryPage } from "pages/[category]";
 import { getAllArticles, getArticlesCategory } from "queries/articles";
 import { getCategory } from "queries/category";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import { changeTitle } from 'stores/slices/dataSlices'
+import { useAppDispatch, useAppSelector } from "stores/hooks";
 
 const DOMAIN = process.env.APP_DOMAIN;
 
@@ -20,7 +23,13 @@ const Category: NextPage<ICategoryPage> = ({
 
   const router = useRouter()
 
-  const [title, setTitle] = useState(dataTitle)
+  const title = useAppSelector((state) => state.data.title)
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    changeTitle(dataTitle)
+  }, [])
+
   const [description, setDescription] = useState(dataDescription)
 
   const [articles, setArticles] = useState<any[]>(dataArticles)
@@ -30,7 +39,7 @@ const Category: NextPage<ICategoryPage> = ({
     if(link === 'blog') {
       const { data: articleData } = await client.query({query: getAllArticles});
       setArticles(articleData.articles.data.map((item: any) => ({...item.attributes})))
-      setTitle('Blog')
+      // setTitle('Blog')
       setDescription('Blog')
     }else{
       const { data } = await client.query({
@@ -46,7 +55,7 @@ const Category: NextPage<ICategoryPage> = ({
         }
       });
       setArticles(data.articles.data.map((item: any) => ({...item.attributes})))
-      setTitle(categoryDataReq.categories.data[0]?.attributes.meta.title)
+      // setTitle(categoryDataReq.categories.data[0]?.attributes.meta.title)
       setDescription(categoryDataReq.categories.data[0]?.attributes.meta.description)
     }
   }

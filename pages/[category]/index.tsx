@@ -5,8 +5,6 @@ import { NextPage } from 'next'
 import Category from 'views/Category';
 import Article from 'views/Article';
 
-
-
 export async function getServerSideProps(context: any) {
 
   if(!context.query.category) {
@@ -85,7 +83,6 @@ export async function getServerSideProps(context: any) {
     }
   }
 }
-
 
 interface ICategoryNav {
   title: string;

@@ -2,18 +2,19 @@ import {FC} from 'react';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import type { AppProps } from 'next/app'
-import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
 import { useEffect, useState } from 'react'
-import {DataProvider} from '../context/dataStateContext.js'
 import { WithGraphQL } from 'lib/api'
 import theme from 'styles/theme';
 import createEmotionCache from 'lib/createEmotionCache';
 import Header from 'layout/Header'
 import 'styles/global.scss'
 import { globalVariables } from 'styles/var';
+
+import { store } from '../stores'
+import { Provider } from 'react-redux'
 
 // const Header = dynamic(() => import(''), {suspense: true})
 // const Footer = dynamic(() => import('layout/Footer'), {suspense: true}) 
@@ -82,7 +83,7 @@ const MyApp: FC<MyAppProps> = (props) => {
     <CacheProvider value={emotionCache}>
       <ThemeProvider theme={{...theme, ...globalVariables}}>
         <CssBaseline />
-        <DataProvider>
+        <Provider store={store}>
           <WithGraphQL>
             <Head>
 
@@ -150,7 +151,7 @@ const MyApp: FC<MyAppProps> = (props) => {
               {/* <CookieConsent /> */}
             </main>
           </WithGraphQL>
-        </DataProvider>
+        </Provider>
       </ThemeProvider>
     </CacheProvider>
   ) 

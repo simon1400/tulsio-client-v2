@@ -51,7 +51,7 @@ const ArticleShort: FC<ArticleShortProps> = ({
     convert = "#fff899"
     color = '#202020'
   }else if(background === 'purple') {
-    convert = "#a50d5935"
+    convert = "#a50d5a"
   }else if(background === 'bluePurpleG') {
     convert = "linear-gradient(125deg, #a50d5a, #4545ff)"
   }else if(background === 'greenYellowG') {
