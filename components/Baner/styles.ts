@@ -4,7 +4,7 @@ import Link from "next/link";
 export const BannerS = styled(Link)(({theme}) => `
   display: block;
   height: 100%;
-  min-height: 300px;
+  /* min-height: 300px; */
   position: relative;
   &:hover{
     .img-wrap {

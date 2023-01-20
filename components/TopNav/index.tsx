@@ -15,12 +15,13 @@ const TopNav: FC<ITopNav> = ({
 
   const router = useRouter()
 
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState<number | boolean>(false);
 
   useEffect(() => {
     if(data?.navigation) {
       if(data.navigation.data.attributes.topNav.item.length) {
-        setValue(data.navigation.data.attributes.topNav.item.findIndex((el: any) => el.link === router.asPath))
+        const idx = data.navigation.data.attributes.topNav.item.findIndex((el: any) => el.link === router.asPath)
+        setValue(idx >= 0 ? idx : false)
       }
     }
   }, [data, router])

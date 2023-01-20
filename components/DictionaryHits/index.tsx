@@ -12,7 +12,7 @@ const APP_API = process.env.APP_API
 const DictionaryHits: FC<{data: any}> = ({data}) => {
   
   return (
-    <Container maxWidth="xl">
+    <>
       {Object.keys(data).map((key, index) => <AlphabetWrap id={key} key={index}>
         <ResponsiveMasonry
           columnsCountBreakPoints={{320: 2, 980: 3, 1280: 4}}
@@ -31,7 +31,7 @@ const DictionaryHits: FC<{data: any}> = ({data}) => {
           </Masonry>
         </ResponsiveMasonry>
       </AlphabetWrap>)}
-    </Container>
+    </>
   )
 }
 

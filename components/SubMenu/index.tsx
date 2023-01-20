@@ -16,7 +16,7 @@ const SubMenu: FC<ISubMenu> = ({
 
   const router = useRouter()
 
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(false);
 
   useEffect(() => {
     if(data.length && router.query.category !== 'blog') {

@@ -20,7 +20,7 @@ const ArticleTop = ({
     convert = "#fff899"
     color = '#202020'
   }else if(background === 'purple') {
-    convert = "#a50d5935"
+    convert = "#a50d5a"
   }else if(background === 'bluePurpleG') {
     convert = "linear-gradient(125deg, #a50d5a, #4545ff)"
   }else if(background === 'greenYellowG') {
@@ -33,7 +33,7 @@ const ArticleTop = ({
     <ArticleTopS background={convert} color={color}>
       <Image format="&resize=920x920" image={article.image.data} />
       <Typography variant="h1">{article.title}</Typography>
-      {!!article?.labels?.data?.length && article.labels.data.map((item: any, index: number) => <Label key={index} data={{
+      {!!article?.labels?.data?.length && article.labels.data.map((item: any, index: number) => <Label color={color} key={index} data={{
           title: item.attributes.title,
           slug: item.attributes.slug,
           color: item.attributes.color

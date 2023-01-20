@@ -4,7 +4,7 @@ import Link from "next/link";
 export const GridButtonS = styled(Link)(({theme}) => `
   display: flex;
   height: 100%;
-  min-height: 300px;
+  /* min-height: 300px; */
   position: relative;
   text-decoration: none;
   &:hover{

@@ -9,13 +9,15 @@ export interface LabelProps {
 
 export interface LabelDataProps {
   data: LabelProps
+  color: string;
 }
 
 const Label: FC<LabelDataProps> = ({
-  data
+  data,
+  color
 }) => {
   return (
-    <LabelS>
+    <LabelS color={color}>
       {data.title}
     </LabelS>
   )

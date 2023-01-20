@@ -4,7 +4,6 @@ import Link from 'next/link'
 export const ArticleWrap = styled(Link)<{background: string; color: string;}>(({background, color, theme}) => `
   display: block;
   height: 100%;
-  min-height: 300px;
   color: ${color};
   text-decoration: none;
   position: relative;
@@ -42,6 +41,7 @@ export const ArticleWrap = styled(Link)<{background: string; color: string;}>(({
     }
     .img-art{
       background-size: cover;
+      background-position: center;
       height: 110%;
       width: 110%;
       left: 50%;
@@ -63,6 +63,9 @@ export const ArticleWrap = styled(Link)<{background: string; color: string;}>(({
     position: relative;
     z-index: 2;
     
+    ${theme.breakpoints.down('md')} {
+      padding: 30px;
+    }
     ${theme.breakpoints.down('sm')} {
       padding: 15px;
     }
@@ -78,7 +81,7 @@ export const ArticleWrap = styled(Link)<{background: string; color: string;}>(({
     color: ${color};
   }
   p{
-    color: ${color};
+    color: ${color+'d9'};
   }
   .label-wrap{
     margin-bottom: -8px;

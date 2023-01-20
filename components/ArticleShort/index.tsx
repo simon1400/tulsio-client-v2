@@ -42,7 +42,7 @@ const ArticleShort: FC<ArticleShortProps> = ({
     imgUrl = image+`?format=webp&${size}`
   }
 
-  let convert = "#4545ff", color: string = '#fff'
+  let convert = "#4545ff", color: string = '#ffffff'
 
   if(background === 'green') {
     convert = "#9f9"
@@ -73,8 +73,8 @@ const ArticleShort: FC<ArticleShortProps> = ({
           {!!text.length && <Typography variant="body1" component="div" className="article-short-content" dangerouslySetInnerHTML={{__html: text}} />}
         </div>
         <div className="label-wrap">
-          {!!label && !Array.isArray(label) && <Label data={label}/>}
-          {!!label && Array.isArray(label) && label.map((item, idx) => <Label key={idx} data={item}/>)}
+          {!!label && !Array.isArray(label) && <Label data={label} color={color} />}
+          {!!label && Array.isArray(label) && label.map((item, idx) => <Label color={color} key={idx} data={item}/>)}
         </div>
       </div>
       
