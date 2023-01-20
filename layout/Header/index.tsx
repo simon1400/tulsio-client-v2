@@ -35,7 +35,7 @@ const Header = () => {
             </Link>
           </Logo>
           <NavWrap>
-            {mediaMd && <TopNav data={data} loading={loading} />}
+            {mediaMd && <TopNav data={data} loading={loading} type="topNav" />}
             {!mediaMd && <Menu 
               mobileOpen={mobileOpen} 
               data={data}

@@ -1,4 +1,4 @@
-import { Container, Typography, useMediaQuery } from "@mui/material";
+import { Typography, useMediaQuery } from "@mui/material";
 import dynamic from "next/dynamic";
 import { FC, useEffect, useState } from "react";
 import { AlphabetWrap, Box, DictionaryHitsS } from "./styles";
@@ -36,9 +36,7 @@ const DictionaryHits: FC<{data: any}> = ({data}) => {
   return (
     <DictionaryHitsS>
       {Object.keys(data).map((key, index) => <AlphabetWrap id={key} key={index}>
-        <ResponsiveMasonry
-          columnsCountBreakPoints={{320: 2, 980: 3, 1280: 4}}
-        >
+        <ResponsiveMasonry columnsCountBreakPoints={{320: 2, 980: 3, 1280: 4}}>
           <Masonry gutter={gutter}>
             {data[key].map((item: any, indexChild: number) => <div key={indexChild}>
               <Box>

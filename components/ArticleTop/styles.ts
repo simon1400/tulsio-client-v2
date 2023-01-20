@@ -4,18 +4,27 @@ export const ArticleTopS = styled.div<{background: string; color: string;}>(({th
   position: relative;
   border-radius: ${theme.borderRadius['base']};
   overflow: hidden;
-  padding: 240px 200px;
+  padding: 240px 0;
   background: ${background};
-  ${theme.breakpoints.down('xxl')} {
-    border-radius: ${theme.borderRadius['xxl']};
-  }
+  margin-left: ${theme.globalGap['xxl']};
+  margin-right: ${theme.globalGap['xxl']};
   ${theme.breakpoints.down('xl')} {
+    margin-left: ${theme.globalGap['xl']};
+    margin-right: ${theme.globalGap['xl']};
     border-radius: ${theme.borderRadius['xl']};
   }
   ${theme.breakpoints.down('lg')} {
+    margin-left: ${theme.globalGap['lg']};
+    margin-right: ${theme.globalGap['lg']};
     border-radius: ${theme.borderRadius['lg']};
   }
+  ${theme.breakpoints.down('md')} {
+    margin-left: ${theme.globalGap['md']};
+    margin-right: ${theme.globalGap['md']};
+  }
   ${theme.breakpoints.down('sm')} {
+    margin-left: ${theme.globalGap['sm']};
+    margin-right: ${theme.globalGap['sm']};
     border-radius: ${theme.borderRadius['sm']};
   }
   img {

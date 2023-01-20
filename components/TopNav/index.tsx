@@ -5,12 +5,14 @@ import { Tabs } from "@mui/material";
 
 export interface ITopNav {
   data: any
-  loading: boolean
+  loading: boolean;
+  type: string;
 }
 
 const TopNav: FC<ITopNav> = ({
   data, 
-  loading
+  loading,
+  type
 }) => {
 
   const router = useRouter()
@@ -19,8 +21,8 @@ const TopNav: FC<ITopNav> = ({
 
   useEffect(() => {
     if(data?.navigation) {
-      if(data.navigation.data.attributes.topNav.item.length) {
-        const idx = data.navigation.data.attributes.topNav.item.findIndex((el: any) => el.link === router.asPath)
+      if(data.navigation.data.attributes[type].item.length) {
+        const idx = data.navigation.data.attributes[type].item.findIndex((el: any) => el.link === router.asPath)
         setValue(idx >= 0 ? idx : false)
       }
     }
@@ -30,7 +32,7 @@ const TopNav: FC<ITopNav> = ({
     return <></>
   }
 
-  const transformData = data.navigation.data.attributes.topNav.item.map((item: any, idx: number) => ({
+  const transformData = data.navigation.data.attributes[type].item.map((item: any, idx: number) => ({
     title: item.name,
     slug: item.link
   }))

@@ -15,6 +15,7 @@ import { globalVariables } from 'styles/var';
 
 import { wrapper } from '../stores'
 import { Provider } from 'react-redux'
+import Footer from 'layout/Footer';
 
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
@@ -142,7 +143,7 @@ const MyApp: FC<MyAppProps> = (props) => {
           <main>
             <Header />
             <Component {...pageProps} />
-            {/* <Footer /> */}
+            <Footer />
             {/* <CookieConsent /> */}
           </main>
         </WithGraphQL>

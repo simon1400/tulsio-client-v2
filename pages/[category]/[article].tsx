@@ -2,7 +2,6 @@ import {getArticle} from '../../queries/articles';
 import { client } from '../../lib/api'
 import { NextPage } from 'next'
 import Article from 'views/Article';
-// import { DataStateContext } from '../../context/dataStateContext'
 // import getBaners from '../../queries/baners'
 
 

@@ -5,22 +5,7 @@ const navFooter = gql`
     navigation {
       data {
         attributes {
-          footerNav_1 {
-            title
-            item {
-              name
-              link
-            }
-          }
-          footerNav_2 {
-            title
-            item {
-              name
-              link
-            }
-          }
-          footerNav_3 {
-            title
+          footer {
             item {
               name
               link
@@ -30,6 +15,7 @@ const navFooter = gql`
             item {
               name
               link
+              background
               icon {
                 data {
                   attributes {

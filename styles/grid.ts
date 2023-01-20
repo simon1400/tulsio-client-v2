@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const GridTop = styled.div(({theme}) => `
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(20, minmax(30vh, auto));
+  grid-auto-rows: minmax(30vh, auto);
   grid-column-gap: ${theme.globalGap['xxl']};
   grid-row-gap: ${theme.globalGap['xxl']};
   padding-left: ${theme.globalGap['xxl']};

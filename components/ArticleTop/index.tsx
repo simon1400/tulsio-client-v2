@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material"
+import { Container, Typography } from "@mui/material"
 import Image from "components/Image"
 import Label from "components/Label"
 import { ArticleTopS } from "./styles"
@@ -32,12 +32,14 @@ const ArticleTop = ({
   return (
     <ArticleTopS background={convert} color={color}>
       <Image format="&resize=920x920" image={article.image.data} />
-      <Typography variant="h1">{article.title}</Typography>
-      {!!article?.labels?.data?.length && article.labels.data.map((item: any, index: number) => <Label color={color} key={index} data={{
-          title: item.attributes.title,
-          slug: item.attributes.slug,
-          color: item.attributes.color
-        }} />)}
+      <Container maxWidth="md">
+        <Typography variant="h1">{article.title}</Typography>
+        {!!article?.labels?.data?.length && article.labels.data.map((item: any, index: number) => <Label color={color} key={index} data={{
+            title: item.attributes.title,
+            slug: item.attributes.slug,
+            color: item.attributes.color
+          }} />)}
+      </Container>
     </ArticleTopS>
   )
 }
