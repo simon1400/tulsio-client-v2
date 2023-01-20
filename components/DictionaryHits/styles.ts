@@ -1,15 +1,40 @@
 import styled from "@emotion/styled";
-import { globalGap } from "styles/grid";
 
-export const AlphabetWrap = styled.div`
-  margin-bottom: 30px;
+export const AlphabetWrap = styled.div(({theme}) => `
+  margin-bottom: ${theme.globalGap['xxl']};
+  ${theme.breakpoints.down('xl')} {
+    margin-bottom: ${theme.globalGap['xl']};
+  }
+  ${theme.breakpoints.down('lg')} {
+    margin-bottom: ${theme.globalGap['lg']};
+  }
+  ${theme.breakpoints.down('sm')} {
+    margin-bottom: ${theme.globalGap['sm']};
+  }
   h2{
     margin-bottom: 30px;
   }
   img{
     margin-bottom: 20px;
   }
-`
+`)
+
+export const DictionaryHitsS = styled.section(({theme}) => `
+  padding-left: ${theme.globalGap['xxl']};
+  padding-right: ${theme.globalGap['xxl']};
+  ${theme.breakpoints.down('xl')} {
+    padding-left: ${theme.globalGap['xl']};
+    padding-right: ${theme.globalGap['xl']};
+  }
+  ${theme.breakpoints.down('lg')} {
+    padding-left: ${theme.globalGap['lg']};
+    padding-right: ${theme.globalGap['lg']};
+  }
+  ${theme.breakpoints.down('sm')} {
+    padding-left: ${theme.globalGap['sm']};
+    padding-right: ${theme.globalGap['sm']};
+  }
+`)
 
 export const Box = styled.div(({theme}) => `
   border-radius: ${theme.borderRadius['base']};

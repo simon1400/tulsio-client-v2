@@ -5,3 +5,11 @@ export interface IBorderRadius {
   lg: string;
   sm: string;
 }
+
+export interface IGlobalGap {
+  xxl: string;
+  xl: string;
+  lg: string;
+  md: string;
+  sm: string;
+}

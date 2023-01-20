@@ -1,20 +1,13 @@
 import styled from "@emotion/styled";
 
-export const globalGap = {
-  xxl: '25px',
-  xl: '20px',
-  lg: '15px',
-  sm: '10px'
-}
-
 export const GridTop = styled.div(({theme}) => `
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(20, minmax(30vh, auto));
-  grid-column-gap: ${globalGap['xxl']};
-  grid-row-gap: ${globalGap['xxl']};
-  padding-left: ${globalGap['xxl']};
-  padding-right: ${globalGap['xxl']};
+  grid-column-gap: ${theme.globalGap['xxl']};
+  grid-row-gap: ${theme.globalGap['xxl']};
+  padding-left: ${theme.globalGap['xxl']};
+  padding-right: ${theme.globalGap['xxl']};
 
   > div{
     &:nth-of-type(1) { grid-area: 1 / 1 / 3 / 3; }
@@ -31,16 +24,16 @@ export const GridTop = styled.div(({theme}) => `
   }
 
   ${theme.breakpoints.down('xl')} {
-    grid-column-gap: ${globalGap['xl']};
-    grid-row-gap: ${globalGap['xl']};
-    padding-left: ${globalGap['xl']};
-    padding-right: ${globalGap['xl']};
+    grid-column-gap: ${theme.globalGap['xl']};
+    grid-row-gap: ${theme.globalGap['xl']};
+    padding-left: ${theme.globalGap['xl']};
+    padding-right: ${theme.globalGap['xl']};
   }
   ${theme.breakpoints.down('lg')} {
-    grid-column-gap: ${globalGap['lg']};
-    grid-row-gap: ${globalGap['lg']};
-    padding-left: ${globalGap['lg']};
-    padding-right: ${globalGap['lg']};
+    grid-column-gap: ${theme.globalGap['lg']};
+    grid-row-gap: ${theme.globalGap['lg']};
+    padding-left: ${theme.globalGap['lg']};
+    padding-right: ${theme.globalGap['lg']};
   }
   ${theme.breakpoints.down('md')} {
     grid-template-columns: repeat(2, 1fr);
@@ -60,9 +53,9 @@ export const GridTop = styled.div(({theme}) => `
     }
   }
   ${theme.breakpoints.down('sm')} {
-    grid-column-gap: ${globalGap['sm']};
-    grid-row-gap: ${globalGap['sm']};
-    padding-left: ${globalGap['sm']};
-    padding-right: ${globalGap['sm']};
+    grid-column-gap: ${theme.globalGap['sm']};
+    grid-row-gap: ${theme.globalGap['sm']};
+    padding-left: ${theme.globalGap['sm']};
+    padding-right: ${theme.globalGap['sm']};
   }
 `)
