@@ -49,7 +49,7 @@ export const ArticleWrap = styled(Link)<{background: string; color: string;}>(({
       position: absolute;
       z-index: -2;
       mix-blend-mode: luminosity;
-      opacity: .7;
+      opacity: .4;
       transform: translate(-50%, -50%);
       transition: all .7s ease;
     }

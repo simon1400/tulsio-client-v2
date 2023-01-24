@@ -44,8 +44,8 @@ export const ControlWrap = styled.div(({theme}) => `
   svg{
     font-size: 29px;
     display: block;
-    margin-top: -3px;
-    fill: rgba(255, 255, 255, 0.75);
+    margin-top: -6px;
+    fill: rgba(255, 255, 255, 0.75)!important;
     transition: all .2s ease;
     &:hover{
       fill: white;

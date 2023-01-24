@@ -42,10 +42,12 @@ const Menu: FC<Props> = (props) => {
           boxSizing: 'border-box', 
           width: '100%',
           backdropFilter: "blur(15px)",
-          boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)",
           backgroundColor: "transparent",
           paddingTop: "150px",
-          position: 'relative'
+          position: 'relative',
+          display: "flex",
+          flexDirection: 'column',
+          justifyContent: 'flex-end'
         }
       }}
     >

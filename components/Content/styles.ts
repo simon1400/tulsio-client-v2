@@ -9,6 +9,7 @@ export const ContentS = styled.div<{removePadding: boolean; smallPadding: boolea
     overflow: hidden;
     border-radius: ${theme.borderRadius['base']};
     position: relative;
+    margin-top: 40px;
     ${theme.breakpoints.down('xxl')} {
       border-radius: ${theme.borderRadius['xxl']};
     }
@@ -29,6 +30,9 @@ export const ContentS = styled.div<{removePadding: boolean; smallPadding: boolea
         height: 100%;
       }
     }
+  }
+  .MuiButtonBase-root {
+    margin-top: 20px;
   }
   ul {
     padding-left: 0;
@@ -51,5 +55,10 @@ export const ContentS = styled.div<{removePadding: boolean; smallPadding: boolea
         background-color: ${theme.palette.primary.main};
       }
     }
+  }
+  
+  h1, h2, h3, h4, h5 {
+    margin-top: 40px;
+    color: white;
   }
 `)
