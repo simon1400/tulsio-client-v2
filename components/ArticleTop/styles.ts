@@ -40,6 +40,16 @@ export const ArticleTopS = styled.div<{background: string; color: string;}>(({th
     opacity: 0.4;
     mix-blend-mode: luminosity;
   }
+  button{
+    z-index: 2;
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    svg{
+      fill: white;
+    }
+  }
   h1{
     position: relative;
     font-size: 60px;

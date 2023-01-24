@@ -2,7 +2,7 @@ import { Theme as MuiTheme, ThemeOptions } from '@mui/material/styles';
 import {createTheme} from '@mui/material'
 import { typography } from './typography';
 import { components } from './components';
-import { IBorderRadius, IGlobalGap } from './types';
+import { IBorderRadius, IGlobalGap, IGlobalPadding } from './types';
 
 let theme = createTheme({
   breakpoints: {
@@ -42,12 +42,7 @@ declare module '@emotion/react' {
   export interface Theme extends MuiTheme {
     borderRadius: IBorderRadius;
     globalGap: IGlobalGap;
-  }
-}
-
-declare module '@mui/material/Button' {
-  interface ButtonPropsVariantOverrides {
-    withIcon: true;
+    globalPadding: IGlobalPadding;
   }
 }
 

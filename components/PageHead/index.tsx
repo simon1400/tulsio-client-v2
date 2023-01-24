@@ -7,8 +7,6 @@ const SubMenu = dynamic(() => import("../SubMenu"), {ssr: false})
 
 interface PageHeadProps {
   title: string;
-  nav?: any;
-  handleChange?: (link: string) => void
   category?: boolean
   center?: boolean
   prefix?: string
@@ -16,8 +14,6 @@ interface PageHeadProps {
 
 const PageHead: FC<PageHeadProps> = ({
   title,
-  nav,
-  handleChange,
   category,
   center,
   prefix
@@ -31,10 +27,7 @@ const PageHead: FC<PageHeadProps> = ({
           {title}
         </Typography>
 
-        {category && <SubMenu 
-          data={nav} 
-          handleChange={handleChange}
-        />}
+        {category && <SubMenu />}
 
       </Container>
     </CategoryTop>

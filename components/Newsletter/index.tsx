@@ -1,5 +1,6 @@
 import { Typography } from "@mui/material"
-import { NewsletterS, WhiteButton } from "./styles"
+import WhiteButton from "components/WhiteButton"
+import { NewsletterS } from "./styles"
 
 const Newsletter = () => {
   return <NewsletterS>

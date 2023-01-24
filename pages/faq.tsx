@@ -9,6 +9,7 @@ import FaqHits from 'components/FaqHits';
 import SearchBox from 'components/SearchBox';
 import { Container } from '@mui/material';
 import Head from 'next/head';
+import Page from 'layout/Page';
 
 const DOMAIN = process.env.APP_DOMAIN;
 
@@ -31,26 +32,28 @@ const Faq: NextPage = ({
   const router = useRouter()
 
   return (
-    <InstantSearch 
-      indexName="faq" 
-      searchClient={searchClient}
-    >
+    <Page>
+      <InstantSearch 
+        indexName="faq" 
+        searchClient={searchClient}
+      >
 
-      <Configure hitsPerPage={50} />
+        <Configure hitsPerPage={50} />
 
-      <Head>
-        <link rel="alternate" hrefLang="cs" href={`${DOMAIN}/cs${router.asPath}`} />
-      </Head>
-      
-      <PageHead title={faq.title} center />
-
-      <Container maxWidth="md">
-        <SearchBox />
-      </Container>
-      
-      <FaqHits />
+        <Head>
+          <link rel="alternate" hrefLang="cs" href={`${DOMAIN}/cs${router.asPath}`} />
+        </Head>
         
-    </InstantSearch>
+        <PageHead title={faq.title} center />
+
+        <Container maxWidth="md">
+          <SearchBox />
+        </Container>
+        
+        <FaqHits />
+          
+      </InstantSearch>
+    </Page>
   )
 }
 

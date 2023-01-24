@@ -1,10 +1,10 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
 import { client } from "lib/api";
 import { getCategoryNav } from "queries/category";
+import { AppThunk } from "stores";
+import { navReducer } from "stores/slices/navSlices";
 
-export const fetchCategoryNav = createAsyncThunk(
-  'categoryNav',
-  async (thunkAPI) => {    
+export const fetchNav = (): AppThunk =>
+  async dispatch => {
     const { data: navData } = await client.query({query: getCategoryNav});
 
     const nav = navData.categories.data.map((item: any) => (
@@ -14,6 +14,5 @@ export const fetchCategoryNav = createAsyncThunk(
       }
     ))
 
-    return ({ nav })
-  }
-)
+    dispatch(navReducer.actions.changeCategoryNav(nav));
+  };

@@ -13,3 +13,11 @@ export interface IGlobalGap {
   md: string;
   sm: string;
 }
+
+export interface IGlobalPadding {
+  xxl: string;
+  xl: string;
+  lg: string;
+  md: string;
+  sm: string;
+}

@@ -1,8 +1,10 @@
 import styled from "@emotion/styled";
-import { Tab, Tabs } from "@mui/material";
+import { Tab } from "@mui/material";
 
-export const CSubMenu = styled.div`
+export const CSubMenu = styled.div<{sticky: boolean}>(({sticky}) => `
   margin-bottom: 90px;
+  position: ${sticky ? 'sticky' : 'static'};
+  top: 0;
   .wrap-sub-menu{
     margin-left: -15px;
   }
@@ -17,7 +19,7 @@ export const CSubMenu = styled.div`
     z-index: -1;
     justify-content: center;
   }
-`
+`)
 
 export const TabS = styled(Tab)`
   color: rgba(255, 255, 255, 0.75);

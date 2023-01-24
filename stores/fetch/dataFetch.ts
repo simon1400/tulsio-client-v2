@@ -1,18 +1,16 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
 import { client } from "lib/api";
 import { getAllArticles, getArticleBase, getArticlesCategory } from "queries/articles";
 import { getCategory } from "queries/category";
+import { AppThunk } from "stores";
+import { dataReducer } from "stores/slices/dataSlices";
 
-export const fetchAllArticles = createAsyncThunk(
-  'articles/all',
-  async (link: string) => {
+export const fetchAllArticles = (link: string): AppThunk =>
+  async dispatch => {
     if(link === 'blog') {
       const { data: articleData } = await client.query({query: getAllArticles});
-      return ({
-        title: 'Blog',
-        description: 'Blog',
-        data: articleData.articles.data.map((item: any) => ({...item.attributes}))
-      })
+      dispatch(dataReducer.actions.changeTitle('Blog'));
+      dispatch(dataReducer.actions.changeDescription('Blog'));
+      dispatch(dataReducer.actions.changeArticles(articleData.articles.data.map((item: any) => ({...item.attributes}))));
     }else{
       const { data } = await client.query({
         query: getArticlesCategory,
@@ -26,18 +24,15 @@ export const fetchAllArticles = createAsyncThunk(
           slug: link
         }
       });
-      return ({
-        title: categoryDataReq.categories.data[0]?.attributes.meta.title,
-        description: categoryDataReq.categories.data[0]?.attributes.meta.description,
-        data: data.articles.data.map((item: any) => ({...item.attributes}))
-      })
+      dispatch(dataReducer.actions.changeTitle(categoryDataReq.categories.data[0]?.attributes.meta.title));
+      dispatch(dataReducer.actions.changeDescription(categoryDataReq.categories.data[0]?.attributes.meta.description));
+      dispatch(dataReducer.actions.changeArticles(data.articles.data.map((item: any) => ({...item.attributes}))));
     }
-  }
-)
+  };
 
-export const fetchCategoryOrArticles = createAsyncThunk(
-  'categoryOrArticles',
-  async (link: string, thunkAPI) => {
+
+export const fetchCategoryOrArticles = (link: string): AppThunk =>
+  async dispatch => {
     let articles = [], 
         articleBase = {}, 
         dataTitle = 'Blog', 
@@ -73,11 +68,8 @@ export const fetchCategoryOrArticles = createAsyncThunk(
         articleBase = articleBaseReq.articlesBase.data[0]?.attributes
       }
     }
-    return ({
-      title: dataTitle,
-      description: dataDescription,
-      articles,
-      articleBase
-    })
-  }
-)
+    dispatch(dataReducer.actions.changeTitle(dataTitle));
+    dispatch(dataReducer.actions.changeDescription(dataDescription));
+    dispatch(dataReducer.actions.changeArticles(articles));
+    dispatch(dataReducer.actions.changeArticleBase(articleBase));
+  };

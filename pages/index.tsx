@@ -1,12 +1,13 @@
 import ArticleShort from "components/ArticleShort";
 import Head from "next/head"
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { client, getStrapiURL } from "../lib/api";
 import getBaners from "../queries/baners";
 import homepageQuery from "../queries/homepage";
 import { GridTop } from "styles/grid";
 import Banner from "components/Baner";
 import GridButton from "components/GridButton";
+import Page from "layout/Page";
 
 enum BANER_POSITION {
   POSITION_1='Home_1',
@@ -23,8 +24,6 @@ const gridButtonData = [
     link: '/faq'
   }
 ]
-
-const DOMAIN = process.env.APP_DOMAIN;
 
 export async function getServerSideProps() {
 
@@ -84,13 +83,7 @@ const Homepage: FC<IHomepage> = ({
 }) => {
 
   return (
-    <>
-      <Head>
-        <title>{meta.title}</title>
-        <link rel="alternate" hrefLang="cs" href={DOMAIN+'/cs'} />
-        <meta name="description" content={meta.description} />
-      </Head>
-
+    <Page>
       <section>
         <GridTop>
           <div className="div0">
@@ -154,7 +147,7 @@ const Homepage: FC<IHomepage> = ({
           })}
         </GridTop>
       </section>
-    </>
+    </Page>
   )
 }
 

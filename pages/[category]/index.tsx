@@ -3,13 +3,10 @@ import Category from 'views/Category';
 import Article from 'views/Article';
 import { wrapper } from 'stores';
 import { fetchCategoryOrArticles } from 'stores/fetch/dataFetch';
-import { useDispatch, useSelector } from 'react-redux';
-import { changeArticleBase, changeArticles, changeDescription, changeNav, changeTitle, selectDataState } from 'stores/slices/dataSlices';
-import { IImageRoot } from 'types/image';
-import { ILabelsRoot } from 'types/labels';
-import { fetchCategoryNav } from 'stores/fetch/navFetch';
-import { useEffect } from 'react';
 import { ICategoryPage } from 'types/category';
+import { fetchNav } from 'stores/fetch/navFetch';
+import { useSelector } from 'react-redux';
+import { selectArticleBase, selectArticles } from 'stores/slices/dataSlices';
 
 export const getServerSideProps = wrapper.getServerSideProps((store) =>
   async ({ params }) => {
@@ -31,35 +28,19 @@ export const getServerSideProps = wrapper.getServerSideProps((store) =>
     }
     
     if(state.articles.length) {
-      await store.dispatch(fetchCategoryNav())
+      await store.dispatch(fetchNav())
     }
 
     return {
-      props: {
-        ...store.getState().data
-      }
+      props: {}
     };
-    
   }
 )
 
-const CategoryPage: NextPage<ICategoryPage> = ({
-  nav,
-  articles,
-  articleBase,
-  title,
-  description
-}) => {
+const CategoryPage: NextPage<ICategoryPage> = ({}) => {
 
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(changeTitle(title))
-    dispatch(changeDescription(description))
-    dispatch(changeArticles(articles))
-    dispatch(changeArticleBase(articleBase))
-    dispatch(changeNav(nav))
-  }, [])
+  const articles = useSelector(selectArticles)
+  const articleBase = useSelector(selectArticleBase)
   
   if(articles.length) {
     return <Category />

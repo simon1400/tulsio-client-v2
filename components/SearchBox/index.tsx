@@ -1,9 +1,9 @@
-import { Input, InputAdornment, InputBase, OutlinedInput, Paper, TextField } from '@mui/material';
+import { InputAdornment, SvgIcon } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useSearchBox, UseSearchBoxProps } from 'react-instantsearch-hooks-web';
 import { Search, SearchWrap } from './styled';
-import SearchIcon from '@mui/icons-material/Search';
-import ClearIcon from '@mui/icons-material/Clear';
+import SearchIcon from 'public/icons/search.svg'
+import Close from 'public/icons/close.svg'
 
 const SearchBox = (props: UseSearchBoxProps) => {
   const { refine } = useSearchBox(props);
@@ -30,12 +30,12 @@ const SearchBox = (props: UseSearchBoxProps) => {
       onChange={e => setValue(e.target.value)} 
       startAdornment={
         <InputAdornment position="start">
-          <SearchIcon sx={{ color: "white" }} />
+          <SvgIcon component={SearchIcon} sx={{ color: "white" }} />
         </InputAdornment>
       }
       endAdornment={
         value.length ? <InputAdornment position="end" onClick={() => handleClear()}>
-          <ClearIcon sx={{ color: "white", cursor: 'pointer' }} />
+          <SvgIcon component={Close} sx={{ color: "white", cursor: 'pointer' }} />
         </InputAdornment> : null
       }
     />

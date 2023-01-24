@@ -22,7 +22,7 @@ const AlphabetsSubMenu: FC<ISubMenu> = ({
   };
 
   return (
-    <CSubMenu>
+    <CSubMenu sticky={true}>
       <Tabs
         value={value}
         onChange={handle}

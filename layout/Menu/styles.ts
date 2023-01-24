@@ -5,6 +5,7 @@ export const MenuS = styled.div`
     padding-top: 0;
     padding-bottom: 0;
     a{
+      text-align: right;
       div{
         margin-top: 10px;
         margin-bottom: 10px;
@@ -22,9 +23,12 @@ export const MenuS = styled.div`
 export const CloseMenuS = styled.div`
   position: absolute;
   right: 10px;
-  top: 60px;
+  top: 65px;
   svg{
     fill: white;
+    &:first-of-type {
+      margin-right: 20px;
+    }
   }
 `
 

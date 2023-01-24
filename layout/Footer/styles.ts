@@ -22,6 +22,18 @@ export const FooterS = styled.footer(({theme}) => `
     border-top-left-radius: ${theme.borderRadius['lg']};
     border-top-right-radius: ${theme.borderRadius['lg']};
   }
+  ${theme.breakpoints.down('md')} {
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px 15px;
+    >div:first-of-type{
+      margin-bottom: 25px;
+      button {
+        margin-bottom: 10px;
+      }
+    }
+  }
   ${theme.breakpoints.down('sm')} {
     margin-left: ${theme.globalGap['sm']};
     margin-right: ${theme.globalGap['sm']};

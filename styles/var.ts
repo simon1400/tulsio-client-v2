@@ -12,5 +12,12 @@ export const globalVariables = {
     lg: '15px',
     md: '15px',
     sm: '10px'
+  },
+  globalPadding: {
+    xxl: '60px',
+    xl: '40px',
+    lg: '30px',
+    md: '15px',
+    sm: '10px'
   }
 }

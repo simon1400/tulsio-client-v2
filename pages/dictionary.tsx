@@ -7,6 +7,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import alphabets from 'data/alphabets';
 import numbers from 'data/numbers';
+import Page from 'layout/Page'
 
 const DOMAIN = process.env.APP_DOMAIN;
 
@@ -31,7 +32,6 @@ export async function getServerSideProps() {
       break;
     }
   }
-
 
   const resultData: any = {}
   alphabets.map(symbol => {
@@ -80,10 +80,8 @@ const Dictionary: NextPage<IDictionary> = ({
 
   const router = useRouter()
 
-  
-
   return (
-    <>
+    <Page>
       <Head>
         <link rel="alternate" hrefLang="cs" href={`${DOMAIN}/cs${router.asPath}`} />
       </Head>
@@ -92,7 +90,7 @@ const Dictionary: NextPage<IDictionary> = ({
 
       <DictionaryHits data={dictionaries} />
         
-    </>
+    </Page>
   )
 }
 

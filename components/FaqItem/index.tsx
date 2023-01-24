@@ -1,8 +1,9 @@
-import { Typography } from "@mui/material"
+import { SvgIcon, Typography } from "@mui/material"
 import { FC } from "react"
 import { FaqItemS, Accordion, AccordionDetails, AccordionSummary } from "./styles"
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Content from "components/Content";
+import Chevron from 'public/icons/chevron.svg'
 
 interface IFaqItem {
   title: string;
@@ -15,7 +16,7 @@ const FaqItem: FC<{data: IFaqItem}> = ({ data }) => {
       <Accordion>
         <AccordionSummary 
           aria-controls="panel1a-content"
-          expandIcon={<ExpandMoreIcon fontSize="large" sx={{ color: "white" }} />}>
+          expandIcon={<SvgIcon component={Chevron} fontSize="medium" sx={{ color: "white" }} />}>
           <Typography variant="h3">
             {data.title}
           </Typography>

@@ -1,5 +1,11 @@
+import { SvgIcon } from '@mui/material';
 import {useRouter} from 'next/router'
 import { ShareButtonS } from './styles';
+import FacebookIcon from 'public/icons/facebook.svg'
+import TwitterIcon from 'public/icons/twitter.svg'
+import Link from 'next/link';
+
+
 const DOMAIN = process.env.APP_DOMAIN;
 
 const ShareButton = ({
@@ -13,14 +19,14 @@ const ShareButton = ({
     <ShareButtonS>
       <ul>
         <li>
-          <a href={`https://www.facebook.com/sharer.php?u=${DOMAIN}${router.asPath}`} target="_blank" rel="noreferrer">
-            <img className="uk-svg" src="/assets/facebook.svg" alt="Facebook" />
-          </a>
+          <Link href={`https://www.facebook.com/sharer.php?u=${DOMAIN}${router.asPath}`} target="_blank" rel="noreferrer">
+            <SvgIcon component={FacebookIcon} />
+          </Link>
         </li>
         <li>
-          <a href={`https://twitter.com/share?url=${DOMAIN}${router.asPath}&amp;text=${data.title}&amp;hashtags=${data.labels?.data?.[0]?.attributes?.title || ""}`} target="_blank" rel="noreferrer">
-            <img className="uk-svg" src="/assets/twitter.svg" alt="Facebook" />
-          </a>
+          <Link href={`https://twitter.com/share?url=${DOMAIN}${router.asPath}&amp;text=${data.title}&amp;hashtags=${data.labels?.data?.[0]?.attributes?.title || ""}`} target="_blank" rel="noreferrer">
+            <SvgIcon component={TwitterIcon} />
+          </Link>
         </li>
       </ul>
     </ShareButtonS>

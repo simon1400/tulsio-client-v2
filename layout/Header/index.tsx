@@ -1,13 +1,13 @@
-import { Container, IconButton, useMediaQuery } from '@mui/material';
+import { Container, IconButton, SvgIcon, useMediaQuery } from '@mui/material';
 import dynamic from 'next/dynamic';
 import Link from 'next/link'
 import { ControlWrap, HeaderWrap, Logo, NavWrap } from './styles';
-import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
 import { useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import { useQuery } from '@apollo/client';
 import navHeader from 'queries/navHeader';
+import MenuIcon from 'public/icons/menu.svg'
+import Search from 'public/icons/search.svg'
 
 const TopNav = dynamic(() => import('components/TopNav'), {ssr: false})
 const Menu = dynamic(() => import('layout/Menu'), {ssr: false})
@@ -42,11 +42,8 @@ const Header = () => {
               loading={loading}
               handleDrawerToggle={handleDrawerToggle} />}
             <ControlWrap>
-              <IconButton 
-                href="/search"
-                sx={{ ml: 0 }}
-              >
-                <SearchIcon sx={{color: "white"}} />
+              <IconButton href="/search" sx={{ ml: 0}}>
+                <SvgIcon component={Search} />
               </IconButton>
             </ControlWrap>
             {!mediaMd && <IconButton
@@ -56,7 +53,7 @@ const Header = () => {
               onClick={handleDrawerToggle}
               sx={{ mr: 2, display: { md: 'none' } }}
             >
-              <MenuIcon />
+              <SvgIcon component={MenuIcon} />
             </IconButton>}
           </NavWrap>
         </HeaderWrap>

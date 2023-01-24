@@ -56,18 +56,17 @@ export const ArticleWrap = styled(Link)<{background: string; color: string;}>(({
   }
   .content-wrap-art{
     height: 100%;
-    padding: 40px;
+    padding: ${theme.globalPadding['xl']};
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     position: relative;
     z-index: 2;
-    
     ${theme.breakpoints.down('md')} {
-      padding: 30px;
+      padding: ${theme.globalPadding['lg']};
     }
     ${theme.breakpoints.down('sm')} {
-      padding: 15px;
+      padding: ${theme.globalPadding['md']};
     }
   }
   h1{

@@ -6,6 +6,7 @@ import ShareButton from 'components/ShareButtons';
 import { useRouter } from "next/router";
 import Image from 'components/Image'
 import styled from "@emotion/styled";
+import Page from "layout/Page";
 
 const DOMAIN = process.env.APP_DOMAIN;
 
@@ -17,7 +18,7 @@ const Article = ({
   const router = useRouter();
 
   return (
-    <>
+    <Page>
       <Head>
         <link rel="alternate" hrefLang="cs" href={`${DOMAIN}/cs${router.asPath}`} />
       </Head>
@@ -42,20 +43,13 @@ const Article = ({
               {!!item.button && <div className="uk-text-center uk-margin-bottom">
                 <Button href={item.button.link} variant="contained">{item.button.text}</Button>
               </div>}
-              {/* {!!item.baner && baner && <Banner format="&width=750" data={baner} />} */}
             </Chapter>)}
             {article.image.data && <ShareButton data={article} />}
           </Content>
-
-          {/* <Rating rating={2.5}/> */}
-          {/* <Author name="name" description="description" publishDate="publishDate" /> */}
-
+          
         </Container>
-
-        {/* <Comments /> */}
-
       </article>}
-    </>
+    </Page>
   )
 }
 

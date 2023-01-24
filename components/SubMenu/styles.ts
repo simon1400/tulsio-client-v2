@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { Tab, Tabs } from "@mui/material";
 
-export const CSubMenu = styled.div<{removeMargin: boolean}>(({removeMargin}) => `
+export const CSubMenu = styled.div<{removeMargin?: boolean}>(({removeMargin}) => `
   margin-bottom: ${removeMargin ? '0' : '90px'};
   .wrap-sub-menu{
     margin-left: -15px;

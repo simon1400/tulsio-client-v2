@@ -1,44 +1,33 @@
-import { Container, Typography } from "@mui/material"
+import { Container, IconButton, SvgIcon, Typography } from "@mui/material"
 import Image from "components/Image"
 import Label from "components/Label"
 import { ArticleTopS } from "./styles"
+import { getPallete } from "helpers/getPallete";
+import Breadcrumbs from "components/Breadcrumbs";
+
+import ArrowDown from 'public/icons/arrow-2.svg'
 
 const ArticleTop = ({
   // @ts-ignore
   article
 }) => {
-  console.log(article)
 
-  const background = article.background
-
-  let convert = "#4545ff", color: string = '#fff'
-
-  if(background === 'green') {
-    convert = "#9f9"
-    color = '#202020'
-  }else if(background === 'yellow') {
-    convert = "#fff899"
-    color = '#202020'
-  }else if(background === 'purple') {
-    convert = "#a50d5a"
-  }else if(background === 'bluePurpleG') {
-    convert = "linear-gradient(125deg, #a50d5a, #4545ff)"
-  }else if(background === 'greenYellowG') {
-    convert = "linear-gradient(to bottom, #fff899, #9f9);"
-    color = '#202020'
-  }
-
+  const {convert, color} = getPallete(article.background)
 
   return (
     <ArticleTopS background={convert} color={color}>
       <Image format="&resize=920x920" image={article.image.data} />
       <Container maxWidth="md">
+        <Breadcrumbs category={article.categories.data[0].attributes} />
         <Typography variant="h1">{article.title}</Typography>
         {!!article?.labels?.data?.length && article.labels.data.map((item: any, index: number) => <Label color={color} key={index} data={{
             title: item.attributes.title,
             slug: item.attributes.slug,
             color: item.attributes.color
           }} />)}
+        <IconButton aria-label="open drawer" edge="start">
+          <SvgIcon component={ArrowDown} />
+        </IconButton>
       </Container>
     </ArticleTopS>
   )
