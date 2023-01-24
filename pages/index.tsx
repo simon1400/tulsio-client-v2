@@ -1,6 +1,5 @@
 import ArticleShort from "components/ArticleShort";
-import Head from "next/head"
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { client, getStrapiURL } from "../lib/api";
 import getBaners from "../queries/baners";
 import homepageQuery from "../queries/homepage";
@@ -8,6 +7,8 @@ import { GridTop } from "styles/grid";
 import Banner from "components/Baner";
 import GridButton from "components/GridButton";
 import Page from "layout/Page";
+import { wrapper } from "stores";
+import { changeDescription, changeTitle } from "stores/slices/dataSlices";
 
 enum BANER_POSITION {
   POSITION_1='Home_1',
@@ -25,7 +26,8 @@ const gridButtonData = [
   }
 ]
 
-export async function getServerSideProps() {
+export const getServerSideProps = wrapper.getServerSideProps((store) =>
+  async () => {
 
   const { data: banersData } = await client.query({
     query: getBaners,
@@ -52,35 +54,34 @@ export async function getServerSideProps() {
   const baner1 = filterBaners1[Math.floor(Math.random() * filterBaners1.length)]
   const baner2 = filterBaners2[Math.floor(Math.random() * filterBaners2.length)]
 
+  store.dispatch(changeTitle(meta?.title || 'Úvod'))
+  store.dispatch(changeDescription(meta?.description || ''))
+
   return {
     props: {
       baner1: baner1 || null,
       baner2: baner2 || null,
       mainArticle,
       seccondArticles,
-      meta,
-      title: meta?.title || 'Úvod',
-      description: meta?.description || '',
       image: meta?.image ? getStrapiURL(meta.image) : null
     }
   }
-}
+})
 
 interface IHomepage {
   baner1: any,
   baner2: any,
   mainArticle: any,
   seccondArticles: any,
-  meta: any
 }
 
 const Homepage: FC<IHomepage> = ({
   baner1,
   baner2,
   mainArticle,
-  seccondArticles,
-  meta
+  seccondArticles
 }) => {
+  console.log(mainArticle)
 
   return (
     <Page>

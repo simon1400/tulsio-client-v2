@@ -10,19 +10,28 @@ import SearchBox from 'components/SearchBox';
 import { Container } from '@mui/material';
 import Head from 'next/head';
 import Page from 'layout/Page';
+import { wrapper } from 'stores';
+import { changeDescription, changeTitle } from 'stores/slices/dataSlices';
 
 const DOMAIN = process.env.APP_DOMAIN;
 
-export async function getServerSideProps() {
+export const getServerSideProps = wrapper.getServerSideProps((store) =>
+  async () => {
   
-  const { data } = await client.query({query: getFaq});
+    const { data } = await client.query({query: getFaq});
 
-  return {
-    props: {
-      faq: data.faqPage.data.attributes
+    const faqData = data.faqPage.data.attributes
+
+    store.dispatch(changeTitle(faqData.meta?.title || faqData.title))
+    store.dispatch(changeDescription(faqData.meta?.description || ""))
+
+    return {
+      props: {
+        faq: faqData
+      }
     }
   }
-}
+)
 
 const Faq: NextPage = ({
   // @ts-ignore
@@ -44,9 +53,8 @@ const Faq: NextPage = ({
           <link rel="alternate" hrefLang="cs" href={`${DOMAIN}/cs${router.asPath}`} />
         </Head>
         
-        <PageHead title={faq.title} center />
-
         <Container maxWidth="md">
+          <PageHead title={faq.title} />
           <SearchBox />
         </Container>
         

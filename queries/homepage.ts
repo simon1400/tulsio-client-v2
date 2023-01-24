@@ -22,6 +22,7 @@ const homepageQuery = gql`
                   perex
                   slug
                   background
+                  showShortImg
                   image {
                     data {
                       attributes {

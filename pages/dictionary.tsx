@@ -8,15 +8,23 @@ import { useRouter } from 'next/router';
 import alphabets from 'data/alphabets';
 import numbers from 'data/numbers';
 import Page from 'layout/Page'
+import { changeDescription, changeTitle } from 'stores/slices/dataSlices'
+import { wrapper } from 'stores'
 
 const DOMAIN = process.env.APP_DOMAIN;
 
-export async function getServerSideProps() {
+export const getServerSideProps = wrapper.getServerSideProps((store) =>
+  async () => {
   
   const { data: dataPage } = await client.query({query: getDictionaryPage});
   const { data: allDictionaries } = await client.query({query: getAllDictionaries});
 
   const transfromDictionaries = allDictionaries.dictionaries.data.map((item: any) => item.attributes)
+
+  const page = dataPage.dictionaryPage.data.attributes
+
+  store.dispatch(changeTitle(page.meta?.title || page.title))
+  store.dispatch(changeDescription(page.meta?.description || ""))
 
   const result: string[] = []
   alphabets.map(symbol => {
@@ -51,12 +59,12 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      dictionaryPage: dataPage.dictionaryPage.data.attributes,
+      dictionaryPage: page,
       dictionaries: resultData,
       nav: result
     }
   }
-}
+})
 
 interface IDictionaryPage {
   title: string;

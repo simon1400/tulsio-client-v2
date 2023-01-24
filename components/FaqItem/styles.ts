@@ -13,7 +13,7 @@ export const Accordion = styled(MuiAccordion)`
   }
 `;
 
-export const AccordionSummary = styled(MuiAccordionSummary)`
+export const AccordionSummary = styled(MuiAccordionSummary)(({theme}) => `
   padding-top: 30px;
   padding-bottom: 30px;
   .Mui-expanded, .MuiAccordionSummary-content{
@@ -21,16 +21,28 @@ export const AccordionSummary = styled(MuiAccordionSummary)`
   }
   h3{
     font-weight: bold;
+    mark{
+      background: ${theme.palette.primary.main};
+      color: white;
+      border-radius: 6px;
+      padding: 0 3px;
+    }
   }
-`;
+`);
 
-export const AccordionDetails = styled(MuiAccordionDetails)`
+export const AccordionDetails = styled(MuiAccordionDetails)(({theme}) => `
   p{
+    mark{
+      background: ${theme.palette.primary.main};
+      color: white;
+      border-radius: 6px;
+      padding: 0 3px;
+    }
     &:first-of-type{
       margin-top: 0;
     }
   }
-`
+`)
 
 export const FaqItemS = styled.div`
   /* margin-bottom: 30px; */

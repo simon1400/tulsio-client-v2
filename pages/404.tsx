@@ -19,10 +19,16 @@ const NotFound = styled.main(({theme}) => `
   h1{
     font-size: 369px;
     line-height: 1.15;
+    ${theme.breakpoints.down('sm')} {
+      font-size: 130px!important;
+    }
   }
   h2{
     margin-top: -20px;
     margin-bottom: 40px;
+    ${theme.breakpoints.down('sm')} {
+      margin-top: 0;
+    }
   }
   p{
     margin-bottom: 40px;

@@ -2,10 +2,13 @@ import {getArticle} from '../../queries/articles';
 import { client } from '../../lib/api'
 import { NextPage } from 'next'
 import Article from 'views/Article';
+import { wrapper } from 'stores';
+import { changeDescription, changeTitle } from 'stores/slices/dataSlices';
 
-export async function getServerSideProps(context: any) {
+export const getServerSideProps = wrapper.getServerSideProps((store) =>
+  async ({params}) => {
 
-  if(!context.query.article) {
+  if(!params?.article) {
     return {
       notFound: true
     }
@@ -14,7 +17,7 @@ export async function getServerSideProps(context: any) {
   const { data } = await client.query({
     query: getArticle,
     variables: {
-      slug: context.query.article
+      slug: params.article
     }
   });
 
@@ -24,12 +27,17 @@ export async function getServerSideProps(context: any) {
     }
   }
 
+  const article = data.articles.data[0].attributes
+
+  store.dispatch(changeTitle(article.meta?.title || article.title))
+  store.dispatch(changeDescription(article.meta?.description || ""))
+
   return {
     props: {
-      article: data.articles.data[0].attributes
+      article: article
     }
   }
-}
+})
 
 const ArticlePage: NextPage = ({
   // @ts-ignore
