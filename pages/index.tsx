@@ -91,6 +91,7 @@ const Homepage: FC<IHomepage> = ({
               title={mainArticle.title}
               link={`/blog/${mainArticle?.slug}`}
               image={mainArticle.image.data}
+              showShortImg={mainArticle.showShortImg}
               background={mainArticle.background}
               label={mainArticle?.labels?.data.map((item: any) => item.attributes)}
               text={mainArticle.perex}
@@ -108,6 +109,7 @@ const Homepage: FC<IHomepage> = ({
                 <div key={'article'+idx}>
                   <ArticleShort 
                     title={item.title}
+                    showShortImg={item.showShortImg}
                     link={`/blog/${item?.slug}`}
                     image={item.image.data}
                     background={item.background}
@@ -126,6 +128,7 @@ const Homepage: FC<IHomepage> = ({
                 <div key={'article'+idx}>
                   <ArticleShort 
                     title={item.title}
+                    showShortImg={item.showShortImg}
                     link={`/blog/${item?.slug}`}
                     image={item.image.data}
                     background={item.background}
@@ -137,6 +140,7 @@ const Homepage: FC<IHomepage> = ({
               return <div key={'article'+idx}>
                 <ArticleShort 
                   title={item.title}
+                  showShortImg={item.showShortImg}
                   link={`/blog/${item?.slug}`}
                   image={item.image.data}
                   background={item.background}

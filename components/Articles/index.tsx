@@ -20,6 +20,7 @@ const Articles: FC<IArticles> = ({data, searchResult = false}) => {
             ? <ArticleShort 
                 title={item?.title}
                 link={`/blog/${item.slug}`}
+                showShortImg={item.showShortImg}
                 background={item.background}
                 image={item?.image}
                 label={item.labels[0] ? {
@@ -30,6 +31,7 @@ const Articles: FC<IArticles> = ({data, searchResult = false}) => {
               />
             : <ArticleShort 
               title={item?.title}
+              showShortImg={item.showShortImg}
               link={`/blog/${item.slug}`}
               background={item.background}
               image={item?.image.data.attributes}

@@ -18,6 +18,7 @@ interface ArticleShortProps {
   label?: ILabel | ILabel[]
   title: string
   text?: string
+  showShortImg?: boolean
 }
 
 const ArticleShort: FC<ArticleShortProps> = ({
@@ -25,6 +26,7 @@ const ArticleShort: FC<ArticleShortProps> = ({
   image,
   title,
   background,
+  showShortImg = true,
   text = '',
   label = undefined,
 }) => {
@@ -63,7 +65,7 @@ const ArticleShort: FC<ArticleShortProps> = ({
     <ArticleWrap background={convert} color={color} href={link} passHref>
 
       <div className="img-wrap">
-        <div className="img-art" style={{backgroundImage: `url(${imgUrl})`}} />
+        <div className="img-art" style={{backgroundImage: `${showShortImg ? `url(${imgUrl})` : ""}`}} />
       </div>
 
       <div className="content-wrap-art">

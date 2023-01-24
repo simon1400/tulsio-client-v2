@@ -9,6 +9,7 @@ export const getAllArticles = gql`
           slug
           perex
           background
+          showShortImg
           labels{
             data{
               attributes{
@@ -46,6 +47,7 @@ export const getArticlesCategory = gql`
           slug
           perex
           background
+          showShortImg
           labels{
             data{
               attributes{
@@ -78,6 +80,7 @@ export const getArticle = gql`
           slug
           perex
           background
+          showShortImg
           meta{
             title
             description
