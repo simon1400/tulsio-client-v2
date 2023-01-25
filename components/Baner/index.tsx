@@ -26,17 +26,17 @@ const Banner: FC<IBanner> = ({
   return <BannerS background={background} color={color} href={data.link} passHref>
     <div className="img-wrap">
       <div className="img-art" style={{backgroundImage: `url(${imgUrl})`}} />
-      <div className="content-wrap-art">
-        <div>
-          <Typography variant="h2"><span>{data.title}</span></Typography>
-        </div>
-        <div className="label-wrap">
-          <Label data={{
-            title: 'Reklama',
-            slug: '',
-            color: ''
-          }} color={color} />
-        </div>
+    </div>
+    <div className="content-wrap-art">
+      <div>
+        <Typography variant="h2"><span>{data.title}</span></Typography>
+      </div>
+      <div className="label-wrap">
+        <Label data={{
+          title: 'Reklama',
+          slug: '',
+          color: ''
+        }} color={color} />
       </div>
     </div>
   </BannerS>

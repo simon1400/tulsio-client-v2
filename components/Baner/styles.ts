@@ -6,6 +6,7 @@ export const BannerS = styled(Link)<{color: string; background: string;}>(({them
   height: 100%;
   color: ${color};
   position: relative;
+  text-decoration: none;
   &:hover{
     .img-wrap {
       transform: scale(.98);
