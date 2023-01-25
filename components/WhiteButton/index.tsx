@@ -4,10 +4,11 @@ import { WhiteButtonS } from "./styles"
 
 const WhiteButton: FC<ButtonProps> = ({
   children,
-  size
+  size,
+  onClick
 }) => {
   return (
-    <WhiteButtonS size={size}>{children}</WhiteButtonS>
+    <WhiteButtonS size={size} onClick={onClick}>{children}</WhiteButtonS>
   )
 }
 

@@ -5,6 +5,8 @@ const getBaners = gql`
     baners(filters: { or: $query }) {
       data {
         attributes {
+          title
+          darkMode
           link
           position
           image{

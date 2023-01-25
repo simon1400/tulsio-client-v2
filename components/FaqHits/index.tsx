@@ -5,6 +5,7 @@ import {
 } from 'react-instantsearch-hooks-web';
 import FaqItem from "components/FaqItem";
 import { FaqHitsS } from "./styles";
+import NotResult from "components/NotResult";
 
 const FaqHits = (props: UseHitsProps) => {
 
@@ -13,6 +14,7 @@ const FaqHits = (props: UseHitsProps) => {
   return (
     <Container maxWidth="md">
       <FaqHitsS>
+        {!hits.length && <NotResult />}
         {hits.map((item: any, idx: number) => <FaqItem key={idx} data={item} />)}
       </FaqHitsS>
     </Container>

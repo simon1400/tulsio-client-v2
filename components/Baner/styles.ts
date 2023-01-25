@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
 
-export const BannerS = styled(Link)(({theme}) => `
+export const BannerS = styled(Link)<{color: string; background: string;}>(({theme, color, background}) => `
   display: block;
   height: 100%;
-  /* min-height: 300px; */
+  color: ${color};
   position: relative;
   &:hover{
     .img-wrap {
@@ -38,6 +38,7 @@ export const BannerS = styled(Link)(({theme}) => `
       border-radius: ${theme.borderRadius['sm']};
     }
     .img-art{
+      background: ${background};
       background-size: cover;
       height: 110%;
       width: 110%;
@@ -45,8 +46,35 @@ export const BannerS = styled(Link)(({theme}) => `
       top: 50%;
       position: absolute;
       z-index: -2;
+      mix-blend-mode: luminosity;
+      opacity: .4;
       transform: translate(-50%, -50%);
       transition: all .7s ease;
+    }
+  }
+  .content-wrap-art{
+    height: 100%;
+    padding: ${theme.globalPadding['xl']};
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+    ${theme.breakpoints.down('md')} {
+      padding: ${theme.globalPadding['lg']};
+    }
+    ${theme.breakpoints.down('sm')} {
+      padding: ${theme.globalPadding['md']};
+    }
+    h2{
+      margin-top: 0;
+      margin-bottom: 20px;
+      color: ${color};
+    }
+    .label-wrap{
+      margin-bottom: -8px;
+      display: flex;
+      flex-wrap: wrap;
     }
   }
 `)
