@@ -81,7 +81,6 @@ const Homepage: FC<IHomepage> = ({
   mainArticle,
   seccondArticles
 }) => {
-  console.log(mainArticle)
 
   return (
     <Page>

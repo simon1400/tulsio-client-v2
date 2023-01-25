@@ -1,10 +1,15 @@
 import Backdrop from '@mui/material/Backdrop';
-import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useSpring, animated } from 'react-spring';
-import { FC, forwardRef, useState } from 'react';
+import { FC, FocusEventHandler, forwardRef, useState } from 'react';
+import { FormWrap, ModalContent } from './styles';
+import Content from 'components/Content';
+import Input from 'components/Input';
+import { Button, IconButton, SvgIcon } from '@mui/material';
+import EmailIcon from 'public/icons/email.svg'
+import CloseIcon from 'public/icons/close.svg'
+import { validationForm } from 'helpers/validation';
 
 interface FadeProps {
   children?: React.ReactElement;
@@ -37,18 +42,6 @@ const Fade = forwardRef<HTMLDivElement, FadeProps>(function Fade(props, ref) {
   );
 });
 
-const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
-
 export interface IModalNewsletter {
   setOpen: (value: boolean) => void
   open: boolean
@@ -61,31 +54,70 @@ const ModalNewsletter: FC<IModalNewsletter> = ({
   
   const handleClose = () => setOpen(false);
 
+  const [email, setEmail] = useState("")
+  const [send, setSend] = useState(false)
+  const [error, setError] = useState({
+    email: false
+  })
+
+  const onBlur: FocusEventHandler<HTMLInputElement | HTMLTextAreaElement> | undefined = (type: any) => {
+    validationForm(type, {email}, error, setError);
+  }
+
+  // const handleButton = (e) => {
+  //   e.preventDefault()
+  //   if(error.email) {
+  //     return
+  //   }
+  //   if(!open && !send) {
+  //     setOpen(true)
+  //   }else if(!send){
+  //     axios.post(`${DOMAIN}/api/subscribe`, {email}).then(res => {
+  //       setOpen(false)
+  //       setSend(true)
+  //     }).catch(err => console.log(err))
+  //   }
+  // }
+
+  const handleEmail = (e: any) => {
+    e.preventDefault()
+    setEmail(e.target.value)
+  }
+
   return (
-    <div>
-      <Modal
-        aria-labelledby="spring-modal-title"
-        aria-describedby="spring-modal-description"
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={open}>
-          <Box sx={style}>
-            <Typography id="spring-modal-title" variant="h6" component="h2">
-              Text in a modal
-            </Typography>
-            <Typography id="spring-modal-description" sx={{ mt: 2 }}>
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </Typography>
-          </Box>
-        </Fade>
-      </Modal>
-    </div>
+    <Modal
+      aria-labelledby="newsletter-modal-title"
+      aria-describedby="newsletter-modal-description"
+      open={open}
+      keepMounted
+      onClose={handleClose}
+      closeAfterTransition
+      BackdropComponent={Backdrop}
+      BackdropProps={{
+        timeout: 500,
+      }}
+    >
+      <Fade in={open}>
+        <ModalContent>
+          <IconButton sx={{color: 'white'}}><SvgIcon component={CloseIcon} fontSize="large" onClick={() => handleClose()} /></IconButton>
+          <Typography variant="h2">Všechno co se ve světě CBD děje ve vašem mailu.</Typography>
+          <FormWrap>
+            <Input 
+              value={email} 
+              placeholder="Váš e-mail" 
+              onChange={handleEmail}
+              onBlur={onBlur}
+              name="email"
+              endIcon={<SvgIcon component={EmailIcon} />}
+            />
+            <Button variant="contained">Odeslat</Button>
+          </FormWrap>
+          <Content removePadding>
+            <Typography variant="body1">Vaše osobní údaje jsou u nás v bezpečí. I tak vás ale musíme seznámít se <a href="/">zpracováním osobních údajů</a>. Udělením vašeho e-mailu s nimi souhlasíte. Děkujeme.</Typography>
+          </Content>
+        </ModalContent>
+      </Fade>
+    </Modal>
   );
 }
 
