@@ -1,10 +1,14 @@
 import styled from "@emotion/styled";
 import { Tab } from "@mui/material";
 
-export const CSubMenu = styled.div<{sticky: boolean}>(({sticky}) => `
+export const CSubMenu = styled.div<{sticky: boolean}>(({theme, sticky}) => `
   margin-bottom: 90px;
   position: ${sticky ? 'sticky' : 'static'};
   top: 0;
+  ${theme.breakpoints.down('sm')} {
+    margin-left: -10px;
+    width: calc(100% + 20px);
+  }
   .wrap-sub-menu{
     margin-left: -15px;
   }

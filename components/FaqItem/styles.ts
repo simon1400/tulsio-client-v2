@@ -46,4 +46,9 @@ export const AccordionDetails = styled(MuiAccordionDetails)(({theme}) => `
 
 export const FaqItemS = styled.div`
   /* margin-bottom: 30px; */
+  &:last-of-type{
+    > div {
+      border-bottom: none;
+    }
+  }
 `

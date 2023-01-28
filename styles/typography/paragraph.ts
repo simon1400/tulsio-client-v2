@@ -13,13 +13,9 @@ export const paragraph = (theme: any) => ({
       bottom: 0,
       left: 0,
       backgroundColor: theme.palette.primary.main,
-      transition: "all .2s ease",
     },
     "&:hover": {
       color: theme.palette.primary.main,
-      "&:after": {
-        bottom: "3px"
-      }
     }
   },
   ul: {

@@ -28,7 +28,7 @@ const SearchPage = () => {
           <link rel="alternate" hrefLang="cs" href={`${DOMAIN}/cs${router.asPath}`} />
         </Head>
         
-        <PageHead prefix={"Hledat"} title={"Some Result"} />
+        <PageHead prefix={"Hledat"} title={""} />
 
         <Container>
           <SearchBox />

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { FC, SyntheticEvent, useState } from "react"
 import {CSubMenu, TabS} from './styles'
 import { Tabs } from "@mui/material";

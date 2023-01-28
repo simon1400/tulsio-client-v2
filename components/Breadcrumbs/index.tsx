@@ -22,7 +22,7 @@ const Breadcrumbs: FC<IBreadcrumbs> = ({
         component={Chevron} 
         sx={{
           fill: 'rgba(255, 255, 255, 0.45)',
-          transform: 'rotate(-95deg)'
+          transform: 'rotate(-90deg)'
         }} 
         fontSize="medium" />
       }

@@ -11,6 +11,7 @@ import EmailIcon from 'public/icons/email.svg'
 import CloseIcon from 'public/icons/close.svg'
 import { validationForm } from 'helpers/validation';
 import Link from 'next/link';
+import BlankIcon from 'public/icons/blank.svg';
 
 interface FadeProps {
   children?: React.ReactElement;
@@ -114,7 +115,8 @@ const ModalNewsletter: FC<IModalNewsletter> = ({
             <Button variant="contained">Odeslat</Button>
           </FormWrap>
           <Content removePadding>
-            <Typography variant="body1">Vaše osobní údaje jsou u nás v bezpečí. I tak vás ale musíme seznámít se <Link href="/">zpracováním osobních údajů</Link>. Udělením vašeho e-mailu s nimi souhlasíte. Děkujeme.</Typography>
+            <Typography variant="body1">
+              Vaše osobní údaje jsou u nás v bezpečí. I tak vás ale musíme seznámít se <Link href="/gdpr" target="_blank" rel="noopener">zpracováním osobních údajů<SvgIcon component={BlankIcon} /></Link>. Udělením vašeho e-mailu s nimi souhlasíte. Děkujeme.</Typography>
           </Content>
         </ModalContent>
       </Fade>

@@ -10,7 +10,7 @@ interface IDictionaryHead {
 
 const DictionaryHead: FC<IDictionaryHead> = ({ title, data }) => {
   return (
-    <Container maxWidth="xl">
+    <Container>
       <CategoryTop>
         <Typography variant="h1">{title}</Typography>
         <AlphabetsSubMenu data={data} />

@@ -4,3 +4,37 @@
   src: url('./fonts/Manrope-VariableFont_wght.ttf') format("truetype-variations");
   font-weight: 1 999;
 }
+
+main{
+  min-height: 60vh;
+}
+
+/* Customize website's scrollbar like Mac OS
+Not supports in Firefox and IE */
+
+/* total width */
+body::-webkit-scrollbar {
+  background-color: transparent;
+  width: 6px;
+}
+
+/* background of the scrollbar except button or resizer */
+body::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+/* scrollbar itself */
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 3px;
+  border: 0px solid transparent;
+  cursor: pointer;
+  &:hover{
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* set button(top and bottom of the scrollbar) */
+body::-webkit-scrollbar-button {
+  display:none;
+}

@@ -35,7 +35,7 @@ export const NewsletterS = styled.div(({theme}) => `
     margin-bottom: ${theme.globalGap['md']};
     flex-wrap: wrap;
     justify-content: center;
-    padding: 15px 15px;
+    padding: 30px 15px;
     p{
       text-align: center;
       margin-bottom: 15px;

@@ -6,6 +6,7 @@ export const button = (theme: any) => ({
       fontWeight: 600,
       height: "60px",
       minWidth: '190px',
+      // textTransform: "none",
       borderRadius: '30px',
       WebkitTapHighlightColor: "transparent",
     },

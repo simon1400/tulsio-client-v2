@@ -26,6 +26,14 @@ export const ModalContent = styled.div(({theme}) => `
   }
   ${theme.breakpoints.down('sm')} {
     border-radius: ${theme.borderRadius['sm']};
+    padding: 40px 15px;
+    .MuiIconButton-root{
+      right: 0px;
+      top: 0px;
+      svg{
+        font-size: 30px;
+      }
+    }
   }
 `)
 

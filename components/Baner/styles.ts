@@ -19,6 +19,7 @@ export const BannerS = styled(Link)<{color: string; background: string;}>(({them
   .img-wrap{
     height: 100%;
     width: 100%;
+    background: ${background};
     border-radius: ${theme.borderRadius['base']};
     overflow: hidden;
     display: block;
@@ -39,7 +40,6 @@ export const BannerS = styled(Link)<{color: string; background: string;}>(({them
       border-radius: ${theme.borderRadius['sm']};
     }
     .img-art{
-      background: ${background};
       background-size: cover;
       height: 110%;
       width: 110%;
@@ -47,7 +47,7 @@ export const BannerS = styled(Link)<{color: string; background: string;}>(({them
       top: 50%;
       position: absolute;
       z-index: -2;
-      mix-blend-mode: luminosity;
+      /* mix-blend-mode: luminosity; */
       opacity: .4;
       transform: translate(-50%, -50%);
       transition: all .7s ease;

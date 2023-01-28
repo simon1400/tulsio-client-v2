@@ -13,12 +13,12 @@ const Banner: FC<IBanner> = ({
   data
 }) => {
 
-  let color: string = '#ffffff', 
-      background: string = '#202020';
+  let color: string = '#202020', 
+      background: string = '#ffffff';
 
-  if(!data.darkMode) {
-    color = '#202020'
-    background = "#ffffff"
+  if(data.darkMode) {
+    color = '#ffffff'
+    background = "#202020"
   }
 
   let imgUrl = `${APP_API}${data.image.data?.attributes.url}?format=webp&resize=1000x1000`

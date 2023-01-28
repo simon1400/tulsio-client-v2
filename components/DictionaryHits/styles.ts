@@ -42,6 +42,9 @@ export const Box = styled.div(({theme}) => `
   border: solid 1px rgba(0, 0, 0, 0.1);
   background-color: rgba(255,255,255, .07);
   padding: 40px;
+  h2{
+    margin-top: 0!important;
+  }
   color: #eee;
   ${theme.breakpoints.down('xxl')} {
     border-radius: ${theme.borderRadius['xxl']};

@@ -14,7 +14,11 @@ export const FaqHitsS = styled.div(({theme}) => `
   ${theme.breakpoints.down('lg')} {
     border-radius: ${theme.borderRadius['lg']};
   }
+  ${theme.breakpoints.down('md')} {
+    padding: ${theme.globalPadding['lg']};
+  }
   ${theme.breakpoints.down('sm')} {
     border-radius: ${theme.borderRadius['sm']};
+    padding: ${theme.globalPadding['md']};
   }
 `)

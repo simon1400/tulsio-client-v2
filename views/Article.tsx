@@ -1,5 +1,5 @@
 import Head from "next/head"
-import { Button, Container, Typography } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import ArticleTop from 'components/ArticleTop';
 import Content from 'components/Content';
 import ShareButton from 'components/ShareButtons';
@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import Image from 'components/Image'
 import styled from "@emotion/styled";
 import Page from "layout/Page";
+import Button from "components/Button";
 
 const DOMAIN = process.env.APP_DOMAIN;
 
@@ -24,12 +25,12 @@ const Article = ({
       </Head>
 
       {!!article && <article className="blog-article">
-        {article.image.data && <ArticleTop article={article} />}
+        {article.image?.data && <ArticleTop article={article} />}
 
         <Container maxWidth="md">
 
-          <Content smallPadding={!article.image.data}>
-            {!article.image.data && <Typography variant="h1">{article.title}</Typography>}
+          <Content smallPadding={!article.image?.data}>
+            {!article.image?.data && <Typography variant="h1">{article.title}</Typography>}
             {!!article.perex.length && <Typography component="div" variant="body1" dangerouslySetInnerHTML={{__html: article.perex}} />}
             {!!article.chapters?.length && article.chapters.map((item: any, index: number) => <Chapter key={index}>
               {!!item.title && <Typography variant="h2">{item.title}</Typography>}

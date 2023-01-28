@@ -1,3 +1,4 @@
+import { Components } from "@mui/material";
 import { base } from "./base";
 import { button } from "./button";
 

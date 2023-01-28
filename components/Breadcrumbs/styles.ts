@@ -7,13 +7,46 @@ export const BreadcrumbsS = styled(Breadcrumbs)(({theme}) => `
   position: relative;
   a{
     color: rgba(255, 255, 255, .65);
-    font-size: 20px;
+    font-size: 19px;
     font-weight: 600;
-    line-height: 1.25;
+    line-height: 1.32;
     text-decoration: none;
     transition: all .2s ease;
     &:hover{
       color: white;
+    }
+  }
+  ${theme.breakpoints.down('xxl')} {
+    a{
+      font-size: 17px;
+      line-height: 1.47;
+    }
+    svg{
+      font-size: 20px;
+    }
+  }
+  ${theme.breakpoints.down('lg')} {
+    a{
+      font-size: 16px;
+      line-height: 1.56;
+    }
+    svg{
+      font-size: 15px;
+    }
+  }
+  ${theme.breakpoints.down('md')} {
+    a{
+      font-size: 14px;
+      line-height: 1.79;
+    }
+    svg{
+      font-size: 15px;
+    }
+  }
+  ${theme.breakpoints.down('sm')} {
+    a{
+      font-size: 13px;
+      line-height: 1.92;
     }
   }
 `)

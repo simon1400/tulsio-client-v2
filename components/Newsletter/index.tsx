@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material"
 import ModalNewsletter from "components/Modal";
-import WhiteButton from "components/WhiteButton"
+import Button from "components/Button"
 import { useState } from "react";
 import { NewsletterS } from "./styles"
 
@@ -11,7 +11,7 @@ const Newsletter = () => {
 
   return <NewsletterS>
     <Typography component="p" variant="h1">Všechno co se ve světě CBD děje ve vašem mailu.</Typography>
-    <WhiteButton size="large" onClick={handleOpen}>Příhlásit k newsletru</WhiteButton>
+    <Button size="large" white onClick={handleOpen}>Příhlásit k newsletru</Button>
     <ModalNewsletter open={open} setOpen={setOpen} />
   </NewsletterS>
 }

@@ -34,10 +34,18 @@ export const ContentS = styled.div<{removePadding: boolean; smallPadding: boolea
   .MuiButtonBase-root {
     margin-top: 20px;
   }
-  ul {
+  a{
+    color: rgba(255, 255, 255, .85);
+    svg{
+      vertical-align: middle;
+      display: inline-block;
+      margin-top: -5px;
+    }
+  }
+
+  ol, ul {
     padding-left: 0;
-    li {
-      list-style-type: none;
+    li{
       padding-left: 30px;
       position: relative;
       p {
@@ -45,10 +53,30 @@ export const ContentS = styled.div<{removePadding: boolean; smallPadding: boolea
         margin-bottom: 0;
       }
       &:before {
-        content: '';
-        display: block;
         position: absolute;
+        
+      }
+    }
+  }
+  ol{
+    list-style: none;
+    counter-reset: my-awesome-counter;
+    li{
+      counter-increment: my-awesome-counter;
+      &:before{
+        left: 5px;
+        content: counter(my-awesome-counter) ". ";
+        color: ${theme.palette.primary.main};
+      }
+    }
+  }
+  ul {
+    li {
+      list-style-type: none;
+      &:before {
+        content: '';
         left: 0;
+        display: block;
         top: 15px;
         width: 14px;
         height: 1.5px;
@@ -56,9 +84,104 @@ export const ContentS = styled.div<{removePadding: boolean; smallPadding: boolea
       }
     }
   }
+
+  h1 {
+    font-size: 40px;
+    ${theme.breakpoints.down('xxl')} {
+      font-size: 30px;
+      line-height: 1.25;
+    }
+    ${theme.breakpoints.down('xl')} {
+      font-size: 27px;
+      line-height: 1.25;
+    }
+    ${theme.breakpoints.down('lg')} {
+      font-size: 25px;
+      line-height: 1.25;
+    }
+    ${theme.breakpoints.down('md')} {
+      font-size: 23px;
+      line-height: 1.25;
+    }
+    ${theme.breakpoints.down('sm')} {
+      font-size: 22px;
+      line-height: 1.25;
+    }
+  }
+  h2 {
+    font-size: 30px;
+    ${theme.breakpoints.down('xxl')} {
+      font-size: 23px;
+      line-height: 1.25;
+    }
+    ${theme.breakpoints.down('xl')} {
+      font-size: 21px;
+      line-height: 1.25;
+    }
+    ${theme.breakpoints.down('lg')} {
+      font-size: 20px;
+      line-height: 1.25;
+    }
+    ${theme.breakpoints.down('md')} {
+      font-size: 18px;
+      line-height: 1.25;
+    }
+    ${theme.breakpoints.down('sm')} {
+      font-size: 17px;
+      line-height: 1.25;
+    }
+  }
+  h3 {
+    font-size: 24px;
+    ${theme.breakpoints.down('xxl')} {
+      font-size: 19px;
+      line-height: 1.25;
+    }
+    ${theme.breakpoints.down('xl')} {
+      font-size: 18px;
+      line-height: 1.25;
+    }
+    ${theme.breakpoints.down('lg')} {
+      font-size: 18px;
+      line-height: 1.25;
+    }
+    ${theme.breakpoints.down('md')} {
+      font-size: 16px;
+      line-height: 1.25;
+    }
+    ${theme.breakpoints.down('sm')} {
+      font-size: 15px;
+      line-height: 1.25;
+    }
+  }
+  h4 {
+    font-size: 19px;
+    ${theme.breakpoints.down('xxl')} {
+      font-size: 17px;
+      line-height: 1.25;
+    }
+    ${theme.breakpoints.down('lg')} {
+      font-size: 16px;
+      line-height: 1.25;
+    }
+    ${theme.breakpoints.down('md')} {
+      font-size: 14px;
+      line-height: 1.25;
+    }
+    ${theme.breakpoints.down('sm')} {
+      font-size: 13px;
+      line-height: 1.25;
+    }
+  }
   
   h1, h2, h3, h4, h5 {
     margin-top: 40px;
     color: white;
+    line-height: 1.25;
+    font-family: ${theme.typography.fontFamily};
+    font-weight: 700;
+    &::selection {
+      background-color: ${theme.palette.primary.main};
+    }
   }
 `)
