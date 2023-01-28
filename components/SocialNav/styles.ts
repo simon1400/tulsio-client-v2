@@ -15,6 +15,7 @@ export const SocialNavS = styled.nav(({theme}) => `
       &:not(:last-of-type) {
         margin-right: 5px;
       }
+
     }
   }
 `)
@@ -26,6 +27,11 @@ export const LinkS = styled(Link)<{background: string}>(({background}) => `
   overflow: hidden;
   width: 53px;
   height: 53px;
+  transform: scale(1);
+  transition: all .2s ease;
+  &:hover{
+    transform: scale(1.03);
+  }
   img{
     margin: auto;
   }

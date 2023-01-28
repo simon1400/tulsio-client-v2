@@ -40,7 +40,7 @@ export const ArticleTopS = styled.div<{background: string; color: string;}>(({th
     opacity: 0.4;
     mix-blend-mode: luminosity;
   }
-  button{
+  .MuiButtonBase-root{
     z-index: 2;
     position: absolute;
     bottom: 40px;

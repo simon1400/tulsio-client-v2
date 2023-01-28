@@ -29,7 +29,7 @@ const Article = ({
 
         <Container maxWidth="md">
 
-          <Content smallPadding={!article.image?.data}>
+          <Content smallPadding={!article.image?.data} id="content-article">
             {!article.image?.data && <Typography variant="h1">{article.title}</Typography>}
             {!!article.perex.length && <Typography component="div" variant="body1" dangerouslySetInnerHTML={{__html: article.perex}} />}
             {!!article.chapters?.length && article.chapters.map((item: any, index: number) => <Chapter key={index}>

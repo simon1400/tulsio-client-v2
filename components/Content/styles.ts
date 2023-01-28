@@ -28,6 +28,7 @@ export const ContentS = styled.div<{removePadding: boolean; smallPadding: boolea
         object-fit: cover;
         width: 100%;
         height: 100%;
+        display: block;
       }
     }
   }

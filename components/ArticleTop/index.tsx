@@ -12,6 +12,13 @@ const ArticleTop = ({
   article
 }) => {
 
+  const handleClick = () => {
+    const element = document.getElementById("content-article");
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
   const {convert, color} = getPallete(article.background)
 
   return (
@@ -25,7 +32,7 @@ const ArticleTop = ({
             slug: item.attributes.slug,
             color: item.attributes.color
           }} />)}
-        <IconButton aria-label="open drawer" edge="start">
+        <IconButton onClick={handleClick} aria-label="open drawer" edge="start">
           <SvgIcon component={ArrowDown} />
         </IconButton>
       </Container>

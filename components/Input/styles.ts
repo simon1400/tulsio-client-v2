@@ -13,6 +13,7 @@ export const InputS = styled(OutlinedInput)(({theme}) => `
   .MuiOutlinedInput-notchedOutline {
     transition: all .2s ease;
     border-color: rgba(69, 69, 255, .5);
+    border-width: 1.5px;
   }
   .MuiInputAdornment-root {
     svg{
@@ -20,11 +21,12 @@ export const InputS = styled(OutlinedInput)(({theme}) => `
     }
   }
   &.Mui-focused {
+    border-width: 1.5px;
     input{
-    &::placeholder{
-      color: white;
+      &::placeholder{
+        color: white;
+      }
     }
-  }
   }
   input{
     color: white;

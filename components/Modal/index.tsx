@@ -6,12 +6,14 @@ import { FC, FocusEventHandler, forwardRef, useState } from 'react';
 import { FormWrap, ModalContent } from './styles';
 import Content from 'components/Content';
 import Input from 'components/Input';
-import { Button, IconButton, SvgIcon } from '@mui/material';
+import { IconButton, SvgIcon } from '@mui/material';
 import EmailIcon from 'public/icons/email.svg'
 import CloseIcon from 'public/icons/close.svg'
 import { validationForm } from 'helpers/validation';
 import Link from 'next/link';
 import BlankIcon from 'public/icons/blank.svg';
+import Button from 'components/Button';
+import axios from 'axios';
 
 interface FadeProps {
   children?: React.ReactElement;
@@ -66,20 +68,20 @@ const ModalNewsletter: FC<IModalNewsletter> = ({
     validationForm(type, {email}, error, setError);
   }
 
-  // const handleButton = (e) => {
-  //   e.preventDefault()
-  //   if(error.email) {
-  //     return
-  //   }
-  //   if(!open && !send) {
-  //     setOpen(true)
-  //   }else if(!send){
-  //     axios.post(`${DOMAIN}/api/subscribe`, {email}).then(res => {
-  //       setOpen(false)
-  //       setSend(true)
-  //     }).catch(err => console.log(err))
-  //   }
-  // }
+  const handleButton = (e: any) => {
+    e.preventDefault()
+    if(error.email) {
+      return
+    }
+    if(!open && !send) {
+      setOpen(true)
+    }else if(!send){
+      axios.post(`/api/subscribe`, {email}).then(() => {
+        setOpen(false)
+        // setSend(true)
+      }).catch((err: any) => console.log(err))
+    }
+  }
 
   const handleEmail = (e: any) => {
     e.preventDefault()
@@ -97,6 +99,10 @@ const ModalNewsletter: FC<IModalNewsletter> = ({
       BackdropComponent={Backdrop}
       BackdropProps={{
         timeout: 500,
+        sx: {
+          backdropFilter: "blur(15px)",
+          backgroundColor: "transparent",
+        }
       }}
     >
       <Fade in={open}>
@@ -112,7 +118,7 @@ const ModalNewsletter: FC<IModalNewsletter> = ({
               name="email"
               endIcon={<SvgIcon component={EmailIcon} />}
             />
-            <Button variant="contained">Odeslat</Button>
+            <Button variant="contained" onClick={handleButton}>Odeslat</Button>
           </FormWrap>
           <Content removePadding>
             <Typography variant="body1">

@@ -1,5 +1,5 @@
 import { InputAdornment } from "@mui/material"
-import { FC, FocusEventHandler, ReactElement } from "react";
+import { FC, ReactElement } from "react";
 import { InputS } from "./styles"
 
 export interface IInput {
@@ -16,7 +16,7 @@ const Input: FC<IInput> = ({
   placeholder,
   value,
   name,
-  onBlur,
+  onBlur = undefined,
   onChange,
   endIcon,
   handleEndIcon
@@ -26,6 +26,9 @@ const Input: FC<IInput> = ({
     placeholder={placeholder} 
     value={value}
     name={name}
+    inputProps={{
+      onBlur: () => onBlur ? onBlur(name) : null
+    }}
     onChange={(e: any) => onChange(e)} 
     endAdornment={
       endIcon ? <InputAdornment position="end" onClick={handleEndIcon}>
