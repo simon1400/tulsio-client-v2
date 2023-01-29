@@ -8,9 +8,6 @@ export const Accordion = styled(MuiAccordion)`
   background: transparent;
   box-shadow: none;
   border-bottom: 3px solid rgba(255, 255, 255, 0.05);
-  &:last-of-type{
-    /* border-bottom: 0; */
-  }
 `;
 
 export const AccordionSummary = styled(MuiAccordionSummary)(({theme}) => `

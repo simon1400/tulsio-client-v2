@@ -55,7 +55,7 @@ const Faq: NextPage = ({
         
         <Container maxWidth="md">
           <PageHead title={faq.title} />
-          <SearchBox />
+          <SearchBox placeholder="Hledat dotaz..." />
         </Container>
         
         <FaqHits />

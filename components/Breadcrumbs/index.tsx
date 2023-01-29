@@ -11,17 +11,19 @@ export interface IBreadcrumb {
 
 export interface IBreadcrumbs {
   category: IBreadcrumb
+  color: string;
 }
 
 const Breadcrumbs: FC<IBreadcrumbs> = ({
-  category
+  category,
+  color
 }) => {
   return (
-    <BreadcrumbsS separator={
+    <BreadcrumbsS color={color} separator={
       <SvgIcon 
         component={Chevron} 
         sx={{
-          fill: 'rgba(255, 255, 255, 0.45)',
+          fill: color,
           transform: 'rotate(-90deg)'
         }} 
         fontSize="medium" />

@@ -10,10 +10,11 @@ const Button: FC<IButton> = ({
   children,
   size,
   onClick,
+  href,
   white = false
 }) => {
   return (
-    <ButtonS white={white} size={size} onClick={onClick}>
+    <ButtonS href={href} white={white} size={size} onClick={onClick}>
       <span>{children}</span>
     </ButtonS>
   )

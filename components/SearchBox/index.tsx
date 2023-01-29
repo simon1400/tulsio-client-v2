@@ -1,12 +1,18 @@
 import { InputAdornment, SvgIcon } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useSearchBox, UseSearchBoxProps } from 'react-instantsearch-hooks-web';
-import { Search, SearchWrap } from './styled';
+import { SearchWrap } from './styled';
 import SearchIcon from 'public/icons/search.svg'
 import Close from 'public/icons/close.svg'
+import Input from 'components/Input';
 
-const SearchBox = (props: UseSearchBoxProps) => {
+interface ISearchBox extends UseSearchBoxProps {
+  placeholder?: string;
+}
+
+const SearchBox = (props: ISearchBox) => {
   const { refine } = useSearchBox(props);
+  const {placeholder} = props
 
   const [value, setValue] = useState('')
 
@@ -23,9 +29,8 @@ const SearchBox = (props: UseSearchBoxProps) => {
   }
 
   return <SearchWrap>
-    <Search
-      id="search-faq"
-      placeholder="Hledat dotaz..." 
+    <Input
+      placeholder={placeholder}
       value={value}
       onChange={e => setValue(e.target.value)} 
       startAdornment={

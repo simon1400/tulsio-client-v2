@@ -1,25 +1,20 @@
-import { InputAdornment } from "@mui/material"
+import { InputAdornment, OutlinedInputProps } from "@mui/material"
 import { FC, ReactElement } from "react";
 import { InputS } from "./styles"
 
-export interface IInput {
-  placeholder?: string;
-  value: string;
-  name: string;
+export interface IInput extends OutlinedInputProps {
   onChange: (e: any) => void
-  onBlur: (type: any) => void
-  endIcon?: ReactElement;
-  handleEndIcon?: () => void
+  onBlur?: (type: any) => void
 }
 
 const Input: FC<IInput> = ({
   placeholder,
   value,
+  startAdornment,
+  endAdornment,
   name,
   onBlur = undefined,
-  onChange,
-  endIcon,
-  handleEndIcon
+  onChange
 }) => {
 
   return <InputS
@@ -30,11 +25,13 @@ const Input: FC<IInput> = ({
       onBlur: () => onBlur ? onBlur(name) : null
     }}
     onChange={(e: any) => onChange(e)} 
-    endAdornment={
-      endIcon ? <InputAdornment position="end" onClick={handleEndIcon}>
-        {endIcon}
-      </InputAdornment> : null
-    }
+    startAdornment={startAdornment}
+    // endAdornment={
+    //   endIcon ? <InputAdornment position="end" onClick={handleEndIcon}>
+    //     {endIcon}
+    //   </InputAdornment> : null
+    // }
+    endAdornment={endAdornment}
   />
 }
 

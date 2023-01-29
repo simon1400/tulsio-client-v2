@@ -25,7 +25,7 @@ const ArticleTop = ({
     <ArticleTopS background={convert} color={color}>
       <Image format="&resize=920x920" image={article.image.data} />
       <Container maxWidth="md">
-        <Breadcrumbs category={article.categories.data[0].attributes} />
+        <Breadcrumbs category={article.categories.data[0].attributes} color={color} />
         <Typography variant="h1">{article.title}</Typography>
         {!!article?.labels?.data?.length && article.labels.data.map((item: any, index: number) => <Label color={color} key={index} data={{
             title: item.attributes.title,

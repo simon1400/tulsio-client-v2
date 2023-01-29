@@ -1,9 +1,12 @@
 import { Container, Typography } from "@mui/material";
-import dynamic from "next/dynamic";
-import { FC } from "react"
+import { useRouter } from "next/router";
+import { FC, SyntheticEvent, useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllArticles } from "stores/fetch/dataFetch";
+import { selectCategoryNav } from "stores/slices/navSlices";
 import { CategoryTop } from "./styles";
 
-const SubMenu = dynamic(() => import("../SubMenu"), {ssr: false})
+import Nav from "components/Nav";
 
 interface PageHeadProps {
   title: string;
@@ -18,6 +21,33 @@ const PageHead: FC<PageHeadProps> = ({
   center,
   prefix
 }) => {
+
+  const [value, setValue] = useState(0)
+
+  const router = useRouter()
+  const nav = useSelector(selectCategoryNav)
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if(category) {
+      if(nav.length && router.query.category !== 'blog') {
+        setValue(nav.findIndex((el: any) => el.slug === router.query.category)+1)
+      }else{
+        setValue(0)
+      }
+    }
+  }, [router.query])
+
+  const handleMenu = (e: SyntheticEvent, idx: number) => {
+    if(idx === 0) {
+      router.push('blog')
+    }else{
+      router.push(nav[idx-1].slug)
+      // @ts-ignore
+      dispatch(fetchAllArticles(nav[idx-1].slug))
+    }
+  };
+
   return (
     <CategoryTop>
       <Container max-width="xl">
@@ -27,7 +57,13 @@ const PageHead: FC<PageHeadProps> = ({
           {title}
         </Typography>
 
-        {category && <SubMenu />}
+        {category && <Nav 
+          data={nav} 
+          handle={handleMenu} 
+          subMenu
+          category
+          value={value} 
+        />}
 
       </Container>
     </CategoryTop>

@@ -7,6 +7,30 @@ export const InputS = styled(OutlinedInput)(({theme}) => `
   padding-right: 35px;
   height: 65px;
   width: 100%;
+  ${theme.breakpoints.down('xxl')} {
+    height: 57px;
+    input{
+      font-size: 17px;
+    }
+  }
+  ${theme.breakpoints.down('lg')} {
+    input{
+      font-size: 16px;
+    }
+  }
+  ${theme.breakpoints.down('md')} {
+    height: 53px;
+    padding-left: 15px!important;
+    padding-right: 15px!important;
+    input{
+      font-size: 14px;
+    }
+  }
+  ${theme.breakpoints.down('sm')} {
+    input{
+      font-size: 13px;
+    }
+  }
   &:hover .MuiOutlinedInput-notchedOutline {
     border-color: rgba(69, 69, 255, .8);
   }

@@ -21,7 +21,7 @@ const FaqItem: FC<{data: IFaqItem}> = ({ data }) => {
       <Accordion>
         <AccordionSummary 
           aria-controls="panel1a-content"
-          expandIcon={<SvgIcon component={Chevron} fontSize="medium" sx={{ color: "white" }} />}>
+          expandIcon={<SvgIcon component={Chevron} fontSize="medium" sx={{ marginLeft: '10px', color: "white" }} />}>
           <Typography variant="h3" dangerouslySetInnerHTML={{__html: data._highlightResult.title.value}} />
         </AccordionSummary>
         <AccordionDetails>

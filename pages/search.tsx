@@ -28,10 +28,10 @@ const SearchPage = () => {
           <link rel="alternate" hrefLang="cs" href={`${DOMAIN}/cs${router.asPath}`} />
         </Head>
         
-        <PageHead prefix={"Hledat"} title={""} />
+        <PageHead title="Vyhledávání" />
 
         <Container>
-          <SearchBox />
+          <SearchBox placeholder="Zadejte hledaný text..." />
         </Container>
         
         <ResultArticles />

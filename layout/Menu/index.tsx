@@ -1,10 +1,11 @@
 import { Drawer, List, ListItem, ListItemButton, ListItemText, SvgIcon } from "@mui/material"
 import Link from "next/link"
-import { FC } from "react"
+import { FC, SyntheticEvent } from "react"
 import { CloseMenuS, MenuS } from "./styles"
 import CloseIcon from 'public/icons/close.svg';
 import { Logo } from "./styles";
 import Search from 'public/icons/search.svg'
+import Nav from "components/Nav";
 
 export interface INavItem {
   id: string
@@ -17,11 +18,13 @@ interface Props {
   handleDrawerToggle: () => void
   data: any;
   loading: boolean;
+  handleMenu: (e: SyntheticEvent, idx: number) => void;
+  value: number;
 }
 
 const Menu: FC<Props> = (props) => {
 
-  const { mobileOpen, handleDrawerToggle, data, loading } = props;
+  const { mobileOpen, handleDrawerToggle, data, loading, handleMenu, value } = props;
 
   if(loading) {
     return <></>
@@ -60,17 +63,7 @@ const Menu: FC<Props> = (props) => {
         <SvgIcon component={Search} sx={{ fontSize: 32 }} />
         <SvgIcon component={CloseIcon} sx={{ fontSize: 32 }} onClick={() => handleDrawerToggle()} />
       </CloseMenuS>
-      <MenuS>
-        <List component="nav">
-          {data.navigation.data.attributes.topNav.item.map((item: any, idx: number) => (
-            <ListItem key={idx} disablePadding>
-              <ListItemButton component="a" href={item.link}>
-                <ListItemText primary={item.name} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-      </MenuS>
+      <Nav mobile data={data} handle={handleMenu} value={value} orientation="vertical" />
     </Drawer>
   )
 }

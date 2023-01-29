@@ -29,44 +29,45 @@ const gridButtonData = [
 export const getServerSideProps = wrapper.getServerSideProps((store) =>
   async () => {
 
-  const { data: banersData } = await client.query({
-    query: getBaners,
-    variables: {
-      query: [
-        { position: {eq: "Home_1"} },
-        { position: {eq: "Home_2"} }
-      ]
-    }
-  });
-  
-  const { data: homepageData } = await client.query({ query: homepageQuery });
+    const { data: banersData } = await client.query({
+      query: getBaners,
+      variables: {
+        query: [
+          { position: {eq: "Home_1"} },
+          { position: {eq: "Home_2"} }
+        ]
+      }
+    });
+    
+    const { data: homepageData } = await client.query({ query: homepageQuery });
 
-  const homepage = homepageData.homepage.data.attributes
-  const meta = homepage?.meta
-  const mainArticle = homepage.articles[0].article.data.attributes;
-  let seccondArticles = homepage.articles.slice(1);
-  seccondArticles = seccondArticles.map((item: any) => item.article.data.attributes)
-  const baners = banersData.baners.data.map((item: any) => item.attributes)
+    const homepage = homepageData.homepage.data.attributes
+    const meta = homepage?.meta
+    const mainArticle = homepage.articles[0].article.data.attributes;
+    let seccondArticles = homepage.articles.slice(1);
+    seccondArticles = seccondArticles.map((item: any) => item.article.data.attributes)
+    const baners = banersData.baners.data.map((item: any) => item.attributes)
 
-  const filterBaners1 = baners.filter((item: any) => item.position === BANER_POSITION.POSITION_1)
-  const filterBaners2 = baners.filter((item: any) => item.position === BANER_POSITION.POSITION_2)
+    const filterBaners1 = baners.filter((item: any) => item.position === BANER_POSITION.POSITION_1)
+    const filterBaners2 = baners.filter((item: any) => item.position === BANER_POSITION.POSITION_2)
 
-  const baner1 = filterBaners1[Math.floor(Math.random() * filterBaners1.length)]
-  const baner2 = filterBaners2[Math.floor(Math.random() * filterBaners2.length)]
+    const baner1 = filterBaners1[Math.floor(Math.random() * filterBaners1.length)]
+    const baner2 = filterBaners2[Math.floor(Math.random() * filterBaners2.length)]
 
-  store.dispatch(changeTitle(meta?.title || 'Úvod'))
-  store.dispatch(changeDescription(meta?.description || ''))
+    store.dispatch(changeTitle(meta?.title || 'Úvod'))
+    store.dispatch(changeDescription(meta?.description || ''))
 
-  return {
-    props: {
-      baner1: baner1 || null,
-      baner2: baner2 || null,
-      mainArticle,
-      seccondArticles,
-      image: meta?.image ? getStrapiURL(meta.image) : null
+    return {
+      props: {
+        baner1: baner1 || null,
+        baner2: baner2 || null,
+        mainArticle,
+        seccondArticles,
+        image: meta?.image ? getStrapiURL(meta.image) : null
+      }
     }
   }
-})
+)
 
 interface IHomepage {
   baner1: any,

@@ -6,7 +6,7 @@ import { FC, FocusEventHandler, forwardRef, useState } from 'react';
 import { FormWrap, ModalContent } from './styles';
 import Content from 'components/Content';
 import Input from 'components/Input';
-import { IconButton, SvgIcon } from '@mui/material';
+import { IconButton, InputAdornment, SvgIcon } from '@mui/material';
 import EmailIcon from 'public/icons/email.svg'
 import CloseIcon from 'public/icons/close.svg'
 import { validationForm } from 'helpers/validation';
@@ -116,7 +116,11 @@ const ModalNewsletter: FC<IModalNewsletter> = ({
               onChange={handleEmail}
               onBlur={onBlur}
               name="email"
-              endIcon={<SvgIcon component={EmailIcon} />}
+              endAdornment={
+                <InputAdornment position="end">
+                  <SvgIcon component={EmailIcon} />
+                </InputAdornment>
+              }
             />
             <Button variant="contained" onClick={handleButton}>Odeslat</Button>
           </FormWrap>
