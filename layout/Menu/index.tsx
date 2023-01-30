@@ -1,4 +1,4 @@
-import { Drawer, List, ListItem, ListItemButton, ListItemText, SvgIcon } from "@mui/material"
+import { Drawer, IconButton, List, ListItem, ListItemButton, ListItemText, SvgIcon } from "@mui/material"
 import Link from "next/link"
 import { FC, SyntheticEvent } from "react"
 import { CloseMenuS, MenuS } from "./styles"
@@ -37,14 +37,18 @@ const Menu: FC<Props> = (props) => {
       open={mobileOpen}
       onClose={handleDrawerToggle}
       ModalProps={{
-        keepMounted: true
+        keepMounted: true,
       }}
       sx={{
-        display: { xs: 'block', sm: 'none' },
+        display: { xs: 'block', md: 'none' },
+        backgroundColor: "transparent",
+        '& .MuiBackdrop-root': {
+          backgroundColor: "transparent",
+          backdropFilter: "blur(15px)",
+        },
         '& .MuiDrawer-paper': { 
           boxSizing: 'border-box', 
           width: '100%',
-          backdropFilter: "blur(15px)",
           backgroundColor: "transparent",
           paddingTop: "150px",
           position: 'relative',
@@ -60,8 +64,8 @@ const Menu: FC<Props> = (props) => {
         </Link>
       </Logo>
       <CloseMenuS>
-        <SvgIcon component={Search} sx={{ fontSize: 32 }} />
-        <SvgIcon component={CloseIcon} sx={{ fontSize: 32 }} onClick={() => handleDrawerToggle()} />
+        <IconButton href="/search" sx={{ ml: 0, p: 0}}><SvgIcon component={Search} sx={{ fontSize: 32 }} /></IconButton>
+        <IconButton onClick={() => handleDrawerToggle()} sx={{ ml: 0, p: 0}}><SvgIcon component={CloseIcon} sx={{ fontSize: 32 }} /></IconButton>
       </CloseMenuS>
       <Nav mobile data={data} handle={handleMenu} value={value} orientation="vertical" />
     </Drawer>

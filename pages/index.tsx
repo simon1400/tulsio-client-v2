@@ -9,6 +9,8 @@ import GridButton from "components/GridButton";
 import Page from "layout/Page";
 import { wrapper } from "stores";
 import { changeDescription, changeTitle } from "stores/slices/dataSlices";
+import { Container, Typography } from "@mui/material";
+import styled from "@emotion/styled";
 
 enum BANER_POSITION {
   POSITION_1='Home_1',
@@ -86,6 +88,9 @@ const Homepage: FC<IHomepage> = ({
   return (
     <Page>
       <section>
+        <Container sx={{mb: 10}}>
+          <HomeHead variant="h1">Největší průvodce světem konopí</HomeHead>
+        </Container>
         <GridTop>
           <div className="div0">
             <ArticleShort 
@@ -159,3 +164,8 @@ const Homepage: FC<IHomepage> = ({
 
 
 export default Homepage
+
+
+const HomeHead = styled(Typography)`
+  font-size: 50px;
+`

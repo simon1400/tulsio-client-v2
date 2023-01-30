@@ -10,12 +10,12 @@ export const InputS = styled(OutlinedInput)(({theme}) => `
   ${theme.breakpoints.down('xxl')} {
     height: 57px;
     input{
-      font-size: 17px;
+      font-size: 17px!important;;
     }
   }
   ${theme.breakpoints.down('lg')} {
     input{
-      font-size: 16px;
+      font-size: 16px!important;;
     }
   }
   ${theme.breakpoints.down('md')} {
@@ -23,12 +23,12 @@ export const InputS = styled(OutlinedInput)(({theme}) => `
     padding-left: 15px!important;
     padding-right: 15px!important;
     input{
-      font-size: 14px;
+      font-size: 14px!important;;
     }
   }
   ${theme.breakpoints.down('sm')} {
     input{
-      font-size: 13px;
+      font-size: 13px!important;
     }
   }
   &:hover .MuiOutlinedInput-notchedOutline {

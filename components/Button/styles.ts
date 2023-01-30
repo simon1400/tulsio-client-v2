@@ -13,15 +13,13 @@ export const ButtonS = styled(Button)<IStyleButton>(({ theme, white }) => `
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   min-width: 190px;
   font-weight: 600;
-  transition: all .5s ease;
+  transition: all .2s ease;
   font-size: 19px;
   height: 60px;
   padding-left: 30px;
   padding-right: 30px;
-  transform: scale(1);
   &:hover{
-    background: ${white ? "#FFFFFF" : theme.palette.primary.main};
-    transform: scale(1.03);
+    background: ${white ? "#FFFFFFCC" : theme.palette.primary.main+"CC"};
   }
   ${theme.breakpoints.down('xxl')} {
     min-width: 180px;

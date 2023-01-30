@@ -1,5 +1,5 @@
-import { InputAdornment, OutlinedInputProps } from "@mui/material"
-import { FC, ReactElement } from "react";
+import { OutlinedInputProps } from "@mui/material"
+import { FC } from "react";
 import { InputS } from "./styles"
 
 export interface IInput extends OutlinedInputProps {
@@ -26,11 +26,6 @@ const Input: FC<IInput> = ({
     }}
     onChange={(e: any) => onChange(e)} 
     startAdornment={startAdornment}
-    // endAdornment={
-    //   endIcon ? <InputAdornment position="end" onClick={handleEndIcon}>
-    //     {endIcon}
-    //   </InputAdornment> : null
-    // }
     endAdornment={endAdornment}
   />
 }

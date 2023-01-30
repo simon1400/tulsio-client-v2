@@ -70,8 +70,7 @@ const ArticleShort: FC<ArticleShortProps> = ({
 
       <div className="content-wrap-art">
         <div>
-          {text && <Typography variant="h1"><span>{title}</span></Typography>}
-          {!text && <Typography variant="h2"><span>{title}</span></Typography>}
+          <Typography variant="h2"><span>{title}</span></Typography>
           {!!text.length && <Typography variant="body1" component="div" className="article-short-content" dangerouslySetInnerHTML={{__html: text}} />}
         </div>
         <div className="label-wrap">

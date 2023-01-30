@@ -23,6 +23,7 @@ export const Logo = styled.div(({theme}) => `
 export const NavWrap = styled.div(({theme}) => `
   display: flex;
   justify-content: flex-end;
+  margin-top: 10px;
   ${[theme.breakpoints.down("md")]} {
     > button{
       margin-right: 0;

@@ -85,11 +85,11 @@ const Header = () => {
               value={value}
               loading={loading}
               handleDrawerToggle={handleDrawerToggle} />}
-            {/* <ControlWrap>
+            {!mediaMd && <ControlWrap>
               <IconButton href="/search" sx={{ ml: 0}}>
                 <SvgIcon component={Search} />
               </IconButton>
-            </ControlWrap> */}
+            </ControlWrap>}
             {!mediaMd && <IconButton
               color="inherit"
               aria-label="open drawer"

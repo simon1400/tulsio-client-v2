@@ -16,6 +16,9 @@ export const AccordionSummary = styled(MuiAccordionSummary)(({theme}) => `
   .Mui-expanded, .MuiAccordionSummary-content{
     margin: 0 0;
   }
+  .MuiAccordionSummary-expandIconWrapper{
+    margin-left: 10px;
+  }
   h3{
     font-weight: bold;
     mark{
