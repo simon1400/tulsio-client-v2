@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { Tab } from "@mui/material";
+import theme from "styles/theme";
 
 export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean;}>(({theme, removeMargin, mobile}) => `
   margin-bottom: ${removeMargin ? '0' : '90px'};
@@ -15,7 +16,7 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean;}>((
     min-height: auto;
   }
   .MuiTabs-indicator{
-    display: flex;
+    display: ${mobile ? "none" : "flex"};
     height: 100%;
     border-radius: 20px;
     min-height: auto;
@@ -53,6 +54,9 @@ export const TabS = styled(Tab)<{mobile: boolean}>(({mobile}) => `
   }
   &.Mui-selected {
     color: white;
+    background: ${mobile ? theme.palette.primary.main : "transparent"};
+    box-shadow: ${mobile ? "0 3px 6px 0 rgba(0, 0, 0, 0.16)" : "none"};
+    border-radius: 20px;
   }
   svg{
     color: rgba(255, 255, 255, .85);

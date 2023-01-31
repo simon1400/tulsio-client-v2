@@ -1,7 +1,7 @@
-import { Drawer, IconButton, List, ListItem, ListItemButton, ListItemText, SvgIcon } from "@mui/material"
+import { Drawer, IconButton, SvgIcon } from "@mui/material"
 import Link from "next/link"
 import { FC, SyntheticEvent } from "react"
-import { CloseMenuS, MenuS } from "./styles"
+import { CloseMenuS } from "./styles"
 import CloseIcon from 'public/icons/close.svg';
 import { Logo } from "./styles";
 import Search from 'public/icons/search.svg'
@@ -43,8 +43,9 @@ const Menu: FC<Props> = (props) => {
         display: { xs: 'block', md: 'none' },
         backgroundColor: "transparent",
         '& .MuiBackdrop-root': {
-          backgroundColor: "transparent",
+          background: "rgba(0, 0, 0, 0.7)",
           backdropFilter: "blur(15px)",
+          WebkitBackdropFilter: "blur(15px)"
         },
         '& .MuiDrawer-paper': { 
           boxSizing: 'border-box', 

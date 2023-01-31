@@ -4,8 +4,8 @@ import Link from "next/link";
 export const GridButtonS = styled(Link)(({theme}) => `
   display: flex;
   height: 100%;
-  /* min-height: 300px; */
   position: relative;
+  overflow: hidden;
   text-decoration: none;
   &:hover{
     .img-wrap {
@@ -39,21 +39,30 @@ export const GridButtonS = styled(Link)(({theme}) => `
   .content-wrap-art{
     height: 100%;
     width: 100%;
-    padding: 40px;
-    display: flex;
     position: relative;
     overflow: hidden;
     z-index: 2;
+    display: flex;
     text-align: center;
     ${theme.breakpoints.down('sm')} {
       padding: 15px;
     }
     h2{
       font-size: 50px;
-      word-break: break-word;
+      white-space: nowrap;
+      width: 100%;
       display: block;
       margin: auto;
       line-height: 1.2;
+    }
+  }
+  @keyframes marquee{
+    0%{transform: translateX(-100%)}
+    100%{transform: translateX(100%)}
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .content-wrap-art h2{
+      animation: marquee 5s linear infinite;
     }
   }
 `)

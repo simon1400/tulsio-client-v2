@@ -61,6 +61,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) =>
 
     return {
       props: {
+        title: homepage.title,
         baner1: baner1 || null,
         baner2: baner2 || null,
         mainArticle,
@@ -72,13 +73,15 @@ export const getServerSideProps = wrapper.getServerSideProps((store) =>
 )
 
 interface IHomepage {
-  baner1: any,
-  baner2: any,
-  mainArticle: any,
-  seccondArticles: any,
+  title: string;
+  baner1: any;
+  baner2: any;
+  mainArticle: any;
+  seccondArticles: any;
 }
 
 const Homepage: FC<IHomepage> = ({
+  title,
   baner1,
   baner2,
   mainArticle,
@@ -89,7 +92,7 @@ const Homepage: FC<IHomepage> = ({
     <Page>
       <section>
         <Container sx={{mb: 10}}>
-          <HomeHead variant="h1">Největší průvodce světem konopí</HomeHead>
+          <HomeHead variant="h1">{title}</HomeHead>
         </Container>
         <GridTop>
           <div className="div0">
