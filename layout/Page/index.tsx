@@ -5,6 +5,8 @@ import Script from 'next/script';
 import { useSelector } from 'react-redux';
 import { selectDescription, selectTitle } from 'stores/slices/dataSlices';
 import { selectAllMeta } from 'stores/slices/metaSlices';
+import CustomAlert from 'components/Alert';
+import { selectModalState } from 'stores/slices/modalSlices';
 
 const DOMAIN = process.env.APP_DOMAIN;
 
@@ -23,6 +25,7 @@ const Page: FC<IPage> = ({
   const router = useRouter()
 
   const title = useSelector(selectTitle)
+  const modalState = useSelector(selectModalState)
   const description = useSelector(selectDescription)
   const {
     image,
@@ -53,6 +56,8 @@ const Page: FC<IPage> = ({
   const theTitle = title ? (title + global.defaultSep + global.defaultTitle) : global.defaultTitle;
   const theDescription = description ? description : global.defaultDescription;
   const theImage = image ? image : global.defaultImage;
+
+  console.log(modalState)
 
   return (
     <>
@@ -119,6 +124,10 @@ const Page: FC<IPage> = ({
       <main id={id} className={className}>
         {children}
       </main>
+
+      {modalState === 'success' && <CustomAlert openData={modalState === 'success'} type="success" content="Váš e-mail je v pořádku odeslán." />}
+      {modalState === 'error' && <CustomAlert openData={modalState === 'error'} type="error" content="Zadaný e-mail není platný." />}
+    
     </>
   );
 }

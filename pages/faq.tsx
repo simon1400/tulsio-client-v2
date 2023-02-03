@@ -58,7 +58,18 @@ const Faq: NextPage = ({
           <SearchBox placeholder="Hledat dotaz..." />
         </Container>
         
-        <FaqHits />
+        <FaqHits transformItems={(items) => {
+          return items.sort((a: any, b: any) => {
+            if (a.rank < b.rank) {
+              return -1;
+            }
+            if (a.rank > b.rank) {
+              return 1;
+            }
+
+            return 0
+          })
+        }} />
           
       </InstantSearch>
     </Page>

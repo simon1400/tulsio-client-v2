@@ -11,7 +11,7 @@ const Newsletter = () => {
 
   return <NewsletterS>
     <Typography component="p" variant="h1">Všechno co se ve světě CBD děje ve vašem mailu.</Typography>
-    <Button size="large" white onClick={handleOpen}>Příhlásit k newsletru</Button>
+    <Button size="large" white onClick={handleOpen}>Přihlásit k newsletteru</Button>
     <ModalNewsletter open={open} setOpen={setOpen} />
   </NewsletterS>
 }

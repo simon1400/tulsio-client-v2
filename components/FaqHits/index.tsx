@@ -11,6 +11,8 @@ const FaqHits = (props: UseHitsProps) => {
 
   const { hits } = useHits(props);
 
+  console.log(hits)
+
   return (
     <Container maxWidth="md">
       <FaqHitsS>

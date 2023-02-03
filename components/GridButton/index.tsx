@@ -9,11 +9,21 @@ interface IGridButton {
 const GridButton: FC<IGridButton> = ({
   data
 }) => {
+
+  
   return (
     <GridButtonS href={data.link} passHref>
       <div className="img-wrap"></div>
       <div className="content-wrap-art">
-        <Typography variant="h1" component="h2">{data.title}</Typography>
+        <div className="marquee marquee--fit-content">
+          <ul className="marquee__content">
+            <li>{data.title}</li>
+          </ul>
+
+          <ul aria-hidden="true" className="marquee__content">
+            <li>{data.title}</li>
+          </ul>
+        </div>
       </div>
     </GridButtonS>
   )

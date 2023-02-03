@@ -3,7 +3,7 @@ import { dataReducer } from "./slices/dataSlices";
 import { createWrapper } from "next-redux-wrapper";
 import { navReducer } from "./slices/navSlices";
 import { metaReducer } from "./slices/metaSlices";
-import { activeReducer } from "./slices/activeSlices";
+import { modalReducer } from "./slices/modalSlices";
 
 const makeStore = () =>
   configureStore({
@@ -11,7 +11,7 @@ const makeStore = () =>
       [dataReducer.name]: dataReducer.reducer,
       [metaReducer.name]: metaReducer.reducer,
       [navReducer.name]: navReducer.reducer,
-      [activeReducer.name]: activeReducer.reducer,
+      [modalReducer.name]: modalReducer.reducer,
     },
     devTools: process.env.NODE_ENV !== 'production'
   });

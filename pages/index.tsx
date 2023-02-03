@@ -19,11 +19,11 @@ enum BANER_POSITION {
 
 const gridButtonData = [
   {
-    title: 'CBD slovník',
+    title: ' - CBD slovník - CBD slovník',
     link: '/dictionary'
   },
   {
-    title: 'FAQ',
+    title: ' –⁠⁠ FAQ –⁠⁠ FAQ –⁠⁠ FAQ',
     link: '/faq'
   }
 ]

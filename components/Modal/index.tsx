@@ -15,6 +15,8 @@ import BlankIcon from 'public/icons/blank.svg';
 import Button from 'components/Button';
 import axios from 'axios';
 import CustomAlert from 'components/Alert';
+import { useDispatch } from 'react-redux';
+import { changeModalState } from 'stores/slices/modalSlices';
 
 interface FadeProps {
   children?: React.ReactElement;
@@ -59,6 +61,8 @@ const ModalNewsletter: FC<IModalNewsletter> = ({
   
   const handleClose = () => setOpen(false);
 
+  const dispatch = useDispatch()
+
   const [email, setEmail] = useState("")
   const [send, setSend] = useState(false)
   const [error, setError] = useState({
@@ -66,7 +70,11 @@ const ModalNewsletter: FC<IModalNewsletter> = ({
   })
 
   const onBlur: FocusEventHandler<HTMLInputElement | HTMLTextAreaElement> | undefined = (type: any) => {
-    validationForm(type, {email}, error, setError);
+    setError({email: false})
+    const validation = validationForm(type, {email}, error, setError);
+    if(validation) {
+      dispatch(changeModalState('error'))
+    }
   }
 
   const handleButton = (e: any) => {
@@ -76,7 +84,13 @@ const ModalNewsletter: FC<IModalNewsletter> = ({
     }
     axios.post(`/api/subscribe`, {email}).then(() => {
       setSend(true)
-    }).catch((err: any) => setError({email: true}))
+      handleClose()
+      dispatch(changeModalState('success'))
+      
+    }).catch((err: any) => {
+      setError({email: true})
+      dispatch(changeModalState('error'))
+    })
   }
 
   const handleEmail = (e: any) => {
@@ -106,9 +120,6 @@ const ModalNewsletter: FC<IModalNewsletter> = ({
         <ModalContent>
           <IconButton sx={{color: 'white'}}><SvgIcon component={CloseIcon} fontSize="large" onClick={() => handleClose()} /></IconButton>
           <Typography variant="h2">Všechno co se ve světě CBD děje ve vašem mailu.</Typography>
-
-          {send && <CustomAlert type="success" title="Úspěch" content="Váš e-mail je v pořádku odeslán." />}
-          {error.email && <CustomAlert type="error" title="Chyba" content="Zadaný e-mail není platný." />}
           
           {!send && <FormWrap>
             <Input 

@@ -43,26 +43,38 @@ export const GridButtonS = styled(Link)(({theme}) => `
     overflow: hidden;
     z-index: 2;
     display: flex;
+    padding: 0;
     text-align: center;
-    ${theme.breakpoints.down('sm')} {
-      padding: 15px;
+    .marquee {
+      position: absolute;
+      display: flex;
+      overflow: hidden;
+      height: 100%;
     }
-    h2{
-      font-size: 50px;
-      white-space: nowrap;
-      width: 100%;
-      display: block;
-      margin: auto;
-      line-height: 1.2;
+
+    .marquee__content {
+      display: flex;
+      height: 100%;
+      margin: 0;
+      padding-left: 0;
+      align-items: center;
+      animation: scroll 10s linear infinite;
+      li{
+        font-size: 50px;
+        white-space: nowrap;
+        list-style-type: none;
+        line-height: 1.2;
+        color: white;
+      }
     }
-  }
-  @keyframes marquee{
-    0%{transform: translateX(-100%)}
-    100%{transform: translateX(100%)}
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    .content-wrap-art h2{
-      animation: marquee 5s linear infinite;
+
+    @keyframes scroll {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-100%);
+      }
     }
   }
 `)

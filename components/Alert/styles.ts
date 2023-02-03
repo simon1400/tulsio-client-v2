@@ -8,6 +8,9 @@ export const AlertS = styled(Alert)(({theme, severity}) => `
   ${theme.breakpoints.down('sm')} {
     border-radius: ${theme.borderRadius['sm']};
   }
+  .MuiAlert-message{
+    padding: 4px 0;
+  }
   .MuiAlertTitle-root{
     color: ${severity === 'error' ? "rgb(244, 199, 199)" : "rgb(204, 232, 205)"};
     font-weight: 600;
