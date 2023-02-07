@@ -3,10 +3,20 @@ import { Tab } from "@mui/material";
 import theme from "styles/theme";
 
 export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean;}>(({theme, removeMargin, mobile}) => `
-  margin-bottom: ${removeMargin ? '0' : '90px'};
+  margin-bottom: ${removeMargin ? '0' : '80px'};
   padding-right: ${mobile ? '30px' : ""};
   padding-left: ${mobile ? '30px' : ""};
   padding-bottom: ${mobile ? '30px' : ""};
+
+  ${[theme.breakpoints.down("xxl")]} {
+    margin-bottom: ${removeMargin ? '0' : '50px'};
+  }
+  ${[theme.breakpoints.down("xl")]} {
+    margin-bottom: ${removeMargin ? '0' : '40px'};
+  }
+  ${[theme.breakpoints.down("lg")]} {
+    margin-bottom: ${removeMargin ? '0' : '30px'};
+  }
   
   ${theme.breakpoints.down('sm')} {
     margin-left: ${mobile ? 0 : "-10px"};

@@ -13,7 +13,7 @@ export const GridButtonS = styled(Link)(({theme}) => `
     }
   }
   .img-wrap{
-    background: #2b2b2b;
+    background: rgba(255, 255, 255, 0.1);
     height: 100%;
     width: 100%;
     border-radius: ${theme.borderRadius['base']};

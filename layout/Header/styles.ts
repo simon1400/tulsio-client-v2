@@ -6,8 +6,20 @@ export const HeaderWrap = styled.div(({theme}) => `
   justify-content: space-between;
   margin-bottom: 20px;
   align-items: center;
-  ${[theme.breakpoints.down("md")]} {
+  ${[theme.breakpoints.down("xxl")]} {
     padding: 50px 0;
+  }
+  ${[theme.breakpoints.down("xl")]} {
+    padding: 40px 0;
+  }
+  ${[theme.breakpoints.down("lg")]} {
+    padding: 30px 0;
+  }
+  ${[theme.breakpoints.down("md")]} {
+    padding: 20px 0;
+  }
+  ${[theme.breakpoints.down("sm")]} {
+    padding: 10px 0;
   }
 `)
 

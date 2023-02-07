@@ -8,7 +8,7 @@ export const FooterS = styled.footer(({theme}) => `
   margin-right: ${theme.globalGap['xxl']};
   border-top-left-radius: ${theme.borderRadius['base']};
   border-top-right-radius: ${theme.borderRadius['base']};
-  background: #2b2b2b;
+  background: rgba(255, 255, 255, 0.1);;
   padding: 60px 40px;
   ${theme.breakpoints.down('xl')} {
     margin-left: ${theme.globalGap['xl']};

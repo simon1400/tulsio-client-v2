@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const FaqHitsS = styled.div(({theme}) => `
-  background: #2b2b2b;
+  background: rgba(255, 255, 255, 0.1);
   overflow: hidden;
   border-radius: ${theme.borderRadius['base']};
   padding: 20px 40px;
