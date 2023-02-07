@@ -11,10 +11,11 @@ export const base = (theme: any) => ({
       fontSize: "16px",
       width: '100%',
       backgroundColor: "#202020",
+      // backgroundImage: "linear-gradient(119deg, #4545ff 90%, #ff4564 20%)",
       // "&:after": {
       //   content: "''",
       //   display: 'block',
-      //   backgroundImage: "linear-gradient(122deg, #4545ff, rgba(69, 69, 255, 0)), linear-gradient(to bottom, #a50d5a, rgba(165, 13, 90, 0))",
+      //   backgroundImage: "linear-gradient(119deg, #ff4564 20%, #4545ff 90%)",
       //   width: "100%",
       //   height: "1200px",
       //   position: "absolute",

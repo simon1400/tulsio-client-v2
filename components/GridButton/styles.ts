@@ -65,6 +65,7 @@ export const GridButtonS = styled(Link)(({theme}) => `
         list-style-type: none;
         line-height: 1.2;
         color: white;
+        font-weight: 600;
       }
     }
 

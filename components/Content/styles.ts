@@ -37,6 +37,7 @@ export const ContentS = styled.div<{removePadding: boolean; smallPadding: boolea
   }
   a{
     color: rgba(255, 255, 255, .85);
+    display: inline;
     svg{
       vertical-align: middle;
       display: inline-block;

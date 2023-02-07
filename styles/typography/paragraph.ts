@@ -4,16 +4,17 @@ export const paragraph = (theme: any) => ({
     color: "#fff",
     textDecoration: "none",
     transition: "all .2s ease",
-    "&:after": {
-      content: `""`,
-      display: "block",
-      position: "absolute",
-      width: "100%",
-      height: "1px",
-      bottom: 0,
-      left: 0,
-      backgroundColor: theme.palette.primary.main,
-    },
+    borderBottom: `1.5px solid ${theme.palette.primary.main}`,
+    // "&:after": {
+    //   content: `""`,
+    //   display: "block",
+    //   position: "absolute",
+    //   width: "100%",
+    //   height: "1px",
+    //   bottom: 0,
+    //   left: 0,
+    //   backgroundColor: theme.palette.primary.main,
+    // },
     "&:hover": {
       color: theme.palette.primary.main,
     }

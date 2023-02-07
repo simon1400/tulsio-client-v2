@@ -14,6 +14,7 @@ const Content: FC<IContent> = ({
   smallPadding = false,
   id = ""
 }) => {
+  
   return (
     <ContentS id={id} removePadding={removePadding} smallPadding={smallPadding}>
       {children}
