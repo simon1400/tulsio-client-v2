@@ -10,6 +10,8 @@ import { selectModalState } from 'stores/slices/modalSlices';
 
 const DOMAIN = process.env.APP_DOMAIN;
 
+
+
 interface IPage {
   children: ReactNode | ReactNode[]
   id?: string
@@ -56,8 +58,6 @@ const Page: FC<IPage> = ({
   const theTitle = title ? (title + global.defaultSep + global.defaultTitle) : global.defaultTitle;
   const theDescription = description ? description : global.defaultDescription;
   const theImage = image ? image : global.defaultImage;
-
-  console.log(modalState)
 
   return (
     <>
@@ -127,7 +127,6 @@ const Page: FC<IPage> = ({
 
       {modalState === 'success' && <CustomAlert openData={modalState === 'success'} type="success" content="Váš e-mail je v pořádku odeslán." />}
       {modalState === 'error' && <CustomAlert openData={modalState === 'error'} type="error" content="Zadaný e-mail není platný." />}
-    
     </>
   );
 }

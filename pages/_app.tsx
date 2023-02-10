@@ -11,6 +11,7 @@ import { globalVariables } from 'styles/var';
 import { wrapper } from '../stores'
 import { Provider } from 'react-redux'
 import Footer from 'layout/Footer';
+import GranimComponent from 'components/Granim';
 
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
@@ -28,10 +29,11 @@ const MyApp: FC<MyAppProps> = ({ Component, ...rest }) => {
         <ThemeProvider theme={{...theme, ...globalVariables}}>
           <CssBaseline />
           <WithGraphQL>
-          <Header />
-          <Component {...pageProps} />
-          <Footer />
-          {/* <CookieConsent /> */}
+            <Header />
+            <Component {...pageProps} />
+            <Footer />
+            {/* <CookieConsent /> */}
+            <GranimComponent />
           </WithGraphQL>
         </ThemeProvider>
       </CacheProvider>

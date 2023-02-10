@@ -1,3 +1,6 @@
+
+
+
 export const base = (theme: any) => ({
   styleOverrides: {
     html: {
@@ -14,7 +17,7 @@ export const base = (theme: any) => ({
       "&:after": {
         content: "''",
         display: 'block',
-        backgroundImage: "radial-gradient(circle at 59% 100%, #000, rgba(0, 0, 0, 0.65) 95%), linear-gradient(119deg, #4545ff 20%, #ff4564 90%)",
+        backgroundImage: `radial-gradient(circle at 59% 100%, #000, rgba(0, 0, 0, 0.65) 95%)`,
         width: "100vw",
         height: "100vh",
         position: "fixed",
