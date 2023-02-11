@@ -1,11 +1,12 @@
 @font-face {
   font-family: "Manrope";
   font-display: swap;
-  src: url('./fonts/Manrope-VariableFont_wght.ttf') format("truetype-variations");
+  src: url("./fonts/Manrope-VariableFont_wght.ttf")
+    format("truetype-variations");
   font-weight: 1 999;
 }
 
-main{
+main {
   min-height: 60vh;
 }
 
@@ -28,23 +29,23 @@ body::-webkit-scrollbar-thumb {
   background-color: rgba(255, 255, 255, 0.4);
   border-radius: 3px;
   cursor: pointer;
-  &:hover{
+  &:hover {
     background-color: rgba(255, 255, 255, 0.3);
   }
 }
 
 /* set button(top and bottom of the scrollbar) */
 body::-webkit-scrollbar-button {
-  display:none;
+  display: none;
 }
 
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active{
-  -webkit-box-shadow: 0 0 0 30px transparent inset !important;
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 9999s ease-in-out 0s !important;
 }
 
-input:-webkit-autofill{
+input:-webkit-autofill {
   -webkit-text-fill-color: white !important;
 }

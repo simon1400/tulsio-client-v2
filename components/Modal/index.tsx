@@ -1,22 +1,21 @@
-import Backdrop from '@mui/material/Backdrop';
-import Modal from '@mui/material/Modal';
-import Typography from '@mui/material/Typography';
-import { useSpring, animated } from 'react-spring';
-import { FC, FocusEventHandler, forwardRef, useState } from 'react';
-import { FormWrap, ModalContent } from './styles';
-import Content from 'components/Content';
-import Input from 'components/Input';
-import { Alert, AlertTitle, IconButton, InputAdornment, Stack, SvgIcon } from '@mui/material';
-import EmailIcon from 'public/icons/email.svg'
-import CloseIcon from 'public/icons/close.svg'
-import { validationForm } from 'helpers/validation';
-import Link from 'next/link';
-import BlankIcon from 'public/icons/blank.svg';
-import Button from 'components/Button';
-import axios from 'axios';
-import CustomAlert from 'components/Alert';
-import { useDispatch } from 'react-redux';
-import { changeModalState } from 'stores/slices/modalSlices';
+import Backdrop from "@mui/material/Backdrop";
+import Modal from "@mui/material/Modal";
+import Typography from "@mui/material/Typography";
+import { useSpring, animated } from "react-spring";
+import { FC, FocusEventHandler, forwardRef, useState } from "react";
+import { FormWrap, ModalContent } from "./styles";
+import Content from "components/Content";
+import Input from "components/Input";
+import { IconButton, InputAdornment, SvgIcon } from "@mui/material";
+import EmailIcon from "public/icons/email.svg";
+import CloseIcon from "public/icons/close.svg";
+import { validationForm } from "helpers/validation";
+import Link from "next/link";
+import BlankIcon from "public/icons/blank.svg";
+import Button from "components/Button";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { changeModalState } from "stores/slices/modalSlices";
 
 interface FadeProps {
   children?: React.ReactElement;
@@ -50,53 +49,53 @@ const Fade = forwardRef<HTMLDivElement, FadeProps>(function Fade(props, ref) {
 });
 
 export interface IModalNewsletter {
-  setOpen: (value: boolean) => void
-  open: boolean
+  setOpen: (value: boolean) => void;
+  open: boolean;
 }
 
-const ModalNewsletter: FC<IModalNewsletter> = ({
-  setOpen,
-  open
-}) => {
-  
+const ModalNewsletter: FC<IModalNewsletter> = ({ setOpen, open }) => {
   const handleClose = () => setOpen(false);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const [email, setEmail] = useState("")
-  const [send, setSend] = useState(false)
+  const [email, setEmail] = useState("");
+  const [send, setSend] = useState(false);
   const [error, setError] = useState({
-    email: false
-  })
+    email: false,
+  });
 
-  const onBlur: FocusEventHandler<HTMLInputElement | HTMLTextAreaElement> | undefined = (type: any) => {
-    setError({email: false})
-    const validation = validationForm(type, {email}, error, setError);
-    if(validation) {
-      dispatch(changeModalState('error'))
+  const onBlur:
+    | FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>
+    | undefined = (type: any) => {
+    setError({ email: false });
+    const validation = validationForm(type, { email }, error, setError);
+    if (validation) {
+      dispatch(changeModalState("error"));
     }
-  }
+  };
 
   const handleButton = (e: any) => {
-    e.preventDefault()
-    if(error.email) {
-      return
+    e.preventDefault();
+    if (error.email) {
+      return;
     }
-    axios.post(`/api/subscribe`, {email}).then(() => {
-      setSend(true)
-      handleClose()
-      dispatch(changeModalState('success'))
-      
-    }).catch((err: any) => {
-      setError({email: true})
-      dispatch(changeModalState('error'))
-    })
-  }
+    axios
+      .post(`/api/subscribe`, { email })
+      .then(() => {
+        setSend(true);
+        handleClose();
+        dispatch(changeModalState("success"));
+      })
+      .catch((err: any) => {
+        setError({ email: true });
+        dispatch(changeModalState("error"));
+      });
+  };
 
   const handleEmail = (e: any) => {
-    e.preventDefault()
-    setEmail(e.target.value)
-  }
+    e.preventDefault();
+    setEmail(e.target.value);
+  };
 
   return (
     <Modal
@@ -112,39 +111,59 @@ const ModalNewsletter: FC<IModalNewsletter> = ({
         sx: {
           background: "rgba(0, 0, 0, 0.7)",
           backdropFilter: "blur(15px)",
-          WebkitBackdropFilter: "blur(15px)"
-        }
+          WebkitBackdropFilter: "blur(15px)",
+        },
       }}
     >
       <Fade in={open}>
         <ModalContent>
-          <IconButton sx={{color: 'white'}}><SvgIcon component={CloseIcon} fontSize="large" onClick={() => handleClose()} /></IconButton>
-          <Typography variant="h2">Všechno co se ve světě CBD děje ve vašem mailu.</Typography>
-          
-          {!send && <FormWrap>
-            <Input 
-              value={email} 
-              placeholder="Váš e-mail" 
-              onChange={handleEmail}
-              onBlur={onBlur}
-              name="email"
-              endAdornment={
-                <InputAdornment position="end">
-                  <SvgIcon component={EmailIcon} />
-                </InputAdornment>
-              }
+          <IconButton sx={{ color: "white" }}>
+            <SvgIcon
+              component={CloseIcon}
+              fontSize="large"
+              onClick={() => handleClose()}
             />
-            <Button variant="contained" onClick={handleButton}>Odeslat</Button>
-          </FormWrap>}
+          </IconButton>
+          <Typography variant="h2">
+            Všechno co se ve světě CBD děje ve vašem mailu.
+          </Typography>
+
+          {!send && (
+            <FormWrap>
+              <Input
+                value={email}
+                placeholder="Váš e-mail"
+                onChange={handleEmail}
+                onBlur={onBlur}
+                name="email"
+                type="email"
+                required
+                endAdornment={
+                  <InputAdornment position="end">
+                    <SvgIcon component={EmailIcon} />
+                  </InputAdornment>
+                }
+              />
+              <Button variant="contained" onClick={handleButton}>
+                Odeslat
+              </Button>
+            </FormWrap>
+          )}
           <Content removePadding>
             <Typography variant="body1">
-              Vaše osobní údaje jsou u nás v bezpečí. I tak vás ale musíme seznámít se <Link href="/gdpr" target="_blank" rel="noopener">zpracováním osobních údajů<SvgIcon component={BlankIcon} /></Link>. Udělením vašeho e-mailu s nimi souhlasíte. Děkujeme.
+              Vaše osobní údaje jsou u nás v bezpečí. I tak vás ale musíme
+              seznámít se{" "}
+              <Link href="/gdpr" target="_blank" rel="noopener">
+                zpracováním osobních údajů
+                <SvgIcon component={BlankIcon} />
+              </Link>
+              . Udělením vašeho e-mailu s nimi souhlasíte. Děkujeme.
             </Typography>
           </Content>
         </ModalContent>
       </Fade>
     </Modal>
   );
-}
+};
 
-export default ModalNewsletter
+export default ModalNewsletter;

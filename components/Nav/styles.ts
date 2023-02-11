@@ -2,11 +2,14 @@ import styled from "@emotion/styled";
 import { Tab } from "@mui/material";
 import theme from "styles/theme";
 
-export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean;}>(({theme, removeMargin, mobile}) => `
+export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; subMenu?: boolean;}>(({subMenu, theme, removeMargin, mobile}) => `
   margin-bottom: ${removeMargin ? '0' : '80px'};
   padding-right: ${mobile ? '30px' : ""};
   padding-left: ${mobile ? '30px' : ""};
   padding-bottom: ${mobile ? '30px' : ""};
+
+  margin-left: ${subMenu ? '-15px' : 0};
+  width: ${subMenu ? 'calc(100% + 30px)' : 'auto'};
 
   ${[theme.breakpoints.down("xxl")]} {
     margin-bottom: ${removeMargin ? '0' : '50px'};

@@ -1,7 +1,7 @@
-import { FC, ReactElement, SyntheticEvent } from "react"
-import {CSubMenu, TabS} from './styles'
+import { FC, ReactElement, SyntheticEvent } from "react";
+import { CSubMenu, TabS } from "./styles";
 import { Tabs } from "@mui/material";
-import Search from 'public/icons/search.svg'
+import Search from "public/icons/search.svg";
 
 interface INav {
   value: number;
@@ -10,7 +10,7 @@ interface INav {
   subMenu?: boolean;
   category?: boolean;
   mobile?: boolean;
-  orientation?: 'horizontal' | 'vertical';
+  orientation?: "horizontal" | "vertical";
   icon?: ReactElement;
 }
 
@@ -21,12 +21,11 @@ const Nav: FC<INav> = ({
   subMenu = false,
   category = false,
   mobile = false,
-  orientation = 'horizontal',
-  icon = null
+  orientation = "horizontal",
+  icon = null,
 }) => {
-  
   return (
-    <CSubMenu removeMargin={!subMenu} mobile={mobile}>
+    <CSubMenu removeMargin={!subMenu} subMenu={subMenu} mobile={mobile}>
       <Tabs
         value={value}
         onChange={handle}
@@ -35,11 +34,15 @@ const Nav: FC<INav> = ({
         orientation={orientation}
       >
         {category && <TabS mobile={mobile} label="Všechny" />}
-        {data.map((item: any, idx: number) => <TabS mobile={mobile} key={idx} label={item.title} />)}
-        {icon && <TabS mobile={mobile} aria-label="iconMenu" icon={<Search />} />}
+        {data.map((item: any, idx: number) => (
+          <TabS mobile={mobile} key={idx} label={item.title} />
+        ))}
+        {icon && (
+          <TabS mobile={mobile} aria-label="iconMenu" icon={<Search />} />
+        )}
       </Tabs>
     </CSubMenu>
-  )
-}
+  );
+};
 
-export default Nav
+export default Nav;

@@ -24,7 +24,7 @@ export const MenuS = styled.div`
 export const CloseMenuS = styled.div`
   position: absolute;
   right: 10px;
-  top: 65px;
+  top: 35px;
   svg{
     fill: rgba(255, 255, 255, 0.75);;
     &:first-of-type {
@@ -35,8 +35,8 @@ export const CloseMenuS = styled.div`
 
 export const Logo = styled.div`
   position: absolute;
-  top: 60px;
-  left: 10px;
+  top: 30px;
+  left: 30px;
   a{
     display: block;
   }

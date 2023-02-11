@@ -41,8 +41,6 @@ const ArticleTop = ({
   useEffect(() => {
     if (scrollY >= posElTop - 20) {
       setHeight(startHeight - (scrollY - posElTop) - 20);
-    } else {
-      // setStartHeight(false)
     }
   }, [scrollY]);
 

@@ -37,7 +37,8 @@ export const ModalContent = styled.div(({theme}) => `
   }
 `)
 
-export const FormWrap = styled.div`
+export const FormWrap = styled.form`
+  display: block;
   margin-top: 40px;
   margin-bottom: 40px;
   button{
