@@ -31,9 +31,8 @@ export const ArticleTopS = styled.div<{background: string; color: string;}>(({th
     position: absolute;
     object-fit: cover;
     object-position: center;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    left: 0;
+    top: 0;
     height: 100%;
     width: 100%;
     z-index: 1;

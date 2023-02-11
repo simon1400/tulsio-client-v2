@@ -13,6 +13,7 @@ import Page from 'layout/Page';
 import { wrapper } from 'stores';
 import { changeDescription, changeTitle } from 'stores/slices/dataSlices';
 
+const meilisearchPrefix = process.env.MEILISEARCH_PREFIX
 const DOMAIN = process.env.APP_DOMAIN;
 
 export const getServerSideProps = wrapper.getServerSideProps((store) =>
@@ -43,7 +44,7 @@ const Faq: NextPage = ({
   return (
     <Page>
       <InstantSearch 
-        indexName="faq" 
+        indexName={meilisearchPrefix+"faq"} 
         searchClient={searchClient}
       >
 

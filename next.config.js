@@ -14,9 +14,11 @@ const nextConfig = {
   productionBrowserSourceMaps: true,
   env: {
     APP_API: process.env.APP_API,
-    ECOMAIL: process.env.ECOMAIL
+    ECOMAIL: process.env.ECOMAIL,
+    MEILISEARCH_PREFIX: process.env.MEILISEARCH_PREFIX,
+    MEILISEARCH_TOKEN: process.env.MEILISEARCH_TOKEN
   },
-  i18n: {
+  i18n: { 
     locales: ['default', 'cs'],
     defaultLocale: 'default',
     localeDetection: false

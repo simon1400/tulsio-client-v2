@@ -1,10 +1,10 @@
 import { instantMeiliSearch } from "@meilisearch/instant-meilisearch";
 
-const SEARCH_API = "https://meilisearch-tulsio-simon1400.koyeb.app/"
+const SEARCH_API = "http://localhost:7700"
 
 const searchClient = instantMeiliSearch(
   SEARCH_API,
-  "slukhdfglsjhfgilusng;shufadljnriluhgnsv;ldfijisfdukgjasdjf;gosfg",
+  process.env.MEILISEARCH_TOKEN,
   {
     keepZeroFacets: true
   }

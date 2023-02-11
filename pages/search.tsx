@@ -9,6 +9,7 @@ import { useRouter } from "next/router"
 import { Configure, InstantSearch } from "react-instantsearch-hooks-web"
 
 const DOMAIN = process.env.APP_DOMAIN;
+const meilisearchPrefix = process.env.MEILISEARCH_PREFIX
 
 const SearchPage = () => {
 
@@ -17,7 +18,7 @@ const SearchPage = () => {
   return (
     <Page>
       <InstantSearch 
-        indexName="article" 
+        indexName={meilisearchPrefix+"article"}
         routing={true} 
         searchClient={searchClient}
       >
