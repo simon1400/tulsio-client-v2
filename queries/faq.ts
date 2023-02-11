@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-const getFaq = gql`
+export const getFaq = gql`
   query getFaq {
     faqPage {
       data {
@@ -23,4 +23,16 @@ const getFaq = gql`
   }
 `
 
-export default getFaq
+export const getAllFaqs = gql`
+  query getAllFaq {
+    faqs(sort: "rank:asc") {
+      data {
+        attributes {
+          title
+          answer
+          rank
+        }
+      }
+    }
+  }
+`

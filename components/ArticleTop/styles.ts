@@ -1,32 +1,20 @@
 import styled from "@emotion/styled";
 
-export const ArticleTopS = styled.div<{background: string; color: string;}>(({theme, background, color}) => `
+interface ArticleTopProps {
+  background: string; 
+  color: string;
+  height?: number;
+}
+
+export const ArticleTopS = styled.div<ArticleTopProps>(({theme, background, color, height}) => `
   position: relative;
-  border-radius: ${theme.borderRadius['base']};
   overflow: hidden;
-  padding: 240px 0;
+  height: 90vh;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  transition: none;
   background: ${background};
-  margin-left: ${theme.globalGap['xxl']};
-  margin-right: ${theme.globalGap['xxl']};
-  ${theme.breakpoints.down('xl')} {
-    margin-left: ${theme.globalGap['xl']};
-    margin-right: ${theme.globalGap['xl']};
-    border-radius: ${theme.borderRadius['xl']};
-  }
-  ${theme.breakpoints.down('lg')} {
-    margin-left: ${theme.globalGap['lg']};
-    margin-right: ${theme.globalGap['lg']};
-    border-radius: ${theme.borderRadius['lg']};
-  }
-  ${theme.breakpoints.down('md')} {
-    margin-left: ${theme.globalGap['md']};
-    margin-right: ${theme.globalGap['md']};
-  }
-  ${theme.breakpoints.down('sm')} {
-    margin-left: ${theme.globalGap['sm']};
-    margin-right: ${theme.globalGap['sm']};
-    border-radius: ${theme.borderRadius['sm']};
-  }
   img {
     position: absolute;
     object-fit: cover;
@@ -80,5 +68,41 @@ export const ArticleTopS = styled.div<{background: string; color: string;}>(({th
   label{
     position: relative;
     z-index: 2;
+  }
+`)
+
+
+export const AnimationWrapArticle = styled.div(({theme}) => `
+  height: 90vh;
+  display: flex;
+  align-items: end;
+  width: 100%;
+  > div {
+    width: 100%;
+    border-radius: ${theme.borderRadius['base']};
+    margin-left: ${theme.globalGap['xxl']};
+    margin-right: ${theme.globalGap['xxl']};
+    overflow: hidden;
+    display: flex;
+    align-items: end;
+    ${theme.breakpoints.down('xl')} {
+      border-radius: ${theme.borderRadius['xl']};
+      margin-left: ${theme.globalGap['xl']};
+      margin-right: ${theme.globalGap['xl']};
+    }
+    ${theme.breakpoints.down('lg')} {
+      border-radius: ${theme.borderRadius['lg']};
+      margin-left: ${theme.globalGap['lg']};
+      margin-right: ${theme.globalGap['lg']};
+    }
+    ${theme.breakpoints.down('md')} {
+      margin-left: ${theme.globalGap['md']};
+      margin-right: ${theme.globalGap['md']};
+    }
+    ${theme.breakpoints.down('sm')} {
+      border-radius: ${theme.borderRadius['sm']};
+      margin-left: ${theme.globalGap['sm']};
+      margin-right: ${theme.globalGap['sm']};
+    }
   }
 `)
