@@ -16,7 +16,8 @@ const nextConfig = {
     APP_API: process.env.APP_API,
     ECOMAIL: process.env.ECOMAIL,
     MEILISEARCH_PREFIX: process.env.MEILISEARCH_PREFIX,
-    MEILISEARCH_TOKEN: process.env.MEILISEARCH_TOKEN
+    MEILISEARCH_TOKEN: process.env.MEILISEARCH_TOKEN,
+    MEILISEARCH_DOMAIN: process.env.MEILISEARCH_DOMAIN
   },
   i18n: { 
     locales: ['default', 'cs'],
