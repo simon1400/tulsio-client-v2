@@ -25,7 +25,7 @@ const Article = ({
       </Head>
 
       {!!article && <article className="blog-article">
-        {article.image?.data && <ArticleTop article={article} />}
+        {article.image?.data && article.categories && <ArticleTop article={article} />}
 
         <Container maxWidth="md">
 

@@ -1,5 +1,5 @@
 export const getPallete = (background: string) => {
-  let convert = "#4545ff", color: string = '#fff'
+  let convert = "#4545ff", color: string = '#ffffff'
 
   if(background === 'green') {
     convert = "#9f9"

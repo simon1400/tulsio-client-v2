@@ -71,6 +71,45 @@ export const getArticlesCategory = gql`
   }
 `
 
+export const getArticlesTag = gql`
+  query getArticlesTag($slug: String!) {
+    articles(filters: { 
+      labels: {
+        slug: { 
+          eq: $slug 
+        }
+      }
+    }) {
+      data {
+        attributes {
+          title
+          slug
+          perex
+          background
+          showShortImg
+          labels{
+            data{
+              attributes{
+                title
+                slug
+                color
+              }
+            }
+          }
+          image {
+            data {
+              attributes {
+                url
+                alternativeText
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`
+
 export const getArticle = gql`
   query getArticle($slug: String!) {
     articles(filters: { slug: { eq: $slug } }) {

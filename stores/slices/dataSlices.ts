@@ -8,13 +8,15 @@ export interface DataState {
   description: string
   articles: any
   articleBase: any
+  type: string
 }
 
 const initialState: DataState = {
   title: '',
   description: '',
   articles: [],
-  articleBase: {}
+  articleBase: {},
+  type: ''
 }
 
 export const dataReducer = createSlice({
@@ -33,6 +35,9 @@ export const dataReducer = createSlice({
     changeArticleBase: (state, action: PayloadAction<any>) => {
       state.articleBase = action.payload
     },
+    changeType: (state, action: PayloadAction<string>) => {
+      state.type = action.payload
+    },
   },
 
   extraReducers: {
@@ -49,7 +54,8 @@ export const {
   changeTitle, 
   changeDescription,
   changeArticles,
-  changeArticleBase
+  changeArticleBase,
+  changeType
 } = dataReducer.actions
 
 export const selectDataState = (state: AppState) => state.data;
@@ -57,5 +63,6 @@ export const selectTitle = (state: AppState) => state.data.title;
 export const selectDescription = (state: AppState) => state.data.description;
 export const selectArticles = (state: AppState) => state.data.articles;
 export const selectArticleBase = (state: AppState) => state.data.articleBase;
+export const selectType = (state: AppState) => state.data.type;
 
 export default dataReducer.reducer

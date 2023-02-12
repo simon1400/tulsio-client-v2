@@ -16,8 +16,9 @@ const Label: FC<LabelDataProps> = ({
   data,
   color
 }) => {
+
   return (
-    <LabelS color={color}>
+    <LabelS href={data.slug} passHref color={color}>
       {data.title}
     </LabelS>
   )
