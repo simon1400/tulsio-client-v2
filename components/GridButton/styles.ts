@@ -51,7 +51,6 @@ export const GridButtonS = styled(Link)(({theme}) => `
       overflow: hidden;
       height: 100%;
     }
-
     .marquee__content {
       display: flex;
       height: 100%;
@@ -61,6 +60,7 @@ export const GridButtonS = styled(Link)(({theme}) => `
       animation: scroll 10s linear infinite;
       li{
         font-size: 50px;
+        margin-right: 10px;
         white-space: nowrap;
         list-style-type: none;
         line-height: 1.2;

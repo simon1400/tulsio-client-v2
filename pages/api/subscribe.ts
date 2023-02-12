@@ -3,9 +3,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 var axios = require('axios');
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  console.log(req.method)
   if (req.method === 'POST') {
-    console.log(req.body.email)
     const result = await axios({
       method: 'post',
       url: 'https://api2.ecomailapp.cz/lists/3/subscribe',

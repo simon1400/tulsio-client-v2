@@ -6,7 +6,7 @@ export interface IStyleButton extends ButtonProps {
 }
 
 export const ButtonS = styled(Button)<IStyleButton>(({ theme, white }) => `
-  color: ${white ? "#202020" : "#FFFFFF"};
+  color: ${white ? "#202020" : "#FFFFFF"}!important;
   background: ${white ? "#FFFFFF" : theme.palette.primary.main};
   text-transform: none;
   white-space: nowrap;
