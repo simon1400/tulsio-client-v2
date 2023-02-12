@@ -25,8 +25,8 @@ export const fetchAllArticles =
         description = 'Blog',
         type = 'blog'
       }else{
-        title = 'Stitky',
-        description = 'Stitky',
+        title = 'Štítky',
+        description = 'Štítky',
         type = 'tag'
       }
 
@@ -103,8 +103,8 @@ export const fetchCategoryOrArticles =
         dataDescription = 'Blog',
         type = 'blog'
       }else{
-        dataTitle = 'Stitky',
-        dataDescription = 'Stitky',
+        dataTitle = 'Štítky',
+        dataDescription = 'Štítky',
         type = 'tag'
       }
       const { data: articleData } = await client.query({

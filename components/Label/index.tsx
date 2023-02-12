@@ -1,3 +1,4 @@
+import { useRouter } from "next/router"
 import { FC } from "react"
 import { LabelS } from "./styles"
 
@@ -17,8 +18,15 @@ const Label: FC<LabelDataProps> = ({
   color
 }) => {
 
+  const router = useRouter()
+
+  const handleClick = (e: any) => {
+    e.preventDefault()
+    router.push('/'+data.slug)
+  }
+
   return (
-    <LabelS href={data.slug} passHref color={color}>
+    <LabelS onClick={(e) => handleClick(e)} color={color}>
       {data.title}
     </LabelS>
   )

@@ -1,7 +1,6 @@
 import styled from "@emotion/styled"
-import Link from "next/link"
 
-export const LabelS = styled(Link)<{color: string}>(({theme, color}) => `
+export const LabelS = styled.label<{color: string}>(({theme, color}) => `
   text-transform: none;
   display: inline-block;
   cursor: pointer;

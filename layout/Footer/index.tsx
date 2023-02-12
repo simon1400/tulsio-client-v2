@@ -35,7 +35,7 @@ const Footer = () => {
 
   const transformData = data.navigation.data.attributes.footer.item.map((item: any, idx: number) => ({
     title: item.name,
-    slug: item.link
+    slug: '/'+item.link
   }))
 
   const handleNav = (e: SyntheticEvent, idx: number) => {

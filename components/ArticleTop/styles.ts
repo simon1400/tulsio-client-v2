@@ -65,10 +65,9 @@ export const ArticleTopS = styled.div<ArticleTopProps>(({theme, background, colo
       line-height: 1.18;
     }
   }
-  a{
+  label{
     position: relative;
     z-index: 2;
-    color: white!important;
   }
 `)
 
