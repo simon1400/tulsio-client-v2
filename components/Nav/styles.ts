@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Tab } from "@mui/material";
+import { Tab, TabProps } from "@mui/material";
 import theme from "styles/theme";
 
 export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; subMenu?: boolean;}>(({subMenu, theme, removeMargin, mobile}) => `
@@ -38,7 +38,13 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
   }
 `)
 
-export const TabS = styled(Tab)<{mobile: boolean}>(({mobile}) => `
+interface ITab extends TabProps {
+  mobile: boolean;
+  component: string;
+  href: string;
+}
+
+export const TabS = styled(Tab)<ITab>(({mobile}) => `
   color: rgba(255, 255, 255, .85);
   text-decoration: none;
   text-transform: none;

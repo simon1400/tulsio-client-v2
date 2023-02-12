@@ -1,7 +1,8 @@
 import { FC, ReactElement, SyntheticEvent } from "react";
 import { CSubMenu, TabS } from "./styles";
-import { Tabs } from "@mui/material";
+import { Tab, Tabs } from "@mui/material";
 import Search from "public/icons/search.svg";
+import Link from "next/link";
 
 interface INav {
   value: number;
@@ -33,12 +34,34 @@ const Nav: FC<INav> = ({
         scrollButtons={false}
         orientation={orientation}
       >
-        {category && <TabS mobile={mobile} label="Všechny" />}
+        {category && (
+          <TabS
+            component="a"
+            onClick={(e) => e.preventDefault()}
+            href="/blog"
+            mobile={mobile}
+            label="Všechny"
+          />
+        )}
         {data.map((item: any, idx: number) => (
-          <TabS mobile={mobile} key={idx} label={item.title} />
+          <TabS
+            component="a"
+            onClick={(e) => e.preventDefault()}
+            href={item.slug}
+            mobile={mobile}
+            key={idx}
+            label={item.title}
+          />
         ))}
         {icon && (
-          <TabS mobile={mobile} aria-label="iconMenu" icon={<Search />} />
+          <TabS
+            component="a"
+            onClick={(e) => e.preventDefault()}
+            href="/search"
+            mobile={mobile}
+            aria-label="iconMenu"
+            icon={<Search />}
+          />
         )}
       </Tabs>
     </CSubMenu>

@@ -9,6 +9,9 @@ const nextConfig = {
 
     return config
   },
+  experimental: {
+    scrollRestoration: true
+  },
   reactStrictMode: true,
   swcMinify: true,
   productionBrowserSourceMaps: true,
