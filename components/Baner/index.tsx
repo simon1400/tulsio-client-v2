@@ -23,7 +23,7 @@ const Banner: FC<IBanner> = ({
 
   let imgUrl = `${APP_API}${data.image.data?.attributes.url}?format=webp&resize=1000x1000`
 
-  return <BannerS background={background} color={color} href={data.link} passHref>
+  return <BannerS background={background} color={color} href={data.link} passHref target="_blank">
     <div className="img-wrap">
       <div className="img-art" style={{backgroundImage: `url(${imgUrl})`}} />
     </div>
