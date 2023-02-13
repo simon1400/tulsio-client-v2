@@ -40,7 +40,6 @@ const PageHead: FC<PageHeadProps> = ({ title, category, center, prefix }) => {
     if (idx === 0) {
       router.push(type === 'blog' ? "/blog" : "/tags");
     } else {
-      console.log(nav[idx - 1].slug)
       router.push('/'+nav[idx - 1].slug);
       // @ts-ignore
       dispatch(fetchAllArticles(nav[idx - 1].slug));

@@ -8,7 +8,7 @@ import { changeDescription, changeTitle } from 'stores/slices/dataSlices';
 export const getServerSideProps = wrapper.getServerSideProps((store) =>
   async ({params}) => {
 
-  if(!params?.article) {
+  if(!params?.article || params?.category !== 'blog') {
     return {
       notFound: true
     }

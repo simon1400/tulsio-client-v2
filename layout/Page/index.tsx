@@ -54,8 +54,6 @@ const Page: FC<IPage> = ({ children, className = "", id = "" }) => {
   const theDescription = description ? description : global.defaultDescription;
   const theImage = image ? image : global.defaultImage;
 
-  console.log(DOMAIN)
-
   return (
     <>
       <Head>

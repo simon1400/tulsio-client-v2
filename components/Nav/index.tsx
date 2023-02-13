@@ -38,7 +38,7 @@ const Nav: FC<INav> = ({
           <TabS
             component="a"
             onClick={(e) => e.preventDefault()}
-            href="/blog"
+            href="/cs/blog"
             mobile={mobile}
             label="Všechny"
           />
@@ -47,7 +47,7 @@ const Nav: FC<INav> = ({
           <TabS
             component="a"
             onClick={(e) => e.preventDefault()}
-            href={item.slug}
+            href={'/cs/'+item.slug}
             mobile={mobile}
             key={idx}
             label={item.title}
@@ -57,7 +57,7 @@ const Nav: FC<INav> = ({
           <TabS
             component="a"
             onClick={(e) => e.preventDefault()}
-            href="/search"
+            href="/cs/search"
             mobile={mobile}
             aria-label="iconMenu"
             icon={<Search />}

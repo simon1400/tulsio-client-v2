@@ -37,13 +37,13 @@ const Footer = () => {
   const transformData = data.navigation.data.attributes.footer.item.map(
     (item: any, idx: number) => ({
       title: item.name,
-      slug: "/" + item.link,
+      slug: item.link,
     })
   );
 
   const handleNav = (e: SyntheticEvent, idx: number) => {
     setValue(idx);
-    router.push(transformData[idx].slug);
+    router.push('/'+transformData[idx].slug);
   };
 
   return (

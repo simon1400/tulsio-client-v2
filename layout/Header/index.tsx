@@ -31,9 +31,11 @@ const Header = () => {
   const [value, setValue] = useState<number>(-1);
 
   useEffect(() => {
+    console.log(router.asPath)
     if(data?.navigation) {
       if(data.navigation.data.attributes.topNav.item.length) {
-        const idx = data.navigation.data.attributes.topNav.item.findIndex((el: any) => el.link === router.asPath)
+        console.log(data.navigation.data.attributes.topNav)
+        const idx = data.navigation.data.attributes.topNav.item.findIndex((el: any) => '/'+el.link === router.asPath)
         if(router.asPath === '/search') {
           setValue(data.navigation.data.attributes.topNav.item.length)
         }else{
