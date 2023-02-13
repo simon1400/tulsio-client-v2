@@ -20,6 +20,7 @@ const nextConfig = {
     ECOMAIL: process.env.ECOMAIL,
     MEILISEARCH_PREFIX: process.env.MEILISEARCH_PREFIX,
     MEILISEARCH_TOKEN: process.env.MEILISEARCH_TOKEN,
+    APP_DOMAIN: process.env.APP_DOMAIN,
     MEILISEARCH_DOMAIN: process.env.MEILISEARCH_DOMAIN
   },
   i18n: { 

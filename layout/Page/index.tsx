@@ -54,6 +54,8 @@ const Page: FC<IPage> = ({ children, className = "", id = "" }) => {
   const theDescription = description ? description : global.defaultDescription;
   const theImage = image ? image : global.defaultImage;
 
+  console.log(DOMAIN)
+
   return (
     <>
       <Head>
@@ -96,7 +98,7 @@ const Page: FC<IPage> = ({ children, className = "", id = "" }) => {
         <link
           rel="alternate"
           hrefLang="cs"
-          href={DOMAIN + "/cs" + router.asPath}
+          href={DOMAIN + "/cs" + (router.asPath !== "/" ? router.asPath : "")}
         />
         <link
           rel="canonical"
@@ -116,7 +118,7 @@ const Page: FC<IPage> = ({ children, className = "", id = "" }) => {
         <meta name="twitter:image:src" content={theImage} />
         <meta property="og:title" content={ogTitle || theTitle} />
         <meta property="og:type" content={contentType} />
-        <meta property="og:url" content={global.site_url + router.asPath} />
+        <meta property="og:url" content={global.site_url + (router.asPath !== "/" ? router.asPath : "")} />
         <meta property="og:image" content={theImage} />
         <meta
           property="og:description"

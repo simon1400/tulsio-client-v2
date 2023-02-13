@@ -23,7 +23,11 @@ const Articles: FC<IArticles> = ({ data, searchResult = false }) => {
                   showShortImg={item.showShortImg}
                   background={item.background}
                   image={item?.image}
-                  label={item?.labels?.data.map((item: any) => item.attributes)}
+                  label={
+                    item?.labels?.data
+                      ? item?.labels?.data.map((item: any) => item.attributes)
+                      : item?.labels
+                  }
                 />
               ) : (
                 <ArticleShort
@@ -32,7 +36,11 @@ const Articles: FC<IArticles> = ({ data, searchResult = false }) => {
                   link={`/blog/${item.slug}`}
                   background={item.background}
                   image={item?.image.data.attributes}
-                  label={item?.labels?.data.map((item: any) => item.attributes)}
+                  label={
+                    item?.labels?.data
+                      ? item?.labels?.data.map((item: any) => item.attributes)
+                      : item?.labels
+                  }
                 />
               )}
             </div>

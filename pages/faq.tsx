@@ -36,6 +36,7 @@ const Faq: NextPage = ({
   // @ts-ignore
   faq, allFaq
 }) => {
+  console.log(allFaq.length)
   return (
     <Page>
       <InstantSearch
