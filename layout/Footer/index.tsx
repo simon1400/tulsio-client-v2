@@ -56,7 +56,7 @@ const Footer = () => {
           value={value}
           orientation={md ? "vertical" : "horizontal"}
         />
-        <SocialNav data={data} loading={loading} type="socNav" />
+        <SocialNav data={data} loading={loading} />
       </FooterS>
     </>
   );
