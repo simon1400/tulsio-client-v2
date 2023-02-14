@@ -15,6 +15,10 @@ export const LabelS = styled.label<{color: string}>(({theme, color}) => `
   white-space: nowrap;
   margin-bottom: 8px;
   text-decoration: none;
+  transition: all .2s ease;
+  &:hover{
+    background-color: rgba(255, 255, 255, 0.3)
+  }
   &:not(:last-child) {
     margin-right: 8px;
   }

@@ -11,12 +11,6 @@ export const AlphabetWrap = styled.div(({theme}) => `
   ${theme.breakpoints.down('sm')} {
     margin-bottom: ${theme.globalGap['sm']};
   }
-  h2{
-    margin-bottom: 30px;
-  }
-  img{
-    margin-bottom: 20px;
-  }
 `)
 
 export const DictionaryHitsS = styled.section(({theme}) => `
@@ -42,10 +36,18 @@ export const Box = styled.div(({theme}) => `
   border: solid 1px rgba(0, 0, 0, 0.1);
   background-color: rgba(255,255,255, .07);
   padding: 40px;
+  color: #eee;
+  overflow: hidden;
   h2{
     margin-top: 0!important;
+    margin-bottom: 30px;
+  } 
+  img{
+    margin-left: -40px;
+    margin-top: -40px;
+    width: calc(100% + 80px);
+    margin-bottom: 20px;
   }
-  color: #eee;
   ${theme.breakpoints.down('xxl')} {
     border-radius: ${theme.borderRadius['xxl']};
   }

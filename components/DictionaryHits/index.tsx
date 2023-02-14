@@ -40,8 +40,9 @@ const DictionaryHits: FC<{data: any}> = ({data}) => {
           <Masonry gutter={gutter}>
             {data[key].map((item: any, indexChild: number) => <div key={indexChild}>
               <Box>
+                {item.image?.data && <Image format="&width=440" image={item.image.data} />}
                 <Content removePadding>
-                  {item.image?.data && <Image format="&width=440" url={APP_API+item.image.data.attributes} />}
+                  
                   <Typography variant="h2">{item.title}</Typography>
                   <Typography component="div" variant="body1" dangerouslySetInnerHTML={{__html: item.content}} />
                   {item.textLink && item.link && <a href={item.link}>{item.textLink}</a>}
