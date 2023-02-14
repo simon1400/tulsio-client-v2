@@ -38,16 +38,26 @@ export const Box = styled.div(({theme}) => `
   padding: 40px;
   color: #eee;
   overflow: hidden;
+  position: relative;
   h2{
     margin-top: 0!important;
     margin-bottom: 30px;
-  } 
-  img{
+  }
+  .img-wrap {
     margin-left: -40px;
     margin-top: -40px;
     width: calc(100% + 80px);
+    padding-top: 100%;
     margin-bottom: 20px;
+    position: relative;
+    img{
+      object-fit: cover;
+      object-position: center;
+      width: 100%;
+      height: 100%;
+    }
   }
+  
   ${theme.breakpoints.down('xxl')} {
     border-radius: ${theme.borderRadius['xxl']};
   }

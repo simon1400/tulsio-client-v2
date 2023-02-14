@@ -28,7 +28,15 @@ const nextConfig = {
     defaultLocale: 'default',
     localeDetection: false
   },
-  trailingSlash: false
+  trailingSlash: false,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'admin.tulsio.cz'
+      },
+    ],
+  },
 }
 
 module.exports = nextConfig

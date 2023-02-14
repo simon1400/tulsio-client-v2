@@ -2,19 +2,18 @@ import { Typography, useMediaQuery } from "@mui/material";
 import dynamic from "next/dynamic";
 import { FC, useEffect, useState } from "react";
 import { AlphabetWrap, Box, DictionaryHitsS } from "./styles";
-import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import Content from "components/Content";
 import { useTheme } from "@emotion/react";
 
-const Image = dynamic(() => import("../Image"), {suspense: true});
+const Image = dynamic(() => import("../Image"), { suspense: true });
 
-const APP_API = process.env.APP_API
+const APP_API = process.env.APP_API;
 
-const DictionaryHits: FC<{data: any}> = ({data}) => {
+const DictionaryHits: FC<{ data: any }> = ({ data }) => {
+  const theme = useTheme();
 
-  const theme = useTheme()
-
-  const [gutter, setGutter] = useState(theme.globalGap['xxl'])
+  const [gutter, setGutter] = useState(theme.globalGap["xxl"]);
 
   const xl = useMediaQuery(theme.breakpoints.between("lg", "xl"));
   const lg = useMediaQuery(theme.breakpoints.between("md", "lg"));
@@ -23,37 +22,52 @@ const DictionaryHits: FC<{data: any}> = ({data}) => {
 
   useEffect(() => {
     if (xl) {
-      setGutter(theme.globalGap['xl'])
+      setGutter(theme.globalGap["xl"]);
     } else if (lg) {
-      setGutter(theme.globalGap['lg'])
+      setGutter(theme.globalGap["lg"]);
     } else if (md) {
-      setGutter(theme.globalGap['md'])
+      setGutter(theme.globalGap["md"]);
     } else if (sm) {
-      setGutter(theme.globalGap['sm'])
+      setGutter(theme.globalGap["sm"]);
     }
-  }, [xl, lg, md, sm])
-  
+  }, [xl, lg, md, sm]);
+
   return (
     <DictionaryHitsS>
-      {Object.keys(data).map((key, index) => <AlphabetWrap id={key} key={index}>
-        <ResponsiveMasonry columnsCountBreakPoints={{320: 1, 980: 3, 1280: 4}}>
-          <Masonry gutter={gutter}>
-            {data[key].map((item: any, indexChild: number) => <div key={indexChild}>
-              <Box>
-                {item.image?.data && <Image format="&width=440" image={item.image.data} />}
-                <Content removePadding>
-                  
-                  <Typography variant="h2">{item.title}</Typography>
-                  <Typography component="div" variant="body1" dangerouslySetInnerHTML={{__html: item.content}} />
-                  {item.textLink && item.link && <a href={item.link}>{item.textLink}</a>}
-                </Content>
-              </Box>
-            </div>)}
-          </Masonry>
-        </ResponsiveMasonry>
-      </AlphabetWrap>)}
+      {Object.keys(data).map((key, index) => (
+        <AlphabetWrap id={key} key={index}>
+          <ResponsiveMasonry
+            columnsCountBreakPoints={{ 320: 1, 980: 3, 1280: 4 }}
+          >
+            <Masonry gutter={gutter}>
+              {data[key].map((item: any, indexChild: number) => (
+                <div key={indexChild}>
+                  <Box>
+                    {item.image?.data && (
+                      <div className="img-wrap">
+                        <Image width="440" image={item.image.data} />
+                      </div>
+                    )}
+                    <Content removePadding>
+                      <Typography variant="h2">{item.title}</Typography>
+                      <Typography
+                        component="div"
+                        variant="body1"
+                        dangerouslySetInnerHTML={{ __html: item.content }}
+                      />
+                      {item.textLink && item.link && (
+                        <a href={item.link}>{item.textLink}</a>
+                      )}
+                    </Content>
+                  </Box>
+                </div>
+              ))}
+            </Masonry>
+          </ResponsiveMasonry>
+        </AlphabetWrap>
+      ))}
     </DictionaryHitsS>
-  )
-}
+  );
+};
 
-export default DictionaryHits
+export default DictionaryHits;
