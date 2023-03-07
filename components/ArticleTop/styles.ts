@@ -9,7 +9,7 @@ interface ArticleTopProps {
 export const ArticleTopS = styled.div<ArticleTopProps>(({theme, background, color, height}) => `
   position: relative;
   overflow: hidden;
-  height: 90vh;
+  height: 80vh;
   display: flex;
   width: 100%;
   align-items: center;
@@ -73,7 +73,7 @@ export const ArticleTopS = styled.div<ArticleTopProps>(({theme, background, colo
 
 
 export const AnimationWrapArticle = styled.div(({theme}) => `
-  height: 90vh;
+  height: 80vh;
   display: flex;
   align-items: end;
   width: 100%;

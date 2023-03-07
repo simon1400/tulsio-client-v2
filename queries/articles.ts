@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 export const getAllArticles = gql`
   query getAllArticles {
-    articles {
+    articles(sort: "publishedAt:desc") {
       data {
         attributes {
           title
@@ -10,9 +10,9 @@ export const getAllArticles = gql`
           perex
           background
           showShortImg
-          labels{
-            data{
-              attributes{
+          labels {
+            data {
+              attributes {
                 title
                 slug
               }
@@ -30,17 +30,14 @@ export const getAllArticles = gql`
       }
     }
   }
-`
+`;
 
 export const getArticlesCategory = gql`
   query getArticlesCategory($slug: String!) {
-    articles(filters: { 
-      categories: {
-        slug: { 
-          eq: $slug 
-        }
-      }
-    }) {
+    articles(
+      filters: { categories: { slug: { eq: $slug } } },
+      sort: "publishedAt:desc"
+    ) {
       data {
         attributes {
           title
@@ -48,9 +45,9 @@ export const getArticlesCategory = gql`
           perex
           background
           showShortImg
-          labels{
-            data{
-              attributes{
+          labels {
+            data {
+              attributes {
                 title
                 slug
                 color
@@ -69,17 +66,14 @@ export const getArticlesCategory = gql`
       }
     }
   }
-`
+`;
 
 export const getArticlesTag = gql`
   query getArticlesTag($slug: String!) {
-    articles(filters: { 
-      labels: {
-        slug: { 
-          eq: $slug 
-        }
-      }
-    }) {
+    articles(
+      filters: { labels: { slug: { eq: $slug } } }
+      sort: "publishedAt:desc"
+    ) {
       data {
         attributes {
           title
@@ -87,9 +81,9 @@ export const getArticlesTag = gql`
           perex
           background
           showShortImg
-          labels{
-            data{
-              attributes{
+          labels {
+            data {
+              attributes {
                 title
                 slug
                 color
@@ -108,7 +102,7 @@ export const getArticlesTag = gql`
       }
     }
   }
-`
+`;
 
 export const getArticle = gql`
   query getArticle($slug: String!) {
@@ -120,20 +114,20 @@ export const getArticle = gql`
           perex
           background
           showShortImg
-          meta{
+          meta {
             title
             description
-            image{
-              data{
-                attributes{
+            image {
+              data {
+                attributes {
                   url
                 }
               }
             }
           }
-          labels{
-            data{
-              attributes{
+          labels {
+            data {
+              attributes {
                 title
                 slug
                 color
@@ -148,31 +142,31 @@ export const getArticle = gql`
               }
             }
           }
-          chapters(pagination: { pageSize: 50 }){
+          chapters(pagination: { pageSize: 50 }) {
             title
             text
-            galery{
-              data{
-                attributes{
+            galery {
+              data {
+                attributes {
                   url
                   alternativeText
                 }
               }
             }
-            button{
+            button {
               link
               text
             }
             baner
           }
-          authors{
-            data{
-              attributes{
+          authors {
+            data {
+              attributes {
                 name
                 description
-                image{
-                  data{
-                    attributes{
+                image {
+                  data {
+                    attributes {
                       url
                     }
                   }
@@ -192,7 +186,7 @@ export const getArticle = gql`
       }
     }
   }
-`
+`;
 
 export const getArticleBase = gql`
   query getArticleBase($slug: String!) {
@@ -202,29 +196,29 @@ export const getArticleBase = gql`
           title
           slug
           perex
-          meta{
+          meta {
             title
             description
-            image{
-              data{
-                attributes{
+            image {
+              data {
+                attributes {
                   url
                 }
               }
             }
           }
-          chapters(pagination: { pageSize: 50 }){
+          chapters(pagination: { pageSize: 50 }) {
             title
             text
-            galery{
-              data{
-                attributes{
+            galery {
+              data {
+                attributes {
                   url
                   alternativeText
                 }
               }
             }
-            button{
+            button {
               link
               text
             }
@@ -242,4 +236,4 @@ export const getArticleBase = gql`
       }
     }
   }
-`
+`;
