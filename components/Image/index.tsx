@@ -46,8 +46,6 @@ const ImageComponent: FC<ImageProps> = ({
     altText = image.attributes.alternativeText || "";
   }
 
-  console.log(url)
-
   return <img src={url + "?format=webp" + format} alt={altText} />;
 };
 

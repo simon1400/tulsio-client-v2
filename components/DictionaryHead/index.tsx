@@ -1,7 +1,8 @@
 import { Container, Typography } from "@mui/material";
 import Nav from "components/Nav";
-import { FC, SyntheticEvent, useState } from "react";
-import { CategoryTop } from "./styled";
+import { FC, SyntheticEvent, useEffect, useMemo, useRef, useState } from "react";
+import { useScroll } from "react-spring";
+import { CategoryTop, StickyNav } from "./styled";
 
 interface IDictionaryHead {
   title: string;
@@ -10,12 +11,21 @@ interface IDictionaryHead {
 
 const DictionaryHead: FC<IDictionaryHead> = ({ title, data }) => {
   const [value, setValue] = useState(0);
+  const ref = useRef<HTMLDivElement>(null!);
+  const [scrollYState, setScrollYState] = useState<number>(0);
+  const [sticky, setSticky] = useState(false)
 
   const handleMenu = (e: SyntheticEvent, idx: number) => {
     setValue(idx);
     const element = document.getElementById(data[idx]);
+    var headerOffset = 80;
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      var elementPosition = element.getBoundingClientRect().top;
+      var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+      });
     }
   };
 
@@ -24,11 +34,35 @@ const DictionaryHead: FC<IDictionaryHead> = ({ title, data }) => {
     slug: "",
   }));
 
+  const posElTop = useMemo(
+    () => ref?.current?.offsetTop,
+    [ref.current?.offsetTop]
+  );
+
+  useScroll({
+    onChange: ({ value: { scrollY } }) => setScrollYState(scrollY)
+  });
+
+  useEffect(() => {
+    if(posElTop) {
+      if (!sticky && scrollYState >= posElTop + 70) {
+        setSticky(true)
+      }else if(sticky && scrollYState <= posElTop + 70){
+        setSticky(false)
+      }
+    }
+  }, [scrollYState])
+
   return (
     <Container>
       <CategoryTop>
         <Typography variant="h1">{title}</Typography>
-        <Nav data={transformData} handle={handleMenu} value={value} subMenu />
+        <div ref={ref}>
+          <Nav data={transformData} handle={handleMenu} value={value} subMenu />
+        </div>
+        <StickyNav sticky={sticky}>
+          <Nav data={transformData} handle={handleMenu} value={value} subMenu />
+        </StickyNav>
       </CategoryTop>
     </Container>
   );
