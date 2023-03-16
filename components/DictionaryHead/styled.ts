@@ -32,3 +32,26 @@ export const SubMenu = styled.div`
     }
   }
 `
+
+export const StickyNav = styled.div<{sticky: boolean}>(({sticky}) => `
+  position: fixed;
+  top: 0;
+  padding-top: 20px;
+  z-index: 1000;
+  width: 100%;
+  transform: translateY(${sticky ? "0" : "-90px"});
+  transition: all ${sticky ? ".5s" : "0"} ease;
+  &:before{
+    position: absolute;
+    display: block;
+    content: '';
+    width: 200vw;
+    height: 80%;
+    left: -100vw;
+    z-index: -1;
+    top: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(15px);
+  }
+  /* WebkitBackdropFilter: "blur(15px)", */
+`)

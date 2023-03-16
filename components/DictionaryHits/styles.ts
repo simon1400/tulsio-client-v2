@@ -55,6 +55,8 @@ export const Box = styled.div(({theme}) => `
       object-position: center;
       width: 100%;
       height: 100%;
+      position: absolute;
+      top: 0;
     }
   }
   

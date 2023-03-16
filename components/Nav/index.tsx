@@ -1,8 +1,7 @@
 import { FC, ReactElement, SyntheticEvent } from "react";
 import { CSubMenu, TabS } from "./styles";
-import { Tab, Tabs } from "@mui/material";
+import { Tabs } from "@mui/material";
 import Search from "public/icons/search.svg";
-import Link from "next/link";
 
 interface INav {
   value: number;

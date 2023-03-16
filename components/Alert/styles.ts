@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Alert, AlertProps } from "@mui/material";
+import { Alert } from "@mui/material";
 
 export const AlertS = styled(Alert)(({theme, severity}) => `
   margin-top: 30px;

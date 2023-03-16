@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { FC } from "react";
 
 const APP_API = process.env.APP_API;
@@ -46,7 +45,7 @@ const ImageComponent: FC<ImageProps> = ({
     altText = image.attributes.alternativeText || "";
   }
 
-  return <Image src={url + "?format=webp" + format} fill alt={altText} />;
+  return <img src={url + "?format=webp" + format} alt={altText} />;
 };
 
 export default ImageComponent;

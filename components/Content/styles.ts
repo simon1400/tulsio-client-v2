@@ -34,6 +34,7 @@ export const ContentS = styled.div<{removePadding: boolean; smallPadding: boolea
   }
   .MuiButtonBase-root {
     margin-top: 20px;
+    display: inline-flex;
   }
   a{
     color: rgba(255, 255, 255, .85);

@@ -9,8 +9,6 @@ import Page from "layout/Page";
 import { changeDescription, changeTitle } from "stores/slices/dataSlices";
 import { wrapper } from "stores";
 
-const DOMAIN = process.env.APP_DOMAIN;
-
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async () => {
     const { data: dataPage } = await client.query({ query: getDictionaryPage });
@@ -103,7 +101,6 @@ const Dictionary: NextPage<IDictionary> = ({
   return (
     <Page>
       <DictionaryHead title={dictionaryPage.title} data={nav} />
-
       <DictionaryHits data={dictionaries} />
     </Page>
   );
