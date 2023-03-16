@@ -8,7 +8,7 @@ import { useTheme } from "@emotion/react";
 
 const Image = dynamic(() => import("../Image"), { suspense: true });
 
-const APP_API = process.env.APP_API;
+// const APP_API = process.env.APP_API;
 
 const DictionaryHits: FC<{ data: any }> = ({ data }) => {
   const theme = useTheme();

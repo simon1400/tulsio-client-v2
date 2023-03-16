@@ -1,4 +1,4 @@
-import MuiAlert, { AlertProps } from '@mui/material/Alert';
+import { AlertProps } from '@mui/material/Alert';
 import { Snackbar } from "@mui/material"
 import { FC, forwardRef, useState } from "react"
 import { AlertS } from "./styles"

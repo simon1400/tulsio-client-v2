@@ -10,12 +10,6 @@ const StyledCanvas = styled.canvas`
   height: 100vh;
   z-index: -10;
 `
-// linear-gradient(119deg, #4545ff 20%, #ff4564 90%); }
-// linear-gradient(119deg, #ff4564 20%, #ff8f45 90%); }
-// linear-gradient(119deg, #ff8f45 20%, #ffe645 90%); }
-// linear-gradient(119deg, #ffe645 20%, #7dff45 90%); }
-// linear-gradient(119deg, #7dff45 20%, #45f9ff 90%); }
-// linear-gradient(119deg, #45f9ff 20%, #4545ff 90%); }
 
 export default function GranimComponent() {
     useEffect(() => {

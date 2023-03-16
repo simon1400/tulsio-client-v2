@@ -7,7 +7,7 @@ import Breadcrumbs from "components/Breadcrumbs";
 // import { useScroll } from "@react-spring/web";
 
 import ArrowDown from "public/icons/arrow-2.svg";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 const ArticleTop = ({
   // @ts-ignore
