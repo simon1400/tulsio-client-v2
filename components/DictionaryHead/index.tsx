@@ -55,7 +55,7 @@ const DictionaryHead: FC<IDictionaryHead> = ({ title, data }) => {
     }
   }, [scrollYState])
 
-  const activeId = useScrollspy(data)
+  const activeId = useScrollspy(data, 90)
 
   useEffect(() => {
     if(activeId !== "") {
