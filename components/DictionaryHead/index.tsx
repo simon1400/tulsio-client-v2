@@ -1,8 +1,10 @@
 import { Container, Typography } from "@mui/material";
 import Nav from "components/Nav";
+import { useScrollspy } from "helpers/useScrollspy";
 import { FC, SyntheticEvent, useEffect, useMemo, useRef, useState } from "react";
 import { useScroll } from "react-spring";
 import { CategoryTop, StickyNav } from "./styled";
+import alphabets from "data/alphabets";
 
 interface IDictionaryHead {
   title: string;
@@ -52,6 +54,14 @@ const DictionaryHead: FC<IDictionaryHead> = ({ title, data }) => {
       }
     }
   }, [scrollYState])
+
+  const activeId = useScrollspy(data)
+
+  useEffect(() => {
+    if(activeId !== "") {
+      setValue(data.findIndex((item: string) => item === activeId));
+    }
+  }, [activeId])
 
   return (
     <Container>

@@ -8,8 +8,8 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
   padding-left: ${mobile ? '30px' : ""};
   padding-bottom: ${mobile ? '30px' : ""};
 
-  margin-left: ${subMenu ? '-15px' : 0};
-  width: ${subMenu ? 'calc(100% + 30px)' : 'auto'};
+  /* margin-left: ${subMenu ? '-15px' : 0};
+  width: ${subMenu ? 'calc(100% + 30px)' : 'auto'}; */
 
   ${[theme.breakpoints.down("xxl")]} {
     margin-bottom: ${removeMargin ? '0' : '50px'};
@@ -22,8 +22,8 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
   }
   
   ${theme.breakpoints.down('sm')} {
-    margin-left: ${mobile ? 0 : "-10px"};
-    width: ${mobile ? 'auto' : "calc(100% + 20px)"};
+    /* margin-left: ${mobile ? 0 : "-10px"};
+    width: ${mobile ? 'auto' : "calc(100% + 20px)"}; */
   }
   .MuiTabs-root {
     min-height: auto;
@@ -57,9 +57,13 @@ export const TabS = styled(Tab)<ITab>(({mobile}) => `
   min-height: auto;
   transition: all .5s ease;
   vertical-align: middle;
+  ${theme.breakpoints.down('sm')} {
+    font-size: 16px;
+  }
   ${mobile ? `
     max-width: auto;
     align-self: flex-end;
+    font-size: 20px!important;
   ` : ""}
   &:hover{
     color: white;
