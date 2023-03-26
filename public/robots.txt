@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://admin.tulsio.cz/sitemap/index.xml
+Sitemap: https://tulsio.com/sitemap/index.xml

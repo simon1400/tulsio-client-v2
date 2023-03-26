@@ -37,7 +37,7 @@ const DictionaryHits: FC<{ data: any }> = ({ data }) => {
       {Object.keys(data).map((key, index) => (
         <AlphabetWrap id={key} key={index}>
           <ResponsiveMasonry
-            columnsCountBreakPoints={{ 320: 1, 980: 3, 1280: 4 }}
+            columnsCountBreakPoints={{ 320: 1, 760: 2, 980: 3, 1280: 4 }}
           >
             <Masonry gutter={gutter}>
               {data[key].map((item: any, indexChild: number) => (
@@ -45,7 +45,7 @@ const DictionaryHits: FC<{ data: any }> = ({ data }) => {
                   <Box>
                     {item.image?.data && (
                       <div className="img-wrap">
-                        <Image width="440" image={item.image.data} />
+                        <Image image={item.image.data} format="&width=620" />
                       </div>
                     )}
                     <Content removePadding>

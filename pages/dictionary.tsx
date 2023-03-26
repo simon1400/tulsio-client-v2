@@ -51,7 +51,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
       );
       if (filtered.length) {
         filtered.sort((a: any, b: any) =>
-          a.title > b.title ? 1 : b.title > a.title ? -1 : 0
+          a.title.toLowerCase() > b.title.toLowerCase() ? 1 : b.title.toLowerCase() > a.title.toLowerCase() ? -1 : 0
         );
         resultData[symbol] = filtered;
       }
@@ -62,7 +62,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
       );
       if (filtered.length) {
         filtered.sort((a: any, b: any) =>
-          a.title > b.title ? 1 : b.title > a.title ? -1 : 0
+          a.title.toLowerCase() > b.title.toLowerCase() ? 1 : b.title.toLowerCase() > a.title.toLowerCase() ? -1 : 0
         );
         resultData["0-9"] = filtered;
       }

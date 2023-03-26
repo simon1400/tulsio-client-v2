@@ -75,6 +75,7 @@ export const ArticleTopS = styled.div<ArticleTopProps>(({theme, background, colo
 export const AnimationWrapArticle = styled.div(({theme}) => `
   min-height: 70vh;
   display: flex;
+  margin-bottom: -50px;
   width: calc(100% - ${theme.globalGap['xxl']} - ${theme.globalGap['xxl']});
   border-radius: ${theme.borderRadius['base']};
   margin-left: ${theme.globalGap['xxl']};

@@ -6,6 +6,7 @@ export const getTagNav = gql`
       data {
         attributes {
           title
+          navTitle
           slug
           articles{
             data{
@@ -26,6 +27,7 @@ export const getTag = gql`
       data {
         attributes {
           title
+          navTitle
           meta{
             title
             description

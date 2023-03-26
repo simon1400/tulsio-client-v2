@@ -6,6 +6,7 @@ export const getCategoryNav = gql`
       data {
         attributes {
           title
+          navTitle
           slug
         }
       }
@@ -19,6 +20,7 @@ export const getCategory = gql`
       data {
         attributes {
           title
+          navTitle
           meta{
             title
             description

@@ -31,10 +31,7 @@ interface ImageProps {
 const ImageComponent: FC<ImageProps> = ({
   image = undefined,
   url = "/assets/placeholder.svg",
-  format = "",
-  width,
-  height,
-  fill = false
+  format = ""
 }) => {
 
   let altText = "",

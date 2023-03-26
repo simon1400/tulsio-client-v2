@@ -15,6 +15,7 @@ export const fetchAllArticles =
   async (dispatch) => {
     let title = 'Blog',
         description = 'Blog',
+        categoryTitle = 'Blog',
         articles = [],
         type = 'blog'
 
@@ -22,10 +23,12 @@ export const fetchAllArticles =
 
       if(link === 'blog') {
         title = 'Blog',
+        categoryTitle = 'Blog'
         description = 'Blog',
         type = 'blog'
       }else{
         title = 'Štítky',
+        categoryTitle = 'Štítky'
         description = 'Štítky',
         type = 'tag'
       }
@@ -51,8 +54,9 @@ export const fetchAllArticles =
           },
         });
         
-        title = categoryDataReq.categories.data[0]?.attributes.meta.title,
-        description = categoryDataReq.categories.data[0]?.attributes.meta.description,
+        title = categoryDataReq.categories.data[0]?.attributes.meta.title
+        categoryTitle = categoryDataReq.categories.data[0]?.attributes.title
+        description = categoryDataReq.categories.data[0]?.attributes.meta.description
         articles = data.articles.data.map((item: any) => ({ ...item.attributes }))
       }else{
         const { data: tagDataReq } = await client.query({
@@ -66,6 +70,7 @@ export const fetchAllArticles =
           title =
             tagDataReq.labels.data[0]?.attributes?.meta?.title ||
             tagDataReq.labels.data[0]?.attributes.title;
+          categoryTitle = tagDataReq.labels.data[0]?.attributes.title
           description =
             tagDataReq.labels.data[0]?.attributes?.meta?.description;
           const { data: articlesData } = await client.query({
@@ -82,6 +87,7 @@ export const fetchAllArticles =
     }
 
     dispatch(dataReducer.actions.changeTitle(title));
+    dispatch(dataReducer.actions.changeCategoryTitle(categoryTitle));
     dispatch(dataReducer.actions.changeDescription(description));
     dispatch(dataReducer.actions.changeArticles(articles));
     dispatch(dataReducer.actions.changeType(type));
@@ -94,16 +100,19 @@ export const fetchCategoryOrArticles =
     let articles = [],
       articleBase = {},
       dataTitle = "Blog",
+      categoryTitle = "Blog",
       dataDescription = "Blog",
       type = "blog";
 
     if (link === "blog" || link === "tags") {
       if(link === 'blog') {
         dataTitle = 'Blog',
+        categoryTitle = 'Blog',
         dataDescription = 'Blog',
         type = 'blog'
       }else{
         dataTitle = 'Štítky',
+        categoryTitle = 'Štítky',
         dataDescription = 'Štítky',
         type = 'tag'
       }
@@ -124,6 +133,7 @@ export const fetchCategoryOrArticles =
       if (categoryDataReq.categories.data.length) {
 
         dataTitle = categoryDataReq.categories.data[0]?.attributes.meta.title;
+        categoryTitle = categoryDataReq.categories.data[0]?.attributes.title;
         dataDescription = categoryDataReq.categories.data[0]?.attributes.meta.description;
 
         const { data: articlesData } = await client.query({
@@ -148,6 +158,7 @@ export const fetchCategoryOrArticles =
 
           type = "tag";
           dataTitle = tagDataReq.labels.data[0]?.attributes?.meta?.title || tagDataReq.labels.data[0]?.attributes.title;
+          categoryTitle = tagDataReq.labels.data[0]?.attributes?.title;
           dataDescription = tagDataReq.labels.data[0]?.attributes?.meta?.description || "";
 
           const { data: articlesData } = await client.query({
@@ -172,6 +183,7 @@ export const fetchCategoryOrArticles =
     }
 
     dispatch(dataReducer.actions.changeType(type));
+    dispatch(dataReducer.actions.changeCategoryTitle(categoryTitle));
     dispatch(dataReducer.actions.changeTitle(dataTitle));
     dispatch(dataReducer.actions.changeDescription(dataDescription));
     dispatch(dataReducer.actions.changeArticles(articles));

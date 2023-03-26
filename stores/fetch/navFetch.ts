@@ -8,7 +8,7 @@ export const fetchNavCategory = (): AppThunk => async (dispatch) => {
   const { data: navData } = await client.query({ query: getCategoryNav });
 
   const nav = navData.categories.data.map((item: any) => ({
-    title: item.attributes.title,
+    title: item.attributes.navTitle,
     slug: item.attributes.slug,
   }));
 
@@ -32,7 +32,7 @@ export const fetchNavTag = (): AppThunk => async (dispatch) => {
   })
 
   const nav = resultNav.map((item: any) => ({
-    title: item.attributes.title,
+    title: item.attributes.navTitle,
     slug: item.attributes.slug,
   }));
 

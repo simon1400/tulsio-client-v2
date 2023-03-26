@@ -3,11 +3,11 @@ import PageHead from "components/PageHead";
 import Page from "layout/Page";
 import { NextPage } from "next";
 import { useSelector } from "react-redux";
-import { selectArticles, selectTitle } from 'stores/slices/dataSlices'
+import { selectArticles, selectCategoryTitle } from 'stores/slices/dataSlices'
 
 const Category: NextPage = () => {
 
-  const title = useSelector(selectTitle);
+  const title = useSelector(selectCategoryTitle);
   const articles = useSelector(selectArticles);
   
   return (
