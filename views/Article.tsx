@@ -8,6 +8,7 @@ import Image from 'components/Image'
 import styled from "@emotion/styled";
 import Page from "layout/Page";
 import Button from "components/Button";
+import BannerStatic from "components/BanerStatic";
 
 const DOMAIN = process.env.APP_DOMAIN;
 
@@ -34,7 +35,8 @@ const Article = ({
             {!!article.perex?.length && <Typography component="div" variant="body1" dangerouslySetInnerHTML={{__html: article.perex}} />}
             {!!article.chapters?.length && article.chapters.map((item: any, index: number) => <Chapter key={index}>
               {!!item.title && <Typography variant="h2">{item.title}</Typography>}
-              <Typography component="div" variant="body1" dangerouslySetInnerHTML={{__html: item.text}} />
+              {item.text && <Typography component="div" variant="body1" dangerouslySetInnerHTML={{__html: item.text}} />}
+              {item.banners_static.data && <BannerStatic data={item.banners_static.data.attributes}/>}
               {!!item.galery?.data?.length && item.galery.data.map((img: any, indexImg: number) => <figure key={indexImg}>
                 <div>
                   <Image format="&width=960" image={img} />

@@ -153,11 +153,24 @@ export const getArticle = gql`
                 }
               }
             }
+            banners_static {
+              data {
+                attributes {
+                  link
+                  image {
+                    data {
+                      attributes {
+                        url
+                      }
+                    }
+                  }
+                }
+              }
+            }
             button {
               link
               text
             }
-            baner
           }
           authors {
             data {
