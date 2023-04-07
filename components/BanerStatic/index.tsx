@@ -11,7 +11,7 @@ interface IBanner {
 
 const BannerStatic: FC<IBanner> = ({ data }) => {
 
-  let imgUrl = `${APP_API}${data.image.data?.attributes.url}?format=webp&resize=1000x1000`;
+  let imgUrl = `${APP_API}${data.image.data?.attributes.url}?format=webp&width=1000`;
 
   return (
     <BannerS
@@ -19,12 +19,9 @@ const BannerStatic: FC<IBanner> = ({ data }) => {
       passHref
       target="_blank"
     >
-      <div className="img-wrap">
+      <figure className="img-wrap">
         <Image src={imgUrl} fill alt={"Banner"}/>
-      </div>
-      <div className="content-wrap-art">
-        <div></div>
-      </div>
+      </figure>
     </BannerS>
   );
 };

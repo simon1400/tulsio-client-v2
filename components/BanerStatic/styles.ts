@@ -6,24 +6,21 @@ export const BannerS = styled(Link)(({theme}) => `
   height: auto;
   width: 100%;
   color: white;
-  position: relative;
   text-decoration: none;
   &:hover{
-    .img-wrap {
-      transform: scale(.98);
-    }
+    /* .img-wrap {
+      transform: scale(0.98);
+    } */
   }
   .img-wrap{
     height: auto;
     width: 100%;
-    background: transparent;
     border-radius: ${theme.borderRadius['base']};
     overflow: hidden;
     display: block;
-    position: static;
-    z-index: -1;
-    transform: scale(1);
-    transition: all .4s ease-in-out;
+    position: relative;
+    /* transform: scale(1); */
+    /* transition: all .4s ease-in-out; */
     ${theme.breakpoints.down('xxl')} {
       border-radius: ${theme.borderRadius['xxl']};
     }
@@ -37,10 +34,10 @@ export const BannerS = styled(Link)(({theme}) => `
       border-radius: ${theme.borderRadius['sm']};
     }
     img{
-      position: static!important;
+      position: relative!important;
+      width: 100%;
+      height: 100%;
       display: block;
-      object-fit: cover;
-      object-position: center;
     }
   }
   .content-wrap-art{
