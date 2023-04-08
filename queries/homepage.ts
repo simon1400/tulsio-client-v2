@@ -43,6 +43,7 @@ const homepageQuery = gql`
                     data {
                       attributes {
                         title
+                        navTitle
                         slug
                         color
                       }

@@ -5,6 +5,8 @@ import { AppState } from 'stores';
 
 export interface DataState {
   title: string
+  shortTitle: string
+  shortDescription: string
   categoryTitle: string
   description: string
   articles: any
@@ -14,6 +16,8 @@ export interface DataState {
 
 const initialState: DataState = {
   title: '',
+  shortTitle: '',
+  shortDescription: '',
   categoryTitle: '',
   description: '',
   articles: [],
@@ -30,6 +34,12 @@ export const dataReducer = createSlice({
     },
     changeTitle: (state, action: PayloadAction<string>) => {
       state.title = action.payload
+    },
+    changeShortTitle: (state, action: PayloadAction<string>) => {
+      state.shortTitle = action.payload
+    },
+    changeShortDescription: (state, action: PayloadAction<string>) => {
+      state.shortDescription = action.payload
     },
     changeDescription: (state, action: PayloadAction<string>) => {
       state.description = action.payload
@@ -58,6 +68,8 @@ export const dataReducer = createSlice({
 export const { 
   changeTitle,
   changeCategoryTitle,
+  changeShortTitle,
+  changeShortDescription,
   changeDescription,
   changeArticles,
   changeArticleBase,
@@ -71,5 +83,7 @@ export const selectDescription = (state: AppState) => state.data.description;
 export const selectArticles = (state: AppState) => state.data.articles;
 export const selectArticleBase = (state: AppState) => state.data.articleBase;
 export const selectType = (state: AppState) => state.data.type;
+export const selectShortTitle = (state: AppState) => state.data.shortTitle;
+export const selectShortDescription = (state: AppState) => state.data.shortDescription;
 
 export default dataReducer.reducer

@@ -4,6 +4,7 @@ import { LabelS } from "./styles"
 
 export interface LabelProps {
   title: string
+  navTitle: string
   slug: string
   color: string
 }
@@ -27,7 +28,7 @@ const Label: FC<LabelDataProps> = ({
 
   return (
     <LabelS onClick={(e) => handleClick(e)} color={color}>
-      {data.title}
+      {data.navTitle}
     </LabelS>
   )
 }

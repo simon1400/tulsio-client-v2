@@ -14,6 +14,7 @@ export const getAllArticles = gql`
             data {
               attributes {
                 title
+                navTitle
                 slug
               }
             }
@@ -49,6 +50,7 @@ export const getArticlesCategory = gql`
             data {
               attributes {
                 title
+                navTitle
                 slug
                 color
               }
@@ -85,6 +87,7 @@ export const getArticlesTag = gql`
             data {
               attributes {
                 title
+                navTitle
                 slug
                 color
               }
@@ -129,6 +132,7 @@ export const getArticle = gql`
             data {
               attributes {
                 title
+                navTitle
                 slug
                 color
               }

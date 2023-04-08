@@ -21,6 +21,8 @@ export const getCategory = gql`
         attributes {
           title
           navTitle
+          shortTitle
+          description
           meta{
             title
             description

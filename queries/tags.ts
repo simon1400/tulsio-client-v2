@@ -28,6 +28,8 @@ export const getTag = gql`
         attributes {
           title
           navTitle
+          shortTitle
+          description
           meta{
             title
             description

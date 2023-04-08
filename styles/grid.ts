@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const GridTop = styled.div(({theme}) => `
+export const GridTop = styled.div<{shortInfo?: any | undefined}>(({theme, shortInfo}) => `
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: minmax(30vh, auto);
@@ -11,8 +11,8 @@ export const GridTop = styled.div(({theme}) => `
 
   > div{
     &:nth-of-type(1) { grid-area: 1 / 1 / 3 / 3; }
-    &:nth-of-type(2) { grid-area: 1 / 3 / 3 / 4; }
-    &:nth-of-type(3) { grid-area: 1 / 4 / 2 / 5; }
+    &:nth-of-type(2) { grid-area: ${shortInfo ? "1 / 3 / 2 / 5" : "1 / 3 / 3 / 4"}; }
+    &:nth-of-type(3) { grid-area: ${shortInfo ? "2 / 3 / 3 / 4" : "1 / 4 / 2 / 5"}; }
     &:nth-of-type(4) { grid-area: 2 / 4 / 3 / 5; }
     &:nth-of-type(5) { grid-area: 3 / 1 / 4 / 2; }
     &:nth-of-type(6) { grid-area: 4 / 1 / 5 / 2; }
@@ -40,8 +40,8 @@ export const GridTop = styled.div(({theme}) => `
 
     > div {
       &:nth-of-type(1) { grid-area: 1 / 1 / 3 / 3; }
-      &:nth-of-type(2) { grid-area: 3 / 1 / 5 / 2; }
-      &:nth-of-type(3) { grid-area: 3 / 2 / 4 / 3; }
+      &:nth-of-type(2) { grid-area: ${shortInfo ? "3 / 1 / 4 / 3" : "3 / 1 / 5 / 2"}; }
+      &:nth-of-type(3) { grid-area: ${shortInfo ? "4 / 1 / 5 / 2" : "3 / 2 / 4 / 3"}; }
       &:nth-of-type(4) { grid-area: 4 / 2 / 5 / 3; }
       &:nth-of-type(5) { grid-area: 5 / 1 / 6 / 2; }
       &:nth-of-type(6) { grid-area: 6 / 1 / 7 / 2; }

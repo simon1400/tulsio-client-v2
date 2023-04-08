@@ -50,9 +50,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) =>
 
     const homepage = homepageData.homepage.data.attributes
     const meta = homepage?.meta
-    const mainArticle = homepage.articles[0].article.data.attributes;
-    let seccondArticles = homepage.articles.slice(1);
-    seccondArticles = seccondArticles.map((item: any) => item.article.data.attributes)
+    const articles = homepage.articles.map((item: any) => item.article.data.attributes)
     const baners = banersData.baners.data.map((item: any) => item.attributes)
 
     const filterBaners1 = baners.filter((item: any) => item.position === BANER_POSITION.POSITION_1)
@@ -69,8 +67,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) =>
         title: homepage.title,
         baner1: baner1 || null,
         baner2: baner2 || null,
-        mainArticle,
-        seccondArticles,
+        articles,
         image: meta?.image ? getStrapiURL(meta.image) : null
       }
     }
@@ -81,16 +78,14 @@ interface IHomepage {
   title: string;
   baner1: any;
   baner2: any;
-  mainArticle: any;
-  seccondArticles: any;
+  articles: any;
 }
 
 const Homepage: FC<IHomepage> = ({
   title,
   baner1,
   baner2,
-  mainArticle,
-  seccondArticles
+  articles
 }) => {
 
   return (
@@ -100,19 +95,8 @@ const Homepage: FC<IHomepage> = ({
           <HomeHead variant="h1">{title}</HomeHead>
         </Container>
         <GridTop>
-          <div className="div0">
-            <ArticleShort 
-              title={mainArticle.title}
-              link={`/blog/${mainArticle?.slug}`}
-              image={mainArticle.image.data}
-              showShortImg={mainArticle.showShortImg}
-              background={mainArticle.background}
-              label={mainArticle?.labels?.data.map((item: any) => item.attributes)}
-              text={mainArticle.perex}
-            />
-          </div>
-          {!!seccondArticles?.length && seccondArticles.map((item: any, idx: number) => {
-            if(idx === 1) {
+          {!!articles?.length && articles.map((item: any, idx: number) => {
+            if(idx === 2) {
               return <>
                 <div key={'banner'+idx}>
                   <Banner data={baner1} />
@@ -134,7 +118,7 @@ const Homepage: FC<IHomepage> = ({
                   <GridButton data={gridButtonData[1]} />
                 </div>
               </>
-            }else if(idx === 4) {
+            }else if(idx === 5) {
               return <>
                 <div key={'banner'+idx}>
                   <Banner data={baner2} />
