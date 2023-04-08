@@ -14,7 +14,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) =>
     }
   }
 
-  const { data, error } = await client.query({
+  const { data } = await client.query({
     query: getArticle,
     variables: {
       slug: params.article

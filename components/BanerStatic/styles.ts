@@ -7,11 +7,6 @@ export const BannerS = styled(Link)(({theme}) => `
   width: 100%;
   color: white;
   text-decoration: none;
-  &:hover{
-    /* .img-wrap {
-      transform: scale(0.98);
-    } */
-  }
   .img-wrap{
     height: auto;
     width: 100%;
@@ -19,8 +14,6 @@ export const BannerS = styled(Link)(({theme}) => `
     overflow: hidden;
     display: block;
     position: relative;
-    /* transform: scale(1); */
-    /* transition: all .4s ease-in-out; */
     ${theme.breakpoints.down('xxl')} {
       border-radius: ${theme.borderRadius['xxl']};
     }

@@ -231,11 +231,24 @@ export const getArticleBase = gql`
                 }
               }
             }
+            banners_static {
+              data {
+                attributes {
+                  link
+                  image {
+                    data {
+                      attributes {
+                        url
+                      }
+                    }
+                  }
+                }
+              }
+            }
             button {
               link
               text
             }
-            baner
           }
           image {
             data {
