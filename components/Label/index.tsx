@@ -4,7 +4,7 @@ import { LabelS } from "./styles"
 
 export interface LabelProps {
   title: string
-  navTitle: string
+  navTitle?: string
   slug: string
   color: string
 }

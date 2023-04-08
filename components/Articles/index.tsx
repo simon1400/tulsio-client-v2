@@ -15,7 +15,6 @@ interface IArticles {
 }
 
 const Articles: FC<IArticles> = ({ data, searchResult = false, shortInfo }) => {
-  console.log(shortInfo)
   return (
     <section>
       <GridTop shortInfo={shortInfo}>
