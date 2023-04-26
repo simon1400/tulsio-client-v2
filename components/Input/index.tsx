@@ -16,6 +16,7 @@ const Input: FC<IInput> = ({
   name,
   onBlur = undefined,
   onChange,
+  ...rest
 }) => {
   return (
     <InputS
@@ -32,6 +33,7 @@ const Input: FC<IInput> = ({
       onChange={(e: any) => onChange(e)}
       startAdornment={startAdornment}
       endAdornment={endAdornment}
+      {...rest}
     />
   );
 };

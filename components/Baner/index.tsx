@@ -44,8 +44,8 @@ const Banner: FC<IBanner> = ({ data }) => {
           <Label
             data={{
               title: "Reklama",
-              slug: "/tulsio-promo",
-              color: "",
+              navTitle: "Reklama",
+              slug: "/tulsio-promo"
             }}
             color={color}
           />

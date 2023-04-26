@@ -61,8 +61,8 @@ const ArticleTop = ({
                 key={index}
                 data={{
                   title: item.attributes.title,
+                  navTitle: item.attributes.navTitle,
                   slug: item.attributes.slug,
-                  color: item.attributes.color,
                 }}
               />
             ))}

@@ -6,7 +6,6 @@ export interface LabelProps {
   title: string
   navTitle?: string
   slug: string
-  color: string
 }
 
 export interface LabelDataProps {
