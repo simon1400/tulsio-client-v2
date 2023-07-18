@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const getAllDictionaries = gql`
-  query getDictionary {
-    dictionaries {
+  query getDictionary($locale: I18NLocaleCode!) {
+    dictionaries(locale: $locale) {
       data {
         attributes {
           title
@@ -25,8 +25,8 @@ export const getAllDictionaries = gql`
 `
 
 export const getDictionaryPage = gql`
-  query getDictionary {
-    dictionaryPage {
+  query getDictionary($locale: I18NLocaleCode!) {
+    dictionaryPage(locale: $locale) {
       data {
         attributes {
           title

@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const getFaq = gql`
-  query getFaq {
-    faqPage {
+  query getFaq($locale: I18NLocaleCode!) {
+    faqPage(locale: $locale) {
       data {
         attributes {
           title
@@ -24,8 +24,8 @@ export const getFaq = gql`
 `
 
 export const getAllFaqs = gql`
-  query getAllFaq {
-    faqs(sort: "rank:asc") {
+  query getAllFaq($locale: I18NLocaleCode!) {
+    faqs(sort: "rank:asc", locale: $locale) {
       data {
         attributes {
           title

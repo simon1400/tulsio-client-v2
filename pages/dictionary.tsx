@@ -10,10 +10,13 @@ import { changeDescription, changeTitle } from "stores/slices/dataSlices";
 import { wrapper } from "stores";
 
 export const getServerSideProps = wrapper.getServerSideProps(
-  (store) => async () => {
-    const { data: dataPage } = await client.query({ query: getDictionaryPage });
+  (store) => async ({locale}) => {
+    const { data: dataPage } = await client.query({ query: getDictionaryPage, variables: {locale: locale}});
     const { data: allDictionaries } = await client.query({
       query: getAllDictionaries,
+      variables: {
+        locale: locale
+      }
     });
 
     const transfromDictionaries = allDictionaries.dictionaries.data.map(

@@ -9,6 +9,7 @@ import navHeader from 'queries/navHeader';
 import MenuIcon from 'public/icons/menu.svg'
 import Search from 'public/icons/search.svg'
 import { useRouter } from 'next/router';
+import Lang from 'components/Lang';
 
 const Nav = dynamic(() => import('components/Nav'), {ssr: false})
 const Menu = dynamic(() => import('layout/Menu'), {ssr: false})
@@ -17,16 +18,17 @@ const Header = () => {
 
   const theme = useTheme();
   const mediaMd = useMediaQuery(theme.breakpoints.up('md'))
+  const router = useRouter()
 
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const {data, loading} = useQuery(navHeader)
+  const {data, loading} = useQuery(navHeader, {variables: {
+    locale: router.locale
+  }})
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
-  const router = useRouter()
 
   const [value, setValue] = useState<number>(-1);
 
@@ -78,6 +80,7 @@ const Header = () => {
               handle={handleMenu}
               value={value}
             />}
+            <Lang />
             {!mediaMd && <Menu 
               mobileOpen={mobileOpen} 
               data={transformData}

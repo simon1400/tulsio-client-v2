@@ -10,14 +10,14 @@ import { selectArticleBase, selectArticles } from "stores/slices/dataSlices";
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
-    async ({ params }) => {
+    async ({ params, locale }) => {
       if (!params?.category || params?.category === "favicon.ico") {
         return {
           notFound: true,
         };
       }
 
-      await store.dispatch(fetchCategoryOrArticles(params.category as string));
+      await store.dispatch(fetchCategoryOrArticles(params.category as string, locale as string));
 
       const state = store.getState().data;
 
@@ -28,8 +28,8 @@ export const getServerSideProps = wrapper.getServerSideProps(
       }
 
       if (state.articles.length) {
-        if (state.type === "blog") await store.dispatch(fetchNavCategory());
-        if (state.type === "tag") await store.dispatch(fetchNavTag());
+        if (state.type === "blog") await store.dispatch(fetchNavCategory(locale as string));
+        if (state.type === "tag") await store.dispatch(fetchNavTag(locale as string));
       }
 
       return {

@@ -33,6 +33,16 @@ const Nav: FC<INav> = ({
         scrollButtons={false}
         orientation={orientation}
       >
+        {icon && (
+          <TabS
+            component="a"
+            onClick={(e) => e.preventDefault()}
+            href="/cs/search"
+            mobile={mobile}
+            aria-label="iconMenu"
+            icon={<Search />}
+          />
+        )}
         {category && (
           <TabS
             component="a"
@@ -52,16 +62,7 @@ const Nav: FC<INav> = ({
             label={item.title}
           />
         ))}
-        {icon && (
-          <TabS
-            component="a"
-            onClick={(e) => e.preventDefault()}
-            href="/cs/search"
-            mobile={mobile}
-            aria-label="iconMenu"
-            icon={<Search />}
-          />
-        )}
+        
       </Tabs>
     </CSubMenu>
   );

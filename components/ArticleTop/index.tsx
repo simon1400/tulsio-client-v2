@@ -51,7 +51,7 @@ const ArticleTop = ({
         <Image format="&resize=920x920" image={article.image.data} />
         <Container maxWidth="md">
           <Breadcrumbs
-            category={article.categories.data[0].attributes}
+            category={article.categories.data[0]?.attributes}
             color={color}
           />
           <Typography variant="h1">{article.title}</Typography>

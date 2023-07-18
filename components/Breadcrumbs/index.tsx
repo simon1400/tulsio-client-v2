@@ -30,7 +30,7 @@ const Breadcrumbs: FC<IBreadcrumbs> = ({
       }
     >
       <Link href="/blog">Blog</Link>
-      <Link href={'/'+category.slug}>{category.title}</Link>
+      <Link href={'/'+category?.slug}>{category?.title}</Link>
     </BreadcrumbsS>
   )
 }

@@ -10,9 +10,10 @@ import { useTheme } from "@emotion/react";
 import { useMediaQuery } from "@mui/material";
 
 const Footer = () => {
-  const { loading, data } = useQuery(navFooter);
-
   const router = useRouter();
+  const { loading, data } = useQuery(navFooter, {variables: {
+    locale: router.locale
+  }});
 
   const [value, setValue] = useState<number>(0);
 

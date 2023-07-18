@@ -11,7 +11,7 @@ import { AppThunk } from "stores";
 import { dataReducer } from "stores/slices/dataSlices";
 
 export const fetchAllArticles =
-  (link: string): AppThunk =>
+  (link: string, locale: string): AppThunk =>
   async (dispatch) => {
     let title = 'Blog',
         description = 'Blog',
@@ -35,7 +35,7 @@ export const fetchAllArticles =
         type = 'tag'
       }
 
-      const { data: articleData } = await client.query({query: getAllArticles});
+      const { data: articleData } = await client.query({query: getAllArticles, variables: {locale: locale}});
       articles = articleData.articles.data.map((item: any) => ({ ...item.attributes }))
 
     } else {
@@ -44,6 +44,7 @@ export const fetchAllArticles =
         query: getCategory,
         variables: {
           slug: link,
+          locale: locale
         },
       });
 
@@ -53,6 +54,7 @@ export const fetchAllArticles =
           query: getArticlesCategory,
           variables: {
             slug: link,
+            locale: locale
           },
         });
         
@@ -67,6 +69,7 @@ export const fetchAllArticles =
           query: getTag,
           variables: {
             slug: link,
+            locale: locale
           },
         });
         if (tagDataReq.labels.data.length) {
@@ -83,6 +86,7 @@ export const fetchAllArticles =
             query: getArticlesTag,
             variables: {
               slug: link,
+              locale: locale
             },
           });
           articles = articlesData.articles.data.map((item: any) => ({
@@ -103,7 +107,7 @@ export const fetchAllArticles =
   };
 
 export const fetchCategoryOrArticles =
-  (link: string): AppThunk =>
+  (link: string, locale: string): AppThunk =>
   async (dispatch) => {
     let articles = [],
       articleBase = {},
@@ -128,6 +132,9 @@ export const fetchCategoryOrArticles =
       }
       const { data: articleData } = await client.query({
         query: getAllArticles,
+        variables: {
+          locale: locale
+        }
       });
 
       articles = articleData.articles.data.map((item: any) => ({
@@ -138,6 +145,7 @@ export const fetchCategoryOrArticles =
         query: getCategory,
         variables: {
           slug: link,
+          locale: locale
         },
       });
       if (categoryDataReq.categories.data.length) {
@@ -152,6 +160,7 @@ export const fetchCategoryOrArticles =
           query: getArticlesCategory,
           variables: {
             slug: link,
+            locale: locale
           },
         });
 
@@ -164,6 +173,7 @@ export const fetchCategoryOrArticles =
           query: getTag,
           variables: {
             slug: link,
+            locale: locale
           },
         });
         if (tagDataReq.labels.data.length) {
@@ -179,6 +189,7 @@ export const fetchCategoryOrArticles =
             query: getArticlesTag,
             variables: {
               slug: link,
+              locale: locale
             },
           });
           articles = articlesData.articles.data.map((item: any) => ({...item.attributes}));
@@ -187,6 +198,7 @@ export const fetchCategoryOrArticles =
             query: getArticleBase,
             variables: {
               slug: link,
+              locale: locale
             },
           });
           articleBase = articleBaseReq.articlesBase.data[0]?.attributes;

@@ -24,7 +24,7 @@ const nextConfig = {
     MEILISEARCH_DOMAIN: process.env.MEILISEARCH_DOMAIN
   },
   i18n: { 
-    locales: ['default', 'cs'],
+    locales: ['default', 'cs', "en", "sk", "de"],
     defaultLocale: 'default',
     localeDetection: false
   },

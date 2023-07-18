@@ -7,7 +7,6 @@ import searchClient from "lib/meilisearch"
 import Head from "next/head"
 import { useRouter } from "next/router"
 import { Configure, InstantSearch } from "react-instantsearch-hooks-web"
-import { history } from 'instantsearch.js/es/lib/routers';
 
 const DOMAIN = process.env.APP_DOMAIN;
 const meilisearchPrefix = process.env.MEILISEARCH_PREFIX

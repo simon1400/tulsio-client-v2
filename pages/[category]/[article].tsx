@@ -6,7 +6,7 @@ import { wrapper } from 'stores';
 import { changeDescription, changeTitle } from 'stores/slices/dataSlices';
 
 export const getServerSideProps = wrapper.getServerSideProps((store) =>
-  async ({params}) => {
+  async ({params, locale}) => {
 
   if(!params?.article || params?.category !== 'blog') {
     return {
@@ -17,7 +17,8 @@ export const getServerSideProps = wrapper.getServerSideProps((store) =>
   const { data } = await client.query({
     query: getArticle,
     variables: {
-      slug: params.article
+      slug: params.article,
+      locale: locale 
     }
   });
 

@@ -14,9 +14,9 @@ import { changeDescription, changeTitle } from "stores/slices/dataSlices";
 const meilisearchPrefix = process.env.MEILISEARCH_PREFIX;
 
 export const getServerSideProps = wrapper.getServerSideProps(
-  (store) => async () => {
-    const { data } = await client.query({ query: getFaq });
-    const { data: allFaq } = await client.query({ query: getAllFaqs });
+  (store) => async ({locale}) => {
+    const { data } = await client.query({ query: getFaq, variables: {locale: locale} });
+    const { data: allFaq } = await client.query({ query: getAllFaqs, variables: {locale: locale} });
 
     const faqData = data.faqPage.data.attributes;
 
@@ -36,7 +36,6 @@ const Faq: NextPage = ({
   // @ts-ignore
   faq, allFaq
 }) => {
-  console.log(allFaq.length)
   return (
     <Page>
       <InstantSearch

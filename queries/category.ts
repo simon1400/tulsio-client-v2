@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const getCategoryNav = gql`
-  query categoryNav {
-    categories {
+  query categoryNav($locale: I18NLocaleCode!) {
+    categories(locale: $locale) {
       data {
         attributes {
           title
@@ -15,8 +15,8 @@ export const getCategoryNav = gql`
 `
 
 export const getCategory = gql`
-  query category( $slug: String! ) {
-    categories(filters: { slug: { eq: $slug } }) {
+  query category( $slug: String!, $locale: I18NLocaleCode! ) {
+    categories(filters: { slug: { eq: $slug } }, locale: $locale) {
       data {
         attributes {
           title

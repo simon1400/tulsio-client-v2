@@ -25,6 +25,11 @@ export const CloseMenuS = styled.div`
   position: absolute;
   right: 10px;
   top: 35px;
+  display: flex;
+  align-items: center;
+  >div:first-of-type{
+    margin-top: 0;
+  }
   svg{
     fill: rgba(255, 255, 255, 0.75);;
     &:first-of-type {

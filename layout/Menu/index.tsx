@@ -6,6 +6,7 @@ import CloseIcon from 'public/icons/close.svg';
 import { Logo } from "./styles";
 import Search from 'public/icons/search.svg'
 import Nav from "components/Nav";
+import Lang from "components/Lang";
 
 export interface INavItem {
   id: string
@@ -65,6 +66,7 @@ const Menu: FC<Props> = (props) => {
         </Link>
       </Logo>
       <CloseMenuS>
+        <Lang />
         <IconButton href="/search" sx={{ ml: 0, p: 0}}><SvgIcon component={Search} sx={{ fontSize: 32 }} /></IconButton>
         <IconButton onClick={() => handleDrawerToggle()} sx={{ ml: 0, p: 0}}><SvgIcon component={CloseIcon} sx={{ fontSize: 32 }} /></IconButton>
       </CloseMenuS>

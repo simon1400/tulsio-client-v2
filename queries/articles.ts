@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const getAllArticles = gql`
-  query getAllArticles {
-    articles(sort: "publishedAt:desc") {
+  query getAllArticles($locale: I18NLocaleCode!) {
+    articles(sort: "publishedAt:desc", locale: $locale) {
       data {
         attributes {
           title
@@ -34,10 +34,11 @@ export const getAllArticles = gql`
 `;
 
 export const getArticlesCategory = gql`
-  query getArticlesCategory($slug: String!) {
+  query getArticlesCategory($slug: String!, $locale: I18NLocaleCode!) {
     articles(
       filters: { categories: { slug: { eq: $slug } } },
-      sort: "publishedAt:desc"
+      sort: "publishedAt:desc",
+      locale: $locale
     ) {
       data {
         attributes {
@@ -71,10 +72,11 @@ export const getArticlesCategory = gql`
 `;
 
 export const getArticlesTag = gql`
-  query getArticlesTag($slug: String!) {
+  query getArticlesTag($slug: String!, $locale: I18NLocaleCode!) {
     articles(
       filters: { labels: { slug: { eq: $slug } } }
       sort: "publishedAt:desc"
+      locale: $locale
     ) {
       data {
         attributes {
@@ -108,8 +110,8 @@ export const getArticlesTag = gql`
 `;
 
 export const getArticle = gql`
-  query getArticle($slug: String!) {
-    articles(filters: { slug: { eq: $slug } }) {
+  query getArticle($slug: String!, $locale: I18NLocaleCode!) {
+    articles(filters: { slug: { eq: $slug } }, locale: $locale) {
       data {
         attributes {
           title
@@ -208,8 +210,8 @@ export const getArticle = gql`
 `;
 
 export const getArticleBase = gql`
-  query getArticleBase($slug: String!) {
-    articlesBase(filters: { slug: { eq: $slug } }) {
+  query getArticleBase($slug: String!, $locale: I18NLocaleCode!) {
+    articlesBase(filters: { slug: { eq: $slug } }, locale: $locale) {
       data {
         attributes {
           title

@@ -4,8 +4,8 @@ import { getTagNav } from "queries/tags";
 import { AppThunk } from "stores";
 import { navReducer } from "stores/slices/navSlices";
 
-export const fetchNavCategory = (): AppThunk => async (dispatch) => {
-  const { data: navData } = await client.query({ query: getCategoryNav });
+export const fetchNavCategory = (locale: string): AppThunk => async (dispatch) => {
+  const { data: navData } = await client.query({ query: getCategoryNav, variables: { locale: locale }});
 
   const nav = navData.categories.data.map((item: any) => ({
     title: item.attributes.navTitle,
@@ -15,8 +15,8 @@ export const fetchNavCategory = (): AppThunk => async (dispatch) => {
   dispatch(navReducer.actions.changeCategoryNav(nav));
 };
 
-export const fetchNavTag = (): AppThunk => async (dispatch) => {
-  const { data: navData } = await client.query({ query: getTagNav });
+export const fetchNavTag = (locale: string): AppThunk => async (dispatch) => {
+  const { data: navData } = await client.query({ query: getTagNav, variables: {locale: locale} });
 
   const resultNav = navData.labels.data.filter((item: any) => {
     if(item.attributes.articles.data.length) {
