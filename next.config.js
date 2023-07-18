@@ -1,5 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextTranslate = require('next-translate-plugin')
 const nextConfig = {
   webpack(config) {
     config.module.rules.push({
@@ -24,6 +23,11 @@ const nextConfig = {
     APP_DOMAIN: process.env.APP_DOMAIN,
     MEILISEARCH_DOMAIN: process.env.MEILISEARCH_DOMAIN
   },
+  i18n: { 
+    locales: ['default', 'cs'],
+    defaultLocale: 'default',
+    localeDetection: false
+  },
   trailingSlash: false,
   images: {
     remotePatterns: [
@@ -35,4 +39,4 @@ const nextConfig = {
   },
 }
 
-module.exports = nextTranslate(nextConfig)
+module.exports = nextConfig
