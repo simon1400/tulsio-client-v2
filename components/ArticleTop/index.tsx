@@ -8,6 +8,7 @@ import Breadcrumbs from "components/Breadcrumbs";
 
 import ArrowDown from "public/icons/arrow-2.svg";
 import { useRef } from "react";
+import Date from "components/Date";
 
 const ArticleTop = ({
   // @ts-ignore
@@ -66,6 +67,7 @@ const ArticleTop = ({
                 }}
               />
             ))}
+          <Date color={color} data={article.updatedAt} />
           <IconButton
             onClick={handleClick}
             aria-label="open drawer"

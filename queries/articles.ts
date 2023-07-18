@@ -117,6 +117,7 @@ export const getArticle = gql`
           perex
           background
           showShortImg
+          updatedAt
           meta {
             title
             description

@@ -4,7 +4,7 @@ import { useScrollspy } from "helpers/useScrollspy";
 import { FC, SyntheticEvent, useEffect, useMemo, useRef, useState } from "react";
 import { useScroll } from "react-spring";
 import { CategoryTop, StickyNav } from "./styled";
-import alphabets from "data/alphabets";
+// import alphabets from "data/alphabets";
 
 interface IDictionaryHead {
   title: string;

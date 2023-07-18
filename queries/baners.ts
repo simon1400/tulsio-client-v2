@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 const getBaners = gql`
-  query getBaners($query: [BanerFiltersInput!]!) {
-    baners(filters: { or: $query }) {
+  query getBaners($query: [BanerFiltersInput!]!, $locale: I18NLocaleCode!) {
+    baners(filters: { or: $query }, locale: $locale) {
       data {
         attributes {
           title
