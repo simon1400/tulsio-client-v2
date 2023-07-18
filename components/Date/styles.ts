@@ -16,26 +16,26 @@ export const DateS = styled.div(({theme, color}) => `
     }
   }
   ${theme.breakpoints.down('xxl')} {
-    a{
+    span{
       font-size: 17px;
       line-height: 1.47;
     }
   }
   ${theme.breakpoints.down('lg')} {
-    a{
+    span{
       font-size: 16px;
       line-height: 1.56;
     }
   }
   ${theme.breakpoints.down('md')} {
-    a{
+    span{
       font-size: 14px;
       line-height: 1.79;
     }
   }
   ${theme.breakpoints.down('sm')} {
     margin-bottom: 20px;
-    a{
+    span{
       font-size: 13px;
       line-height: 1.92;
     }
