@@ -25,15 +25,15 @@ export const AnchorsS = styled.div(({theme}) => `
         }
         ${theme.breakpoints.down('xl')} {
           font-size: 19px;
-        },
+        }
         ${theme.breakpoints.down('lg')} {
           font-size: 18px;
           line-height: 1.83;
-        },
+        }
         ${theme.breakpoints.down('md')} {
           font-size: 17px;
           line-height: 1.71;
-        },
+        }
       }
     }
   }
