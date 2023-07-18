@@ -37,9 +37,9 @@ const Header = () => {
       if(data.navigation.data.attributes.topNav.item.length) {
         const idx = data.navigation.data.attributes.topNav.item.findIndex((el: any) => '/'+el.link === router.asPath)
         if(router.asPath === '/search') {
-          setValue(data.navigation.data.attributes.topNav.item.length)
+          setValue(0)
         }else{
-          setValue(idx >= 0 ? idx : false)
+          setValue(idx >= 0 ? idx+1 : false)
         } 
       }
     }
@@ -57,10 +57,10 @@ const Header = () => {
   const handleMenu = (e: SyntheticEvent, idx: number) => {
     setValue(idx);
     setMobileOpen(false)
-    if(transformData.length === idx) {
+    if(idx === 0) {
       router.push('/search')
     }else{
-      router.push('/'+transformData[idx].slug)
+      router.push('/'+transformData[idx-1].slug)
     }
   };
 
