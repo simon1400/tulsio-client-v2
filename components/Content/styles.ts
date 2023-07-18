@@ -187,4 +187,17 @@ export const ContentS = styled.div<{removePadding: boolean; smallPadding: boolea
       background-color: ${theme.palette.primary.main};
     }
   }
+
+  blockquote{
+    margin: 0;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    padding-left: 26px;
+    position: relative;
+    border-left: 5px solid ${theme.palette.primary.main};
+    ${theme.breakpoints.down('md')} {
+      padding-top: 3px;
+      padding-bottom: 3px;
+    }
+  }
 `)
