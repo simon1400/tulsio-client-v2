@@ -150,6 +150,7 @@ export const getArticle = gql`
           chapters(pagination: { pageSize: 50 }) {
             title
             text
+            idTarget
             galery {
               data {
                 attributes {

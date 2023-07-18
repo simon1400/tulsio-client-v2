@@ -9,6 +9,7 @@ import styled from "@emotion/styled";
 import Page from "layout/Page";
 import Button from "components/Button";
 import BannerStatic from "components/BanerStatic";
+import Anchors from "components/Anchors";
 
 const DOMAIN = process.env.APP_DOMAIN;
 
@@ -31,9 +32,10 @@ const Article = ({
         <Container maxWidth="md">
 
           <Content smallPadding={!article.image?.data} id="content-article">
+            <Anchors data={article.chapters}/>
             {!article.image?.data && <Typography variant="h1">{article.title}</Typography>}
             {!!article.perex?.length && <Typography component="div" variant="body1" dangerouslySetInnerHTML={{__html: article.perex}} />}
-            {!!article.chapters?.length && article.chapters.map((item: any, index: number) => <Chapter key={index}>
+            {!!article.chapters?.length && article.chapters.map((item: any, index: number) => <Chapter key={index} id={item.idTarget ? item.idTarget.toLowerCase().split(' ').join('-') : null}>
               {!!item.title && <Typography variant="h2">{item.title}</Typography>}
               {item.text && <Typography component="div" variant="body1" dangerouslySetInnerHTML={{__html: item.text}} />}
               {item.banners_static.data && <BannerStatic data={item.banners_static.data.attributes}/>}
