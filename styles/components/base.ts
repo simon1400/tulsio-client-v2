@@ -1,6 +1,3 @@
-
-
-
 export const base = (theme: any) => ({
   styleOverrides: {
     html: {
@@ -13,11 +10,11 @@ export const base = (theme: any) => ({
       minHeight: "100vh",
       fontSize: "16px",
       width: '100%',
-      backgroundColor: "#202020",
+      backgroundColor: theme.palette.background.default,
       "&:after": {
         content: "''",
         display: 'block',
-        backgroundImage: `radial-gradient(circle at 59% 100%, #000, rgba(0, 0, 0, 0.65) 95%)`,
+        backgroundImage: theme.palette.background.paper,
         width: "100vw",
         height: "100vh",
         position: "fixed",

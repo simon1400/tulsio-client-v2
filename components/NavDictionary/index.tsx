@@ -4,41 +4,31 @@ import Search from "public/icons/search.svg";
 import Link from "next/link";
 
 interface INav {
+  handle: (e: any, idx: number) => void;
+  value: number;
   data: any;
   subMenu?: boolean;
-  category?: boolean;
   mobile?: boolean;
-  icon?: ReactElement;
 }
 
-const Nav: FC<INav> = ({
+const NavDictionary: FC<INav> = ({
+  handle,
   data,
   subMenu = false,
-  category = false,
-  mobile = false,
-  icon = null,
+  value,
+  mobile = false
 }) => {
   return (
     <CSubMenu removeMargin={!subMenu} subMenu={subMenu} mobile={mobile}>
       <ul>
-        {category && (
-          <li>
-            <Link href={"/blog"}>Všechny</Link>
-          </li>
-        )}
         {data.map((item: any, idx: number) => (
           <li key={idx}>
-            <Link href={'/'+item.slug}>{item.title}</Link>
+            <Link href={'/'+item.slug} onClick={e => handle(e, idx)}>{item.title}</Link>
           </li>
         ))}
-        {icon && (
-          <li>
-            <Link href={"/search"}><Search /></Link>
-          </li>
-        )}
       </ul>
     </CSubMenu>
   );
 };
 
-export default Nav;
+export default NavDictionary;

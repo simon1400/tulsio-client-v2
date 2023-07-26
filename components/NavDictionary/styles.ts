@@ -23,11 +23,9 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
     margin-left: ${mobile ? 0 : "-10px"};
     width: ${mobile ? 'auto' : "calc(100% + 20px)"};
   }
-  
   ul{
     margin: 0;
     padding: 0;
-    
     li{
       display: inline-block;
       &:not(:first-of-type) {
@@ -51,30 +49,6 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
           fill: white;
           position: relative;
           top: 5px;
-        }
-      }
-    }
-    
-  }
-  ${[theme.breakpoints.down("md")]} {
-    display: flex;
-    justify-content: flex-end;
-    ul{
-      li{
-        display: block;
-        text-align: right;
-        margin-bottom: 10px;
-        &:not(:first-of-type) {
-          margin-left: 0px;
-        }
-        &:not(:last-of-type) {
-          margin-right: 0px;
-        }
-        
-        a{
-          display: block;
-          font-size: 27px;
-          align-self: end;
         }
       }
     }

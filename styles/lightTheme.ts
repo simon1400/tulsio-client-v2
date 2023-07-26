@@ -1,10 +1,9 @@
-import { Theme as MuiTheme, ThemeOptions } from '@mui/material/styles';
-import {createTheme} from '@mui/material'
-import { typography } from './typography';
+import {Theme as MuiTheme, ThemeOptions, createTheme} from '@mui/material'
 import { components } from './components';
+import { typography } from './typography';
 import { IBorderRadius, IGlobalGap, IGlobalPadding } from './types';
 
-let theme = createTheme({
+let lightTheme = createTheme({
   breakpoints: {
     values: {
       xs: 320,
@@ -17,14 +16,14 @@ let theme = createTheme({
   },
   palette: {
     primary: {
-      main: "#4545ff"
+      main: "#ff0000"
     },
     text: {
       primary: "#000"
     },
     background: {
-      default: "#202020",
-      paper: "radial-gradient(circle at 59% 100%, #000, rgba(0, 0, 0, 0.65) 95%)"
+      default: "#ffffff",
+      paper: "radial-gradient(circle at 59% 100%, #fff, rgba(255, 255, 255, 0.65) 95%)"
     }
   },
   typography: {
@@ -34,13 +33,13 @@ let theme = createTheme({
 })
 
 const themeOption: ThemeOptions = {
-  components: components(theme),
-  typography: typography(theme)
+  components: components(lightTheme),
+  typography: typography(lightTheme)
 }
 
-theme = createTheme(theme, themeOption)
+lightTheme = createTheme(lightTheme, themeOption)
 
-export default theme;
+export default lightTheme;
 
 declare module '@emotion/react' {
   export interface Theme extends MuiTheme {

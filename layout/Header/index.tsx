@@ -77,8 +77,6 @@ const Header = () => {
             {mediaMd && <Nav 
               data={transformData}
               icon={Search}
-              handle={handleMenu}
-              value={value}
             />}
             <Lang />
             {!mediaMd && <Menu 

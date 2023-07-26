@@ -21,7 +21,7 @@ const Anchors: FC<{data: any}> = ({data}) => {
   return (
     <AnchorsS>
       <ul>
-        {data.map((item: any, idx: number) => {
+        {!!data?.length && data.map((item: any, idx: number) => {
           if(item.idTarget) {
             return <li key={idx}><a href={`#${item.idTarget.toLowerCase().split(' ').join('-')}`} onClick={(e) => handleMenu(e, item)}><ArrowDown /> {item.idTarget}</a></li>
           }

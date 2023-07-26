@@ -4,7 +4,6 @@ import Label from "components/Label";
 import { AnimationWrapArticle, ArticleTopS } from "./styles";
 import { getPallete } from "helpers/getPallete";
 import Breadcrumbs from "components/Breadcrumbs";
-// import { useScroll } from "@react-spring/web";
 
 import ArrowDown from "public/icons/arrow-2.svg";
 import { useRef } from "react";
@@ -23,32 +22,12 @@ const ArticleTop = ({
     }
   };
 
-  // const posElTop = useMemo(
-  //   () => ref?.current?.offsetTop,
-  //   [ref.current?.offsetTop]
-  // );
-  // const startHeight = useMemo(() => ref?.current?.clientHeight, [ref.current]);
-
-  // const [scrollY, setScrollY] = useState(0);
-
-  // const [height, setHeight] = useState<number>(startHeight);
-
   const { convert, color } = getPallete(article.background);
-
-  // useScroll({
-  //   onChange: ({ value: { scrollY } }) => setScrollY(scrollY),
-  // });
-
-  // useEffect(() => {
-  //   if (scrollY >= posElTop - 20) {
-  //     setHeight(startHeight - (scrollY - posElTop) - 20);
-  //   }
-  // }, [scrollY]);
 
   return (
     <AnimationWrapArticle ref={ref}>
       <ArticleTopS background={convert} color={color}>
-        <Image format="&resize=920x920" image={article.image.data} />
+        {article?.image?.data && <Image format="&resize=920x920" image={article.image.data} />}
         <Container maxWidth="md">
           <Breadcrumbs
             category={article.categories.data[0]?.attributes}

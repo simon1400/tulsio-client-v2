@@ -80,10 +80,14 @@ export const ContentS = styled.div<{removePadding: boolean; smallPadding: boolea
         content: '';
         left: 0;
         display: block;
-        top: 15px;
+        top: 17px;
         width: 14px;
-        height: 1.5px;
+        height: 3.2px;
+        border-radius: 10px;
         background-color: ${theme.palette.primary.main};
+        ${theme.breakpoints.down('md')} {
+          top: 14px;
+        }
       }
     }
   }

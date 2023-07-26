@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const LangS = styled.div(({theme}) => `
   position: relative;
   margin-top: -5px;
-  margin-left: 20px;
+  margin-left: 40px;
   ${theme.breakpoints.down("md")} {
     margin-top: 13px;
     margin-right: 10px;
