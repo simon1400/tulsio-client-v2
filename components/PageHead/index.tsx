@@ -54,7 +54,7 @@ const PageHead: FC<PageHeadProps> = ({ title, category, center, prefix }) => {
           {title}
         </Typography>
 
-        {category && <Nav data={nav} handle={handleMenu} subMenu category value={value} />}
+        {category && <Nav data={nav} subMenu category />}
       </Container>
     </CategoryTop>
   );

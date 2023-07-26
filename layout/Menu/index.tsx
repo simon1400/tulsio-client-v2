@@ -70,7 +70,7 @@ const Menu: FC<Props> = (props) => {
         <IconButton href="/search" sx={{ ml: 0, p: 0}}><SvgIcon component={Search} sx={{ fontSize: 32 }} /></IconButton>
         <IconButton onClick={() => handleDrawerToggle()} sx={{ ml: 0, p: 0}}><SvgIcon component={CloseIcon} sx={{ fontSize: 32 }} /></IconButton>
       </CloseMenuS>
-      <Nav mobile data={data} handle={handleMenu} value={value} orientation="vertical" />
+      <Nav mobile data={data} />
     </Drawer>
   )
 }

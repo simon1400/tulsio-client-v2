@@ -53,9 +53,9 @@ const Footer = () => {
       <FooterS>
         <Nav
           data={transformData}
-          handle={handleNav}
-          value={value}
-          orientation={md ? "vertical" : "horizontal"}
+          // handle={handleNav}
+          // value={value}
+          // orientation={md ? "vertical" : "horizontal"}
         />
         <SocialNav data={data} loading={loading} />
       </FooterS>
