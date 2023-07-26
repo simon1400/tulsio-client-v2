@@ -68,10 +68,10 @@ const DictionaryHead: FC<IDictionaryHead> = ({ title, data }) => {
       <CategoryTop>
         <Typography variant="h1">{title}</Typography>
         <div ref={ref}>
-          <NavDictionary data={transformData} handle={handleMenu} value={value} subMenu />
+          <NavDictionary data={transformData} handle={handleMenu} subMenu />
         </div>
         <StickyNav sticky={sticky}>
-          <NavDictionary data={transformData} handle={handleMenu} value={value} subMenu />
+          <NavDictionary data={transformData} handle={handleMenu} subMenu />
         </StickyNav>
       </CategoryTop>
     </Container>

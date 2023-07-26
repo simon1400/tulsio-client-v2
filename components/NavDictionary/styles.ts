@@ -25,7 +25,9 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
   }
   ul{
     margin: 0;
-    padding: 0;
+    padding: 0 15px;
+    white-space: nowrap;
+    overflow-x: scroll;
     li{
       display: inline-block;
       &:not(:first-of-type) {

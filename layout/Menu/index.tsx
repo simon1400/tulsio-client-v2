@@ -19,13 +19,13 @@ interface Props {
   handleDrawerToggle: () => void
   data: any;
   loading: boolean;
-  handleMenu: (e: SyntheticEvent, idx: number) => void;
+  handleMenu: (e: SyntheticEvent, slug: string) => void;
   value: number;
 }
 
 const Menu: FC<Props> = (props) => {
 
-  const { mobileOpen, handleDrawerToggle, data, loading, handleMenu, value } = props;
+  const { mobileOpen, handleDrawerToggle, data, loading, handleMenu } = props;
 
   if(loading) {
     return <></>
@@ -70,7 +70,7 @@ const Menu: FC<Props> = (props) => {
         <IconButton href="/search" sx={{ ml: 0, p: 0}}><SvgIcon component={Search} sx={{ fontSize: 32 }} /></IconButton>
         <IconButton onClick={() => handleDrawerToggle()} sx={{ ml: 0, p: 0}}><SvgIcon component={CloseIcon} sx={{ fontSize: 32 }} /></IconButton>
       </CloseMenuS>
-      <Nav mobile data={data} />
+      <Nav mobile handle={handleMenu} data={data} />
     </Drawer>
   )
 }

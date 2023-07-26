@@ -36,13 +36,15 @@ const PageHead: FC<PageHeadProps> = ({ title, category, center, prefix }) => {
     }
   }, [router.query]);
 
-  const handleMenu = (e: SyntheticEvent, idx: number) => {
-    if (idx === 0) {
+  const handleMenu = (e: SyntheticEvent, slug: string) => {
+    console.log(slug)
+    if (slug === '/blog') {
+      console.log(type)
       router.push(type === 'blog' ? "/blog" : "/tags");
     } else {
-      router.push('/'+nav[idx - 1].slug);
+      router.push(slug);
       // @ts-ignore
-      dispatch(fetchAllArticles(nav[idx - 1].slug));
+      dispatch(fetchAllArticles(slug));
     }
   };
 
@@ -54,7 +56,7 @@ const PageHead: FC<PageHeadProps> = ({ title, category, center, prefix }) => {
           {title}
         </Typography>
 
-        {category && <Nav data={nav} subMenu category />}
+        {category && <Nav data={nav} handle={handleMenu} subMenu category />}
       </Container>
     </CategoryTop>
   );

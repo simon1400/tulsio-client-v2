@@ -9,6 +9,7 @@ interface INav {
   category?: boolean;
   mobile?: boolean;
   icon?: ReactElement;
+  handle: (e: any, slug: string) => void;
 }
 
 const Nav: FC<INav> = ({
@@ -17,23 +18,24 @@ const Nav: FC<INav> = ({
   category = false,
   mobile = false,
   icon = null,
+  handle
 }) => {
   return (
     <CSubMenu removeMargin={!subMenu} subMenu={subMenu} mobile={mobile}>
       <ul>
         {category && (
           <li>
-            <Link href={"/blog"}>Všechny</Link>
+            <Link href="/blog" onClick={(e) => handle(e, "/blog")}>Všechny</Link>
           </li>
         )}
         {data.map((item: any, idx: number) => (
           <li key={idx}>
-            <Link href={'/'+item.slug}>{item.title}</Link>
+            <Link href={'/'+item.slug} onClick={(e) => handle(e, item.slug)}>{item.title}</Link>
           </li>
         ))}
         {icon && (
           <li>
-            <Link href={"/search"}><Search /></Link>
+            <Link href="/search" onClick={(e) => handle(e, "/search")}><Search /></Link>
           </li>
         )}
       </ul>

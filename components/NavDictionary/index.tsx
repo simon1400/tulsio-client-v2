@@ -1,11 +1,9 @@
-import { FC, ReactElement } from "react";
+import { FC } from "react";
 import { CSubMenu } from "./styles";
-import Search from "public/icons/search.svg";
 import Link from "next/link";
 
 interface INav {
   handle: (e: any, idx: number) => void;
-  value: number;
   data: any;
   subMenu?: boolean;
   mobile?: boolean;
@@ -15,7 +13,6 @@ const NavDictionary: FC<INav> = ({
   handle,
   data,
   subMenu = false,
-  value,
   mobile = false
 }) => {
   return (

@@ -54,14 +54,10 @@ const Header = () => {
     slug: item.link
   }))
 
-  const handleMenu = (e: SyntheticEvent, idx: number) => {
-    setValue(idx);
+  const handleMenu = (e: SyntheticEvent, slug: string) => {
+    e.preventDefault()
+    router.push(slug)
     setMobileOpen(false)
-    if(idx === 0) {
-      router.push('/search')
-    }else{
-      router.push('/'+transformData[idx-1].slug)
-    }
   };
 
   return (
@@ -76,6 +72,7 @@ const Header = () => {
           <NavWrap>
             {mediaMd && <Nav 
               data={transformData}
+              handle={handleMenu}
               icon={Search}
             />}
             <Lang />

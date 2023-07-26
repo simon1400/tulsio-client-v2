@@ -18,6 +18,11 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
   ${[theme.breakpoints.down("lg")]} {
     margin-bottom: ${removeMargin ? '0' : '30px'};
   }
+
+  ${[theme.breakpoints.down("md")]} {
+    display: flex;
+    justify-content: flex-end;
+  }
   
   ${theme.breakpoints.down('sm')} {
     margin-left: ${mobile ? 0 : "-10px"};
@@ -26,24 +31,26 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
   
   ul{
     margin: 0;
-    padding: 0;
-    
+    padding: 0${subMenu ? " 15px" : "0"};
+    white-space: ${subMenu ? "nowrap" : "wrap"};
+    ${subMenu ? "overflow-x: scroll" : ""};
     li{
-      display: inline-block;
+      display: ${mobile ? "block" : "inline-block"};
+      ${mobile ? "text-align: right; margin-bottom: 10px;" : ""}
       &:not(:first-of-type) {
-        margin-left: 20px;
+        margin-left: ${mobile ? "0" : "20px"};
       }
       &:not(:last-of-type) {
-        margin-right: 20px;
+        margin-right: ${mobile ? "0" : "20px"};
       }
       a{
         color: rgba(255, 255, 255, 0.85);
-        font-size: 20px;
+        font-size: ${mobile ? "27px" : "20px"};
         font-weight: 600;
         line-height: 1.25;
         text-decoration: none;
         transition: all .5s ease;
-        display: flex;
+        display: ${mobile ? "block" : "flex"};
         &:hover{
           color: white;
         }
@@ -56,27 +63,5 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
     }
     
   }
-  ${[theme.breakpoints.down("md")]} {
-    display: flex;
-    justify-content: flex-end;
-    ul{
-      li{
-        display: block;
-        text-align: right;
-        margin-bottom: 10px;
-        &:not(:first-of-type) {
-          margin-left: 0px;
-        }
-        &:not(:last-of-type) {
-          margin-right: 0px;
-        }
-        
-        a{
-          display: block;
-          font-size: 27px;
-          align-self: end;
-        }
-      }
-    }
-  }
+  
 `)
