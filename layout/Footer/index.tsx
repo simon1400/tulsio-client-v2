@@ -5,31 +5,15 @@ import Newsletter from "components/Newsletter";
 import SocialNav from "components/SocialNav";
 import Nav from "components/Nav";
 import { useRouter } from "next/router";
-import { SyntheticEvent, useEffect, useState } from "react";
-import { useTheme } from "@emotion/react";
-import { useMediaQuery } from "@mui/material";
+import { SyntheticEvent } from "react";
 
 const Footer = () => {
   const router = useRouter();
-  const { loading, data } = useQuery(navFooter, {variables: {
-    locale: router.locale
-  }});
-
-  const [value, setValue] = useState<number>(0);
-
-  useEffect(() => {
-    if (data?.navigation) {
-      if (data.navigation.data.attributes.footer.item.length) {
-        const idx = data.navigation.data.attributes.footer.item.findIndex(
-          (el: any) => el.link === router.asPath
-        );
-        setValue(idx >= 0 ? idx : false);
-      }
-    }
-  }, [data, router]);
-
-  const theme = useTheme();
-  const md = useMediaQuery(theme.breakpoints.down("md"));
+  const { loading, data } = useQuery(navFooter, {
+    variables: {
+      locale: router.locale,
+    },
+  });
 
   if (loading) {
     return <></>;
@@ -42,21 +26,16 @@ const Footer = () => {
     })
   );
 
-  const handleNav = (e: SyntheticEvent, idx: number) => {
-    setValue(idx);
-    router.push('/'+transformData[idx].slug);
+  const handleNav = (e: SyntheticEvent, slug: string) => {
+    e.preventDefault();
+    router.push(slug);
   };
 
   return (
     <>
       <Newsletter />
       <FooterS>
-        <Nav
-          data={transformData}
-          // handle={handleNav}
-          // value={value}
-          // orientation={md ? "vertical" : "horizontal"}
-        />
+        <Nav data={transformData} handle={handleNav} />
         <SocialNav data={data} loading={loading} />
       </FooterS>
     </>

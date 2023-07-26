@@ -1,6 +1,6 @@
 import { Container, Typography } from "@mui/material";
 import { useRouter } from "next/router";
-import { FC, SyntheticEvent, useEffect, useState } from "react";
+import { FC, SyntheticEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllArticles } from "stores/fetch/dataFetch";
 import { selectCategoryNav } from "stores/slices/navSlices";
@@ -17,29 +17,15 @@ interface PageHeadProps {
 }
 
 const PageHead: FC<PageHeadProps> = ({ title, category, center, prefix }) => {
-  const [value, setValue] = useState(0);
 
   const router = useRouter();
   const nav = useSelector(selectCategoryNav);
   const type = useSelector(selectType);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (category) {
-      if (nav.length && router.query.category !== "blog" && router.query.category !== "tags") {
-        setValue(
-          nav.findIndex((el: any) => el.slug === router.query.category) + 1
-        );
-      } else {
-        setValue(0);
-      }
-    }
-  }, [router.query]);
-
   const handleMenu = (e: SyntheticEvent, slug: string) => {
-    console.log(slug)
+    e.preventDefault()
     if (slug === '/blog') {
-      console.log(type)
       router.push(type === 'blog' ? "/blog" : "/tags");
     } else {
       router.push(slug);
