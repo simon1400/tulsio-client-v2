@@ -204,4 +204,11 @@ export const ContentS = styled.div<{removePadding: boolean; smallPadding: boolea
       padding-bottom: 3px;
     }
   }
+
+  figure.media{
+    iframe{
+      width: 100%;
+      height: 600px;
+    }
+  }
 `)
