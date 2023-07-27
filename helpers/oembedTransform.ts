@@ -7,8 +7,9 @@ export const oembedTransform = (htmlString: string) => {
   // If an oembed element was found, convert it to an iframe element
   if (oembedMatch) {
     // @ts-ignore
-    const oembedUrl = oembedMatch[0].match(/url="([^"]*)"/)[1];
-    const iframeElement = `<iframe src="${oembedUrl}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+    let oembedUrl = oembedMatch[0].match(/url="([^"]*)"/)[1];
+    oembedUrl = oembedUrl.replace("youtube.com/", "youtube.com/embed/")
+    const iframeElement = `<div><iframe src="${oembedUrl}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><div>`;
     str = str.replace(oembedRegex, iframeElement);
   }
 

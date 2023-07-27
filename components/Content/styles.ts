@@ -24,7 +24,7 @@ export const ContentS = styled.div<{removePadding: boolean; smallPadding: boolea
     }
     div{
       position: relative;
-      img{
+      img, iframe{
         object-fit: cover;
         width: 100%;
         height: 100%;
@@ -208,7 +208,7 @@ export const ContentS = styled.div<{removePadding: boolean; smallPadding: boolea
   figure.media{
     iframe{
       width: 100%;
-      height: 600px;
+      aspect-ratio: 16 / 9;
     }
   }
 `)
