@@ -42,6 +42,12 @@ const ImageComponent: FC<ImageProps> = ({
     altText = image.attributes.alternativeText || "";
   }
 
+  if(url.indexOf('.mp4') > 0) {
+    return <video loop muted autoPlay>
+        <source src={url} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+  }
   return <img src={url + "?format=webp" + format} alt={altText} />;
 };
 

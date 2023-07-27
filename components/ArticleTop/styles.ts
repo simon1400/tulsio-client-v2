@@ -15,7 +15,7 @@ export const ArticleTopS = styled.div<ArticleTopProps>(({theme, background, colo
   align-items: center;
   transition: none;
   background: ${background};
-  img {
+  img, video {
     position: absolute;
     object-fit: cover;
     object-position: center;
@@ -26,6 +26,9 @@ export const ArticleTopS = styled.div<ArticleTopProps>(({theme, background, colo
     z-index: 1;
     opacity: 0.4;
     mix-blend-mode: luminosity;
+  }
+  video{
+    mix-blend-mode: normal;
   }
   .MuiButtonBase-root{
     z-index: 2;
