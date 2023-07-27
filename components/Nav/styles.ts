@@ -6,6 +6,9 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
   padding-left: ${mobile ? '30px' : "0"};
   padding-bottom: ${mobile ? '30px' : "0"};
 
+  overflow-y: hidden;
+  height: ${subMenu ? "30px" : "auto"};
+
   margin-left: ${subMenu ? '-15px' : 0};
   width: ${subMenu ? 'calc(100% + 30px)' : 'auto'};
 
@@ -28,15 +31,13 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
     margin-left: ${mobile ? 0 : "-10px"};
     width: ${mobile ? 'auto' : "calc(100% + 20px)"};
   }
-  overflow-y: hidden;
-  height: ${subMenu ? "30px" : "auto"};
   
   ul{
     margin: 0;
     padding: 0${subMenu ? " 15px" : " 0"};
     white-space: ${subMenu ? "nowrap" : "wrap"};
     ${subMenu ? "overflow-x: scroll" : ""};
-    ${subMenu ? "height: 150%" : ""};
+    ${subMenu ? "height: calc(100% + 40px)" : ""};
     li{
       display: ${mobile ? "block" : "inline-block"};
       ${mobile ? "text-align: right; margin-bottom: 10px;" : ""}
@@ -68,8 +69,8 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
           position: absolute;
           width: calc(100% + 30px);
           left: -15px;
-          top: -2px;
-          height: 130%;
+          top: 0px;
+          height: 115%;
           background: ${mobile ? "transparent" : theme.palette.primary.main};
           border-radius: 20px;
           z-index: -1;
