@@ -36,6 +36,13 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
       &:not(:last-of-type) {
         margin-right: 20px;
       }
+      &.active{
+        a{
+          &:before{
+            display: block;
+          }
+        }
+      }
       a{
         color: rgba(255, 255, 255, 0.85);
         font-size: 20px;
@@ -44,6 +51,19 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
         text-decoration: none;
         transition: all .5s ease;
         display: flex;
+        position: relative;
+        &:before{
+          content: '';
+          display: none;
+          position: absolute;
+          width: calc(100% + 30px);
+          left: -15px;
+          top: -2px;
+          height: 130%;
+          background: ${theme.palette.primary.main};
+          border-radius: 20px;
+          z-index: -1;
+        }
         &:hover{
           color: white;
         }

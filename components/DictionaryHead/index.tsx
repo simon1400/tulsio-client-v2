@@ -16,6 +16,8 @@ const DictionaryHead: FC<IDictionaryHead> = ({ title, data }) => {
   const [scrollYState, setScrollYState] = useState<number>(0);
   const [sticky, setSticky] = useState(false)
 
+
+
   const handleMenu = (e: SyntheticEvent, idx: number) => {
     e.preventDefault()
     setValue(idx);
@@ -68,10 +70,10 @@ const DictionaryHead: FC<IDictionaryHead> = ({ title, data }) => {
       <CategoryTop>
         <Typography variant="h1">{title}</Typography>
         <div ref={ref}>
-          <NavDictionary data={transformData} handle={handleMenu} subMenu />
+          <NavDictionary data={transformData} handle={handleMenu} active={value} subMenu />
         </div>
         <StickyNav sticky={sticky}>
-          <NavDictionary data={transformData} handle={handleMenu} subMenu />
+          <NavDictionary data={transformData} handle={handleMenu} active={value} subMenu />
         </StickyNav>
       </CategoryTop>
     </Container>

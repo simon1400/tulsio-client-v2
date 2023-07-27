@@ -7,19 +7,21 @@ interface INav {
   data: any;
   subMenu?: boolean;
   mobile?: boolean;
+  active?: number;
 }
 
 const NavDictionary: FC<INav> = ({
   handle,
   data,
   subMenu = false,
-  mobile = false
+  mobile = false,
+  active
 }) => {
   return (
     <CSubMenu removeMargin={!subMenu} subMenu={subMenu} mobile={mobile}>
       <ul>
         {data.map((item: any, idx: number) => (
-          <li key={idx}>
+          <li className={active === idx ? "active" : ""} key={idx}>
             <Link href={'/'+item.slug} onClick={e => handle(e, idx)}>{item.title}</Link>
           </li>
         ))}
