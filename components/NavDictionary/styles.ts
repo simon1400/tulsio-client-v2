@@ -10,6 +10,7 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
 
   width: ${subMenu ? 'calc(100% + 30px)' : 'auto'};
   height: 30px;
+  overflow: hidden;
 
   ${[theme.breakpoints.down("xxl")]} {
     margin-bottom: ${removeMargin ? '0' : '50px'};
