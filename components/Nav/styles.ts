@@ -12,25 +12,7 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
   margin-left: ${subMenu ? '-15px' : 0};
   width: ${subMenu ? 'calc(100% + 30px)' : 'auto'};
 
-  ${[theme.breakpoints.down("xxl")]} {
-    margin-bottom: ${removeMargin ? '0' : '50px'};
-  }
-  ${[theme.breakpoints.down("xl")]} {
-    margin-bottom: ${removeMargin ? '0' : '40px'};
-  }
-  ${[theme.breakpoints.down("lg")]} {
-    margin-bottom: ${removeMargin ? '0' : '30px'};
-  }
-
-  ${[theme.breakpoints.down("md")]} {
-    display: flex;
-    justify-content: flex-end;
-  }
   
-  ${theme.breakpoints.down('sm')} {
-    margin-left: ${mobile ? 0 : "-10px"};
-    width: ${mobile ? 'auto' : "calc(100% + 20px)"};
-  }
   
   ul{
     margin: 0;
@@ -85,7 +67,42 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
         }
       }
     }
-    
+  }
+
+  ${[theme.breakpoints.down("xxl")]} {
+    margin-bottom: ${removeMargin ? '0' : '50px'};
+  }
+  ${[theme.breakpoints.down("xl")]} {
+    margin-bottom: ${removeMargin ? '0' : '40px'};
+  }
+  ${[theme.breakpoints.down("lg")]} {
+    margin-bottom: ${removeMargin ? '0' : '30px'};
+  }
+
+  ${[theme.breakpoints.down("md")]} {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  ${theme.breakpoints.down('sm')} {
+    margin-left: ${mobile ? 0 : "-10px"};
+    width: ${mobile ? 'auto' : "calc(100% + 20px)"};
+    ul{
+      margin: 0;
+      padding: 0 15px;
+      li{
+        &:not(:first-of-type) {
+          margin-left: 10px;
+        }
+        &:not(:last-of-type) {
+          margin-right: 10px;
+        }
+        a:before{
+          width: calc(100% + 15px);
+          left: -7px;
+        }
+      }
+    }
   }
   
 `)

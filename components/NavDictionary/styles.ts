@@ -11,21 +11,7 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
   width: ${subMenu ? 'calc(100% + 30px)' : 'auto'};
   height: 30px;
   overflow: hidden;
-
-  ${[theme.breakpoints.down("xxl")]} {
-    margin-bottom: ${removeMargin ? '0' : '50px'};
-  }
-  ${[theme.breakpoints.down("xl")]} {
-    margin-bottom: ${removeMargin ? '0' : '40px'};
-  }
-  ${[theme.breakpoints.down("lg")]} {
-    margin-bottom: ${removeMargin ? '0' : '30px'};
-  }
   
-  ${theme.breakpoints.down('sm')} {
-    margin-left: ${mobile ? 0 : "-10px"};
-    width: auto;
-  }
   ul{
     margin: 0;
     padding: 0 15px;
@@ -79,4 +65,32 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
       }
     }
   }
+  ${[theme.breakpoints.down("xxl")]} {
+    margin-bottom: ${removeMargin ? '0' : '50px'};
+  }
+  ${[theme.breakpoints.down("xl")]} {
+    margin-bottom: ${removeMargin ? '0' : '40px'};
+  }
+  ${[theme.breakpoints.down("lg")]} {
+    margin-bottom: ${removeMargin ? '0' : '30px'};
+  }
+  ${theme.breakpoints.down('sm')} {
+    margin-left: ${mobile ? 0 : "-10px"};
+    width: auto;
+    ul{
+      margin: 0;
+      padding: 0 15px;
+      li{
+        &:not(:first-of-type) {
+          margin-left: 10px;
+        }
+        &:not(:last-of-type) {
+          margin-right: 10px;
+        }
+        a:before{
+          width: calc(100% + 15px);
+          left: -7px;
+        }
+      }
+    }
 `)
