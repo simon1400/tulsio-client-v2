@@ -16,15 +16,19 @@ let lightTheme = createTheme({
   },
   palette: {
     primary: {
-      main: "#ff0000"
+      main: "#4545ff"
+    },
+    secondary: {
+      main: "rgba(43, 43, 43, 0.07)"
     },
     text: {
-      primary: "#000"
+      primary: "#000",
+      secondary: "#2b2b2b"
     },
     background: {
       default: "#ffffff",
       paper: "radial-gradient(circle at 59% 100%, #fff, rgba(255, 255, 255, 0.65) 95%)"
-    }
+    },
   },
   typography: {
     fontFamily: "Manrope",

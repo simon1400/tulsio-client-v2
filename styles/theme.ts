@@ -19,8 +19,12 @@ let theme = createTheme({
     primary: {
       main: "#4545ff"
     },
+    secondary: {
+      main: "rgba(255, 255, 255, 0.1)",
+    },
     text: {
-      primary: "#000"
+      primary: "#000",
+      secondary: "rgba(255, 255, 255, 0.85)"
     },
     background: {
       default: "#202020",

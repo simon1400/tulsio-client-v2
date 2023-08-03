@@ -183,7 +183,7 @@ export const ContentS = styled.div<{removePadding: boolean; smallPadding: boolea
   
   h1, h2, h3, h4, h5 {
     margin-top: 40px;
-    color: white;
+    color: ${theme.palette.text.secondary};
     line-height: 1.25;
     font-family: ${theme.typography.fontFamily};
     font-weight: 700;

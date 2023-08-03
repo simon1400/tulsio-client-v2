@@ -56,7 +56,7 @@ const Header = () => {
 
   const handleMenu = (e: SyntheticEvent, slug: string) => {
     e.preventDefault()
-    router.push(slug)
+    router.push('/'+slug)
     setMobileOpen(false)
   };
 

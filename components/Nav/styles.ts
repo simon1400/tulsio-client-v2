@@ -55,7 +55,7 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
         }
       }
       a{
-        color: rgba(255, 255, 255, 0.85);
+        color: ${theme.palette.text.secondary};
         font-size: ${mobile ? "27px" : "20px"};
         font-weight: 600;
         line-height: 1.25;
@@ -76,10 +76,10 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
           z-index: -1;
         }
         &:hover{
-          color: white;
+          color: ${theme.palette.text.secondary};
         }
         svg{
-          fill: white;
+          fill: ${theme.palette.text.secondary};
           position: relative;
           top: 5px;
         }

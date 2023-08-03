@@ -1,7 +1,7 @@
 import { paragraph } from "./paragraph";
 
 export const baseBody = (theme: any) => ({
-  color: "rgba(255, 255, 255, .85)",
+  color: theme.palette.text.secondary,
   fontSize: "20px",
   lineHeight: "1.84",
   fontFamily: theme.typography.fontFamily,

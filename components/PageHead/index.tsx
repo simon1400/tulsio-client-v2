@@ -41,7 +41,6 @@ const PageHead: FC<PageHeadProps> = ({ title, category, center, prefix }) => {
           {prefix ? <span>{prefix}</span> : ""}
           {title}
         </Typography>
-
         {category && <Nav data={nav} handle={handleMenu} subMenu category />}
       </Container>
     </CategoryTop>

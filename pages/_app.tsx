@@ -12,6 +12,7 @@ import { wrapper } from "../stores";
 import { Provider } from "react-redux";
 import Footer from "layout/Footer";
 import GranimComponent from "components/Granim";
+import lightTheme from "styles/lightTheme";
 
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
@@ -21,12 +22,14 @@ const MyApp: FC<MyAppProps> = ({ Component, ...rest }) => {
 
   const { store, props } = wrapper.useWrappedStore(rest);
   const clientSideEmotionCache = createEmotionCache();
-  const { emotionCache = clientSideEmotionCache, pageProps } = props;
+  const { emotionCache = clientSideEmotionCache, pageProps, router } = props;
 
+  const selectTheme = router.state?.asPath.indexOf('/shop') >= 0 || router.state?.asPath.indexOf('/catalog') >= 0 || router.state?.asPath.indexOf('/produkt') >= 0 ? lightTheme : theme
+  
   return (
     <Provider store={store}>
       <CacheProvider value={emotionCache}>
-        <ThemeProvider theme={{ ...theme, ...globalVariables }}>
+        <ThemeProvider theme={{ ...selectTheme, ...globalVariables }}>
           <CssBaseline />
           <WithGraphQL>
             <Header />

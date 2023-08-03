@@ -12,14 +12,14 @@ export const LangS = styled.div(({theme}) => `
   .button-lang{
     width: 88px;
     height: 44px;
-    border: solid 1px rgba(255, 255, 255, 0.3);
+    border: solid 1px ${theme.palette.text.secondary};
     border-radius: 22px;
     padding: 6px 23px;
     background-color: rgba(69, 69, 255, 0);
     font-size: 16px;
     text-transform: uppercase;
     display: flex;
-    color: white;
+    color: ${theme.palette.text.secondary};
     justify-content: space-between;
     cursor: pointer;
     ${theme.breakpoints.down("md")} {
@@ -29,7 +29,7 @@ export const LangS = styled.div(({theme}) => `
       padding: 0px 9px;
     }
     svg{
-      fill: white;
+      fill: ${theme.palette.text.secondary};
       min-width: 25px;
       margin-left: 7px;
       transform: rotate(-180deg);
