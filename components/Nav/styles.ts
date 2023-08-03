@@ -34,7 +34,7 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
   
   ul{
     margin: 0;
-    padding: 0${subMenu ? " 15px" : " 0"};
+    padding: 0 15px;
     white-space: ${subMenu ? "nowrap" : "wrap"};
     ${subMenu ? "overflow-x: scroll" : ""};
     ${subMenu ? "height: calc(100% + 40px)" : ""};

@@ -2,12 +2,14 @@ import styled from "@emotion/styled";
 
 export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; subMenu?: boolean;}>(({subMenu, theme, removeMargin, mobile}) => `
   margin-bottom: ${removeMargin ? '0' : '80px'};
+  margin-left: ${subMenu ? '-15px' : 0};
+
   padding-right: ${mobile ? '30px' : "0"};
   padding-left: ${mobile ? '30px' : "0"};
   padding-bottom: ${mobile ? '30px' : "0"};
 
-  margin-left: ${subMenu ? '-15px' : 0};
   width: ${subMenu ? 'calc(100% + 30px)' : 'auto'};
+  height: 30px;
 
   ${[theme.breakpoints.down("xxl")]} {
     margin-bottom: ${removeMargin ? '0' : '50px'};
@@ -28,6 +30,7 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
     padding: 0 15px;
     white-space: nowrap;
     overflow-x: scroll;
+    height: calc(100% + 40px);
     li{
       display: inline-block;
       &:not(:first-of-type) {
@@ -58,8 +61,8 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
           position: absolute;
           width: calc(100% + 30px);
           left: -15px;
-          top: -2px;
-          height: 130%;
+          top: 0px;
+          height: 110%;
           background: ${theme.palette.primary.main};
           border-radius: 20px;
           z-index: -1;
