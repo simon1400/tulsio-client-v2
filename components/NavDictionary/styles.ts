@@ -24,7 +24,7 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
   
   ${theme.breakpoints.down('sm')} {
     margin-left: ${mobile ? 0 : "-10px"};
-    width: ${mobile ? 'auto' : "calc(100% + 20px)"};
+    width: auto;
   }
   ul{
     margin: 0;

@@ -73,7 +73,7 @@ const DictionaryHead: FC<IDictionaryHead> = ({ title, data }) => {
           <NavDictionary data={transformData} handle={handleMenu} active={value} subMenu />
         </div>
         <StickyNav sticky={sticky}>
-          <NavDictionary data={transformData} handle={handleMenu} active={value} subMenu />
+          <NavDictionary data={transformData} handle={handleMenu} active={value} />
         </StickyNav>
       </CategoryTop>
     </Container>
