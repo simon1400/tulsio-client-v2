@@ -14,7 +14,7 @@ const ShopSeller = () => {
         />
         <Grid container spacing={6}>
           <Grid item xs={6}>
-            <Slider />
+            {/* <Slider /> */}
           </Grid>
           <Grid item xs={6}>
             <ProductTop />
