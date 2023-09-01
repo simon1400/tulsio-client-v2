@@ -10,6 +10,7 @@ import MenuIcon from 'public/icons/menu.svg'
 import Search from 'public/icons/search.svg'
 import { useRouter } from 'next/router';
 import Lang from 'components/Lang';
+import Image from 'next/image';
 
 const Nav = dynamic(() => import('components/Nav'), {ssr: false})
 const Menu = dynamic(() => import('layout/Menu'), {ssr: false})
@@ -46,7 +47,7 @@ const Header = () => {
   }, [data, router])
 
   if(loading) {
-    return <></>
+    return <header></header>
   }
 
   const transformData = data.navigation.data.attributes.topNav.item.map((item: any, idx: number) => ({
@@ -66,7 +67,7 @@ const Header = () => {
         <HeaderWrap>
           <Logo>
             <Link href="/">
-              <img src="/assets/logo-tulsio.svg" width="211" height="61" alt="Tulsio" />
+              <Image src="/assets/logo-tulsio.svg" width="211" height="61" alt="Tulsio" />
             </Link>
           </Logo>
           <NavWrap>

@@ -25,6 +25,19 @@ export const CardS = styled.div(({theme}) => `
       width: 100%;
       height: 100%;
     }
+    .label-wrap{
+      position: absolute;
+      z-index: 10;
+      bottom: 30px;
+      right: 30px;
+      display: flex;
+      flex-direction: column;
+      > * {
+        width: auto;
+        margin-bottom: 5px;
+        text-align: right;
+      }
+    }
   }
   .card-content{
     padding: 20px 30px;

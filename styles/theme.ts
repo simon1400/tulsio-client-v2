@@ -16,6 +16,7 @@ let theme = createTheme({
     },
   },
   palette: {
+    mode: 'dark',
     primary: {
       main: "#4545ff"
     },
@@ -24,7 +25,7 @@ let theme = createTheme({
     },
     text: {
       primary: "#000",
-      secondary: "rgba(255, 255, 255, 0.85)"
+      secondary: "#fff"
     },
     background: {
       default: "#202020",

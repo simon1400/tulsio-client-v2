@@ -13,10 +13,9 @@ interface PageHeadProps {
   title: string;
   category?: boolean;
   center?: boolean;
-  prefix?: string;
 }
 
-const PageHead: FC<PageHeadProps> = ({ title, category, center, prefix }) => {
+const PageHead: FC<PageHeadProps> = ({ title, category, center }) => {
 
   const router = useRouter();
   const nav = useSelector(selectCategoryNav);
@@ -36,11 +35,8 @@ const PageHead: FC<PageHeadProps> = ({ title, category, center, prefix }) => {
 
   return (
     <CategoryTop>
-      <Container max-width="xl">
-        <Typography textAlign={center ? "center" : "left"} variant="h1">
-          {prefix ? <span>{prefix}</span> : ""}
-          {title}
-        </Typography>
+      <Container>
+        <Typography textAlign={center ? "center" : "left"} variant="h1">{title}</Typography>
         {category && <Nav data={nav} handle={handleMenu} subMenu category />}
       </Container>
     </CategoryTop>

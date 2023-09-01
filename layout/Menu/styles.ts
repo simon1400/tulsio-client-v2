@@ -24,16 +24,16 @@ export const MenuS = styled.div`
 export const CloseMenuS = styled.div`
   position: absolute;
   right: 10px;
-  top: 35px;
+  top: 30px;
   display: flex;
   align-items: center;
   >div:first-of-type{
     margin-top: 0;
   }
   svg{
-    fill: rgba(255, 255, 255, 0.75);;
+    fill: rgba(255, 255, 255, 0.75);
     &:first-of-type {
-      margin-right: 20px;
+      margin-right: 10px;
     }
   }
 `

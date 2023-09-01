@@ -40,3 +40,43 @@ export const getCategory = gql`
     }
   }
 `
+
+export const getCatalogNav = gql`
+  query catalogNav($locale: I18NLocaleCode!) {
+    shopCategories(locale: $locale) {
+      data {
+        attributes {
+          navTitle
+          slug
+        }
+      }
+    }
+  }
+`
+
+export const getShopCategory = gql`
+  query shopCategory( $slug: String!, $locale: I18NLocaleCode! ) {
+    shopCategories(filters: { slug: { eq: $slug } }, locale: $locale) {
+      data {
+        attributes {
+          title
+          navTitle
+          shortTitle
+          description
+          meta{
+            title
+            description
+            image{
+              data{
+                attributes{
+                  url
+                  alternativeText
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`

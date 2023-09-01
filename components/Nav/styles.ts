@@ -6,20 +6,18 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
   padding-left: ${mobile ? '30px' : "0"};
   padding-bottom: ${mobile ? '30px' : "0"};
 
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
   height: ${subMenu ? "30px" : "auto"};
 
   margin-left: ${subMenu ? '-15px' : 0};
   width: ${subMenu ? 'calc(100% + 30px)' : 'auto'};
-
-  
   
   ul{
     margin: 0;
     padding: 0 15px;
     white-space: ${subMenu ? "nowrap" : "wrap"};
-    ${subMenu ? "overflow-x: scroll" : ""};
-    ${subMenu ? "height: calc(100% + 40px)" : ""};
+    ${subMenu ? "overflow-x: scroll;" : ""}
+    ${subMenu ? "height: calc(100% + 40px);" : ""}
     li{
       display: ${mobile ? "block" : "inline-block"};
       ${mobile ? "text-align: right; margin-bottom: 10px;" : ""}
@@ -31,6 +29,7 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
       }
       &.active{
         a{
+          color: white;
           &:before{
             display: block;
           }
@@ -39,6 +38,7 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
       a{
         color: ${theme.palette.text.secondary};
         font-size: ${mobile ? "27px" : "20px"};
+        opacity: .85;
         font-weight: 600;
         line-height: 1.25;
         text-decoration: none;
@@ -51,19 +51,27 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
           position: absolute;
           width: calc(100% + 30px);
           left: -15px;
-          top: 0px;
-          height: 115%;
+          top: -3px;
+          height: 125%;
           background: ${mobile ? "transparent" : theme.palette.primary.main};
           border-radius: 20px;
           z-index: -1;
         }
         &:hover{
           color: ${theme.palette.text.secondary};
+          opacity: 1;
+          &:after{
+            display: block;
+          }
         }
         svg{
           fill: ${theme.palette.text.secondary};
           position: relative;
+          opacity: .85;
           top: 5px;
+          &:hover{
+            opacity: 1;
+          }
         }
       }
     }
@@ -89,13 +97,13 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
     width: ${mobile ? 'auto' : "calc(100% + 20px)"};
     ul{
       margin: 0;
-      padding: 0 15px;
+      padding: 0${subMenu ? " 15px" : ""};
       li{
         &:not(:first-of-type) {
-          margin-left: 10px;
+          margin-left: ${subMenu ? "10px" : "0"};
         }
         &:not(:last-of-type) {
-          margin-right: 10px;
+          margin-right: ${subMenu ? "10px" : "0"};
         }
         a:before{
           width: calc(100% + 15px);

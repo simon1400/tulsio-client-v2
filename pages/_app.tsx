@@ -22,9 +22,9 @@ const MyApp: FC<MyAppProps> = ({ Component, ...rest }) => {
 
   const { store, props } = wrapper.useWrappedStore(rest);
   const clientSideEmotionCache = createEmotionCache();
-  const { emotionCache = clientSideEmotionCache, pageProps, router } = props;
+  const { emotionCache = clientSideEmotionCache, pageProps } = props;
 
-  const selectTheme = router.state?.asPath.indexOf('/shop') >= 0 || router.state?.asPath.indexOf('/catalog') >= 0 || router.state?.asPath.indexOf('/produkt') >= 0 ? lightTheme : theme
+  const selectTheme = pageProps.light ? lightTheme : theme;
   
   return (
     <Provider store={store}>
@@ -35,7 +35,6 @@ const MyApp: FC<MyAppProps> = ({ Component, ...rest }) => {
             <Header />
             <Component {...pageProps} />
             <Footer />
-            {/* <CookieConsent /> */}
             <GranimComponent />
           </WithGraphQL>
         </ThemeProvider>

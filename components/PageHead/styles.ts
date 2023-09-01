@@ -14,7 +14,7 @@ export const CategoryTop = styled.section(({theme}) => `
       margin-bottom: 30px;
     }
     span{
-      color: rgba(255, 255, 255, .25);
+      /* color: rgba(255, 255, 255, .25); */
       margin-right: 10px;
     }
   }

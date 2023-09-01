@@ -3,6 +3,17 @@ import Breadcrumbs from "components/Breadcrumbs"
 import ProductTop from "components/ProductTop"
 import Slider from "components/Slider"
 import Page from "layout/Page"
+import { wrapper } from "stores"
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) => async (ctx) => {
+    return {
+      props: {
+        light: true
+      },
+    };
+  }
+);
 
 const ShopSeller = () => {
   return (

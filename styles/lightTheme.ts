@@ -15,11 +15,12 @@ let lightTheme = createTheme({
     },
   },
   palette: {
+    mode: 'dark',
     primary: {
       main: "#4545ff"
     },
     secondary: {
-      main: "rgba(43, 43, 43, 0.07)"
+      main: "rgba(43, 43, 43, .07)"
     },
     text: {
       primary: "#000",

@@ -16,7 +16,7 @@ const Footer = () => {
   });
 
   if (loading) {
-    return <></>;
+    return <footer></footer>;
   }
 
   const transformData = data.navigation.data.attributes.footer.item.map(

@@ -2,6 +2,7 @@ import { Container } from "@mui/material";
 import {
   useHits,
   UseHitsProps,
+  useSearchBox,
 } from 'react-instantsearch-hooks-web';
 import FaqItem from "components/FaqItem";
 import { FaqHitsS } from "./styles";
@@ -26,12 +27,14 @@ const FaqHits = (props: FaqHitsProps) => {
     transformItems
   });
 
+  const {query} = useSearchBox()
+
   return (
     <Container maxWidth="md">
       <FaqHitsS>
-        {!hits.length && <NotResult />}
-        {results && results.query.length >= 3 && hits.map((item: any, idx: number) => <FaqItem key={idx} data={item} />)}
-        {results && results.query.length < 3 && props.allFaq.map((item: any, idx: number) => <FaqItem key={idx} data={item} />)}
+        {!hits.length && query.length >= 3 && <NotResult />}
+        {query.length >= 3 && hits.map((item: any, idx: number) => <FaqItem key={idx} data={item} />)}
+        {query.length < 3 && props.allFaq.map((item: any, idx: number) => <FaqItem key={idx} data={item} />)}
       </FaqHitsS>
     </Container>
   )

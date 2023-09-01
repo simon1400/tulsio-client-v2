@@ -1,5 +1,5 @@
 import { InputAdornment, SvgIcon } from '@mui/material';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSearchBox, UseSearchBoxProps } from 'react-instantsearch-hooks-web';
 import { SearchWrap } from './styled';
 import SearchIcon from 'public/icons/search.svg'

@@ -37,6 +37,7 @@ export const NavWrap = styled.div(({theme}) => `
   justify-content: flex-end;
   margin-top: 10px;
   ${[theme.breakpoints.down("md")]} {
+    margin-top: 0px;
     > button{
       margin-right: 0;
       svg{

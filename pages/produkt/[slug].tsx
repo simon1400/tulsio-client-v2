@@ -1,12 +1,23 @@
 import { Card, Container, Grid, Typography } from "@mui/material";
 import Breadcrumbs from "components/Breadcrumbs";
 import Content from "components/Content";
-import PageHead from "components/PageHead";
+// import PageHead from "components/PageHead";
 import ProductTop from "components/ProductTop";
 import Seller from "components/Seller";
 import Slider from "components/Slider";
 import Page from "layout/Page";
-import { GridShop } from "styles/grid";
+import { wrapper } from "stores";
+// import { GridShop } from "styles/grid";
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) => async (ctx) => {
+    return {
+      props: {
+        light: true
+      },
+    };
+  }
+);
 
 const ShopSeller = () => {
   return (
@@ -18,7 +29,7 @@ const ShopSeller = () => {
         />
         <Grid container spacing={6}>
           <Grid item xs={4}>
-            <Slider />
+            {/* <Slider /> */}
           </Grid>
           <Grid item xs={8}>
             <ProductTop />
