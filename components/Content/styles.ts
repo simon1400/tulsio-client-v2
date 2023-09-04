@@ -93,91 +93,51 @@ export const ContentS = styled.div<{removePadding: boolean; smallPadding: boolea
   }
 
   h1 {
-    font-size: 40px;
+    font-size: 32px;
     ${theme.breakpoints.down('xxl')} {
-      font-size: 30px;
-      line-height: 1.25;
-    }
-    ${theme.breakpoints.down('xl')} {
-      font-size: 27px;
-      line-height: 1.25;
+      font-size: 28px;
     }
     ${theme.breakpoints.down('lg')} {
-      font-size: 25px;
-      line-height: 1.25;
+      font-size: 27px;
     }
     ${theme.breakpoints.down('md')} {
       font-size: 23px;
-      line-height: 1.25;
-    }
-    ${theme.breakpoints.down('sm')} {
-      font-size: 22px;
-      line-height: 1.25;
     }
   }
   h2 {
-    font-size: 30px;
+    font-size: 28px;
     ${theme.breakpoints.down('xxl')} {
-      font-size: 23px;
-      line-height: 1.25;
-    }
-    ${theme.breakpoints.down('xl')} {
-      font-size: 21px;
-      line-height: 1.25;
+      font-size: 25px;
     }
     ${theme.breakpoints.down('lg')} {
-      font-size: 20px;
-      line-height: 1.25;
+      font-size: 24px;
     }
     ${theme.breakpoints.down('md')} {
-      font-size: 18px;
-      line-height: 1.25;
-    }
-    ${theme.breakpoints.down('sm')} {
-      font-size: 17px;
-      line-height: 1.25;
+      font-size: 21px;
     }
   }
   h3 {
     font-size: 24px;
     ${theme.breakpoints.down('xxl')} {
-      font-size: 19px;
-      line-height: 1.25;
-    }
-    ${theme.breakpoints.down('xl')} {
-      font-size: 18px;
-      line-height: 1.25;
+      font-size: 22px;
     }
     ${theme.breakpoints.down('lg')} {
-      font-size: 18px;
-      line-height: 1.25;
+      font-size: 21px;
     }
     ${theme.breakpoints.down('md')} {
-      font-size: 16px;
-      line-height: 1.25;
-    }
-    ${theme.breakpoints.down('sm')} {
-      font-size: 15px;
-      line-height: 1.25;
+      font-size: 19px;
     }
   }
   h4 {
-    font-size: 19px;
+    font-size: 20px;
     ${theme.breakpoints.down('xxl')} {
-      font-size: 17px;
-      line-height: 1.25;
+      font-size: 19px;
     }
     ${theme.breakpoints.down('lg')} {
-      font-size: 16px;
-      line-height: 1.25;
+      font-size: 18px;
     }
     ${theme.breakpoints.down('md')} {
-      font-size: 14px;
-      line-height: 1.25;
-    }
-    ${theme.breakpoints.down('sm')} {
-      font-size: 13px;
-      line-height: 1.25;
+      font-size: 17px;
     }
   }
   
