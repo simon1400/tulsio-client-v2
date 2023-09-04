@@ -54,9 +54,15 @@ const Article = ({
             {article.image?.data && <ShareButton data={article} />}
           </Content>
         </Container>
+
+        {!!article.categories.data[0]?.attributes.articles.data.length && <Container maxWidth="md">
+          <Typography variant="h2" marginBottom={10}>Dále by vás mohlo zajímat</Typography>
+        </Container>}
+
         {!!article.categories.data[0]?.attributes.articles.data.length && (
           <Articles data={article.categories.data[0].attributes.articles.data.splice(0, 4).map((item: any) => item.attributes)} />
         )}
+
       </article>}
     </Page>
   )
