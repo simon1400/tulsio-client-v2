@@ -10,6 +10,19 @@ main {
   min-height: 60vh;
 }
 
+header{
+  height: 270.44px;
+  @media(max-width: 1920px) {
+    height: 170.44px;
+  }
+  @media(max-width: 1440px) {
+    height: 150.44px;
+  }
+  @media(max-width: 980px) {
+    height: 88px;
+  }
+}
+
 /* Customize website's scrollbar like Mac OS
 Not supports in Firefox and IE */
 

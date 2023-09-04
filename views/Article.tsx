@@ -11,6 +11,7 @@ import Button from "components/Button";
 import BannerStatic from "components/BanerStatic";
 import Anchors from "components/Anchors";
 import { oembedTransform } from "helpers/oembedTransform";
+import Articles from "components/Articles";
 
 const DOMAIN = process.env.APP_DOMAIN;
 
@@ -52,8 +53,10 @@ const Article = ({
             </Chapter>)}
             {article.image?.data && <ShareButton data={article} />}
           </Content>
-          
         </Container>
+        {!!article.categories.data[0].attributes.articles.data.length && (
+          <Articles data={article.categories.data[0].attributes.articles.data.splice(0, 4).map((item: any) => item.attributes)} />
+        )}
       </article>}
     </Page>
   )

@@ -141,11 +141,38 @@ export const getArticle = gql`
               }
             }
           }
-          categories {
+          categories(pagination: {limit: 1}) {
             data {
               attributes {
-                slug
-                title
+                articles(pagination: {limit: 4}){
+                  data{
+										attributes{
+                      title
+                      slug
+                      perex
+                      background
+                      showShortImg
+                      labels {
+                        data {
+                          attributes {
+                            title
+                            navTitle
+                            slug
+                            color
+                          }
+                        }
+                      }
+                      image {
+                        data {
+                          attributes {
+                            url
+                            alternativeText
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
               }
             }
           }
