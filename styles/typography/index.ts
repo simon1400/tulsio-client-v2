@@ -33,6 +33,9 @@ export const typography = (theme: any) => ({
     [theme.breakpoints.down('md')]: {
       fontSize: '21px'
     },
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '15px'
+    },
   },
   h3: {
     fontSize: "24px",
