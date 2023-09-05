@@ -49,10 +49,10 @@ const DictionaryHits: FC<{ data: any }> = ({ data }) => {
                       </div>
                     )}
                     <Content removePadding>
-                      <Typography variant="h2">{item.title}</Typography>
+                      <Typography component="h2" variant="h3">{item.title}</Typography>
                       <Typography
                         component="div"
-                        variant="body1"
+                        variant="body2"
                         dangerouslySetInnerHTML={{ __html: item.content }}
                       />
                       {item.textLink && item.link && (

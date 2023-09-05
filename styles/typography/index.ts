@@ -1,4 +1,5 @@
 import { baseBody } from "./baseBody";
+import { baseBody2 } from "./baseBody2";
 import { baseHead } from "./baseHead";
 
 export const typography = (theme: any) => ({
@@ -6,7 +7,7 @@ export const typography = (theme: any) => ({
     ...baseBody(theme)
   },
   body2: {
-    ...baseBody(theme)
+    ...baseBody2(theme)
   },
   h1: {
     fontSize: "32px",

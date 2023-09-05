@@ -22,11 +22,11 @@ const FaqItem: FC<{data: IFaqItem}> = ({ data }) => {
         <AccordionSummary 
           aria-controls="panel1a-content"
           expandIcon={<SvgIcon component={Chevron} fontSize="medium" sx={{ color: "white" }} />}>
-          <Typography variant="h3" dangerouslySetInnerHTML={{__html: data?._highlightResult?.title.value || data.title}} />
+          <Typography component="h2" variant="h4" dangerouslySetInnerHTML={{__html: data?._highlightResult?.title.value || data.title}} />
         </AccordionSummary>
         <AccordionDetails>
           <Content removePadding>
-            <Typography variant="body1" dangerouslySetInnerHTML={{__html: data.answer}} />
+            <Typography variant="body2" dangerouslySetInnerHTML={{__html: data.answer}} />
           </Content>
         </AccordionDetails>
       </Accordion>

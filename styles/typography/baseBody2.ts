@@ -1,8 +1,8 @@
 import { paragraph } from "./paragraph";
 
-export const baseBody = (theme: any) => ({
+export const baseBody2 = (theme: any) => ({
   color: theme.palette.text.secondary,
-  fontSize: "20px",
+  fontSize: "18px",
   lineHeight: 1.8,
   fontFamily: theme.typography.fontFamily,
   "&::selection": {
@@ -10,12 +10,12 @@ export const baseBody = (theme: any) => ({
   },
   p: paragraph(theme),
   [theme.breakpoints.down('xl')]: {
-    fontSize: '19px',
+    fontSize: '17px',
   },
   [theme.breakpoints.down('lg')]: {
-    fontSize: '18px',
+    fontSize: '16px',
   },
   [theme.breakpoints.down('md')]: {
-    fontSize: '17px',
+    fontSize: '15px',
   },
 })
