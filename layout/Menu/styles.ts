@@ -24,24 +24,28 @@ export const MenuS = styled.div`
 export const CloseMenuS = styled.div`
   position: absolute;
   right: 10px;
-  top: 30px;
+  top: 20px;
   display: flex;
   align-items: center;
   >div:first-of-type{
     margin-top: 0;
+    margin-right: 20px;
   }
   svg{
-    fill: rgba(255, 255, 255, 0.75);
-    &:first-of-type {
-      margin-right: 10px;
-    }
+    fill: rgba(255, 255, 255);
+  }
+  a{
+    margin-right: 20px;
+  }
+  button{
+    margin-right: 10px;
   }
 `
 
 export const Logo = styled.div`
   position: absolute;
-  top: 30px;
-  left: 30px;
+  top: 15px;
+  left: 10px;
   a{
     display: block;
   }

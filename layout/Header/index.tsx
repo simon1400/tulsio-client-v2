@@ -86,7 +86,7 @@ const Header = () => {
               handleDrawerToggle={handleDrawerToggle} />}
             {!mediaMd && <ControlWrap>
               <IconButton href="/search" sx={{ ml: 0}}>
-                <SvgIcon component={Search} />
+                <SvgIcon component={Search} sx={{ fontSize: 32 }}  />
               </IconButton>
             </ControlWrap>}
             {!mediaMd && <IconButton

@@ -52,14 +52,13 @@ export const ControlWrap = styled.div(({theme}) => `
   ${[theme.breakpoints.down("md")]} {
     svg{
       margin-top: 2px!important;
-      margin-right: 12px;
+      margin-right: 20px;
     }
   }
   svg{
-    font-size: 29px;
     display: block;
     margin-top: -6px;
-    fill: rgba(255, 255, 255, 0.75)!important;
+    fill: rgba(255, 255, 255)!important;
     transition: all .2s ease;
     &:hover{
       fill: white;
