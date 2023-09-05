@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const CategoryTop = styled.div`
   h1{
-    margin-bottom: 80px;
+    margin-bottom: 50px;
   }
 `
 
@@ -40,7 +40,6 @@ export const StickyNav = styled.div<{sticky: boolean}>(({sticky}) => `
   z-index: 1000;
   width: 100%;
   transform: translateY(${sticky ? "0" : "-90px"});
-  /* transition: all ${sticky ? ".5s" : "0"} ease; */
   transition: all .5s ease;
   > div {
     margin-bottom: 0;

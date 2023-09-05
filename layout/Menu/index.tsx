@@ -52,6 +52,7 @@ const Menu: FC<Props> = (props) => {
           boxSizing: 'border-box', 
           width: '100%',
           backgroundColor: "transparent",
+          backgroundImage: "none",
           paddingTop: "150px",
           position: 'relative',
           display: "flex",

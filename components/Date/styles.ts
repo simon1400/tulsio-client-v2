@@ -35,6 +35,7 @@ export const DateS = styled.div(({theme, color}) => `
   }
   ${theme.breakpoints.down('sm')} {
     margin-bottom: 20px;
+    margin-top: 40px;
     span{
       font-size: 13px;
       line-height: 1.92;

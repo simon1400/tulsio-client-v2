@@ -9,22 +9,23 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
   padding-bottom: ${mobile ? '30px' : "0"};
 
   width: ${subMenu ? 'calc(100% + 30px)' : 'auto'};
-  height: 30px;
+  height: 41px;
   overflow: hidden;
   
   ul{
     margin: 0;
     padding: 0 15px;
+    padding-top: 6px;
     white-space: nowrap;
     overflow-x: scroll;
     height: calc(100% + 40px);
     li{
       display: inline-block;
       &:not(:first-of-type) {
-        margin-left: 20px;
+        margin-left: 15px;
       }
       &:not(:last-of-type) {
-        margin-right: 20px;
+        margin-right: 15px;
       }
       &.active{
         a{
@@ -48,8 +49,8 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
           position: absolute;
           width: calc(100% + 30px);
           left: -15px;
-          top: 0px;
-          height: 110%;
+          top: -6px;
+          height: 40px;
           background: ${theme.palette.primary.main};
           border-radius: 20px;
           z-index: -1;
@@ -77,9 +78,11 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
   ${theme.breakpoints.down('sm')} {
     margin-left: ${mobile ? 0 : "-10px"};
     width: auto;
+    height: 25px;
     ul{
       margin: 0;
       padding: 0 15px;
+      padding-top: 0px;
       li{
         &:not(:first-of-type) {
           margin-left: 10px;
@@ -87,9 +90,14 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
         &:not(:last-of-type) {
           margin-right: 10px;
         }
-        a:before{
-          width: calc(100% + 15px);
-          left: -7px;
+        a{
+          font-size: 15px;
+          &:before{
+            width: calc(100% + 15px);
+            height: 25px;
+            left: -7px;
+            top: -2px;
+          }
         }
       }
     }

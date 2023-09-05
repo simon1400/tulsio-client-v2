@@ -39,6 +39,9 @@ export const ArticleTopS = styled.div<ArticleTopProps>(({theme, background, colo
     svg{
       fill: white;
     }
+    ${theme.breakpoints.down('sm')} {
+      display: none;
+    }
   }
   h1{
     position: relative;

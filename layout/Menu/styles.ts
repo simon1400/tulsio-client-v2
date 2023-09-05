@@ -24,7 +24,7 @@ export const MenuS = styled.div`
 export const CloseMenuS = styled.div`
   position: absolute;
   right: 10px;
-  top: 20px;
+  top: 30px;
   display: flex;
   align-items: center;
   >div:first-of-type{
@@ -42,9 +42,9 @@ export const CloseMenuS = styled.div`
   }
 `
 
-export const Logo = styled.div`
+export const Logo = styled.div(({theme}) => `
   position: absolute;
-  top: 15px;
+  top: 25px;
   left: 10px;
   a{
     display: block;
@@ -53,4 +53,4 @@ export const Logo = styled.div`
     width: 110px;
     height: 32px;
   }
-`
+`)

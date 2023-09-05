@@ -18,9 +18,9 @@ export const HeaderWrap = styled.div(({theme}) => `
   ${[theme.breakpoints.down("md")]} {
     padding: 20px 0;
   }
-  ${[theme.breakpoints.down("sm")]} {
+  /* ${[theme.breakpoints.down("sm")]} {
     padding: 10px 0;
-  }
+  } */
 `)
 
 export const Logo = styled.div(({theme}) => `

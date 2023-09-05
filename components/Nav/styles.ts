@@ -91,14 +91,13 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
 
   ${[theme.breakpoints.down("md")]} {
     display: flex;
-    justify-content: flex-end;
-    height: ${subMenu ? "41px" : "auto"};
+    justify-content: ${subMenu ? "flex-start" : "flex-end"};
   }
   
   ${theme.breakpoints.down('sm')} {
     margin-left: ${mobile ? 0 : "-10px"};
     width: ${mobile ? 'auto' : "calc(100% + 20px)"};
-    
+    height: ${subMenu ? "41px" : "auto"};
     ul{
       margin: 0;
       padding: 0${subMenu ? " 15px" : ""};
@@ -110,8 +109,13 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
         &:not(:last-of-type) {
           margin-right: ${subMenu ? "10px" : "0"};
         }
+        &.active{
+          a{
+            color: ${subMenu ? "#ffffff" : theme.palette.primary.main};
+          }
+        }
         a{
-          font-size: 15px;
+          font-size: ${subMenu ? "15px" : "27px"};
           &:before{
             width: calc(100% + 15px);
             left: -7px;

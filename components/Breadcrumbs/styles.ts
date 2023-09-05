@@ -44,7 +44,7 @@ export const BreadcrumbsS = styled(Breadcrumbs)(({theme, color}) => `
     }
   }
   ${theme.breakpoints.down('sm')} {
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     a{
       font-size: 13px;
       line-height: 1.92;

@@ -156,9 +156,19 @@ export const ContentS = styled.div<{removePadding: boolean; smallPadding: boolea
     margin: 0;
     padding-top: 13px;
     padding-bottom: 13px;
-    padding-left: 26px;
+    padding-left: 31px;
     position: relative;
-    border-left: 5px solid ${theme.palette.primary.main};
+    &:before{
+      content: '';
+      display: block;
+      background-color: ${theme.palette.primary.main};
+      width: 5px;
+      height: 100%;
+      left: 0;
+      top: 0;
+      position: absolute;
+      border-radius: 10px;
+    }
     ${theme.breakpoints.down('md')} {
       padding-top: 3px;
       padding-bottom: 3px;
