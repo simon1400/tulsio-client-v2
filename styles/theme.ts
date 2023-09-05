@@ -25,7 +25,7 @@ let theme = createTheme({
     },
     text: {
       primary: "#000",
-      secondary: "#fff"
+      secondary: "#ffffff"
     },
     background: {
       default: "#202020",

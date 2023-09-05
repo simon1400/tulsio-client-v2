@@ -6,30 +6,32 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
   padding-left: ${mobile ? '30px' : "0"};
   padding-bottom: ${mobile ? '30px' : "0"};
 
-  /* overflow-y: hidden; */
-  height: ${subMenu ? "30px" : "auto"};
+  overflow-y: hidden;
+  height: ${subMenu ? "41px" : "42px"};
 
   margin-left: ${subMenu ? '-15px' : 0};
   width: ${subMenu ? 'calc(100% + 30px)' : 'auto'};
   
   ul{
     margin: 0;
-    padding: 0 15px;
+
+    padding: ${subMenu ? "7px" : "2px"} 0 0 15px;
     white-space: ${subMenu ? "nowrap" : "wrap"};
     ${subMenu ? "overflow-x: scroll;" : ""}
-    ${subMenu ? "height: calc(100% + 40px);" : ""}
+    ${subMenu ? "height: calc(100% + 20px);" : ""}
     li{
       display: ${mobile ? "block" : "inline-block"};
       ${mobile ? "text-align: right; margin-bottom: 10px;" : ""}
       &:not(:first-of-type) {
-        margin-left: ${mobile ? "0" : "20px"};
+        margin-left: ${mobile ? "0" : "15px"};
       }
       &:not(:last-of-type) {
-        margin-right: ${mobile ? "0" : "20px"};
+        margin-right: ${mobile ? "0" : "15px"};
       }
       &.active{
         a{
           color: white;
+          opacity: 1;
           &:before{
             display: block;
           }
@@ -51,8 +53,8 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
           position: absolute;
           width: calc(100% + 30px);
           left: -15px;
-          top: -3px;
-          height: 125%;
+          top: -6px;
+          height: 38px;
           background: ${mobile ? "transparent" : theme.palette.primary.main};
           border-radius: 20px;
           z-index: -1;

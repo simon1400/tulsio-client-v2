@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 
 export const LangS = styled.div(({theme}) => `
   position: relative;
-  margin-top: -5px;
   margin-left: 40px;
   ${theme.breakpoints.down("md")} {
     margin-top: 13px;
@@ -11,10 +10,10 @@ export const LangS = styled.div(({theme}) => `
   }
   .button-lang{
     width: 88px;
-    height: 44px;
-    border: solid 1px ${theme.palette.text.secondary};
+    height: 40px;
+    border: solid 1.5px ${theme.palette.text.secondary}4D;
     border-radius: 22px;
-    padding: 6px 23px;
+    padding: 4px 23px;
     background-color: rgba(69, 69, 255, 0);
     font-size: 16px;
     text-transform: uppercase;
@@ -22,6 +21,10 @@ export const LangS = styled.div(({theme}) => `
     color: ${theme.palette.text.secondary};
     justify-content: space-between;
     cursor: pointer;
+    transition: all .2s ease;
+    &:hover{
+      border-color: ${theme.palette.text.secondary};
+    }
     ${theme.breakpoints.down("md")} {
       height: 24px;
       width: 59px;
@@ -32,7 +35,7 @@ export const LangS = styled.div(({theme}) => `
       fill: ${theme.palette.text.secondary};
       min-width: 25px;
       margin-left: 7px;
-      transform: rotate(-180deg);
+      
       transform-origin: center;
       transition: all .2s ease;
       ${theme.breakpoints.down("md")} {
@@ -41,7 +44,7 @@ export const LangS = styled.div(({theme}) => `
     }
     &.active {
       svg{
-        transform: rotate(0);
+        transform: rotate(180deg);
       }
     }
   }
