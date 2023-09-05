@@ -90,6 +90,11 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
         &:not(:last-of-type) {
           margin-right: 10px;
         }
+        &.active{
+          a{
+            color: white;
+          }
+        }
         a{
           font-size: 15px;
           &:before{

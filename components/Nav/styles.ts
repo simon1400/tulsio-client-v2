@@ -92,12 +92,12 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
   ${[theme.breakpoints.down("md")]} {
     display: flex;
     justify-content: ${subMenu ? "flex-start" : "flex-end"};
+    height: ${subMenu ? "41px" : "auto"};
   }
   
   ${theme.breakpoints.down('sm')} {
     margin-left: ${mobile ? 0 : "-10px"};
     width: ${mobile ? 'auto' : "calc(100% + 20px)"};
-    height: ${subMenu ? "41px" : "auto"};
     ul{
       margin: 0;
       padding: 0${subMenu ? " 15px" : ""};
