@@ -19,7 +19,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
 const Calculator: NextPage = () => {
   const [who, setWho] = useState("human");
   const [state, setState] = useState("looking");
-  const [lavel, setLavel] = useState<number | number[]>(10);
+  const [lavel, setLavel] = useState<number | number[]>(20);
   const [kg, setKg] = useState<number | number[]>(80);
 
   const handleLavel = (e: Event, newValue: number | number[]) => {
