@@ -93,6 +93,11 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
     display: flex;
     justify-content: ${subMenu ? "flex-start" : "flex-end"};
     height: ${subMenu ? "41px" : "auto"};
+    &.active{
+      a{
+        color: ${subMenu ? "#ffffff" : theme.palette.primary.main};
+      }
+    }
   }
   
   ${theme.breakpoints.down('sm')} {
@@ -109,11 +114,6 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
         &:not(:last-of-type) {
           margin-right: ${subMenu ? "10px" : "0"};
         }
-        &.active{
-          a{
-            color: ${subMenu ? "#ffffff" : theme.palette.primary.main};
-          }
-        }
         a{
           font-size: ${subMenu ? "15px" : "27px"};
           &:before{
@@ -126,5 +126,4 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
       }
     }
   }
-  
 `)

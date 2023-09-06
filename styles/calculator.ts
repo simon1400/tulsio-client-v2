@@ -1,0 +1,58 @@
+import styled from "@emotion/styled";
+import { Tabs } from "@mui/material";
+
+export const CalculatorS = styled.div(({theme}) => `
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 75px;
+  border-radius: ${theme.borderRadius['base']};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  ${theme.breakpoints.down('xxl')} {
+    border-radius: ${theme.borderRadius['xxl']};
+  }
+  ${theme.breakpoints.down('xl')} {
+    border-radius: ${theme.borderRadius['xl']};
+  }
+  ${theme.breakpoints.down('lg')} {
+    border-radius: ${theme.borderRadius['lg']};
+  }
+  ${theme.breakpoints.down('sm')} {
+    border-radius: ${theme.borderRadius['sm']};
+  }
+`)
+
+export const TabsS = styled(Tabs)(({theme}) => `
+  margin-bottom: 75px;
+  > div{
+    height: 62px;
+    border-radius: 31px;
+    background-color: rgba(255, 255, 255, 0.08);
+    padding: 6px;
+  }
+  
+  button{
+    color: white;
+    position: relative;
+    z-index: 2;
+    font-weight: 600;
+    text-transform: none;
+    font-size: 20px;
+    line-height: 1;
+    font-family: ${theme.typography.fontFamily};
+    &.Mui-selected{
+      color: white;
+    }
+  }
+  .MuiTabs-indicator{
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    background-color: #4545ff;
+    border-radius: 25px;
+    height: 50px;
+    padding: 0 20px;
+    z-index: 1;
+    bottom: 6px;
+  }
+`)
