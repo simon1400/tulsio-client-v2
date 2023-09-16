@@ -56,3 +56,15 @@ export const TabsS = styled(Tabs)(({theme}) => `
     bottom: 6px;
   }
 `)
+
+
+export const ResultCalculate = styled.div(({theme}) => `
+  padding-top: 35px;
+  svg{
+    margin-bottom: 10px;
+  }
+  span{
+    font-size: 24px;
+    font-weight: 700;
+  }
+`)
