@@ -18,19 +18,28 @@ const Calculator: NextPage = () => {
   const [kg, setKg] = useState<number | number[]>(80);
   const [solution, setSolution] = useState<number | number[]>(20);
   const [objemCbd, setObjemCbd] = useState<number | number[]>(2000);
-  const [objem, setObjem] = useState<number | number[]>(100);
+  const [objem, setObjem] = useState<number | number[]>(10);
   const [cbdDay, setCbdDay] = useState(0);
 
+  const [kapky, setKapky] = useState(0)
+
+  const [animation, setAnimation] = useState<boolean>(false)
+
   const handleCbdDay = (lavel: number, kg: number) => {
-    console.log(lavel)
     const problem = !lavel ? 1 : lavel;
     const mgCbdDay = +problem * +kg * 0.2157;
+    const resultObj = +objem / +objemCbd
+    setKapky((resultObj * mgCbdDay) / resultObj);
     setCbdDay(mgCbdDay);
   };
 
   useEffect(() => {
     handleCbdDay(lavel as number, kg as number);
   }, []);
+
+  useEffect(() => {
+    handleCbdDay(lavel as number, kg as number);
+  }, [objem, objemCbd])
 
   const handleWho = (e: SyntheticEvent, newValue: string) => {
     setWho(newValue);
@@ -48,6 +57,7 @@ const Calculator: NextPage = () => {
     handleCbdDay(newValue as number, kg as number);
     setObjemCbd(!newValue ? 1000 : newValue === 3 ? 2000 : 3000);
     setSolution(!newValue ? 10 : newValue === 3 ? 20 : 30);
+    setAnimation(true)
   };
 
   const handleKg = async (
@@ -66,7 +76,7 @@ const Calculator: NextPage = () => {
   ) => {
     if (!Number.isNaN(newValue)) {
       setSolution(newValue);
-      setObjemCbd(+newValue * 100);
+      // setObjemCbd(+newValue * 100);
     }
   };
 
@@ -90,6 +100,13 @@ const Calculator: NextPage = () => {
     }
   };
 
+  // useEffect(() => {
+  //   setAnimation(true)
+  //   // setTimeout(() => {
+  //   //   setAnimation(false)
+  //   // }, );
+  // }, [objem, objemCbd, cbdDay, kapky])
+
   return (
     <Page>
       <PageHead title="Kalkulačka CBD" />
@@ -112,7 +129,7 @@ const Calculator: NextPage = () => {
           <Range
             label="Vaše hmotnost"
             defaultValue={80}
-            min={0}
+            min={40}
             max={150}
             step={1}
             value={kg}
@@ -132,6 +149,7 @@ const Calculator: NextPage = () => {
                 value={`${solution}`}
                 type="%"
                 handle={handleSolution}
+                center
               />
             </Grid>
             <Grid item xs={12} md={4}>
@@ -142,19 +160,20 @@ const Calculator: NextPage = () => {
                 value={`${objemCbd}`}
                 type="mg"
                 handle={handleObjemCbd}
+                center
               />
             </Grid>
             <Grid item xs={12} md={4}>
               <Typography variant="h4" marginBottom={5}>
                 Objem láhvičky
               </Typography>
-              <BlockValue value={`${objem}`} type="ml" handle={handleObjem} />
+              <BlockValue value={`${objem}`} type="ml" handle={handleObjem} center />
             </Grid>
           </Grid>
           <Typography variant="h2">Vaše doporučené denní dávkování</Typography>
           <Grid container>
             <Grid item xs={12} md={4}>
-              <ResultCalculate>
+              <ResultCalculate animation={animation} delay={0}>
                 <div>
                   <ObjemIcon />
                 </div>
@@ -162,20 +181,20 @@ const Calculator: NextPage = () => {
               </ResultCalculate>
             </Grid>
             <Grid item xs={12} md={4}>
-              <ResultCalculate>
+              <ResultCalculate animation={animation} delay={0.2}>
                 <div>
                   <KapkaIcon />
                 </div>
-                <span>{cbdDay.toFixed(2)} kapek</span>
+                <span>{kapky.toFixed(0)} kapek</span>
               </ResultCalculate>
             </Grid>
             <Grid item xs={12} md={4}>
-              <ResultCalculate>
+              <ResultCalculate animation={animation} delay={0.5}>
                 <div>
                   <PipetaIcon />
                 </div>
                 <span>
-                  {((+objem / +objemCbd) * cbdDay).toFixed(2)} × pipeta
+                  {((+objem / +objemCbd) * cbdDay).toFixed(1)} × pipeta
                 </span>
               </ResultCalculate>
             </Grid>

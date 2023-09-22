@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
 
-export const BlockValueS = styled.div(({theme}) => `
+export const BlockValueS = styled.div<{center?: boolean; focus: boolean;}>(({theme, center, focus}) => `
   display: inline-block;
+  ${center ? `margin-left: auto; margin-right: auto;` : ""}
   border-radius: 11px;
   font-size: 20px;
   font-weight: 600;
@@ -14,6 +15,10 @@ export const BlockValueS = styled.div(({theme}) => `
   justify-content: center;
   max-width: 150px;
   background-color: rgba(255, 255, 255, 0.08);
+  outline: 2px solid ${focus ? theme.palette.primary.main : "rgba(255, 255, 255, 0.08)"};
+  &:hover{
+    outline: 2px solid ${focus ? theme.palette.primary.main : "rgba(255, 255, 255, 0.1)"};
+  }
   input{
     border: none;
     padding: 0;
@@ -23,5 +28,10 @@ export const BlockValueS = styled.div(({theme}) => `
     width: 100%;
     background: transparent;
     outline: none;
+    font-family: 'Manrope';
+    font-weight: bold;
+  }
+  span{
+    opacity: .6;
   }
 `)

@@ -41,5 +41,8 @@ export const RangeS = styled.div(({theme}) => `
     display: flex;
     justify-content: space-between;
     align-items: center;
+    > * {
+      font-weight: bold;
+    }
   }
 `)

@@ -40,10 +40,16 @@ export const TabsS = styled(Tabs)(({theme}) => `
     font-weight: 600;
     text-transform: none;
     font-size: 20px;
+    opacity: .6;
     line-height: 1;
     font-family: ${theme.typography.fontFamily};
+    transition: all .2s ease;
+    &:hover{
+      opacity: 1;
+    }
     &.Mui-selected{
       color: white;
+      opacity: 1;
     }
   }
   .MuiTabs-indicator{
@@ -58,13 +64,25 @@ export const TabsS = styled(Tabs)(({theme}) => `
 `)
 
 
-export const ResultCalculate = styled.div(({theme}) => `
+export const ResultCalculate = styled.div<{delay: number; animation: boolean;}>(({theme, delay, animation}) => `
   padding-top: 35px;
+  
   svg{
     margin-bottom: 10px;
+    ${animation ? "animation: bounce 1.5s ease finite;" : ""}
+    animation-delay: ${delay}s;
   }
   span{
     font-size: 24px;
     font-weight: 700;
+  }
+  @keyframes bounce {
+    70% { transform:translateY(0%); }
+    80% { transform:translateY(-20%); }
+    90% { transform:translateY(0%); }
+    95% { transform:translateY(-10%); }
+    97% { transform:translateY(0%); }
+    99% { transform:translateY(-6%); }
+    100% { transform:translateY(0); }
   }
 `)
