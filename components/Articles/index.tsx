@@ -1,9 +1,8 @@
 import CategoryShort from "components/CategoryShort";
-import dynamic from "next/dynamic";
 import { FC } from "react";
 import { GridTop } from "styles/grid";
 
-const ArticleShort = dynamic(() => import("../ArticleShort"), { ssr: false });
+import ArticleShort from "../ArticleShort";
 
 interface IArticles {
   data: any;
@@ -31,7 +30,7 @@ const Articles: FC<IArticles> = ({ data, searchResult = false, shortInfo }) => {
                     showShortImg={item.showShortImg}
                     link={`/blog/${item.slug}`}
                     background={item.background}
-                    image={searchResult ? item?.image : item?.image.data.attributes}
+                    image={searchResult ? item?.image : item?.image.data?.attributes}
                     label={
                       item?.labels?.data
                         ? item?.labels?.data.map((item: any) => item.attributes)
@@ -47,7 +46,7 @@ const Articles: FC<IArticles> = ({ data, searchResult = false, shortInfo }) => {
                   showShortImg={item.showShortImg}
                   link={`/blog/${item.slug}`}
                   background={item.background}
-                  image={searchResult ? item?.image : item?.image.data.attributes}
+                  image={searchResult ? item?.image : item?.image.data?.attributes}
                   label={
                     item?.labels?.data
                       ? item?.labels?.data.map((item: any) => item.attributes)
