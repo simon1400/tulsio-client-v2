@@ -93,7 +93,8 @@ export const ResultCalculate = styled.div<{delay: number; animation: boolean;}>(
   
   svg{
     margin-bottom: 10px;
-    ${animation ? "animation: bounce 1.5s ease finite;" : ""}
+    animation: bounce 1.5s ease infinite;
+    animation-play-state: ${animation ? "running" : "paused"};
     animation-delay: ${delay}s;
   }
   span{

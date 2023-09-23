@@ -1,9 +1,9 @@
 import { NextPage } from "next";
 import Page from "layout/Page";
 import PageHead from "components/PageHead";
-import { Container, Grid, Tab, Typography } from "@mui/material";
+import { Container, Grid, Tab, Typography, debounce } from "@mui/material";
 import { CalculatorS, ResultCalculate, TabsS } from "styles/calculator";
-import { ChangeEvent, SyntheticEvent, useEffect, useState } from "react";
+import { ChangeEvent, SyntheticEvent, useCallback, useEffect, useMemo, useState } from "react";
 import Range from "components/Range";
 import BlockValue from "components/BlockValue";
 import ObjemIcon from "public/assets/objem.svg";
@@ -58,6 +58,7 @@ const Calculator: NextPage = () => {
     setObjemCbd(!newValue ? 1000 : newValue === 3 ? 2000 : 3000);
     setSolution(!newValue ? 10 : newValue === 3 ? 20 : 30);
     setAnimation(true)
+    handleDebounce()
   };
 
   const handleKg = async (
@@ -67,6 +68,7 @@ const Calculator: NextPage = () => {
     if (!Number.isNaN(newValue)) {
       setKg(newValue);
       handleCbdDay(lavel as number, newValue as number);
+      handleDebounce()
     }
   };
 
@@ -76,6 +78,7 @@ const Calculator: NextPage = () => {
   ) => {
     if (!Number.isNaN(newValue) && +newValue <= 100 && +newValue >= 1) {
       setSolution(newValue);
+      handleDebounce()
       // setObjemCbd(+newValue * 100);
     }
   };
@@ -87,25 +90,36 @@ const Calculator: NextPage = () => {
     if (!Number.isNaN(newValue) && +newValue <= 10000 && +newValue >= 100) {
       setObjemCbd(newValue);
       setSolution(+newValue / 100);
+      handleDebounce()
     }
   };
 
-  const handleObjem = (
+  const handleObjem = useCallback((
     e: Event | ChangeEvent<HTMLInputElement>,
     newValue: number | number[]
   ) => {
     if (!Number.isNaN(newValue) && +newValue <= 1000 && +newValue >= 1) {
       setObjem(newValue);
       setSolution(+objemCbd / +newValue);
+      handleDebounce()
     }
-  };
+  }, [])
 
-  // useEffect(() => {
-  //   setAnimation(true)
-  //   // setTimeout(() => {
-  //   //   setAnimation(false)
-  //   // }, );
-  // }, [objem, objemCbd, cbdDay, kapky])
+  // const debouncedSendRequest = useMemo(() => {
+  //   return debounce(handleObjem, 1000);
+  // }, [handleObjem]);
+
+  
+
+  const handleAnimation = () => {
+    setAnimation(true)
+    setTimeout(() => {
+      setAnimation(false)
+      console.log('asdas')
+    }, 2000);
+  }
+
+  const handleDebounce = debounce(handleAnimation, 500)
 
   return (
     <Page>
