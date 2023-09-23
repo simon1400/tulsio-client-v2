@@ -12,6 +12,7 @@ import BannerStatic from "components/BanerStatic";
 import Anchors from "components/Anchors";
 import { oembedTransform } from "helpers/oembedTransform";
 import Articles from "components/Articles";
+import Author from "components/Author";
 
 const DOMAIN = process.env.APP_DOMAIN;
 
@@ -52,15 +53,17 @@ const Article = ({
               </div>}
             </Chapter>)}
             {article.image?.data && <ShareButton data={article} />}
+            {!!article.authors.data.length && <Author data={article.authors.data[0].attributes} />}
           </Content>
         </Container>
 
-        {!!article.categories?.data[0]?.attributes.articles.data.length && <Container maxWidth="md">
-          <Typography variant="h2" marginBottom={10}>Dále by vás mohlo zajímat</Typography>
-        </Container>}
-
         {!!article.categories?.data[0]?.attributes.articles.data.length && (
-          <Articles data={article.categories.data[0].attributes.articles.data.splice(0, 4).map((item: any) => item.attributes)} />
+          <>
+            <Container maxWidth="md">
+              <Typography variant="h2" marginBottom={10}>Dále by vás mohlo zajímat</Typography>
+            </Container>
+            <Articles data={article.categories.data[0].attributes.articles.data.splice(0, 4).map((item: any) => item.attributes)} />
+          </>
         )}
 
       </article>}

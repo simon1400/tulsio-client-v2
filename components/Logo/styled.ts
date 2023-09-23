@@ -8,8 +8,9 @@ export const SellerLogoS = styled.div(({theme}) => `
   display: flex;
   position: relative;
   background: white;
+  overflow: hidden;
   img{
-    object-fit: contain;
+    object-fit: cover;
     width: 100%;
     height: 100%;
     margin: auto;

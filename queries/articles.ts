@@ -131,6 +131,21 @@ export const getArticle = gql`
               }
             }
           }
+          authors{
+            data{
+              attributes{
+                name
+                description
+                image{
+									data{
+                    attributes{
+                      url
+                    }
+                  }
+                }
+              }
+            }
+          }
           labels {
             data {
               attributes {

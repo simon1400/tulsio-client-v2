@@ -1,4 +1,4 @@
-import SellerLogo from "components/SellerLogo"
+import SellerLogo from "components/Logo"
 import { SellerS } from "./styled"
 import { Typography } from "@mui/material"
 import Rating from "components/Rating"

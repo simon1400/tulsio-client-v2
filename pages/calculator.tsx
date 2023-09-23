@@ -74,7 +74,7 @@ const Calculator: NextPage = () => {
     e: Event | ChangeEvent<HTMLInputElement>,
     newValue: number | number[]
   ) => {
-    if (!Number.isNaN(newValue)) {
+    if (!Number.isNaN(newValue) && +newValue <= 100 && +newValue >= 1) {
       setSolution(newValue);
       // setObjemCbd(+newValue * 100);
     }
@@ -84,7 +84,7 @@ const Calculator: NextPage = () => {
     e: Event | ChangeEvent<HTMLInputElement>,
     newValue: number | number[]
   ) => {
-    if (!Number.isNaN(newValue)) {
+    if (!Number.isNaN(newValue) && +newValue <= 10000 && +newValue >= 100) {
       setObjemCbd(newValue);
       setSolution(+newValue / 100);
     }
@@ -94,7 +94,7 @@ const Calculator: NextPage = () => {
     e: Event | ChangeEvent<HTMLInputElement>,
     newValue: number | number[]
   ) => {
-    if (!Number.isNaN(newValue)) {
+    if (!Number.isNaN(newValue) && +newValue <= 1000 && +newValue >= 1) {
       setObjem(newValue);
       setSolution(+objemCbd / +newValue);
     }
