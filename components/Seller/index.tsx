@@ -9,7 +9,7 @@ const Seller = () => {
     <SellerS>
       <div className="seller-head">
         <div className="logo-wrap">
-          <SellerLogo />
+          {/* <SellerLogo /> */}
           <Typography variant="h4">Shop name</Typography>
         </div>
         <Rating />
