@@ -19,9 +19,17 @@ export const CalculatorS = styled.div(({theme}) => `
   ${theme.breakpoints.down('lg')} {
     border-radius: ${theme.borderRadius['lg']};
   }
+  ${theme.breakpoints.down('md')} {
+    padding: 20px;
+    .calcul-input-head{
+      font-size: 12px;
+      margin-bottom: 11px;
+    }
+  }
   ${theme.breakpoints.down('sm')} {
     border-radius: ${theme.borderRadius['sm']};
   }
+  
 `)
 
 export const TabsS = styled(Tabs)(({theme}) => `
@@ -61,6 +69,22 @@ export const TabsS = styled(Tabs)(({theme}) => `
     z-index: 1;
     bottom: 6px;
   }
+  ${theme.breakpoints.down('md')} {
+    margin-bottom: 40px;
+    > div{
+      height: 40px;
+      padding: 6px;
+    }
+    .MuiTabs-indicator{
+      height: 30px;
+    }
+    button{
+      font-size: 14px;
+      padding: 6px 18px;
+      height: 30px;
+      display: block;
+    }
+  }
 `)
 
 
@@ -84,5 +108,12 @@ export const ResultCalculate = styled.div<{delay: number; animation: boolean;}>(
     97% { transform:translateY(0%); }
     99% { transform:translateY(-6%); }
     100% { transform:translateY(0); }
+  }
+  ${theme.breakpoints.down('md')} {
+    margin-bottom: 50px;
+    padding-top: 25px;
+    span{
+      font-size: 17px;
+    }
   }
 `)

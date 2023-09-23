@@ -141,8 +141,8 @@ const Calculator: NextPage = () => {
             <Tab value="has" label="Už mám CBD" disableRipple />
           </TabsS>
           <Grid container marginBottom={15} sx={{ textAlign: "center" }}>
-            <Grid item xs={12} md={4}>
-              <Typography variant="h4" marginBottom={5}>
+            <Grid item xs={4}>
+              <Typography className="calcul-input-head" variant="h4" marginBottom={5}>
                 Roztok
               </Typography>
               <BlockValue
@@ -152,8 +152,8 @@ const Calculator: NextPage = () => {
                 center
               />
             </Grid>
-            <Grid item xs={12} md={4}>
-              <Typography variant="h4" marginBottom={5}>
+            <Grid item xs={4}>
+              <Typography className="calcul-input-head" variant="h4" marginBottom={5}>
                 Obsah CBD
               </Typography>
               <BlockValue
@@ -163,8 +163,8 @@ const Calculator: NextPage = () => {
                 center
               />
             </Grid>
-            <Grid item xs={12} md={4}>
-              <Typography variant="h4" marginBottom={5}>
+            <Grid item xs={4}>
+              <Typography className="calcul-input-head" variant="h4" marginBottom={5}>
                 Objem láhvičky
               </Typography>
               <BlockValue value={`${objem}`} type="ml" handle={handleObjem} center />
@@ -172,7 +172,7 @@ const Calculator: NextPage = () => {
           </Grid>
           <Typography variant="h2">Vaše doporučené denní dávkování</Typography>
           <Grid container>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={4}>
               <ResultCalculate animation={animation} delay={0}>
                 <div>
                   <ObjemIcon />
@@ -180,7 +180,7 @@ const Calculator: NextPage = () => {
                 <span>{((+objem / +objemCbd) * cbdDay).toFixed(2)} ml</span>
               </ResultCalculate>
             </Grid>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={4}>
               <ResultCalculate animation={animation} delay={0.2}>
                 <div>
                   <KapkaIcon />
@@ -188,7 +188,7 @@ const Calculator: NextPage = () => {
                 <span>{kapky.toFixed(0)} kapek</span>
               </ResultCalculate>
             </Grid>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={4}>
               <ResultCalculate animation={animation} delay={0.5}>
                 <div>
                   <PipetaIcon />

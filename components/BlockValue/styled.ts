@@ -33,5 +33,16 @@ export const BlockValueS = styled.div<{center?: boolean; focus: boolean;}>(({the
   }
   span{
     opacity: .6;
+    font-size: 14px;
+    padding-top: 3px;
+  }
+  ${theme.breakpoints.down('md')} {
+    height: 33px;
+    padding: 6px 9px;
+    max-width: 90px;
+    border-radius: 6px;
+    input{
+      font-size: 14px;
+    }
   }
 `)

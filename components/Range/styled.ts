@@ -31,6 +31,12 @@ export const AirbnbSlider = styled(Slider)(({ theme }) => `
     height: 5px;
     border-radius: 2.5px;
   }
+  ${theme.breakpoints.down('md')} {
+    & .MuiSlider-thumb {
+      height: 34px;
+      width: 34px;
+    }
+  }
 `);
 
 export const RangeS = styled.div(({theme}) => `
@@ -43,6 +49,15 @@ export const RangeS = styled.div(({theme}) => `
     align-items: center;
     > * {
       font-weight: bold;
+    }
+  }
+  ${theme.breakpoints.down('md')} {
+    margin-bottom: 35px;
+    .labels{
+      > * {
+        font-size: 14px;
+        margin-bottom: 0;
+      }
     }
   }
 `)
