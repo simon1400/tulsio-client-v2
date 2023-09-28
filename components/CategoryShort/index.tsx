@@ -15,7 +15,7 @@ const CategoryShort: FC<ICategoryShort> = ({
       <div className="img-wrap"></div>
       <div className="content-wrap-art">
         <Typography variant="h2">{data.title}</Typography>
-        <Typography dangerouslySetInnerHTML={{__html: data.description}} />
+        <Typography variant="body2" dangerouslySetInnerHTML={{__html: data.description}} />
       </div>
     </CategoryDescriptionS>
   )

@@ -39,6 +39,20 @@ export const FooterS = styled.footer(({theme}) => `
     margin-right: ${theme.globalGap['sm']};
     border-top-left-radius: ${theme.borderRadius['sm']};
     border-top-right-radius: ${theme.borderRadius['sm']};
+    div{
+      justify-content: center;
+      > ul{
+        li{
+          display: block;
+          margin-bottom: 15px;
+          a{
+            justify-content: center;
+            font-size: 15px;
+            font-weight: 700;
+          }
+        }
+      }
+    }
     .MuiTabs-root{
       button{
         max-width: 100%;
