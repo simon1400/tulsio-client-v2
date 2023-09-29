@@ -259,6 +259,7 @@ export const getArticleBase = gql`
           title
           slug
           perex
+          updatedAt
           meta {
             title
             description

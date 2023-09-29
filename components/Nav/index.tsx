@@ -9,6 +9,7 @@ interface INav {
   subMenu?: boolean;
   category?: boolean;
   mobile?: boolean;
+  footer?: boolean;
   icon?: ReactElement;
   handle: (e: any, slug: string) => void;
 }
@@ -19,11 +20,12 @@ const Nav: FC<INav> = ({
   category = false,
   mobile = false,
   icon = null,
-  handle
+  handle,
+  footer = false
 }) => {
   const router = useRouter()
   return (
-    <CSubMenu removeMargin={!subMenu} subMenu={subMenu} mobile={mobile}>
+    <CSubMenu removeMargin={!subMenu} subMenu={subMenu} mobile={mobile} footer={footer}>
       <ul>
         {category && (
           <li className={router.asPath === '/blog' || router.asPath === '/tags' ? "active" : ""}>
@@ -31,7 +33,7 @@ const Nav: FC<INav> = ({
           </li>
         )}
         {data.map((item: any, idx: number) => (
-          <li className={router.asPath === '/'+item.slug ? "active" : ""} key={idx}>
+          <li className={router.asPath === '/'+item.slug || router.asPath === item.slug ? "active" : ""} key={idx}>
             <Link href={'/'+item.slug} onClick={(e) => handle(e, item.slug)}>{item.title}</Link>
           </li>
         ))}

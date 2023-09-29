@@ -29,10 +29,10 @@ const ArticleTop = ({
       <ArticleTopS background={convert} color={color}>
         {article?.image?.data && <Image format="&resize=920x920" image={article.image.data} />}
         <Container maxWidth="md">
-          <Breadcrumbs
+          {!!article.categories?.data.length && <Breadcrumbs
             category={article.categories.data[0]?.attributes}
             color={color}
-          />
+          />}
           <Typography variant="h1">{article.title}</Typography>
           {!!article?.labels?.data?.length &&
             article.labels.data.map((item: any, index: number) => (

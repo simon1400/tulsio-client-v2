@@ -35,7 +35,7 @@ const Footer = () => {
     <>
       <Newsletter />
       <FooterS>
-        <Nav data={transformData} handle={handleNav} />
+        <Nav data={transformData} handle={handleNav} footer />
         <SocialNav data={data} loading={loading} />
       </FooterS>
     </>

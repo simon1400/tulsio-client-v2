@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; subMenu?: boolean;}>(({subMenu, theme, removeMargin, mobile}) => `
+export const CSubMenu = styled.div<{removeMargin?: boolean; footer?: boolean; mobile: boolean; subMenu?: boolean;}>(({subMenu, theme, removeMargin, mobile, footer}) => `
   margin-bottom: ${removeMargin ? '0' : '80px'};
   padding-right: ${mobile ? '30px' : "0"};
   padding-left: ${mobile ? '30px' : "0"};
@@ -15,7 +15,7 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
   ul{
     margin: 0;
 
-    padding: ${subMenu ? "7px" : "2px"} 0 0 15px;
+    padding: ${subMenu || footer ? "7px" : "2px"} 0 0 15px;
     white-space: ${subMenu ? "nowrap" : "wrap"};
     ${subMenu ? "overflow-x: scroll;" : ""}
     ${subMenu ? "height: calc(100% + 20px);" : ""}

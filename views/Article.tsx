@@ -23,6 +23,8 @@ const Article = ({
 
   const router = useRouter();
 
+  console.log(article)
+
   return (
     <Page>
       <Head>
@@ -30,7 +32,7 @@ const Article = ({
       </Head>
 
       {!!article && <article className="blog-article">
-        {article.image?.data && article.categories && <ArticleTop article={article} />}
+        {article.image?.data && <ArticleTop article={article} />}
 
         <Container maxWidth="md">
 
@@ -52,8 +54,8 @@ const Article = ({
                 <Button href={item.button.link} variant="contained">{item.button.text}</Button>
               </div>}
             </Chapter>)}
-            {article.image?.data && <ShareButton data={article} />}
-            {!!article.authors.data.length && <Author data={article.authors.data[0].attributes} />}
+            {article.image?.data && article.categories && <ShareButton data={article} />}
+            {!!article.authors?.data.length && <Author data={article.authors.data[0].attributes} />}
           </Content>
         </Container>
 
