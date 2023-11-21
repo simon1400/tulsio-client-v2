@@ -33,7 +33,7 @@ const ArticleShort: FC<ArticleShortProps> = ({
   let imgUrl = "/assets/placeholder.svg";
   const size = "resize=1000x1000";
 
-  if (typeof image === "object") {
+  if (typeof image === "object" && image) {
     if (image["attributes"]) {
       imgUrl = `${APP_API}${image["attributes"]["url"]}?format=webp&${size}`;
     } else {
