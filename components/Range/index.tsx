@@ -18,7 +18,7 @@ const AirbnbThumbComponent = (props: AirbnbThumbComponentProps) => {
 };
 
 const lavelData = {
-  0: "nizký",
+  0: "nízký",
   3: "střední",
   6: "velký",
 };

@@ -19,7 +19,7 @@ export const AccordionSummary = styled(MuiAccordionSummary)(({theme}) => `
   .MuiAccordionSummary-expandIconWrapper{
     margin-left: 10px;
   }
-  h3{
+  h3, h2{
     font-weight: bold;
     mark{
       background: ${theme.palette.primary.main};
