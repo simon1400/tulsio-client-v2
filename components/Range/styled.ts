@@ -41,7 +41,7 @@ export const AirbnbSlider = styled(Slider)(({ theme }) => `
 
 export const RangeS = styled.div(({theme}) => `
   width: 100%;
-  margin-bottom: 75px;
+  margin-bottom: 35px;
   .labels{
     width: 100%;
     display: flex;
@@ -49,6 +49,7 @@ export const RangeS = styled.div(({theme}) => `
     align-items: center;
     > * {
       font-weight: bold;
+      font-size: 16px;
     }
   }
   ${theme.breakpoints.down('md')} {

@@ -3,13 +3,17 @@ import { Tabs } from "@mui/material";
 
 export const CalculatorS = styled.div(({theme}) => `
   background-color: rgba(255, 255, 255, 0.1);
-  padding: 75px;
+  padding: 40px;
   border-radius: ${theme.borderRadius['base']};
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   text-align: center;
+  .calcul-input-head{
+    font-size: 16px;
+    margin-bottom: 11px;
+  }
   ${theme.breakpoints.down('xxl')} {
     border-radius: ${theme.borderRadius['xxl']};
   }
@@ -22,7 +26,7 @@ export const CalculatorS = styled.div(({theme}) => `
   ${theme.breakpoints.down('md')} {
     padding: 20px;
     .calcul-input-head{
-      font-size: 12px;
+      font-size: 12px!important;
       margin-bottom: 11px;
     }
   }
@@ -33,12 +37,12 @@ export const CalculatorS = styled.div(({theme}) => `
 `)
 
 export const TabsS = styled(Tabs)(({theme}) => `
-  margin-bottom: 75px;
+  margin-bottom: 35px;
   > div{
-    height: 62px;
+    height: 40px;
     border-radius: 31px;
     background-color: rgba(255, 255, 255, 0.08);
-    padding: 6px;
+    padding: 4px;
   }
   
   button{
@@ -64,10 +68,16 @@ export const TabsS = styled(Tabs)(({theme}) => `
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
     background-color: #4545ff;
     border-radius: 25px;
-    height: 50px;
+    height: 32px;
     padding: 0 20px;
     z-index: 1;
-    bottom: 6px;
+    bottom: 4px;
+  }
+  button{
+    font-size: 16px;
+    padding: 8px 18px;
+    height: 30px;
+    display: block;
   }
   ${theme.breakpoints.down('md')} {
     margin-bottom: 40px;
@@ -92,13 +102,13 @@ export const ResultCalculate = styled.div<{delay: number; animation: boolean;}>(
   padding-top: 35px;
   
   svg{
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     animation: bounce 1.5s ease infinite;
     animation-play-state: ${animation ? "running" : "paused"};
     animation-delay: ${delay}s;
   }
   span{
-    font-size: 24px;
+    font-size: 19px;
     font-weight: 700;
   }
   @keyframes bounce {

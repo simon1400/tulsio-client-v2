@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const CategoryDescriptionS = styled.div(({theme}) => `
+export const CategoryDescriptionS = styled.div<{staticBlock?: boolean}>(({theme, staticBlock = false}) => `
   height: 100%;
   position: relative;
   overflow: hidden;
@@ -10,7 +10,8 @@ export const CategoryDescriptionS = styled.div(({theme}) => `
     }
   }
   .img-wrap{
-    background: rgba(255, 255, 255, 0.1);
+    
+    ${staticBlock ? "background-image: linear-gradient(138deg, #a50d5a, #4545ff 100%);" : "background: rgba(255, 255, 255, 0.1);"}
     height: 100%;
     width: 100%;
     border-radius: ${theme.borderRadius['base']};

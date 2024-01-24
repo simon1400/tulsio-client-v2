@@ -4,17 +4,19 @@ import { Typography } from "@mui/material"
 
 interface ICategoryShort {
   data: any
+  staticBlock?: boolean
 }
 
 const CategoryShort: FC<ICategoryShort> = ({
-  data
+  data,
+  staticBlock = false
 }) => {
   
   return (
-    <CategoryDescriptionS>
+    <CategoryDescriptionS staticBlock={staticBlock}>
       <div className="img-wrap"></div>
       <div className="content-wrap-art">
-        <Typography variant="h2">{data.title}</Typography>
+        <Typography marginBottom={staticBlock ? 5 : 0} variant={staticBlock ? "h1" : "h2"}>{data.title}</Typography>
         <Typography variant="body2" dangerouslySetInnerHTML={{__html: data.description}} />
       </div>
     </CategoryDescriptionS>

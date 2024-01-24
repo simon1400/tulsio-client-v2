@@ -4,16 +4,16 @@ export const BlockValueS = styled.div<{center?: boolean; focus: boolean;}>(({the
   display: inline-block;
   ${center ? `margin-left: auto; margin-right: auto;` : ""}
   border-radius: 11px;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 1;
   padding: 14px 12px;
-  height: 50px;
+  height: 40px;
   text-align: center;
   color: white;
   display: flex;
   justify-content: center;
-  max-width: 150px;
+  max-width: 100px;
   background-color: rgba(255, 255, 255, 0.08);
   outline: 2px solid ${focus ? theme.palette.primary.main : "rgba(255, 255, 255, 0.08)"};
   &:hover{
@@ -22,7 +22,7 @@ export const BlockValueS = styled.div<{center?: boolean; focus: boolean;}>(({the
   input{
     border: none;
     padding: 0;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 600;
     color: white;
     width: 100%;
@@ -34,7 +34,7 @@ export const BlockValueS = styled.div<{center?: boolean; focus: boolean;}>(({the
   span{
     opacity: .6;
     font-size: 14px;
-    padding-top: 3px;
+    padding-top: 0px;
   }
   ${theme.breakpoints.down('md')} {
     height: 33px;
