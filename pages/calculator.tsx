@@ -129,6 +129,11 @@ const Calculator: NextPage<ICalculator> = ({calculator}) => {
 
   const [animation, setAnimation] = useState<boolean>(false)
 
+
+  const handleRoztok = (e: Event | ChangeEvent<HTMLInputElement>, newValue: number) => {
+    setRoztok()
+  }
+
   return (
     <Page>
       <Container maxWidth="xl">
@@ -174,7 +179,7 @@ const Calculator: NextPage<ICalculator> = ({calculator}) => {
                   <BlockValue
                     value={`${roztok}`}
                     type="%"
-                    handle={() => {}}
+                    handle={handleRoztok}
                     center
                   />
                 </Grid>
@@ -203,7 +208,7 @@ const Calculator: NextPage<ICalculator> = ({calculator}) => {
                     <div>
                       <ObjemIcon />
                     </div>
-                    <span>{cbd} mg CBD</span>
+                    <span>{cbd / pocetKapek} mg CBD</span>
                   </ResultCalculate>
                 </Grid>
                 <Grid item xs={3}>
@@ -211,7 +216,7 @@ const Calculator: NextPage<ICalculator> = ({calculator}) => {
                     <div>
                       <ObjemIcon />
                     </div>
-                    <span>{objem} ml</span>
+                    <span>{(kapek * objemKapatka).toFixed(2)} ml</span>
                   </ResultCalculate>
                 </Grid>
                 <Grid item xs={3}>
