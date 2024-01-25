@@ -51,6 +51,7 @@ interface ICalculator {
 const objemKapatka = 0.04
 const baseKg = 75
 const tinktura = 10
+const objem = 10
 
 
 const Calculator: NextPage<ICalculator> = ({calculator}) => {
@@ -88,8 +89,8 @@ const Calculator: NextPage<ICalculator> = ({calculator}) => {
 
   const [koef, setKoef] = useState<number>(kg as number / baseKg)
 
-  const [objem, setObjem] = useState<number | number[]>(10);
-  const [roztok, setRoztok] = useState<number>(10)
+  // const [objem, setObjem] = useState<number | number[]>(10);
+  const [roztok, setRoztok] = useState<number>(!lavel ? 5 : lavel === 3 ? 10 : 20)
   const [cbd, setCbd] = useState<number>((objem as number / tinktura) * tinktura * (roztok as number / 100) * 1000)
   const [kapkaCbdMg, setKapkaCbdMg] = useState<number>(0)
   const [pocetKapek, setPocetKapek] = useState<number>(objem as number / objemKapatka)
@@ -97,6 +98,7 @@ const Calculator: NextPage<ICalculator> = ({calculator}) => {
   const [kapek, setKapek] = useState<number>((lavelState / (cbd / pocetKapek)) * (kg as number / baseKg)) 
 
   const calculate = () => {
+    
     setCbd((objem as number / tinktura) * tinktura * (roztok as number / 100) * 1000)
     setPocetKapek(objem as number / objemKapatka)
     setKapkaCbdMg(((objem as number / tinktura) * tinktura * (roztok as number / 100) * 1000) / (objem as number / objemKapatka))
@@ -112,13 +114,18 @@ const Calculator: NextPage<ICalculator> = ({calculator}) => {
   }, [kg])
 
   useEffect(() => {
+    setRoztok(!lavel ? 5 : lavel === 3 ? 10 : 20)
     setLavelState(!lavel ? 10 : lavel === 3 ? 20 : 40)
   }, [lavel])
 
   useEffect(() => {
-    console.log((lavelState / (cbd / pocetKapek)) * koef)
-    setKapek((lavelState / (cbd / pocetKapek)) * koef)
+    const cbdNew = (objem / tinktura) * tinktura * (roztok as number / 100) * 1000
+    setKapek((lavelState / (cbdNew / pocetKapek)) * koef)
   }, [koef, lavelState])
+
+  useEffect(() => {
+    setCbd((objem as number / tinktura) * tinktura * (roztok as number / 100) * 1000)
+  }, [roztok])
 
   const [animation, setAnimation] = useState<boolean>(false)
 
@@ -221,7 +228,7 @@ const Calculator: NextPage<ICalculator> = ({calculator}) => {
                       <PipetaIcon />
                     </div>
                     <span>
-                      {kapek.toFixed(0)} × pipeta
+                      {(kapek * objemKapatka).toFixed(2)} × pipeta
                     </span>
                   </ResultCalculate>
                 </Grid>
