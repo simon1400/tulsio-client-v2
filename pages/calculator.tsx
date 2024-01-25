@@ -131,7 +131,7 @@ const Calculator: NextPage<ICalculator> = ({calculator}) => {
 
 
   const handleRoztok = (e: Event | ChangeEvent<HTMLInputElement>, newValue: number) => {
-    setRoztok()
+    // setRoztok()
   }
 
   return (
