@@ -208,7 +208,7 @@ const Calculator: NextPage<ICalculator> = ({calculator}) => {
                     <div>
                       <ObjemIcon />
                     </div>
-                    <span>{cbd / pocetKapek} mg CBD</span>
+                    <span>{(cbd / pocetKapek * kapek).toFixed(0)} mg CBD</span>
                   </ResultCalculate>
                 </Grid>
                 <Grid item xs={3}>
