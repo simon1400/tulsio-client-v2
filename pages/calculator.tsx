@@ -179,7 +179,7 @@ const Calculator: NextPage<ICalculator> = ({calculator}) => {
                   <BlockValue
                     value={`${roztok}`}
                     type="%"
-                    handle={handleRoztok}
+                    handle={() => {}}
                     center
                   />
                 </Grid>
