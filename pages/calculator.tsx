@@ -51,8 +51,17 @@ interface ICalculator {
 const objemKapatka = 0.04
 const baseKg = 75
 const tinktura = 10
-const objem = 10
+// const objem = 10
 
+// const calculate = () => {
+//   setCbd((objem / tinktura) * tinktura * (roztok / 100) * 1000)
+//   setPocetKapek(objem / objemKapatka)
+//   setKapek((lavelState / (cbd / pocetKapek)) * koef)
+// }
+
+// useEffect(() => {
+//   calculate()
+// }, [])
 
 const Calculator: NextPage<ICalculator> = ({calculator}) => {
   const [who, setWho] = useState("human");
@@ -89,25 +98,12 @@ const Calculator: NextPage<ICalculator> = ({calculator}) => {
 
   const [koef, setKoef] = useState<number>(kg as number / baseKg)
 
-  // const [objem, setObjem] = useState<number | number[]>(10);
+  const [objem, setObjem] = useState<number>(10);
   const [roztok, setRoztok] = useState<number>(!lavel ? 5 : lavel === 3 ? 10 : 20)
-  const [cbd, setCbd] = useState<number>((objem as number / tinktura) * tinktura * (roztok as number / 100) * 1000)
-  const [kapkaCbdMg, setKapkaCbdMg] = useState<number>(0)
-  const [pocetKapek, setPocetKapek] = useState<number>(objem as number / objemKapatka)
+  const [cbd, setCbd] = useState<number>((10 / tinktura) * tinktura * (roztok / 100) * 1000)
+  const [pocetKapek, setPocetKapek] = useState<number>(10 / objemKapatka)
 
   const [kapek, setKapek] = useState<number>((lavelState / (cbd / pocetKapek)) * (kg as number / baseKg)) 
-
-  const calculate = () => {
-    
-    setCbd((objem as number / tinktura) * tinktura * (roztok as number / 100) * 1000)
-    setPocetKapek(objem as number / objemKapatka)
-    setKapkaCbdMg(((objem as number / tinktura) * tinktura * (roztok as number / 100) * 1000) / (objem as number / objemKapatka))
-    setKapek((lavelState / (cbd / pocetKapek)) * koef)
-  }
-
-  useEffect(() => {
-    calculate()
-  }, [])
 
   useEffect(() => {
     setKoef(kg as number / baseKg)
@@ -119,19 +115,29 @@ const Calculator: NextPage<ICalculator> = ({calculator}) => {
   }, [lavel])
 
   useEffect(() => {
-    const cbdNew = (objem / tinktura) * tinktura * (roztok as number / 100) * 1000
+    const cbdNew = (objem / tinktura) * tinktura * (roztok / 100) * 1000
     setKapek((lavelState / (cbdNew / pocetKapek)) * koef)
   }, [koef, lavelState])
 
   useEffect(() => {
-    setCbd((objem as number / tinktura) * tinktura * (roztok as number / 100) * 1000)
-  }, [roztok])
+    setCbd((objem / tinktura) * tinktura * (roztok / 100) * 1000)
+  }, [roztok, objem])
 
   const [animation, setAnimation] = useState<boolean>(false)
 
-
   const handleRoztok = (e: Event | ChangeEvent<HTMLInputElement>, newValue: number) => {
-    // setRoztok()
+    e.preventDefault()
+    setRoztok(newValue)
+  }
+
+  const handleCbd = (e: Event | ChangeEvent<HTMLInputElement>, newValue: number) => {
+    e.preventDefault()
+    setCbd(newValue)
+  }
+  
+  const handleObjem = (e: Event | ChangeEvent<HTMLInputElement>, newValue: number) => {
+    e.preventDefault()
+    setObjem(newValue)
   }
 
   return (
@@ -179,7 +185,7 @@ const Calculator: NextPage<ICalculator> = ({calculator}) => {
                   <BlockValue
                     value={`${roztok}`}
                     type="%"
-                    handle={() => {}}
+                    handle={handleRoztok}
                     center
                   />
                 </Grid>
@@ -190,7 +196,7 @@ const Calculator: NextPage<ICalculator> = ({calculator}) => {
                   <BlockValue
                     value={`${cbd}`}
                     type="mg"
-                    handle={() => {}}
+                    handle={handleCbd}
                     center
                   />
                 </Grid>
@@ -198,7 +204,7 @@ const Calculator: NextPage<ICalculator> = ({calculator}) => {
                   <Typography className="calcul-input-head" variant="h4" marginBottom={5}>
                     Objem láhvičky
                   </Typography>
-                  <BlockValue value={`${objem}`} type="ml" handle={() => {}} center />
+                  <BlockValue value={`${objem}`} type="ml" handle={handleObjem} center />
                 </Grid>
               </Grid>
               <Typography variant="h3">Vaše doporučené denní dávkování</Typography>

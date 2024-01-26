@@ -4,7 +4,7 @@ import { ClickAwayListener } from "@mui/material";
 
 const BlockValue: FC<{
   value: string;
-  handle: (e: Event | ChangeEvent<HTMLInputElement>, newValue: number | number[]) => void;
+  handle: (e: Event | ChangeEvent<HTMLInputElement>, newValue: number) => void;
   type: string;
   center?: boolean
 }> = ({ value, handle, type, center = false }) => {
