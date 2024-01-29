@@ -51,17 +51,6 @@ interface ICalculator {
 const objemKapatka = 0.04
 const baseKg = 75
 const tinktura = 10
-// const objem = 10
-
-// const calculate = () => {
-//   setCbd((objem / tinktura) * tinktura * (roztok / 100) * 1000)
-//   setPocetKapek(objem / objemKapatka)
-//   setKapek((lavelState / (cbd / pocetKapek)) * koef)
-// }
-
-// useEffect(() => {
-//   calculate()
-// }, [])
 
 const Calculator: NextPage<ICalculator> = ({calculator}) => {
   const [who, setWho] = useState("human");
@@ -120,25 +109,45 @@ const Calculator: NextPage<ICalculator> = ({calculator}) => {
   }, [koef, lavelState])
 
   useEffect(() => {
-    setCbd((objem / tinktura) * tinktura * (roztok / 100) * 1000)
-  }, [roztok, objem])
+    setRoztok(objem / 20 * tinktura)
+  }, [cbd])
+
+  useEffect(() => {
+    if(state === "looking") {
+      setCbd((objem / tinktura) * tinktura * (roztok / 100) * 1000)
+    }
+  }, [roztok])
+
+  useEffect(() => {
+    const newRoztok = cbd / objem
+    setRoztok(newRoztok)
+  }, [objem])
 
   const [animation, setAnimation] = useState<boolean>(false)
 
   const handleRoztok = (e: Event | ChangeEvent<HTMLInputElement>, newValue: number) => {
     e.preventDefault()
     setRoztok(newValue)
+    const newCbd = (objem / tinktura) * tinktura * (newValue / 100) * 1000
+    setCbd(newCbd)
+    setKapek((lavelState / (newCbd / pocetKapek)) * koef)
   }
 
   const handleCbd = (e: Event | ChangeEvent<HTMLInputElement>, newValue: number) => {
     e.preventDefault()
     setCbd(newValue)
+    setKapek((lavelState / (newValue / pocetKapek)) * koef)
   }
   
   const handleObjem = (e: Event | ChangeEvent<HTMLInputElement>, newValue: number) => {
     e.preventDefault()
     setObjem(newValue)
+    const cbdNew = (newValue / tinktura) * tinktura * (roztok / 100) * 1000
+    setKapek((lavelState / (cbdNew / pocetKapek)) * koef)
   }
+
+
+  console.log(calculator)
 
   return (
     <Page>
@@ -185,7 +194,7 @@ const Calculator: NextPage<ICalculator> = ({calculator}) => {
                   <BlockValue
                     value={`${roztok}`}
                     type="%"
-                    handle={handleRoztok}
+                    handle={state === "has" ? handleRoztok : () => {}}
                     center
                   />
                 </Grid>
@@ -196,7 +205,7 @@ const Calculator: NextPage<ICalculator> = ({calculator}) => {
                   <BlockValue
                     value={`${cbd}`}
                     type="mg"
-                    handle={handleCbd}
+                    handle={state === "has" ? handleCbd : () => {}}
                     center
                   />
                 </Grid>
@@ -204,7 +213,7 @@ const Calculator: NextPage<ICalculator> = ({calculator}) => {
                   <Typography className="calcul-input-head" variant="h4" marginBottom={5}>
                     Objem láhvičky
                   </Typography>
-                  <BlockValue value={`${objem}`} type="ml" handle={handleObjem} center />
+                  <BlockValue value={`${objem}`} type="ml" handle={state === "has" ? handleObjem : () => {}} center />
                 </Grid>
               </Grid>
               <Typography variant="h3">Vaše doporučené denní dávkování</Typography>
