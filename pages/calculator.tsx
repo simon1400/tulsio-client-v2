@@ -142,7 +142,7 @@ const Calculator: NextPage<ICalculator> = ({calculator}) => {
   const handleObjem = (e: Event | ChangeEvent<HTMLInputElement>, newValue: number) => {
     e.preventDefault()
     if(Number.isInteger(newValue)) {
-      const newRoztok = cbd / newValue
+      const newRoztok = cbd / newValue / 10
       console.log("newValue", newValue)
       console.log("newRoztok", newRoztok)
       setRoztok(newRoztok)
