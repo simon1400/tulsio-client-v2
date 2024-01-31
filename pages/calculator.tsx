@@ -100,6 +100,7 @@ const Calculator: NextPage<ICalculator> = ({calculator}) => {
 
   useEffect(() => {
     setRoztok(!lavel ? 5 : lavel === 3 ? 10 : 20)
+    setCbd((objem / tinktura) * tinktura * ((!lavel ? 5 : lavel === 3 ? 10 : 20) / 100) * 1000)
     setLavelState(!lavel ? 10 : lavel === 3 ? 20 : 40)
   }, [lavel])
 
@@ -108,22 +109,13 @@ const Calculator: NextPage<ICalculator> = ({calculator}) => {
     setKapek((lavelState / (cbdNew / pocetKapek)) * koef)
   }, [koef, lavelState])
 
-  useEffect(() => {
-    if(state === "looking") {
-      setRoztok(objem / 20 * tinktura)
-    }
-  }, [cbd])
+  // useEffect(() => {
+  //   setRoztok(objem / 20 * tinktura)
+  // }, [cbd])
 
-  useEffect(() => {
-    if(state === "looking") {
-      setCbd((objem / tinktura) * tinktura * (roztok / 100) * 1000)
-    }
-  }, [roztok])
-
-  useEffect(() => {
-    const newRoztok = cbd / objem
-    setRoztok(newRoztok)
-  }, [objem])
+  // useEffect(() => {
+  //   setCbd((objem / tinktura) * tinktura * (roztok / 100) * 1000)
+  // }, [roztok])
 
   const [animation, setAnimation] = useState<boolean>(false)
 
@@ -145,11 +137,10 @@ const Calculator: NextPage<ICalculator> = ({calculator}) => {
     e.preventDefault()
     setObjem(newValue)
     const cbdNew = (newValue / tinktura) * tinktura * (roztok / 100) * 1000
+    const newRoztok = cbdNew / objem
+    setRoztok(newRoztok)
     setKapek((lavelState / (cbdNew / pocetKapek)) * koef)
   }
-
-
-  console.log(calculator)
 
   return (
     <Page>
