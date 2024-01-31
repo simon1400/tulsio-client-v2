@@ -74,7 +74,7 @@ const Calculator: NextPage<ICalculator> = ({calculator}) => {
     setLavel(newValue);
   };
 
-  const [kg, setKg] = useState<number | number[]>(65);
+  const [kg, setKg] = useState<number | number[]>(75);
 
   const handleKg = async (
     e: Event | ChangeEvent<HTMLInputElement>,
@@ -133,7 +133,7 @@ const Calculator: NextPage<ICalculator> = ({calculator}) => {
     e.preventDefault()
     if(Number.isInteger(newValue)) {
       setCbd(newValue)
-      const newRoztok = newValue / objem
+      const newRoztok = newValue / objem / 10
       setRoztok(newRoztok)
       setKapek((lavelState / (newValue / pocetKapek)) * koef)
     }
@@ -143,8 +143,6 @@ const Calculator: NextPage<ICalculator> = ({calculator}) => {
     e.preventDefault()
     if(Number.isInteger(newValue)) {
       const newRoztok = cbd / newValue / 10
-      console.log("newValue", newValue)
-      console.log("newRoztok", newRoztok)
       setRoztok(newRoztok)
       setKapek((lavelState / (cbd / pocetKapek)) * koef)
       setObjem(newValue)
