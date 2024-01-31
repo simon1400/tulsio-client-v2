@@ -121,27 +121,36 @@ const Calculator: NextPage<ICalculator> = ({calculator}) => {
 
   const handleRoztok = (e: Event | ChangeEvent<HTMLInputElement>, newValue: number) => {
     e.preventDefault()
-    const newCbd = (objem / tinktura) * tinktura * (newValue / 100) * 1000
-    setCbd(newCbd)
-    setKapek((lavelState / (newCbd / pocetKapek)) * koef)
-    setRoztok(newValue)
+    if(Number.isInteger(newValue)) {
+      const newCbd = (objem / tinktura) * tinktura * (newValue / 100) * 1000
+      setCbd(newCbd)
+      setKapek((lavelState / (newCbd / pocetKapek)) * koef)
+      setRoztok(newValue)
+    }
   }
 
   const handleCbd = (e: Event | ChangeEvent<HTMLInputElement>, newValue: number) => {
     e.preventDefault()
-    setCbd(newValue)
-    const newRoztok = newValue / objem
-    setRoztok(newRoztok)
-    setKapek((lavelState / (newValue / pocetKapek)) * koef)
+    if(Number.isInteger(newValue)) {
+      setCbd(newValue)
+      const newRoztok = newValue / objem
+      setRoztok(newRoztok)
+      setKapek((lavelState / (newValue / pocetKapek)) * koef)
+    }
   }
   
   const handleObjem = (e: Event | ChangeEvent<HTMLInputElement>, newValue: number) => {
     e.preventDefault()
-    const cbdNew = (newValue / tinktura) * tinktura * (roztok / 100) * 1000
-    const newRoztok = cbdNew / newValue
-    setRoztok(newRoztok)
-    setKapek((lavelState / (cbdNew / pocetKapek)) * koef)
-    setObjem(newValue)
+    if(Number.isInteger(newValue)) {
+      const cbdNew = (newValue / tinktura) * tinktura * (roztok / 100) * 1000
+      const newRoztok = cbdNew / newValue
+      console.log("cbdNew", cbdNew)
+      console.log("newValue", newValue)
+      console.log("newRoztok", newRoztok)
+      setRoztok(newRoztok)
+      setKapek((lavelState / (cbdNew / pocetKapek)) * koef)
+      setObjem(newValue)
+    }
   }
 
   return (
