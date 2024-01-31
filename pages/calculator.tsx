@@ -109,7 +109,9 @@ const Calculator: NextPage<ICalculator> = ({calculator}) => {
   }, [koef, lavelState])
 
   useEffect(() => {
-    setRoztok(objem / 20 * tinktura)
+    if(state === "looking") {
+      setRoztok(objem / 20 * tinktura)
+    }
   }, [cbd])
 
   useEffect(() => {
@@ -127,10 +129,10 @@ const Calculator: NextPage<ICalculator> = ({calculator}) => {
 
   const handleRoztok = (e: Event | ChangeEvent<HTMLInputElement>, newValue: number) => {
     e.preventDefault()
-    setRoztok(newValue)
     const newCbd = (objem / tinktura) * tinktura * (newValue / 100) * 1000
     setCbd(newCbd)
     setKapek((lavelState / (newCbd / pocetKapek)) * koef)
+    setRoztok(newValue)
   }
 
   const handleCbd = (e: Event | ChangeEvent<HTMLInputElement>, newValue: number) => {
