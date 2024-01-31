@@ -142,13 +142,11 @@ const Calculator: NextPage<ICalculator> = ({calculator}) => {
   const handleObjem = (e: Event | ChangeEvent<HTMLInputElement>, newValue: number) => {
     e.preventDefault()
     if(Number.isInteger(newValue)) {
-      const cbdNew = (newValue / tinktura) * tinktura * (roztok / 100) * 1000
-      const newRoztok = cbdNew / newValue
-      console.log("cbdNew", cbdNew)
+      const newRoztok = cbd / newValue
       console.log("newValue", newValue)
       console.log("newRoztok", newRoztok)
       setRoztok(newRoztok)
-      setKapek((lavelState / (cbdNew / pocetKapek)) * koef)
+      setKapek((lavelState / (cbd / pocetKapek)) * koef)
       setObjem(newValue)
     }
   }
