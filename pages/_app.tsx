@@ -25,6 +25,7 @@ const MyApp: FC<MyAppProps> = ({ Component, ...rest }) => {
   const { emotionCache = clientSideEmotionCache, pageProps } = props;
 
   const selectTheme = pageProps.light ? lightTheme : theme;
+  const embed = pageProps?.embed
   
   return (
     <Provider store={store}>
@@ -32,9 +33,9 @@ const MyApp: FC<MyAppProps> = ({ Component, ...rest }) => {
         <ThemeProvider theme={{ ...selectTheme, ...globalVariables }}>
           <CssBaseline />
           <WithGraphQL>
-            <Header />
+            {!embed && <Header />}
             <Component {...pageProps} />
-            <Footer />
+            {!embed && <Footer />}
             <GranimComponent />
           </WithGraphQL>
         </ThemeProvider>

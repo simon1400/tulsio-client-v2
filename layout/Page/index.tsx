@@ -14,10 +14,9 @@ interface IPage {
   children: ReactNode | ReactNode[];
   id?: string;
   className?: string;
-  light?: boolean;
 }
 
-const Page: FC<IPage> = ({ children, className = "", id = "", light = false }) => {
+const Page: FC<IPage> = ({ children, className = "", id = "" }) => {
   const router = useRouter();
 
   const title = useSelector(selectTitle);
