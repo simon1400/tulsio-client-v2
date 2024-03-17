@@ -77,8 +77,13 @@ const CalculatorPage: NextPage<ICalculator> = ({calculator, embed}) => {
         </Grid>
       </Container>
       <Container>
-        <ShortContent title={"Na co se CBD nejčestěji používá"} />
-        {!!calculator.commonlyUsed.length && calculator.commonlyUsed.map((item: any, idx: number) => <Related key={idx} reverse={!!(idx % 2)} title={item.title} description={item.description} />)}
+        <div style={{marginBottom: 70}}>
+          <ShortContent title={"Na co se CBD nejčestěji používá"} />
+          {!!calculator.commonlyUsed.length && calculator.commonlyUsed.map((item: any, idx: number) => <Related key={idx} reverse={!!(idx % 2)} title={item.title} description={item.description} />)}
+        </div>
+      </Container>
+      <Container>
+        <InfoBlock alert title={"Some title"} description={"Some description"} />
       </Container>
     </Page>
   );

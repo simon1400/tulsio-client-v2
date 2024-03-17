@@ -15,9 +15,10 @@ export const BlockValueS = styled.div<{center?: boolean; focus: boolean;}>(({the
   justify-content: center;
   max-width: 100px;
   background-color: rgba(255, 255, 255, 0.08);
+  transition: all .2s ease;
   outline: 2px solid ${focus ? theme.palette.primary.main : "rgba(255, 255, 255, 0.08)"};
   &:hover{
-    outline: 2px solid ${focus ? theme.palette.primary.main : "rgba(255, 255, 255, 0.1)"};
+    outline: 2px solid ${focus ? theme.palette.primary.main : "rgba(255, 255, 255, 0.2)"};
   }
   input{
     border: none;

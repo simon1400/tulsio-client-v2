@@ -21,5 +21,10 @@ export const InfoBlockS = styled.div(({theme}) => `
 
   h3{
     margin-bottom: 20px;
+    /* svg{
+      color: #ff8f45;
+      fill: #ff8f45;
+      background: #ff8f45;
+    } */
   }
 `)

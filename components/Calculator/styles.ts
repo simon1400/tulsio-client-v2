@@ -10,6 +10,13 @@ export const CalculatorS = styled.div(({theme}) => `
   align-items: center;
   flex-direction: column;
   text-align: center;
+  .wrap-tabs{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 35px;
+    gap: 10px;
+  }
   .calcul-input-head{
     font-size: 16px;
     margin-bottom: 11px;
@@ -37,7 +44,6 @@ export const CalculatorS = styled.div(({theme}) => `
 `)
 
 export const TabsS = styled(Tabs)(({theme}) => `
-  margin-bottom: 35px;
   > div{
     height: 40px;
     border-radius: 31px;
@@ -68,7 +74,7 @@ export const TabsS = styled(Tabs)(({theme}) => `
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
     background-color: #4545ff;
     border-radius: 25px;
-    height: 32px;
+    height: 33px;
     padding: 0 20px;
     z-index: 1;
     bottom: 4px;
@@ -127,4 +133,25 @@ export const ResultCalculate = styled.div<{delay: number; animation: boolean;}>(
       font-size: 17px;
     }
   }
+`)
+
+export const BottomButtons = styled.div(({theme}) => `
+    display: flex;
+    margin-top: 65px;
+    justify-content: center;
+    align-items: center;
+    >* {
+      display: flex;
+      align-items: center;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.55);
+      text-decoration: none;
+      cursor: pointer;
+      &:first-child{
+        margin-right: 25px;
+      }
+      svg{
+        margin-right: 5px;
+      }
+    }
 `)

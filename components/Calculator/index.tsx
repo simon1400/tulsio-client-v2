@@ -1,5 +1,5 @@
 import { ChangeEvent, SyntheticEvent, useEffect, useState } from "react";
-import { CalculatorS, ResultCalculate, TabsS } from "./styles";
+import { BottomButtons, CalculatorS, ResultCalculate, TabsS } from "./styles";
 import { Grid, Tab, Typography } from "@mui/material";
 import Range from "components/Range";
 import BlockValue from "components/BlockValue";
@@ -8,6 +8,8 @@ import ObjemIcon from "public/assets/objem.svg";
 import KapkaIcon from "public/assets/kapka.svg";
 import PipetaIcon from "public/assets/pipeta.svg";
 import MgCbd from "public/assets/mlCbd.svg";
+import CopyLight from "public/assets/copy-light.svg";
+import TriangleAlert from "public/assets/triangle-alert.svg";
 
 const objemKapatka = 0.04
 const baseKg = 75
@@ -16,6 +18,7 @@ const tinktura = 10
 const Calculator = () => {
 
   const [who, setWho] = useState("human");
+  const [kapekText, setKapekText] = useState<string>('kapka')
 
   const [rangeKg, setRangeKg] = useState([40, 150])
 
@@ -123,13 +126,30 @@ const Calculator = () => {
     }
   }
 
+  useEffect(() => {
+    const kapekFixed = +kapek.toFixed(0)
+    if(kapekFixed === 1){
+      setKapekText('kapka')
+    }else if(kapekFixed <= 4 && kapekFixed >= 2){
+      setKapekText('kapky')
+    }else if(kapekFixed >= 5){
+      setKapekText('kapek')
+    }
+  }, [kapek])
+
   return (
     <CalculatorS>
-      <TabsS value={who} onChange={handleWho}>
-        <Tab value="human" label="Člověk" disableRipple />
-        <Tab value="dog" label="Pes" disableRipple />
-        <Tab value="cat" label="Kočka" disableRipple />
-      </TabsS>
+      <div className="wrap-tabs">
+        <TabsS value={who} onChange={handleWho}>
+          <Tab value="human" label="Člověk" disableRipple />
+          <Tab value="dog" label="Pes" disableRipple />
+          <Tab value="cat" label="Kočka" disableRipple />
+        </TabsS>
+        <TabsS value={state} onChange={handleState}>
+          <Tab value="looking" label="Hledám CBD" disableRipple />
+          <Tab value="has" label="Už mám CBD" disableRipple />
+        </TabsS>
+      </div>
       <Range
         label="Úroveň problému"
         min={0}
@@ -149,11 +169,8 @@ const Calculator = () => {
         kg
         handle={handleKg}
       />
-      <TabsS value={state} onChange={handleState}>
-        <Tab value="looking" label="Hledám CBD" disableRipple />
-        <Tab value="has" label="Už mám CBD" disableRipple />
-      </TabsS>
-      <Grid container marginBottom={8} sx={{ textAlign: "center" }}>
+      <Typography variant="h3">{state === 'looking' ? "Doporučená koncentrace kapek" : "Vyplňte údaje z vašich kapek"}</Typography>
+      <Grid container marginBottom={8} marginTop={6} sx={{ textAlign: "center" }}>
         <Grid item xs={4}>
           <Typography className="calcul-input-head" variant="h4" marginBottom={5}>Roztok</Typography>
           <BlockValue
@@ -177,7 +194,7 @@ const Calculator = () => {
           <BlockValue value={`${objem}`} type="ml" handle={state === "has" ? handleObjem : () => {}} center />
         </Grid>
       </Grid>
-      <Typography variant="h3">Vaše doporučené denní dávkování</Typography>
+      <Typography variant="h3">Doporučené denní dávkování</Typography>
       <Grid container>
         <Grid item xs={3}>
           <ResultCalculate animation={animation} delay={0}>
@@ -194,7 +211,7 @@ const Calculator = () => {
         <Grid item xs={3}>
           <ResultCalculate animation={animation} delay={0.2}>
             <div><KapkaIcon /></div>
-            <span>{kapek.toFixed(0)} kapek</span>
+            <span>{kapek.toFixed(0)} {kapekText}</span>
           </ResultCalculate>
         </Grid>
         <Grid item xs={3}>
@@ -204,6 +221,16 @@ const Calculator = () => {
           </ResultCalculate>
         </Grid>
       </Grid>
+      <BottomButtons>
+        <a href="">
+          <TriangleAlert />
+          <span>Přečíst upozornění</span>
+        </a>
+        <div onClick={() => {navigator.clipboard.writeText('<iframe src="https://tulsio.com/cs/calculator?embed=calculator" width="100%" height="400" />')}}>
+          <CopyLight />
+          <span>Vložte si kalkulačku na váš web</span>
+        </div>
+      </BottomButtons>
     </CalculatorS>
   )
 }
