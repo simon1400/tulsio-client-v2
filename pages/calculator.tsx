@@ -44,8 +44,6 @@ interface ICalculator {
   embed: boolean
 }
 
-
-
 const CalculatorPage: NextPage<ICalculator> = ({calculator, embed}) => {
 
   if(embed) {
@@ -58,10 +56,10 @@ const CalculatorPage: NextPage<ICalculator> = ({calculator, embed}) => {
     <Page>
       <Container maxWidth="xl">
         <Grid container spacing={5}>
-          <Grid item xs={6}>
-            <CategoryShort staticBlock data={{title: calculator.title, description: calculator.description}} />
+          <Grid item xs={12} md={6}>
+            <CategoryShort removeHover staticBlock data={{title: calculator.title, description: calculator.description}} />
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12} md={6}>
             <Calculator />
           </Grid>
         </Grid>
@@ -72,18 +70,18 @@ const CalculatorPage: NextPage<ICalculator> = ({calculator, embed}) => {
       <Container>
         <Grid container spacing={5}>
           {!!calculator.tutorialItem.length && calculator.tutorialItem.map((item: any, idx: number) => <Grid key={idx} item xs={4}>
-            <InfoBlock title={item.title} description={item.description} />
+            <InfoBlock icon={item.image.data.attributes.url} title={item.title} description={item.description} />
           </Grid>)}
         </Grid>
       </Container>
       <Container>
         <div style={{marginBottom: 70}}>
           <ShortContent title={"Na co se CBD nejčestěji používá"} />
-          {!!calculator.commonlyUsed.length && calculator.commonlyUsed.map((item: any, idx: number) => <Related key={idx} reverse={!!(idx % 2)} title={item.title} description={item.description} />)}
+          {!!calculator.commonlyUsed.length && calculator.commonlyUsed.map((item: any, idx: number) => <Related key={idx} image={item.image} reverse={!!(idx % 2)} title={item.title} description={item.description} />)}
         </div>
       </Container>
-      <Container>
-        <InfoBlock alert title={"Some title"} description={"Some description"} />
+      <Container id="content">
+        <InfoBlock alert title={calculator.alert.title} description={calculator.alert.description} />
       </Container>
     </Page>
   );

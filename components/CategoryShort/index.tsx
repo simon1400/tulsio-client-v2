@@ -5,15 +5,17 @@ import { Typography } from "@mui/material"
 interface ICategoryShort {
   data: any
   staticBlock?: boolean
+  removeHover?: boolean
 }
 
 const CategoryShort: FC<ICategoryShort> = ({
   data,
-  staticBlock = false
+  staticBlock = false,
+  removeHover = false
 }) => {
   
   return (
-    <CategoryDescriptionS staticBlock={staticBlock}>
+    <CategoryDescriptionS removeHover={removeHover} staticBlock={staticBlock}>
       <div className="img-wrap"></div>
       <div className="content-wrap-art">
         <Typography marginBottom={staticBlock ? 5 : 0} variant={staticBlock ? "h1" : "h2"}>{data.title}</Typography>

@@ -1,12 +1,12 @@
 import styled from "@emotion/styled";
 
-export const CategoryDescriptionS = styled.div<{staticBlock?: boolean}>(({theme, staticBlock = false}) => `
+export const CategoryDescriptionS = styled.div<{staticBlock?: boolean; removeHover?: boolean}>(({theme, staticBlock = false, removeHover = false}) => `
   height: 100%;
   position: relative;
   overflow: hidden;
   &:hover{
     .img-wrap {
-      transform: scale(.98);
+      transform: scale(${removeHover ? '1' : '.98'});
     }
   }
   .img-wrap{

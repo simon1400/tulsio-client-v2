@@ -45,12 +45,15 @@ const Calculator = () => {
     setWho(newValue);
   };
 
-  const handleState = (e: SyntheticEvent, newValue: string) => {
-    setState(newValue);
-  };
-
   const [lavel, setLavel] = useState<number | number[]>(3);
   const [lavelState, setLavelState] = useState<number>(20);
+
+  const handleState = (e: SyntheticEvent, newValue: string) => {
+    setState(newValue);
+    setLavel(3)
+    setLavelState(20)
+    setKg(75)
+  };
 
   const handleLavel = async (
     e: Event | ChangeEvent<HTMLInputElement>,
@@ -137,17 +140,25 @@ const Calculator = () => {
     }
   }, [kapek])
 
+  const handleClick = (e: any) => {
+    e.preventDefault()
+    const element = document.getElementById("content");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <CalculatorS>
       <div className="wrap-tabs">
+      <TabsS value={state} onChange={handleState}>
+          <Tab value="looking" label="Hledám CBD" disableRipple />
+          <Tab value="has" label="Už mám CBD" disableRipple />
+        </TabsS>
         <TabsS value={who} onChange={handleWho}>
           <Tab value="human" label="Člověk" disableRipple />
           <Tab value="dog" label="Pes" disableRipple />
           <Tab value="cat" label="Kočka" disableRipple />
-        </TabsS>
-        <TabsS value={state} onChange={handleState}>
-          <Tab value="looking" label="Hledám CBD" disableRipple />
-          <Tab value="has" label="Už mám CBD" disableRipple />
         </TabsS>
       </div>
       <Range
@@ -222,7 +233,7 @@ const Calculator = () => {
         </Grid>
       </Grid>
       <BottomButtons>
-        <a href="">
+        <a href="/" onClick={(e) => handleClick(e)}>
           <TriangleAlert />
           <span>Přečíst upozornění</span>
         </a>
