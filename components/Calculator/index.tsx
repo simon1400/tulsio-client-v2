@@ -10,6 +10,7 @@ import PipetaIcon from "public/assets/pipeta.svg";
 import MgCbd from "public/assets/mlCbd.svg";
 import CopyLight from "public/assets/copy-light.svg";
 import TriangleAlert from "public/assets/triangle-alert.svg";
+import Link from "next/link";
 
 const objemKapatka = 0.04
 const baseKg = 75
@@ -233,10 +234,10 @@ const Calculator = () => {
         </Grid>
       </Grid>
       <BottomButtons>
-        <a href="/" onClick={(e) => handleClick(e)}>
+        <Link href="/" onClick={(e) => handleClick(e)}>
           <TriangleAlert />
           <span>Přečíst upozornění</span>
-        </a>
+        </Link>
         <div onClick={() => {navigator.clipboard.writeText('<iframe src="https://tulsio.com/cs/calculator?embed=calculator" width="100%" height="400" />')}}>
           <CopyLight />
           <span>Vložte si kalkulačku na váš web</span>
