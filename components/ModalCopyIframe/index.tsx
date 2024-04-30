@@ -81,13 +81,13 @@ const ModalCopyIframe: FC<IModalCopyIframe> = ({ setOpen, open }) => {
               onClick={() => handleClose()}
             />
           </IconButton>
-          <Typography variant="h1" marginBottom={6}>Vlozte si kalkulacku na vas web</Typography>
-          <Typography variant="h3">Tmava varianta</Typography>
+          <Typography variant="h1" marginBottom={6}>Vložte si kalkulačku na váš web</Typography>
+          <Typography variant="h3">Tmavá varianta</Typography>
           <Tooltip title={copyText} placement="top">
             <code onMouseLeave={() => setCopyText('Click to copy!')} onClick={() => handleCopy('<iframe src="https://tulsio.com/cs/calculator?embed=black" width="100%" height="400" />')}>https://tulsio.com/cs/calculator?embed=black</code>
           </Tooltip>
           
-          <Typography variant="h3" marginTop={6}>Svetla varianta</Typography>
+          <Typography variant="h3" marginTop={6}>Světlá varianta</Typography>
           <Tooltip title={copyText} placement="top">
             <code onMouseLeave={() => setCopyText('Click to copy!')} onClick={() => handleCopy('<iframe src="https://tulsio.com/cs/calculator?embed=white" width="100%" height="400" />')}>https://tulsio.com/cs/calculator?embed=black</code>
           </Tooltip>

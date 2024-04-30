@@ -161,7 +161,7 @@ const Calculator: FC<{embed?: string}> = ({embed = ''}) => {
 
   return (
     <CalculatorS embed={embed}>
-      {embed.length && <EmbedHeader>
+      {!!embed.length && <EmbedHeader>
         <Typography variant="h1">CBD kalkulačka</Typography>
         <div className="embed-logo">
           <Link href="/">
