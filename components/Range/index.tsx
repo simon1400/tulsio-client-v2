@@ -42,7 +42,7 @@ const Range: FC<{
         <Typography gutterBottom>{label}</Typography>
         {/* @ts-ignore */}
         {!kg && <Typography gutterBottom>{lavelData[value]}</Typography>}
-        {kg && <BlockValue value={`${value}`} type="kg" handle={handle} />}
+        {kg && <BlockValue state="has" value={`${value}`} type="kg" handle={handle} />}
       </div>
       <AirbnbSlider
         slots={{ thumb: AirbnbThumbComponent }}

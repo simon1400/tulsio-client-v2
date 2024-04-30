@@ -1,5 +1,5 @@
-import { ChangeEvent, SyntheticEvent, useEffect, useState } from "react";
-import { BottomButtons, CalculatorS, ResultCalculate, TabsS } from "./styles";
+import { ChangeEvent, FC, SyntheticEvent, useEffect, useState } from "react";
+import { BottomButtons, CalculatorS, EmbedHeader, InputsBlockWrap, ResultCalculate, TabsS } from "./styles";
 import { Grid, Tab, Typography } from "@mui/material";
 import Range from "components/Range";
 import BlockValue from "components/BlockValue";
@@ -11,12 +11,13 @@ import MgCbd from "public/assets/mlCbd.svg";
 import CopyLight from "public/assets/copy-light.svg";
 import TriangleAlert from "public/assets/triangle-alert.svg";
 import Link from "next/link";
+import Image from "next/image";
 
 const objemKapatka = 0.04
 const baseKg = 75
 const tinktura = 10
 
-const Calculator = () => {
+const Calculator: FC<{embed?: string}> = ({embed = ''}) => {
 
   const [who, setWho] = useState("human");
   const [kapekText, setKapekText] = useState<string>('kapka')
@@ -40,7 +41,7 @@ const Calculator = () => {
     }
   }, [who])
 
-  const [state, setState] = useState("looking");
+  const [state, setState] = useState<string>("looking");
 
   const handleWho = (e: SyntheticEvent, newValue: string) => {
     setWho(newValue);
@@ -54,6 +55,9 @@ const Calculator = () => {
     setLavel(3)
     setLavelState(20)
     setKg(75)
+    setObjem(10)
+    setRoztok(10)
+    setCbd((10 / tinktura) * tinktura * (10 / 100) * 1000)
   };
 
   const handleLavel = async (
@@ -138,6 +142,8 @@ const Calculator = () => {
       setKapekText('kapky')
     }else if(kapekFixed >= 5){
       setKapekText('kapek')
+    }else if(!kapekFixed){
+      setKapekText('kapek')
     }
   }, [kapek])
 
@@ -149,10 +155,20 @@ const Calculator = () => {
     }
   };
 
+  const pipeta = +(kapek * objemKapatka).toFixed(2)
+
   return (
-    <CalculatorS>
-      <div className="wrap-tabs">
-      <TabsS value={state} onChange={handleState}>
+    <CalculatorS embed={embed}>
+      {embed.length && <EmbedHeader>
+        <Typography variant="h1">CBD kalkulačka</Typography>
+        <div className="embed-logo">
+          <Link href="/">
+            <Image src="/assets/logo-tulsio.svg" width="211" height="61" alt="Tulsio" />
+          </Link>
+        </div>
+      </EmbedHeader>}
+      {!embed.length && <div className="wrap-tabs">
+        <TabsS value={state} onChange={handleState}>
           <Tab value="looking" label="Hledám CBD" disableRipple />
           <Tab value="has" label="Už mám CBD" disableRipple />
         </TabsS>
@@ -161,7 +177,7 @@ const Calculator = () => {
           <Tab value="dog" label="Pes" disableRipple />
           <Tab value="cat" label="Kočka" disableRipple />
         </TabsS>
-      </div>
+      </div>}
       <Range
         label="Úroveň problému"
         min={0}
@@ -182,30 +198,32 @@ const Calculator = () => {
         handle={handleKg}
       />
       <Typography variant="h3">{state === 'looking' ? "Doporučená koncentrace kapek" : "Vyplňte údaje z vašich kapek"}</Typography>
-      <Grid container marginBottom={8} marginTop={6} sx={{ textAlign: "center" }}>
-        <Grid item xs={4}>
+      <InputsBlockWrap>
+        <div>
           <Typography className="calcul-input-head" variant="h4" marginBottom={5}>Roztok</Typography>
           <BlockValue
             value={`${roztok}`}
             type="%"
             handle={state === "has" ? handleRoztok : () => {}}
             center
+            state={state}
           />
-        </Grid>
-        <Grid item xs={4}>
+        </div>
+        <div>
           <Typography className="calcul-input-head" variant="h4" marginBottom={5}>Obsah CBD</Typography>
           <BlockValue
             value={`${cbd}`}
             type="mg"
             handle={state === "has" ? handleCbd : () => {}}
             center
+            state={state}
           />
-        </Grid>
-        <Grid item xs={4}>
+        </div>
+        <div>
           <Typography className="calcul-input-head" variant="h4" marginBottom={5}>Objem láhvičky</Typography>
-          <BlockValue value={`${objem}`} type="ml" handle={state === "has" ? handleObjem : () => {}} center />
-        </Grid>
-      </Grid>
+          <BlockValue value={`${objem}`} type="ml" state={state} handle={state === "has" ? handleObjem : () => {}} center />
+        </div>
+      </InputsBlockWrap>
       <Typography variant="h3">Doporučené denní dávkování</Typography>
       <Grid container>
         <Grid item xs={3}>
@@ -229,20 +247,28 @@ const Calculator = () => {
         <Grid item xs={3}>
           <ResultCalculate animation={animation} delay={0.5}>
             <div><PipetaIcon /></div>
-            <span>{(kapek * objemKapatka).toFixed(2)} × pipeta</span>
+            <span>
+              {pipeta < 0.1 && "0 "}
+              {pipeta >= 0.1 && pipeta < 0.25 && "1/4 "}
+              {pipeta >= 0.25 && pipeta < 0.4 && "1/3 "}
+              {pipeta >= 0.4 && pipeta < 0.6 && "1/2 "}
+              {pipeta >= 0.6 && pipeta < 0.65 && "2/3 "}
+              {pipeta >= 0.65 && pipeta < 0.8 && "3/4 "}
+              {(pipeta >= 0.8 || pipeta === 0) && pipeta}
+              × pipeta</span>
           </ResultCalculate>
         </Grid>
       </Grid>
-      <BottomButtons>
+      {!embed.length && <BottomButtons>
         <Link href="/" onClick={(e) => handleClick(e)}>
           <TriangleAlert />
           <span>Přečíst upozornění</span>
         </Link>
-        <div onClick={() => {navigator.clipboard.writeText('<iframe src="https://tulsio.com/cs/calculator?embed=calculator" width="100%" height="400" />')}}>
+        <div onClick={() => {navigator.clipboard.writeText('<iframe src="https://tulsio.com/cs/calculator?embed=black" width="100%" height="400" />')}}>
           <CopyLight />
           <span>Vložte si kalkulačku na váš web</span>
         </div>
-      </BottomButtons>
+      </BottomButtons>}
     </CalculatorS>
   )
 }

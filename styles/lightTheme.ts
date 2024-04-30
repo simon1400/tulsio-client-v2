@@ -15,7 +15,7 @@ let lightTheme = createTheme({
     },
   },
   palette: {
-    mode: 'dark',
+    mode: 'light',
     primary: {
       main: "#4545ff"
     },

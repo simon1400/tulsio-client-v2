@@ -1,10 +1,9 @@
 import styled from "@emotion/styled";
 import { Tabs } from "@mui/material";
 
-export const CalculatorS = styled.div(({theme}) => `
-  background-color: rgba(255, 255, 255, 0.1);
+export const CalculatorS = styled.div<{embed?: string}>(({theme, embed = ''}) => `
+  background-color: ${theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.1)' : 'rgba(255, 255, 255, 0.1)'};
   padding: 40px;
-  border-radius: ${theme.borderRadius['base']};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,15 +20,19 @@ export const CalculatorS = styled.div(({theme}) => `
     font-size: 16px;
     margin-bottom: 11px;
   }
-  ${theme.breakpoints.down('xxl')} {
-    border-radius: ${theme.borderRadius['xxl']};
-  }
-  ${theme.breakpoints.down('xl')} {
-    border-radius: ${theme.borderRadius['xl']};
-  }
-  ${theme.breakpoints.down('lg')} {
-    border-radius: ${theme.borderRadius['lg']};
-  }
+  ${!embed.length && `
+    border-radius: ${theme.borderRadius['base']};
+    ${theme.breakpoints.down('xxl')} {
+      border-radius: ${theme.borderRadius['xxl']};
+    }
+    ${theme.breakpoints.down('xl')} {
+      border-radius: ${theme.borderRadius['xl']};
+    }
+    ${theme.breakpoints.down('lg')} {
+      border-radius: ${theme.borderRadius['lg']};
+    }
+  `}
+  
   ${theme.breakpoints.down('md')} {
     padding: 20px;
     .calcul-input-head{
@@ -44,6 +47,7 @@ export const CalculatorS = styled.div(({theme}) => `
 `)
 
 export const TabsS = styled(Tabs)(({theme}) => `
+
   > div{
     height: 40px;
     border-radius: 31px;
@@ -83,6 +87,7 @@ export const TabsS = styled(Tabs)(({theme}) => `
     font-size: 16px;
     padding: 8px 18px;
     height: 30px;
+    min-width: 0;
     display: block;
   }
   ${theme.breakpoints.down('md')} {
@@ -99,6 +104,17 @@ export const TabsS = styled(Tabs)(({theme}) => `
       padding: 6px 18px;
       height: 30px;
       display: block;
+    }
+  }
+  ${theme.breakpoints.down('sm')} {
+    margin-bottom: 10px;
+    button{
+      height: 25px;
+      min-height: 25px;
+    }
+    .MuiTabs-indicator{
+      height: 30px;
+      bottom: 6px;
     }
   }
 `)
@@ -133,13 +149,21 @@ export const ResultCalculate = styled.div<{delay: number; animation: boolean;}>(
       font-size: 17px;
     }
   }
+  ${theme.breakpoints.down('sm')} {
+    margin-bottom: 0px;
+    span{
+      font-size: 14px;
+    }
+  }
 `)
 
 export const BottomButtons = styled.div(({theme}) => `
     display: flex;
+    flex-wrap: wrap;
     margin-top: 65px;
     justify-content: center;
     align-items: center;
+    gap: 25px;
     >* {
       display: flex;
       align-items: center;
@@ -147,11 +171,33 @@ export const BottomButtons = styled.div(({theme}) => `
       color: rgba(255, 255, 255, 0.55);
       text-decoration: none;
       cursor: pointer;
-      &:first-child{
-        margin-right: 25px;
-      }
       svg{
         margin-right: 5px;
+      }
+    }
+`)
+export const InputsBlockWrap = styled.div(({theme}) => `
+    display: flex;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    align-items: center;
+    justify-content: space-around;
+    gap: 25px;
+    > div > div {
+      max-width: 100%;
+    }
+`)
+
+export const EmbedHeader = styled.div(({theme}) => `
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 50px;
+    .embed-logo{
+      img{
+        width: 150px!important;
       }
     }
 `)

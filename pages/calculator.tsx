@@ -24,7 +24,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
     const calculator = data.calculator.data?.attributes;
 
-    const embed = ctx.query?.embed === 'calculator'
+    const embed = ctx.query?.embed || ''
 
 
     store.dispatch(changeTitle("Calculator"));
@@ -41,14 +41,14 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
 interface ICalculator {
   calculator: any
-  embed: boolean
+  embed: string
 }
 
 const CalculatorPage: NextPage<ICalculator> = ({calculator, embed}) => {
 
-  if(embed) {
+  if(embed.length) {
     return (
-      <Calculator />
+      <Calculator embed={embed} />
     )
   }
 
@@ -69,7 +69,7 @@ const CalculatorPage: NextPage<ICalculator> = ({calculator, embed}) => {
       </Container>
       <Container>
         <Grid container spacing={5}>
-          {!!calculator.tutorialItem.length && calculator.tutorialItem.map((item: any, idx: number) => <Grid key={idx} item xs={4}>
+          {!!calculator.tutorialItem.length && calculator.tutorialItem.map((item: any, idx: number) => <Grid key={idx} item xs={12} md={4}>
             <InfoBlock icon={item.image.data.attributes.url} title={item.title} description={item.description} />
           </Grid>)}
         </Grid>

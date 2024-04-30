@@ -18,7 +18,17 @@ export const RelatedS = styled.div<{reverse: boolean}>(({theme, reverse}) => `
   }
   ${theme.breakpoints.down('sm')} {
     border-radius: ${theme.borderRadius['sm']};
-    padding: 15px;
+    flex-direction: column-reverse;
+    .img-wrap{
+      height: 280px;
+      width: 100%;
+    }
+    > div {
+      width: 100%;
+    }
+    .content-wrap{
+      width: 100%;
+    }
   }
   > div {
     width: 50%;

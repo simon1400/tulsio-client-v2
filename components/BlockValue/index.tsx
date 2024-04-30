@@ -7,14 +7,15 @@ const BlockValue: FC<{
   handle: (e: Event | ChangeEvent<HTMLInputElement>, newValue: number) => void;
   type: string;
   center?: boolean
-}> = ({ value, handle, type, center = false }) => {
+  state: string
+}> = ({ value, handle, type, center = false, state }) => {
 
   const [focus, setFocus] = useState(false)
 
   return (
     <ClickAwayListener onClickAway={() => setFocus(false)}>
-      <BlockValueS center={center} focus={focus} onClick={() => setFocus(true)}>
-        <input value={value} onChange={(e) => handle(e, +e.target.value)} />
+      <BlockValueS center={center} focus={focus} onClick={() => setFocus(state === 'has')}>
+        <input value={value} disabled={state !== 'has'} onChange={(e) => handle(e, +e.target.value)} />
         <span>{type}</span>
       </BlockValueS>
     </ClickAwayListener>

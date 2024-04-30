@@ -27,7 +27,7 @@ export const AirbnbSlider = styled(Slider)(({ theme }) => `
     background-color: ${theme.palette.primary.main};
   }
   & .MuiSlider-rail {
-    color: rgba(255, 255, 255, 0.3);
+    color: ${theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.3)' : 'rgba(255, 255, 255, 0.3)'};
     height: 5px;
     border-radius: 2.5px;
   }

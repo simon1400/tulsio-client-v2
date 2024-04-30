@@ -1,20 +1,21 @@
 import styled from "@emotion/styled";
 
 export const BlockValueS = styled.div<{center?: boolean; focus: boolean;}>(({theme, center, focus}) => `
-  display: inline-block;
+  display: inline-flex;
   ${center ? `margin-left: auto; margin-right: auto;` : ""}
   border-radius: 11px;
+  align-items: center;
   font-size: 16px;
   font-weight: 600;
   line-height: 1;
   padding: 14px 12px;
   height: 40px;
   text-align: center;
-  color: white;
+  color: ${theme.palette.mode === 'light' ? 'black' : 'white'};
   display: flex;
   justify-content: center;
   max-width: 100px;
-  background-color: rgba(255, 255, 255, 0.08);
+  background-color: ${theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.08)' : 'rgba(255, 255, 255, 0.08)'};
   transition: all .2s ease;
   outline: 2px solid ${focus ? theme.palette.primary.main : "rgba(255, 255, 255, 0.08)"};
   &:hover{
@@ -25,7 +26,7 @@ export const BlockValueS = styled.div<{center?: boolean; focus: boolean;}>(({the
     padding: 0;
     font-size: 16px;
     font-weight: 600;
-    color: white;
+    color: ${theme.palette.mode === 'light' ? 'black' : 'white'};
     width: 100%;
     background: transparent;
     outline: none;

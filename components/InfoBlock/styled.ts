@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 
 export const InfoBlockS = styled.div(({theme}) => `
   border-radius: ${theme.borderRadius['base']};
+  height: 100%;
   ${theme.breakpoints.down('xxl')} {
     border-radius: ${theme.borderRadius['xxl']};
   }
