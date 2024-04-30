@@ -12,6 +12,7 @@ import CopyLight from "public/assets/copy-light.svg";
 import TriangleAlert from "public/assets/triangle-alert.svg";
 import Link from "next/link";
 import Image from "next/image";
+import ModalCopyIframe from "components/ModalCopyIframe";
 
 const objemKapatka = 0.04
 const baseKg = 75
@@ -19,6 +20,7 @@ const tinktura = 10
 
 const Calculator: FC<{embed?: string}> = ({embed = ''}) => {
 
+  const [openModal, setOpenModal] = useState(false)
   const [who, setWho] = useState("human");
   const [kapekText, setKapekText] = useState<string>('kapka')
 
@@ -264,10 +266,12 @@ const Calculator: FC<{embed?: string}> = ({embed = ''}) => {
           <TriangleAlert />
           <span>Přečíst upozornění</span>
         </Link>
-        <div onClick={() => {navigator.clipboard.writeText('<iframe src="https://tulsio.com/cs/calculator?embed=black" width="100%" height="400" />')}}>
+        {/* <div onClick={() => {navigator.clipboard.writeText('<iframe src="https://tulsio.com/cs/calculator?embed=black" width="100%" height="400" />')}}> */}
+        <div onClick={() => setOpenModal(true)}>
           <CopyLight />
           <span>Vložte si kalkulačku na váš web</span>
         </div>
+        <ModalCopyIframe open={openModal} setOpen={setOpenModal} />
       </BottomButtons>}
     </CalculatorS>
   )
