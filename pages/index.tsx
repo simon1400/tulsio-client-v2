@@ -50,10 +50,10 @@ export const getServerSideProps = wrapper.getServerSideProps(
       },
     });
 
-    const homepage = homepageData.homepage.data?.attributes;
-    const meta = homepage?.meta;
+    const homepage = homepageData.homepage.data.attributes;
+    const meta = homepage.meta;
     const articles = homepage.articles.map(
-      (item: any) => item.article.data?.attributes
+      (item: any) => item.article.data.attributes
     );
     const baners = banersData.baners.data.map((item: any) => item.attributes);
 
@@ -84,6 +84,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
   }
 );
 
+
 interface IHomepage {
   title: string;
   baner1: any;
@@ -91,7 +92,7 @@ interface IHomepage {
   articles: any;
 }
 
-const Homepage: FC<IHomepage> = ({ title, baner1, baner2, articles }) => {
+const Homepage: FC<IHomepage> = ({ title, baner1, baner2, articles }) => { 
   return (
     <Page>
       <section>
