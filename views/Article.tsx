@@ -13,6 +13,7 @@ import Anchors from "components/Anchors";
 import { oembedTransform } from "helpers/oembedTransform";
 import Articles from "components/Articles";
 import Author from "components/Author";
+import AudioPlayer from 'components/Player';
 
 const DOMAIN = process.env.APP_DOMAIN;
 
@@ -44,7 +45,7 @@ const Article = ({
               {!!item.title && <Typography variant="h2">{item.title}</Typography>}
               {item.text && <Typography component="div" variant="body1" dangerouslySetInnerHTML={{__html: oembedTransform(item.text)}} />}
               {item.banners_static.data && <BannerStatic data={item.banners_static.data.attributes}/>}
-              {!!item.galery?.data?.length && item.galery.data.map((img: any, indexImg: number) => <figure key={indexImg}>
+              {!!item.galery?.data?.length && item.galery.data?.map((img: any, indexImg: number) => <figure key={indexImg}>
                 <div>
                   <Image format="&width=960" image={img} />
                 </div>
@@ -57,8 +58,11 @@ const Article = ({
             {article.image?.data && article.categories && <ShareButton data={article} />}
             {!!article.authors?.data.length && <Author data={article.authors.data[0].attributes} />}
           </Content>
-        </Container>
 
+          {article.audio && article.audio.data && article.audio.data.attributes && (
+            <AudioPlayer url={article.audio.data.attributes.url} />
+          )}
+        </Container>
         {!!article.categories?.data[0]?.attributes.articles.data.length && (
           <>
             <Container maxWidth="md">

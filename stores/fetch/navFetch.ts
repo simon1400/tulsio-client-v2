@@ -7,7 +7,7 @@ import { navReducer } from "stores/slices/navSlices";
 export const fetchNavCategory = (locale: string): AppThunk => async (dispatch) => {
   const { data: navData } = await client.query({ query: getCategoryNav, variables: { locale: locale }});
 
-  const nav = navData.categories.data.map((item: any) => ({
+  const nav = navData.categories.data?.map((item: any) => ({
     title: item.attributes.navTitle,
     slug: item.attributes.slug,
   }));
@@ -18,7 +18,7 @@ export const fetchNavCategory = (locale: string): AppThunk => async (dispatch) =
 export const fetchNavCatalog = (locale: string): AppThunk => async (dispatch) => {
   const { data } = await client.query({ query: getCatalogNav, variables: { locale: locale }});
 
-  const nav = data.shopCategories.data.map((item: any) => ({
+  const nav = data.shopCategories.data?.map((item: any) => ({
     title: item.attributes.navTitle,
     slug: item.attributes.slug,
   }));

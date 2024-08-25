@@ -30,12 +30,7 @@ const nextConfig = {
   },
   trailingSlash: false,
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'admin.tulsio.cz'
-      },
-    ],
+    domains: ['localhost'],
   },
 }
 

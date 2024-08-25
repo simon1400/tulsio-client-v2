@@ -19,12 +19,13 @@ const Footer = () => {
     return <footer></footer>;
   }
 
-  const transformData = data.navigation.data.attributes.footer.item.map(
+  const transformData = data?.navigation?.data?.attributes?.footer?.item?.map(
     (item: any, idx: number) => ({
       title: item.name,
       slug: item.link,
     })
-  );
+  ) || []; // Fallback to an empty array if the chain is undefined
+  
 
   const handleNav = (e: SyntheticEvent, slug: string) => {
     e.preventDefault();

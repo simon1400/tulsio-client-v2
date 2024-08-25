@@ -5,8 +5,7 @@ import { ReactNode } from "react";
 
 export function getStrapiURL(path = "") {
   return `${
-    process.env.APP_API || "http://localhost:1335"
-  }${path}`;
+    process.env.APP_API || "http://localhost:1335"}${path}`;
 }
 
 // Helper to make GET requests to Strapi
@@ -14,6 +13,12 @@ export async function fetchAPI(path: string) {
   const requestUrl = getStrapiURL(path);
   const response = await fetch(requestUrl);
   const data = await response.json();
+  return data;
+}
+
+export async function fetchAudioData() {
+  const res = await fetch('http://localhost:1337/api/audio'); 
+  const data = await res.json();
   return data;
 }
 

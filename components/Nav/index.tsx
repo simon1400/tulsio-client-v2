@@ -32,7 +32,7 @@ const Nav: FC<INav> = ({
             <Link href="/blog" onClick={(e) => handle(e, "/blog")}>Všechny</Link>
           </li>
         )}
-        {data.map((item: any, idx: number) => (
+        {data?.map((item: any, idx: number) => (
           <li className={router.asPath === '/'+item.slug || router.asPath === item.slug ? "active" : ""} key={idx}>
             <Link href={'/'+item.slug} onClick={(e) => handle(e, item.slug)}>{item.title}</Link>
           </li>

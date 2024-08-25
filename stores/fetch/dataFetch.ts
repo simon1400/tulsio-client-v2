@@ -36,7 +36,7 @@ export const fetchAllArticles =
       }
 
       const { data: articleData } = await client.query({query: getAllArticles, variables: {locale: locale}});
-      articles = articleData.articles.data.map((item: any) => ({ ...item.attributes }))
+      articles = articleData.articles.data?.map((item: any) => ({ ...item.attributes }))
 
     } else {
 
@@ -48,7 +48,7 @@ export const fetchAllArticles =
         },
       });
 
-      if(categoryDataReq.categories.data.length) {
+      if(categoryDataReq.categories?.data.length) {
         type = "blog";
         const { data } = await client.query({
           query: getArticlesCategory,
@@ -63,7 +63,7 @@ export const fetchAllArticles =
         description = categoryDataReq.categories.data[0]?.attributes.meta.description
         shortTitle = categoryDataReq.categories.data[0]?.attributes.shortTitle
         shortDescription = categoryDataReq.categories.data[0]?.attributes.description
-        articles = data.articles.data.map((item: any) => ({ ...item.attributes }))
+        articles = data.articles.data?.map((item: any) => ({ ...item.attributes }))
       }else{
         const { data: tagDataReq } = await client.query({
           query: getTag,
@@ -89,7 +89,7 @@ export const fetchAllArticles =
               locale: locale
             },
           });
-          articles = articlesData.articles.data.map((item: any) => ({
+          articles = articlesData.articles.data?.map((item: any) => ({
             ...item.attributes,
           }));
         }
@@ -137,7 +137,7 @@ export const fetchCategoryOrArticles =
         }
       });
 
-      articles = articleData.articles.data.map((item: any) => ({
+      articles = articleData.articles.data?.map((item: any) => ({
         ...item.attributes,
       }));
     } else {
@@ -148,7 +148,7 @@ export const fetchCategoryOrArticles =
           locale: locale
         },
       });
-      if (categoryDataReq.categories.data.length) {
+      if (categoryDataReq.categories?.data.length) {
 
         dataTitle = categoryDataReq.categories.data[0]?.attributes.meta.title;
         categoryTitle = categoryDataReq.categories.data[0]?.attributes.title;
@@ -164,7 +164,7 @@ export const fetchCategoryOrArticles =
           },
         });
 
-        articles = articlesData.articles.data.map((item: any) => ({
+        articles = articlesData.articles.data?.map((item: any) => ({
           ...item.attributes,
         }));
 
@@ -176,7 +176,7 @@ export const fetchCategoryOrArticles =
             locale: locale
           },
         });
-        if (tagDataReq.labels.data.length) {
+        if (tagDataReq.labels?.data.length) {
 
           type = "tag";
           dataTitle = tagDataReq.labels.data[0]?.attributes?.meta?.title || tagDataReq.labels.data[0]?.attributes.title;
@@ -192,7 +192,7 @@ export const fetchCategoryOrArticles =
               locale: locale
             },
           });
-          articles = articlesData.articles.data.map((item: any) => ({...item.attributes}));
+          articles = articlesData.articles.data?.map((item: any) => ({...item.attributes}));
         } else {
           const { data: articleBaseReq } = await client.query({
             query: getArticleBase,
@@ -201,9 +201,9 @@ export const fetchCategoryOrArticles =
               locale: locale
             },
           });
-          articleBase = articleBaseReq.articlesBase.data[0]?.attributes;
-          dataTitle = articleBaseReq.articlesBase.data[0]?.attributes?.meta?.title || articleBaseReq.articlesBase.data[0]?.attributes?.title
-          dataDescription = articleBaseReq.articlesBase.data[0]?.attributes?.meta?.description || ""
+          articleBase = articleBaseReq.articlesBase?.data[0]?.attributes;
+          dataTitle = articleBaseReq.articlesBase?.data[0]?.attributes?.meta?.title || articleBaseReq.articlesBase?.data[0]?.attributes?.title
+          dataDescription = articleBaseReq.articlesBase?.data[0]?.attributes?.meta?.description || ""
         }
       }
     }

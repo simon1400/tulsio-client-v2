@@ -20,7 +20,7 @@ const NavDictionary: FC<INav> = ({
   return (
     <CSubMenu removeMargin={!subMenu} subMenu={subMenu} mobile={mobile}>
       <ul>
-        {data.map((item: any, idx: number) => (
+        {data?.map((item: any, idx: number) => (
           <li className={active === idx ? "active" : ""} key={idx}>
             <Link href={'/'+item.slug} onClick={e => handle(e, idx)}>{item.title}</Link>
           </li>

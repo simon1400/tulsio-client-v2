@@ -19,7 +19,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
       }
     });
 
-    const transfromDictionaries = allDictionaries.dictionaries.data.map(
+    const transfromDictionaries = allDictionaries.dictionaries.data?.map(
       (item: any) => item.attributes
     );
 

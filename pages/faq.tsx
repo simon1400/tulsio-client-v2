@@ -26,7 +26,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
     return {
       props: {
         faq: faqData,
-        allFaq: allFaq.faqs.data.map((item: any) => ({...item.attributes}))
+        allFaq: allFaq.faqs.data?.map((item: any) => ({...item.attributes}))
       },
     };
   }
@@ -42,8 +42,8 @@ const Faq: NextPage = ({
         indexName={meilisearchPrefix + "faq"}
         searchClient={searchClient}
       >
-        <Configure hitsPerPage={50} />
-
+        {/* <Configure hitsPerPage={50} /> */}
+ 
         <Container maxWidth="md">
           <PageHead title={faq.title} />
           <SearchBox placeholder="Hledat dotaz..." />

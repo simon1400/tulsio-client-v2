@@ -50,39 +50,40 @@ export const getServerSideProps = wrapper.getServerSideProps(
       },
     });
 
-    const homepage = homepageData.homepage.data?.attributes;
-    const meta = homepage?.meta;
-    const articles = homepage.articles.map(
-      (item: any) => item.article.data?.attributes
-    );
-    const baners = banersData.baners.data.map((item: any) => item.attributes);
+    const homepage = homepageData?.homepage?.data?.attributes || {};
+    const meta = homepage?.meta || {};
+    const articles = homepage?.articles?.map(
+      (item: any) => item?.article?.data?.attributes
+    ) || [];
+    const baners = banersData?.baners?.data?.map((item: any) => item.attributes) || [];
 
-    const filterBaners1 = baners.filter(
+    const filterBaners1 = baners?.filter(
       (item: any) => item.position === BANER_POSITION.POSITION_1
     );
-    const filterBaners2 = baners.filter(
+    const filterBaners2 = baners?.filter(
       (item: any) => item.position === BANER_POSITION.POSITION_2
     );
 
     const baner1 =
-      filterBaners1[Math.floor(Math.random() * filterBaners1.length)];
+      filterBaners1?.length > 0 ? filterBaners1[Math.floor(Math.random() * filterBaners1.length)] : null;
     const baner2 =
-      filterBaners2[Math.floor(Math.random() * filterBaners2.length)];
+      filterBaners2?.length > 0 ? filterBaners2[Math.floor(Math.random() * filterBaners2.length)] : null;
 
     store.dispatch(changeTitle(meta?.title || "Úvod"));
     store.dispatch(changeDescription(meta?.description || ""));
 
     return {
       props: {
-        title: homepage.title,
+        title: homepage?.title || null,
         baner1: baner1 || null,
         baner2: baner2 || null,
-        articles,
+        articles: articles.length > 0 ? articles : null,
         image: meta?.image ? getStrapiURL(meta.image) : null,
       },
     };
   }
 );
+
 
 interface IHomepage {
   title: string;
@@ -91,7 +92,7 @@ interface IHomepage {
   articles: any;
 }
 
-const Homepage: FC<IHomepage> = ({ title, baner1, baner2, articles }) => {
+const Homepage: FC<IHomepage> = ({ title, baner1, baner2, articles }) => { 
   return (
     <Page>
       <section>
@@ -117,7 +118,7 @@ const Homepage: FC<IHomepage> = ({ title, baner1, baner2, articles }) => {
                         link={`/blog/${item?.slug}`}
                         image={item.image.data}
                         background={item.background}
-                        label={item?.labels?.data.map(
+                        label={item?.labels?.data?.map(
                           (item: any) => item.attributes
                         )}
                       />
@@ -140,7 +141,7 @@ const Homepage: FC<IHomepage> = ({ title, baner1, baner2, articles }) => {
                         link={`/blog/${item?.slug}`}
                         image={item.image.data}
                         background={item.background}
-                        label={item?.labels?.data.map(
+                        label={item?.labels?.data?.map(
                           (item: any) => item.attributes
                         )}
                       />
@@ -156,7 +157,7 @@ const Homepage: FC<IHomepage> = ({ title, baner1, baner2, articles }) => {
                       link={`/blog/${item?.slug}`}
                       image={item.image.data}
                       background={item.background}
-                      label={item?.labels?.data.map(
+                      label={item?.labels?.data?.map(
                         (item: any) => item.attributes
                       )}
                     />

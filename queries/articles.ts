@@ -120,6 +120,13 @@ export const getArticle = gql`
           background
           showShortImg
           updatedAt
+          audio {
+          data {
+          attributes {
+          url
+          }
+          }
+          }
           meta {
             title
             description

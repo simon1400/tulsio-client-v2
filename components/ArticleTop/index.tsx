@@ -35,7 +35,7 @@ const ArticleTop = ({
           />}
           <Typography variant="h1">{article.title}</Typography>
           {!!article?.labels?.data?.length &&
-            article.labels.data.map((item: any, index: number) => (
+            article.labels.data?.map((item: any, index: number) => (
               <Label
                 color={color}
                 key={index}
