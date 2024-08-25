@@ -120,6 +120,13 @@ export const getArticle = gql`
           background
           showShortImg
           updatedAt
+          audio {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
           meta {
             title
             description
@@ -137,7 +144,7 @@ export const getArticle = gql`
                 name
                 description
                 image{
-									data{
+		              data{
                     attributes{
                       url
                     }
@@ -161,7 +168,7 @@ export const getArticle = gql`
               attributes {
                 articles(pagination: {limit: 4}){
                   data{
-										attributes{
+		                attributes{
                       title
                       slug
                       perex

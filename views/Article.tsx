@@ -13,6 +13,7 @@ import Anchors from "components/Anchors";
 import { oembedTransform } from "helpers/oembedTransform";
 import Articles from "components/Articles";
 import Author from "components/Author";
+import AudioPlayer from 'components/Player';
 
 const DOMAIN = process.env.APP_DOMAIN;
 
@@ -57,8 +58,11 @@ const Article = ({
             {article.image?.data && article.categories && <ShareButton data={article} />}
             {!!article.authors?.data.length && <Author data={article.authors.data[0].attributes} />}
           </Content>
-        </Container>
 
+          {article.audio && article.audio.data && (
+            <AudioPlayer url={article.audio.data.attributes.url} />
+          )}
+        </Container>
         {!!article.categories?.data[0]?.attributes.articles.data.length && (
           <>
             <Container maxWidth="md">

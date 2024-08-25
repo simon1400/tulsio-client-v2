@@ -34,17 +34,14 @@ const Header = () => {
   const [value, setValue] = useState<number>(-1);
 
   useEffect(() => {
-    if(data?.navigation) {
-      if(data.navigation.data.attributes.topNav.item.length) {
-        const idx = data.navigation.data.attributes.topNav.item.findIndex((el: any) => '/'+el.link === router.asPath)
-        if(router.asPath === '/search') {
-          setValue(0)
-        }else{
-          setValue(idx >= 0 ? idx+1 : false)
-        } 
-      }
-    }
-  }, [data, router])
+  const topNavItems = data?.navigation?.data?.attributes?.topNav?.item || [];
+  
+  if (topNavItems.length) {
+    const idx = topNavItems.findIndex((el: any) => '/' + el.link === router.asPath);
+    setValue(router.asPath === '/search' ? 0 : idx >= 0 ? idx + 1 : false);
+  }
+}, [data, router]);
+
 
   if(loading) {
     return <header></header>

@@ -43,7 +43,7 @@ const Faq: NextPage = ({
         searchClient={searchClient}
       >
         <Configure hitsPerPage={50} />
-
+ 
         <Container maxWidth="md">
           <PageHead title={faq.title} />
           <SearchBox placeholder="Hledat dotaz..." />
