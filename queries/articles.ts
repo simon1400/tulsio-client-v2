@@ -121,19 +121,17 @@ export const getArticle = gql`
           showShortImg
           updatedAt
           audio {
-<<<<<<< HEAD
+
             data {
               attributes {
                 url
               }
-            }
-=======
+
 	    data {
 	      attributes {
 	        url
 	      }
        	    }
->>>>>>> 605c3bd15be4b3db08799b39e3444250b6262c7c
           }
           meta {
             title

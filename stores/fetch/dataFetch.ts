@@ -202,7 +202,7 @@ export const fetchCategoryOrArticles =
             },
           });
           articleBase = articleBaseReq.articlesBase.data[0]?.attributes;
-          dataTitle = articleBaseReq.articlesBase.data[0]?.attributes?.meta?.title || articleBaseReq.articlesBase?.data[0]?.attributes?.title
+          dataTitle = articleBaseReq.articlesBase.data[0]?.attributes?.meta?.title || articleBaseReq.articlesBase.data[0]?.attributes?.title
           dataDescription = articleBaseReq.articlesBase.data[0]?.attributes?.meta?.description || ""
         }
       }

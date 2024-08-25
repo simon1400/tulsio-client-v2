@@ -30,7 +30,7 @@ const nextConfig = {
   },
   trailingSlash: false,
   images: {
-    domains: ['localhost'],
+    domains: ['localhost', 'admin.tulsio.cz'],
   },
 }
 

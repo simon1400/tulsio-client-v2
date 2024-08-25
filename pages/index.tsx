@@ -52,7 +52,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
     const homepage = homepageData.homepage.data.attributes;
     const meta = homepage.meta;
-    const articles = homepage.articles?.map(
+    const articles = homepage.articles.map(
       (item: any) => item.article.data.attributes
     );
     const baners = banersData.baners.data.map((item: any) => item.attributes);

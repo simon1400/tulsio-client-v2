@@ -24,7 +24,7 @@ const Footer = () => {
       title: item.name,
       slug: item.link,
     })
-  ) || []; 
+  ); 
   
 
   const handleNav = (e: SyntheticEvent, slug: string) => {
