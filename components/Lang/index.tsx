@@ -19,7 +19,7 @@ const Lang = () => {
   }
   
 
-  const locales = data?.i18NLocales?.data?.map((item: any) => item.attributes)
+  const locales = data.i18NLocales.data.map((item: any) => item.attributes)
 
   return (
     <ClickAwayListener onClickAway={() => setActive(false)}>
@@ -30,7 +30,7 @@ const Lang = () => {
         </div>
         <div className={`dropdown-lang ${active ? "active" : ""}`}>
           <ul>
-            {locales?.map((item: any, idx: number) => <li key={idx}><Link href="/" locale={item.code}><span>{item.name}</span> {router.locale === item.code ? <Check /> : null}</Link></li>)}
+            {locales.map((item: any, idx: number) => <li key={idx}><Link href="/" locale={item.code}><span>{item.name}</span> {router.locale === item.code ? <Check /> : null}</Link></li>)}
           </ul>
         </div>
       </LangS>

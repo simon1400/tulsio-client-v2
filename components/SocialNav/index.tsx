@@ -14,7 +14,7 @@ const SocialNav: FC<SocialNav> = ({ data, loading }) => {
     return null;
   }
 
-  const nav = data?.navigation?.data?.attributes?.socNav?.item || [];
+  const nav = data.navigation.data.attributes.socNav.item || [];
 
   return (
     <SocialNavS>

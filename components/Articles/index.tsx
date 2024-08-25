@@ -33,7 +33,7 @@ const Articles: FC<IArticles> = ({ data, searchResult = false, shortInfo }) => {
                     image={searchResult ? item?.image : item?.image.data?.attributes}
                     label={
                       item?.labels?.data
-                        ? item?.labels?.data?.map((item: any) => item.attributes)
+                        ? item.labels.data.map((item: any) => item.attributes)
                         : item?.labels
                     }
                   />
@@ -49,7 +49,7 @@ const Articles: FC<IArticles> = ({ data, searchResult = false, shortInfo }) => {
                   image={searchResult ? item?.image : item?.image.data?.attributes}
                   label={
                     item?.labels?.data
-                      ? item?.labels?.data?.map((item: any) => item.attributes)
+                      ? item.labels?.data?.map((item: any) => item.attributes)
                       : item?.labels
                   }
                 />

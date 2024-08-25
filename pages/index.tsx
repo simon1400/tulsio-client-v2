@@ -50,34 +50,34 @@ export const getServerSideProps = wrapper.getServerSideProps(
       },
     });
 
-    const homepage = homepageData?.homepage?.data?.attributes || {};
-    const meta = homepage?.meta || {};
-    const articles = homepage?.articles?.map(
-      (item: any) => item?.article?.data?.attributes
-    ) || [];
-    const baners = banersData?.baners?.data?.map((item: any) => item.attributes) || [];
+    const homepage = homepageData.homepage.data.attributes;
+    const meta = homepage.meta;
+    const articles = homepage.articles?.map(
+      (item: any) => item.article.data.attributes
+    );
+    const baners = banersData.baners.data.map((item: any) => item.attributes);
 
-    const filterBaners1 = baners?.filter(
+    const filterBaners1 = baners.filter(
       (item: any) => item.position === BANER_POSITION.POSITION_1
     );
-    const filterBaners2 = baners?.filter(
+    const filterBaners2 = baners.filter(
       (item: any) => item.position === BANER_POSITION.POSITION_2
     );
 
     const baner1 =
-      filterBaners1?.length > 0 ? filterBaners1[Math.floor(Math.random() * filterBaners1.length)] : null;
+      filterBaners1[Math.floor(Math.random() * filterBaners1.length)];
     const baner2 =
-      filterBaners2?.length > 0 ? filterBaners2[Math.floor(Math.random() * filterBaners2.length)] : null;
+      filterBaners2[Math.floor(Math.random() * filterBaners2.length)];
 
     store.dispatch(changeTitle(meta?.title || "Úvod"));
     store.dispatch(changeDescription(meta?.description || ""));
 
     return {
       props: {
-        title: homepage?.title || null,
+        title: homepage.title,
         baner1: baner1 || null,
         baner2: baner2 || null,
-        articles: articles.length > 0 ? articles : null,
+        articles,
         image: meta?.image ? getStrapiURL(meta.image) : null,
       },
     };
@@ -118,7 +118,7 @@ const Homepage: FC<IHomepage> = ({ title, baner1, baner2, articles }) => {
                         link={`/blog/${item?.slug}`}
                         image={item.image.data}
                         background={item.background}
-                        label={item?.labels?.data?.map(
+                        label={item?.labels?.data.map(
                           (item: any) => item.attributes
                         )}
                       />
@@ -141,7 +141,7 @@ const Homepage: FC<IHomepage> = ({ title, baner1, baner2, articles }) => {
                         link={`/blog/${item?.slug}`}
                         image={item.image.data}
                         background={item.background}
-                        label={item?.labels?.data?.map(
+                        label={item?.labels?.data.map(
                           (item: any) => item.attributes
                         )}
                       />
@@ -157,7 +157,7 @@ const Homepage: FC<IHomepage> = ({ title, baner1, baner2, articles }) => {
                       link={`/blog/${item?.slug}`}
                       image={item.image.data}
                       background={item.background}
-                      label={item?.labels?.data?.map(
+                      label={item?.labels?.data.map(
                         (item: any) => item.attributes
                       )}
                     />

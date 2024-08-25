@@ -45,7 +45,7 @@ const Article = ({
               {!!item.title && <Typography variant="h2">{item.title}</Typography>}
               {item.text && <Typography component="div" variant="body1" dangerouslySetInnerHTML={{__html: oembedTransform(item.text)}} />}
               {item.banners_static.data && <BannerStatic data={item.banners_static.data.attributes}/>}
-              {!!item.galery?.data?.length && item.galery.data?.map((img: any, indexImg: number) => <figure key={indexImg}>
+              {!!item.galery?.data?.length && item.galery.data.map((img: any, indexImg: number) => <figure key={indexImg}>
                 <div>
                   <Image format="&width=960" image={img} />
                 </div>
@@ -59,7 +59,7 @@ const Article = ({
             {!!article.authors?.data.length && <Author data={article.authors.data[0].attributes} />}
           </Content>
 
-          {article.audio && article.audio.data && article.audio.data.attributes && (
+          {article.audio && article.audio.data && (
             <AudioPlayer url={article.audio.data.attributes.url} />
           )}
         </Container>

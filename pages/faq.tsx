@@ -26,7 +26,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
     return {
       props: {
         faq: faqData,
-        allFaq: allFaq.faqs.data?.map((item: any) => ({...item.attributes}))
+        allFaq: allFaq.faqs.data.map((item: any) => ({...item.attributes}))
       },
     };
   }

@@ -121,11 +121,11 @@ export const getArticle = gql`
           showShortImg
           updatedAt
           audio {
-          data {
-          attributes {
-          url
-          }
-          }
+            data {
+              attributes {
+                url
+              }
+            }
           }
           meta {
             title

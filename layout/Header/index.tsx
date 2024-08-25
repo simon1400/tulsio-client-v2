@@ -47,7 +47,7 @@ const Header = () => {
     return <header></header>
   }
 
-  const transformData = data?.navigation?.data?.attributes?.topNav?.item.map((item: any, idx: number) => ({
+  const transformData = data.navigation.data.attributes.topNav.item.map((item: any, idx: number) => ({
     title: item.name,
     slug: item.link
   }))
