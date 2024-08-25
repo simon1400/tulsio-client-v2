@@ -33,7 +33,7 @@ const DictionaryHead: FC<IDictionaryHead> = ({ title, data }) => {
     }
   };
 
-  const transformData = data?.map((item: any, idx: number) => ({
+  const transformData = data.map((item: any, idx: number) => ({
     title: item,
     slug: "",
   }));
