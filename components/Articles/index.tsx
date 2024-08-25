@@ -18,7 +18,7 @@ const Articles: FC<IArticles> = ({ data, searchResult = false, shortInfo }) => {
     <section>
       <GridTop shortInfo={shortInfo}>
         {!!data.length &&
-          data?.map((item: any, idx: number) => {
+          data.map((item: any, idx: number) => {
             if(idx === 1) {
               return <>
                 {shortInfo && <div key={'descriptionCategory'+idx}>
@@ -33,7 +33,7 @@ const Articles: FC<IArticles> = ({ data, searchResult = false, shortInfo }) => {
                     image={searchResult ? item?.image : item?.image.data?.attributes}
                     label={
                       item?.labels?.data
-                        ? item?.labels?.data?.map((item: any) => item.attributes)
+                        ? item?.labels.data.map((item: any) => item.attributes)
                         : item?.labels
                     }
                   />
@@ -49,7 +49,7 @@ const Articles: FC<IArticles> = ({ data, searchResult = false, shortInfo }) => {
                   image={searchResult ? item?.image : item?.image.data?.attributes}
                   label={
                     item?.labels?.data
-                      ? item?.labels?.data?.map((item: any) => item.attributes)
+                      ? item?.labels.data.map((item: any) => item.attributes)
                       : item?.labels
                   }
                 />
