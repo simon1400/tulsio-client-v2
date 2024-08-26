@@ -5,7 +5,7 @@ import { ReactNode } from "react";
 
 export function getStrapiURL(path = "") {
   return `${
-    process.env.APP_API || "http://localhost:1335"
+    process.env.APP_API || "http://localhost:1311"
   }${path}`;
 }
 

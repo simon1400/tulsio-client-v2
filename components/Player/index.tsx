@@ -226,7 +226,7 @@ const AudioPlayer: React.FC<{url:string}> = ({ url }) => {
           <TopControl>
             <audio
               ref={audioRef}
-              src={"http://localhost:1337"+url}
+              src={"https://admin.tulsio.cz"+url}
               onLoadedMetadata={handleLoadedMetadata}
               onTimeUpdate={handleTimeUpdate}
             ></audio>
