@@ -5,8 +5,9 @@ import ProgressContainer from './components/progress/progress';
 import { formatTime } from './helpers/formatTime';
 import { Container, PlayerBg, TopControl, VolumeControl, SpeedControl, Speed, Shevron, DropdownContent, SpeedOption, PlayerControl, TimeDisplay, LinksContainer, Links } from './styles';
 
+const APP_API = process.env.APP_API
+
 const AudioPlayer: React.FC<{url:string}> = ({ url }) => {
-  const APP_API = process.env.APP_API
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [volume, setVolume] = useState<number>(0.6);
   const volumeControlRef = useRef<HTMLInputElement | null>(null);
