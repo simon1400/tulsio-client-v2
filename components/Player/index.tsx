@@ -6,6 +6,7 @@ import { formatTime } from './helpers/formatTime';
 import { Container, PlayerBg, TopControl, VolumeControl, SpeedControl, Speed, Shevron, DropdownContent, SpeedOption, PlayerControl, TimeDisplay, LinksContainer, Links } from './styles';
 
 const AudioPlayer: React.FC<{url:string}> = ({ url }) => {
+  const APP_API = process.env.APP_API
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [volume, setVolume] = useState<number>(0.6);
   const volumeControlRef = useRef<HTMLInputElement | null>(null);
@@ -226,7 +227,7 @@ const AudioPlayer: React.FC<{url:string}> = ({ url }) => {
           <TopControl>
             <audio
               ref={audioRef}
-              src={"https://admin.tulsio.cz"+url}
+              src={APP_API+url}
               onLoadedMetadata={handleLoadedMetadata}
               onTimeUpdate={handleTimeUpdate}
             ></audio>
