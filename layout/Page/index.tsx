@@ -5,7 +5,7 @@ import Script from "next/script";
 import { useSelector } from "react-redux";
 import { selectDescription, selectTitle } from "stores/slices/dataSlices";
 import { selectAllMeta } from "stores/slices/metaSlices";
-import CustomAlert from "components/Alert";
+// import CustomAlert from "components/Alert";
 import { selectModalState } from "stores/slices/modalSlices";
 
 const DOMAIN = process.env.APP_DOMAIN;
@@ -161,20 +161,20 @@ const Page: FC<IPage> = ({ children, className = "", id = "" }) => {
         {children}
       </main>
 
-      {modalState === "success" && (
+      {/* {modalState === "success" && (
         <CustomAlert
           openData={modalState === "success"}
           type="success"
           content="Váš e-mail je v pořádku odeslán."
         />
-      )}
-      {modalState === "error" && (
+      )} */}
+      {/* {modalState === "error" && (
         <CustomAlert
           openData={modalState === "error"}
           type="error"
           content="Zadaný e-mail není platný."
         />
-      )}
+      )} */}
     </>
   );
 };

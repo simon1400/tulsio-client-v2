@@ -11,12 +11,12 @@ interface ICustomAlert {
   openData: boolean;
 }
 
-const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
-  props,
-  ref,
-) {
-  return <AlertS elevation={6} ref={ref} variant="filled" {...props} />;
-});
+// const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
+//   props,
+//   ref,
+// ) {
+//   return <AlertS elevation={6} ref={ref} variant="filled" {...props} />;
+// });
 
 const CustomAlert: FC<ICustomAlert> = ({
   type = 'success',
@@ -35,14 +35,15 @@ const CustomAlert: FC<ICustomAlert> = ({
     setOpen(false);
     dispatch(changeModalState(null))
   };
+  return <></>
 
-  return (
-    <Snackbar open={open} anchorOrigin={{vertical: "bottom", horizontal: "center"}} autoHideDuration={6000} onClose={handleClose}>
-      <Alert onClose={handleClose} severity={type} sx={{ width: '100%' }}>
-        {content}
-      </Alert>
-    </Snackbar>
-  )
+  // return (
+  //   <Snackbar open={open} anchorOrigin={{vertical: "bottom", horizontal: "center"}} autoHideDuration={6000} onClose={handleClose}>
+  //     {/* <Alert onClose={handleClose} severity={type} sx={{ width: '100%' }}>
+  //       {content}
+  //     </Alert> */}
+  //   </Snackbar>
+  // )
 }
 
 export default CustomAlert
