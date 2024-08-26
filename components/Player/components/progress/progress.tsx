@@ -22,16 +22,17 @@ const ProgressContainer: React.FC<ProgressContainerProps> = ({
   const hoverRectRef = useRef<HTMLDivElement | null>(null);
 
   const [rectangles, setRectangles] = useState<JSX.Element[]>([]);
+  
+  const heightPattern = [9.5, 17.5, 23, 19.5, 15.97, 17.5, 9.5, 19.5, 17.5, 23, 13.5, 17.5];
 
   const generateRectangles = useCallback(() => {
     const screenWidth = window.innerWidth;
-    const totalRectangles = screenWidth <= 480 
-      ? Math.floor((progressContainerRef.current?.clientWidth || 0) / 3) 
-      : Math.floor((progressContainerRef.current?.clientWidth || 0) / 5);
-    
+    const rectWidth = '5px';
+    const totalRectangles = Math.floor((progressContainerRef.current?.clientWidth || 0) / parseInt(rectWidth));
+
     const newRectangles = Array.from({ length: totalRectangles }, (_, i) => {
-      const rectHeight = Math.random() * (screenWidth <= 499 ? 17 : 25) + 1;
-      return <Rect key={i} style={{ height: rectHeight, width: screenWidth <= 499 ? '2px' : '5px' }} />;
+      const rectHeight = heightPattern[i % heightPattern.length];
+      return <Rect key={i} style={{ height: `${rectHeight}px`, width: rectWidth }} />;
     });
 
     setRectangles(newRectangles);
