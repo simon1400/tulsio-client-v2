@@ -85,9 +85,9 @@ interface IDictionaryPage {
   title: string;
 }
 
-interface IDictionaries {
-  title: string;
-}
+// interface IDictionaries {
+//   title: string;
+// }
 
 interface IDictionary {
   dictionaryPage: IDictionaryPage;
