@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import React, { useRef, useState, useCallback, useEffect } from 'react';
 import ProgressContainer from './components/progress/progress';
 import { formatTime } from './helpers/formatTime';
-import { Container, CentralContainer, PlayerBg, TopControl, VolumeControl, SpeedControl, Speed, Shevron, DropdownContent, SpeedOption, PlayerControl, TimeDisplay, LinksContainer } from './styles';
+import { Container, VolumeControl, SpeedControl, PlayerControl, TimeDisplay, LinksContainer } from './styles';
 
 const APP_API = process.env.APP_API
 
@@ -224,9 +224,9 @@ const AudioPlayer: React.FC<{url:string}> = ({ url }) => {
   return (
     <>
       <Container>
-        <CentralContainer>
-          <PlayerBg>
-            <TopControl>
+        <div className='central-container'>
+          <div className='player-bg'>
+            <div className='top-control'>
               <audio
                 ref={audioRef}
                 src={APP_API+url}
@@ -284,33 +284,34 @@ const AudioPlayer: React.FC<{url:string}> = ({ url }) => {
               </PlayerControl>
 
               <SpeedControl>
-                <Speed 
-                  showDropdown={showSpeedOptions} 
+                <div
+                  className={`speed ${showSpeedOptions ? 'speed-dropdown-visible' : ''}`}
                   onClick={toggleDropdown}
                   ref={dropdownRef}
                 >
                   <p>{`${playbackRate}×`}</p>
-                  <Shevron 
-                    src="/img/shevron.svg" 
-                    alt="speed" 
-                    clicked={showSpeedOptions} 
+                  <img
+                    src="/img/shevron.svg"
+                    alt="speed"
+                    className={`shevron ${showSpeedOptions ? 'clicked' : ''}`}
                   />
-                  <DropdownContent showDropdown={showSpeedOptions}>
+                  <div className={`dropdown-content ${showSpeedOptions ? 'show' : ''}`}>
                     {[0.5, 0.75, 1, 1.25, 1.5, 1.75, 2].map((option) => (
-                      <SpeedOption
+                      <div
                         key={option}
+                        className="speed-option"
                         onClick={(e) => {
-                          e.stopPropagation(); 
+                          e.stopPropagation();
                           handleSpeedChange(option);
                         }}
                       >
                         {`${option}×`}
-                      </SpeedOption>
+                      </div>
                     ))}
-                  </DropdownContent>
-                </Speed>
+                  </div>
+                </div>
               </SpeedControl>
-            </TopControl>
+            </div>
             <ProgressContainer
               audioRef={audioRef}
               currentTime={currentTime}
@@ -331,8 +332,8 @@ const AudioPlayer: React.FC<{url:string}> = ({ url }) => {
                 </ul>
               </div>
             </TimeDisplay>
-          </PlayerBg>
-          <LinksContainer>
+          </div>
+          {/* <LinksContainer>
             <div>
               <p>Poslouchejte na</p>
               <a href="#" target="_blank" rel="noopener noreferrer">
@@ -345,8 +346,8 @@ const AudioPlayer: React.FC<{url:string}> = ({ url }) => {
                 <img src='/img/spotify-icon.svg' alt="Spotify" />
               </a>
             </div>
-          </LinksContainer>
-        </CentralContainer>
+          </LinksContainer> */}
+        </div>
       </Container>
 
     </>

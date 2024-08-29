@@ -14,6 +14,7 @@ import { oembedTransform } from "helpers/oembedTransform";
 import Articles from "components/Articles";
 import Author from "components/Author";
 import AudioPlayer from 'components/Player';
+import PodcastLink from "components/PodcastsLink";
 
 const DOMAIN = process.env.APP_DOMAIN;
 
@@ -23,6 +24,7 @@ const Article = ({
 }) => {
 
   const router = useRouter();
+  
 
   console.log(article)
 
@@ -59,7 +61,7 @@ const Article = ({
             {!!article.authors?.data.length && <Author data={article.authors.data[0].attributes} />}
           </Content>
 
-          {article.audio && article.audio.data && (
+          {article.audio?.data && (
             <AudioPlayer url={article.audio.data.attributes.url} />
           )}
         </Container>

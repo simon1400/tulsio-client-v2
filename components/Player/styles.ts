@@ -4,46 +4,46 @@ export const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-`;
 
-export const CentralContainer = styled.div`
-  max-width: 922px;
-  width: 100%;
-`;
-
-export const PlayerBg = styled.div`
-  position: relative;
-  max-width: 922px;
-  width: 100%;
-  height: 159px;
-  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.05);
-  border: solid 1px rgba(0, 0, 0, 0.1);
-  background-color: rgba(255,255,255, .07);
-  border-radius: 20px;
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-
-  @media (max-width: 499px) {
-    height: 116px;
-    border-radius: 10px;
+  .central-container {
+    max-width: 922px;
+    width: 100%;
   }
-`;
 
-export const TopControl = styled.div`
-  position: relative;
-  max-width: 870px;
-  width: 100%;
-  height: 101px;
-  margin: 0 15px;
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
+  .player-bg {
+    position: relative;
+    max-width: 922px;
+    width: 100%;
+    height: 159px;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.05);
+    border: solid 1px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255,255,255, .07);
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
 
-  @media (max-width: 499px) {
-    height: 78px;
+    @media (max-width: 499px) {
+      height: 116px;
+      border-radius: 10px;
+    }
+  }
+  .top-control {
+    position: relative;
+    max-width: 870px;
+    width: 100%;
+    height: 101px;
     margin: 0 15px;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+
+    @media (max-width: 499px) {
+      height: 78px;
+      margin: 0 15px;
+    }
   }
+  
 `;
 
 export const TimeDisplay = styled.div`
@@ -101,8 +101,7 @@ export const VolumeControl = styled.div`
     }
 
     @media (max-width: 499px) {
-      width: 21px;
-      height: 17px;
+      width: 27px;
     }
   }
 
@@ -119,7 +118,7 @@ export const VolumeControl = styled.div`
     border-radius: 10px;
     transition: background 0.3s;
 
-    @media (max-width: 599px) {
+    @media (max-width: 680px) {
       display: none;
     }
 
@@ -135,7 +134,7 @@ export const VolumeControl = styled.div`
       border-radius: 50%;
       transition: background 0.3s;
 
-      @media (max-width: 599px) {
+      @media (max-width: 680px) {
         display: none;
       }
     }
@@ -150,7 +149,7 @@ export const VolumeControl = styled.div`
       border-radius: 50%;
       transition: background 0.3s;
 
-      @media (max-width: 599px) {
+      @media (max-width: 680px) {
         display: none;
       }
     }
@@ -288,104 +287,105 @@ export const SpeedControl = styled.div`
       font-size: 11px;
     }
   }
-`;
+  .speed {
+    position: relative;
+    width: 72px;
+    height: 40px;
+    background-color: #FFFFFF14;
+    border-radius: 11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
 
-  export const Speed = styled.div<{showDropdown?: boolean;}>`
-  position: relative;
-  width: 72px;
-  height: 40px;
-  background-color: #FFFFFF14;
-  border-radius: 11px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #FFFFFF26;
-  }
-
-  @media (max-width: 499px) {
-    gap: 8px;
-    width: 48px;
-    height: 26px;
-    border-radius: 7px;
-  }
-`;
-
-export const Shevron = styled.img<{clicked?: boolean;}>`
-  transition: transform 0.3s;
-  width: 9px;
-  transform: ${({ clicked }) => (clicked ? 'rotate(180deg)' : 'none')};
-
-  @media (max-width: 499px) {
-    width: 6px;
-  }
-`;
-
-export const DropdownContent = styled.div<{ showDropdown?: boolean }>`
-  display: ${({ showDropdown }) => (showDropdown ? 'block' : 'none')};
-  position: absolute;
-  top: 100%; 
-  background-color: rgb(64, 64, 64);
-  width: 72px;
-  border-radius: 11px;
-  z-index: 10; 
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  margin-top: 5px;
-
-  @media (max-width: 499px) {
-    width: 48px;
-    border-radius: 7px;
-  }
-`;
-
-export const SpeedOption = styled.div`
-  padding: 5px 20px;
-  opacity: 0.7;
-  text-align: start;
-  border-radius: 11px;
-  font-family: 'Manrope', sans-serif;
-  font-weight: 600;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer; 
-
-  &:hover {
-    background-color: rgb(75, 75, 75);
-    border-radius: 0%;
-    opacity: 1;
-  }
-
-  &:hover:first-of-type {
-    background-color: rgb(75, 75, 75);
-    border-top-left-radius: 11px;
-    border-top-right-radius: 11px;
-    opacity: 1;
+    &:hover {
+      background-color: #FFFFFF26;
+    }
 
     @media (max-width: 499px) {
-      border-top-left-radius: 7px;
-      border-top-right-radius: 7px;
+      gap: 8px;
+      width: 48px;
+      height: 26px;
+      border-radius: 7px;
+    }
+  }
+  .shevron {
+    transition: transform 0.3s;
+    width: 9px;
+  
+
+    &.clicked {
+      transform: rotate(180deg);
+    }
+    
+    @media (max-width: 499px) {
+      width: 6px;
+    }
+  } 
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    background-color: rgb(64, 64, 64);
+    width: 72px;
+    border-radius: 11px;
+    z-index: 10;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    margin-top: 5px;
+
+    &.show {
+      display: block;
+    }
+
+    @media (max-width: 499px) {
+      width: 48px;
+      border-radius: 7px;
     }
   }
 
-  &:hover:last-of-type {
-    background-color: rgb(75, 75, 75);
-    border-bottom-left-radius: 11px;
-    border-bottom-right-radius: 11px;
-    opacity: 1;
+  .speed-option {
+    padding: 5px 20px;
+    opacity: 0.7;
+    text-align: start;
+    border-radius: 11px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    
+    &:hover {
+      background-color: rgb(75, 75, 75);
+      opacity: 1;
+      border-radius: 0;
+    }
+
+    &:hover:first-of-type {
+      border-top-left-radius: 11px;
+      border-top-right-radius: 11px;
+    }
+
+    &:hover:last-of-type {
+      border-bottom-left-radius: 11px;
+      border-bottom-right-radius: 11px;
+    }
 
     @media (max-width: 499px) {
-      border-bottom-left-radius: 7px;
-      border-bottom-right-radius: 7px;
-    }
-  }
+      border-radius: 7px;
+      padding: 2px 10px;
+      font-size: 11px;
 
-  @media (max-width: 499px) {
-    border-radius: 7px;
-    padding: 2px 10px;
-    font-size: 11px;
+      &:hover:first-of-type {
+        border-top-left-radius: 7px;
+        border-top-right-radius: 7px;
+      }
+
+      &:hover:last-of-type {
+        border-bottom-left-radius: 7px;
+        border-bottom-right-radius: 7px;
+      }
+    }
   }
 `;
 

@@ -6,14 +6,6 @@ const homepageQuery = gql`
       data {
         attributes {
           title
-          cta {
-            text
-            link
-          }
-          secCta {
-            text
-            link
-          }
           articles {
             article {
               data {
