@@ -3,17 +3,18 @@ import styled from '@emotion/styled';
 export const ProgressWrapper = styled.div`
   box-sizing: border-box;
   position: absolute;
-  top: 133px;
+  top: 135px;
   max-width: 900px;
   width: 100%;
   height: 25px;
 
   @media (max-width: 499px) {
-    top: 98px;
+    top: 92px;
     height: 5px;
   }
 
   input {
+    cursor: pointer;
     box-sizing: border-box;
     width: 100%;
     -webkit-appearance: none;
@@ -59,7 +60,7 @@ export const RectGen = styled.div`
 
 export const Rect = styled.div<{ className?: string }>`
   display: inline-block;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: #FFFFFF2E;
   transition: background-color 0.3s ease, height 0.3s ease;
 
   &.hover-left {

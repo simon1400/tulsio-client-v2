@@ -120,10 +120,23 @@ export const getArticle = gql`
           background
           showShortImg
           updatedAt
-          audio {
-            data {
-              attributes {
-                url
+          media {
+            audio {
+              data {
+                attributes {
+        	  url
+              	}
+              }
+            }
+            podcastLinks {
+              name
+              url
+              logo {
+                data {
+                  attributes {
+                    url
+                  }
+                }
               }
             }
           }
@@ -223,10 +236,6 @@ export const getArticle = gql`
                   }
                 }
               }
-            }
-            button {
-              link
-              text
             }
           }
           authors {
