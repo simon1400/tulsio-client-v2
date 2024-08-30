@@ -63,7 +63,7 @@ const Article = ({
           {article.media?.audio?.data && (
           <AudioPlayer url={article.media.audio.data.attributes.url} />
         )}
-        {article.media?.podcastLinks?.length > 0 && (
+        {!!article.media?.podcastLinks?.length && (
           <PodcastLink data={article.media.podcastLinks} />
         )}
           
