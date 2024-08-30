@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
+  margin-top: 6em;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -8,6 +9,8 @@ export const Container = styled.div`
   .central-container {
     max-width: 922px;
     width: 100%;
+    display: flex;
+    justify-content: center;
   }
 
   .player-bg {
