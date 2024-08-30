@@ -6,24 +6,20 @@ const APP_API = process.env.APP_API;
 
 interface PodcastLink {
   data: any;
-  loading: boolean;
 }
 
-const PodcastLink: FC<PodcastLink> = ({ data, loading }) => {
-  if (loading) {
-    return null;
-  }
+const PodcastLink: FC<PodcastLink> = ({ data }) => {
 
-  const link = data.articles.data.attributes.podcastslink.item;
+  const logo= data.articles?.data.attributes.podcastslink.item;
 
   return (
     <PodcastLinkS>
       <ul>
-        {link.map((item: any, idx: number) => (
+        {data.map((item: any, idx: number) => (
           <li key={idx}>
-            <LinkS background={item.background} href={item.link} passHref>
+            <LinkS href={item.link} passHref>
               <Image
-                src={APP_API + item.icon.data.attributes.url}
+                src={APP_API + item.icon?.data.attributes.url}
                 width="21"
                 height="21"
                 alt=""

@@ -131,6 +131,13 @@ export const getArticle = gql`
             podcastLinks {
               name
               url
+              logo {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
             }
           }
           meta {
@@ -230,10 +237,6 @@ export const getArticle = gql`
                 }
               }
             }
-            // button {
-            //   link
-            //   text
-            // }
           }
           authors {
             data {

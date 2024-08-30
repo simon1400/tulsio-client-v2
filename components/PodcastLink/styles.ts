@@ -19,13 +19,7 @@ export const PodcastLinkS = styled.link(({theme}) => `
   }
 `)
 
-export const LinkS = styled(Link)<{background: string}>(({background}) => `
-  background: ${background};
-  display: flex;
-  border-radius: 50%;
-  overflow: hidden;
-  width: 34px;
-  height: 34px;
+export const LinkS = styled(Link)`
   transition: all .2s ease;
   img{
     margin: auto;
@@ -44,4 +38,4 @@ export const LinkS = styled(Link)<{background: string}>(({background}) => `
     z-index: -1; 
   }
 
-`)
+`
