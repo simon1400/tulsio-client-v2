@@ -61,11 +61,11 @@ const Article = ({
             {!!article.authors?.data.length && <Author data={article.authors.data[0].attributes} />}
           </Content>
           {article.media?.audio?.data && (
-            <AudioPlayer url={article.media.audio.data.attributes.url} />
-          )}
-          {article.media?.podcastLinks?.length > 0 && (
-            <PodcastLink data={article.media.podcastLinks} />
-          )}
+          <AudioPlayer url={article.media.audio.data.attributes.url} />
+        )}
+        {article.media?.podcastLinks?.length > 0 && (
+          <PodcastLink data={article.media.podcastLinks} />
+        )}
           
         </Container>
         {!!article.categories?.data[0]?.attributes.articles.data.length && (

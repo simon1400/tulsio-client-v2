@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import React, { useRef, useState, useCallback, useEffect } from 'react';
 import ProgressContainer from './components/progress/progress';
 import { formatTime } from './helpers/formatTime';
-import { Container, VolumeControl, SpeedControl, PlayerControl, TimeDisplay, LinksContainer } from './styles';
+import { Container, VolumeControl, SpeedControl, PlayerControl, TimeDisplay } from './styles';
 
 const APP_API = process.env.APP_API
 
@@ -333,20 +333,6 @@ const AudioPlayer: React.FC<{url:string}> = ({ url }) => {
               </div>
             </TimeDisplay>
           </div>
-          {/* <LinksContainer>
-            <div>
-              <p>Poslouchejte na</p>
-              <a href="#" target="_blank" rel="noopener noreferrer">
-                <img src='/img/apple-podcasts-icon.svg' alt="Apple Podcasts" />
-              </a>
-              <a href="#" target="_blank" rel="noopener noreferrer">
-                <img src='/img/googlepodcasts.svg' alt="Google Podcasts" />
-              </a>
-              <a href="#" target="_blank" rel="noopener noreferrer">
-                <img src='/img/spotify-icon.svg' alt="Spotify" />
-              </a>
-            </div>
-          </LinksContainer> */}
         </div>
       </Container>
 
