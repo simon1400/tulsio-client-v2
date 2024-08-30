@@ -24,9 +24,6 @@ const Article = ({
 }) => {
 
   const router = useRouter();
-  
-
-  console.log(article)
 
   return (
     <Page>
