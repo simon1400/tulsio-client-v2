@@ -124,7 +124,7 @@ export const getArticle = gql`
             audio {
               data {
                 attributes {
-                	url
+                  url
               	}
               }
             }
