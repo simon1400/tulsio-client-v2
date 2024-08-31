@@ -4,7 +4,7 @@ export const ProgressWrapper = styled.div`
   box-sizing: border-box;
   position: absolute;
   top: 135px;
-  max-width: 900px;
+  max-width: 930px;
   width: 100%;
   height: 25px;
 
