@@ -9,9 +9,11 @@ export const PodcastLinkS = styled.div `
   align-items: center;
   max-width: 922px;
   width: 100%;
+  margin-bottom: -5em;
 
   @media (max-width: 499px) {
     margin-top: 15px;
+    margin-bottom: -6em;
   }
 
   > div {

@@ -14,7 +14,7 @@ import { oembedTransform } from "helpers/oembedTransform";
 import Articles from "components/Articles";
 import Author from "components/Author";
 import AudioPlayer from 'components/Player';
-import PodcastLink from 'components/PodcastLink';
+import PodcastLink from 'components/PodcastsLink';
 
 const DOMAIN = process.env.APP_DOMAIN;
 
@@ -35,6 +35,13 @@ const Article = ({
         {article.image?.data && <ArticleTop article={article} />}
 
         <Container maxWidth="md">
+
+        {article.media?.audio?.data && (
+          <AudioPlayer url={article.media.audio.data.attributes.url} />
+        )}
+        {!!article.media?.podcastLinks?.length && (
+          <PodcastLink data={article.media.podcastLinks} />
+        )}
 
           <Content smallPadding={!article.image?.data} id="content-article">
             <Anchors data={article.chapters}/>
@@ -57,12 +64,6 @@ const Article = ({
             {article.image?.data && article.categories && <ShareButton data={article} />}
             {!!article.authors?.data.length && <Author data={article.authors.data[0].attributes} />}
           </Content>
-          {article.media?.audio?.data && (
-          <AudioPlayer url={article.media.audio.data.attributes.url} />
-        )}
-        {!!article.media?.podcastLinks?.length && (
-          <PodcastLink data={article.media.podcastLinks} />
-        )}
           
         </Container>
         {!!article.categories?.data[0]?.attributes.articles.data.length && (
