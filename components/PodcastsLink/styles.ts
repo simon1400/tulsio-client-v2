@@ -7,7 +7,7 @@ export const PodcastLinkS = styled.div `
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  max-width: 922px;
+  max-width: 950px;
   width: 100%;
   margin-bottom: -5em;
 
