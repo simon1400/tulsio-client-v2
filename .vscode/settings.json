@@ -1,0 +1,43 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "files.eol": "\n",
+  "editor.tabSize": 2,
+  "jest.autoRun": "off",
+  "cSpell.words": [
+    "alquipo",
+    "clsx",
+    "creditas",
+    "daisyui",
+    "reduxjs",
+    "sonarjs",
+    "storycap",
+    "stylelint",
+    "tailwindcss",
+    "viewports"
+  ],
+  "cSpell.language": "en,cs",
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "vue",
+    "html",
+    "markdown",
+    "json",
+    "jsonc",
+    "yaml",
+    "toml",
+    "xml",
+    "gql",
+    "graphql",
+    "astro",
+    "css",
+    "less",
+    "scss",
+    "pcss",
+    "postcss"
+  ]
+}

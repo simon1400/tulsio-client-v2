@@ -1,9 +1,10 @@
 "use client"; 
 import { css } from '@emotion/react';
 import React, { useRef, useState, useCallback, useEffect } from 'react';
-import ProgressContainer from './components/progress/progress';
 import { formatTime } from './helpers/formatTime';
 import { Container, VolumeControl, SpeedControl, PlayerControl, TimeDisplay } from './styles';
+import ProgressContainer from './progress';
+import Image from 'next/image';
 
 const APP_API = process.env.APP_API
 
@@ -235,7 +236,7 @@ const AudioPlayer: React.FC<{url:string}> = ({ url }) => {
               ></audio>
               <VolumeControl>
                 <div>
-                <img
+                <Image
                   ref={volumeImgRef}
                   onClick={handleVolumeIconClick}
                   src="/img/volume.svg"
@@ -256,7 +257,7 @@ const AudioPlayer: React.FC<{url:string}> = ({ url }) => {
             
               <PlayerControl>
                 <div onClick={handleBackwardClick}>
-                  <img
+                  <Image
                     src="/img/arrow.svg"
                     alt="backward"
                     style={{ transform: transformStyle1, transition: 'transform 0.5s' }}
@@ -270,11 +271,11 @@ const AudioPlayer: React.FC<{url:string}> = ({ url }) => {
                 </div>
                 
                 <button onClick={handlePlayPause}>
-                  <img ref={playPauseImgRef} src="/img/play.svg" alt="Play" />
+                  <Image ref={playPauseImgRef} src="/img/play.svg" alt="Play" />
                 </button>
 
                 <div onClick={handleForwardClick}>
-                  <img
+                  <Image
                     src="/img/arrow1.svg"
                     alt="forward"
                     style={{ transform: transformStyle, transition: 'transform 0.5s' }}
