@@ -72,7 +72,7 @@ const Description: FC<{ description: IDescription }> = ({ description }) => {
               <Typography variant="h2">
                 O prodejci {description.title}
               </Typography>
-              <Rating />
+              <Rating rating={description.rating} />
             </div>
             <Typography>{description.description}</Typography>
             <div className="content-bottom">

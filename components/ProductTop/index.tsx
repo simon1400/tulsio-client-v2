@@ -52,16 +52,27 @@ const ProductTop: FC<{ product: IProductTopItem }> = ({ product }) => {
     <>
       <ProductTopS>
         <Grid container spacing={4}>
-          <Grid item xs={12}>
+          <Grid
+            item
+            xs={12}
+            style={{ display: "flex", flexDirection: "column" }}
+          >
             <Typography variant="h1" marginBottom={2}>
               {product.title}
             </Typography>
             <ColorLabel labels={product.labels.data} direction="row" />
 
-            <Rating marginTop={30} marginBottom={30} />
+            <Rating
+              rating={product.sellers.data[0].attributes.rating}
+              marginTop={30}
+              marginBottom={30}
+            ></Rating>
             <Typography>{product.description}</Typography>
-            <div className="bottom">
-              <Price price={product.price} />
+            <div className="bottom" style={{ marginTop: "20px" }}>
+              <Price
+                price={product.price}
+                availability={product.availability}
+              />
               <Link href={product.link}>
                 <Button>koupit na {product.brand}</Button>
               </Link>

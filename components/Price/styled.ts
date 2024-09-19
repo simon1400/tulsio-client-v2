@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const PriceS = styled.div(({theme}) => `
+export const PriceS = styled.div<{ availability?: boolean }>(({ theme, availability }) => `
   display: flex;
   align-items: center;
   b{
@@ -15,7 +15,7 @@ export const PriceS = styled.div(({theme}) => `
     line-height: 1;
   }
   label{
-    color: #21af21;
+    color: ${availability ? "#21af21" : "#ff0000"};
     font-size: 15px;
     line-height: 1;
   }

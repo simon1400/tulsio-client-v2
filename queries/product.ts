@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const productQuery = gql`
-  query product( $slug: String!, $locale: I18NLocaleCode! ) {
-    products (filters: { slug: { eq: $slug } }, locale: $locale) {
+  query product($slug: String!, $locale: I18NLocaleCode!) {
+    products(filters: { slug: { eq: $slug } }, locale: $locale) {
       data {
         id
         attributes {
@@ -56,13 +56,13 @@ export const productQuery = gql`
               }
             }
           }
-        }  
+        }
       }
     }
   }
-`
+`;
 
-export const productsQuery = gql `
+export const productsQuery = gql`
   query product {
     products {
       data {
@@ -85,8 +85,15 @@ export const productsQuery = gql `
               }
             }
           }
+          sellers {
+            data {
+              attributes {
+                rating
+              }
+            }
+          }
         }
       }
     }
   }
-`
+`;

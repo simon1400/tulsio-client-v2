@@ -1,11 +1,13 @@
 import React from "react"
 import { PriceS } from "./styled"
 
-const Price: React.FC<{ price: number }> = ({ price }) => {
+const Price: React.FC<{ price: number, availability?: boolean }> = ({ price, availability }) => {
   const formattedPrice = new Intl.NumberFormat('cs-CZ', {
     style: 'currency',
     currency: 'CZK',
   }).format(price);
+
+  const availabilityLabel = availability ? "Skladem" : "Není skladem";
 
   return (
     <PriceS>
@@ -14,7 +16,7 @@ const Price: React.FC<{ price: number }> = ({ price }) => {
       </div>
       <div>
         <span>včetně DPH</span>
-        <label>Skladem</label>
+         <label>{availability !== undefined ? availabilityLabel : ""}</label>
       </div>
     </PriceS>
   );

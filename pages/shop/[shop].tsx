@@ -1,4 +1,5 @@
 import { Container, Grid } from "@mui/material";
+import { changeTitle } from "stores/slices/dataSlices";
 import Breadcrumbs from "components/BreadcrumbsCard";
 import ProductTop from "components/ProductTop";
 import { client } from "lib/api";
@@ -28,6 +29,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
       });
 
       await store.dispatch(fetchNavCatalog(locale as string));
+      store.dispatch(changeTitle("Catalog"));
 
       return {
         props: {

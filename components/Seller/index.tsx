@@ -33,7 +33,7 @@ const Seller: FC<{ sellers: ISellerItem }> = ({ sellers }) => {
           <SellerLogo image={sellers.logo} />
           <Typography variant="h4">{sellers.title}</Typography>
         </div>
-        <Rating />
+        <Rating rating={sellers.rating}/>
       </div>
       <Typography>
         {/* <p>
