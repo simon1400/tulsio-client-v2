@@ -1,28 +1,76 @@
-import { Typography } from "@mui/material"
-import { ProductTopS } from "./styled"
-import Button from "components/Button"
-
-import ColorLabel from "components/ColorLabel"
+import { Typography, Container, Grid } from "@mui/material";
+import { ProductTopS } from "./styled";
+import Button from "components/Button";
+import Image from "components/Image";
+import ColorLabel from "components/ColorLabel";
 import Price from "components/Price";
 import Rating from "components/Rating";
+import { FC } from "react";
+import { IImageRoot } from "types/image";
+import Link from "next/link";
+import { ISellerItem } from "components/Seller";
 
-const ProductTop = () => {
-  return (
-    <ProductTopS>
-      <Typography variant="h1">Skywalker 12 %</Typography>
-      <div className="labels-wrap">
-        <ColorLabel color="#a50d5a">asddsa</ColorLabel>
-        <ColorLabel color="#99ff99">asddsa sdadg</ColorLabel>
-        <ColorLabel color="#fff899">asddsa1232</ColorLabel>
-      </div>
-      <Rating marginBottom={30} />
-      <Typography>Rostoucí popularita užívání CBD spočívá v mnoha pozitivních účincích na lidský organismus. Ale začněme pěkně popořadě. Kanabidiol je jeden z desítek typů kanabinoidů obsaženýcpočívá v mnoha pozitivních účincích na lidský organismus. Ale začněme pěkně popořadě...</Typography>
-      <div className="bottom">
-        <Price />
-        <Button>koupit na (shopname)</Button>
-      </div>
-    </ProductTopS>
-  )  
+const APP_API = process.env.APP_API;
+
+export interface IProductTopItem {
+  title: string;
+  slug: string;
+  description: string;
+  images: IImageRoot;
+  link: string;
+  shopCategories: {
+    data: {
+      attributes: {
+        title: string;
+        slug: string;
+      };
+    }[];
+  };
+  sellers: {
+    data: {
+      attributes: ISellerItem;
+    }[];
+  };
+  customId: string;
+  availability: boolean;
+  brand: string;
+  gtin: string;
+  mpn: string;
+  price: number;
+  labels: {
+    data: {
+      attributes: {
+        title: string;
+        color: string;
+      };
+    }[];
+  };
 }
 
-export default ProductTop
+const ProductTop: FC<{ product: IProductTopItem }> = ({ product }) => {
+  return (
+    <>
+      <ProductTopS>
+        <Grid container spacing={4}>
+          <Grid item xs={12}>
+            <Typography variant="h1" marginBottom={2}>
+              {product.title}
+            </Typography>
+            <ColorLabel labels={product.labels.data} direction="row" />
+
+            <Rating marginTop={30} marginBottom={30} />
+            <Typography>{product.description}</Typography>
+            <div className="bottom">
+              <Price price={product.price} />
+              <Link href={product.link}>
+                <Button>koupit na {product.brand}</Button>
+              </Link>
+            </div>
+          </Grid>
+        </Grid>
+      </ProductTopS>
+    </>
+  );
+};
+
+export default ProductTop;

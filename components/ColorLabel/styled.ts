@@ -5,6 +5,7 @@ export const ColorLabelS = styled.label<{color: string}>(({theme, color}) => `
   padding: 3px 20px;
   border-radius: 17px;
   height: 33px;
-  background-color: ${color};
+  background-color: inherit;
+  color: ${color};
   font-size: 14px;
 `)

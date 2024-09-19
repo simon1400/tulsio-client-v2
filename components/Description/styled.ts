@@ -12,7 +12,7 @@ export const DescriptionS = styled.div(({theme}) => `
     }
   }
   .img-wrap{
-    background: #2b2b2b;
+    background: white;
     height: 100%;
     width: 100%;
     border-radius: ${theme.borderRadius['base']};
@@ -35,6 +35,11 @@ export const DescriptionS = styled.div(({theme}) => `
       border-radius: ${theme.borderRadius['sm']};
     }
   }
+  .content-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
   .content-wrap-art{
     height: 100%;
     padding: ${theme.globalPadding['xl']};
@@ -52,10 +57,10 @@ export const DescriptionS = styled.div(({theme}) => `
     h2{
       margin-top: 0;
       margin-bottom: 20px;
-      color: white;
+      color: #2B2B2B;
     }
     p{
-      color: #ffffffd9;
+      color: #2B2B2B;
     }
   }
 `)

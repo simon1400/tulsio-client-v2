@@ -41,6 +41,9 @@ export const CardS = styled.div(({theme}) => `
   }
   .card-content{
     padding: 20px 30px;
+    h3{
+      color: #2B2B2B;
+    }
   }
   .card-control{
     display: flex;
@@ -49,6 +52,7 @@ export const CardS = styled.div(({theme}) => `
     margin-top: 20px;
     p{
       font-weight: 600;
+      color: #2B2B2B;
     }
     a{
       display: flex;

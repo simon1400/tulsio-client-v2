@@ -49,6 +49,5 @@ export const ProductTopS = styled.div(({theme}) => `
   .bottom{
     display: flex;
     justify-content: space-between;
-    margin-top: 30px;
   }
 `)

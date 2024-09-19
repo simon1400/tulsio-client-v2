@@ -1,19 +1,21 @@
-// import { Swiper, SwiperSlide } from "swiper/react";
-// import SwiperCore from "swiper"
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore from "swiper"
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 
-// import { Pagination } from "swiper/modules";
+import { Pagination } from "swiper/modules";
 import { SliderWrapS } from "./styled";
-// import Image from "next/image";
-// import { useRef } from "react";
+import Image from "next/image";
+import { FC, useRef } from "react";
 
-const Slider = () => {
-  // const swiper = useRef() as any;
+const APP_API = process.env.APP_API;
+
+const Slider: React.FC<{url:string}> = ({url}) => {
+  const swiper = useRef() as any;
   return (
     <SliderWrapS>
-      {/* <Swiper
+      <Swiper
         onInit={(core: SwiperCore) => {
           swiper.current = core.el
         }}
@@ -23,15 +25,16 @@ const Slider = () => {
         modules={[Pagination]}
       >
         <SwiperSlide>
-          <Image src="/assets/ruderalis.jpeg" fill alt="" />
-        </SwiperSlide><SwiperSlide>
-          <Image src="/assets/ruderalis.jpeg" fill alt="" />
-        </SwiperSlide><SwiperSlide>
-          <Image src="/assets/ruderalis.jpeg" fill alt="" />
-        </SwiperSlide><SwiperSlide>
-          <Image src="/assets/ruderalis.jpeg" fill alt="" />
+          <Image src={APP_API + url} fill alt="" />
         </SwiperSlide>
-      </Swiper> */}
+        {/* <SwiperSlide>
+          <Image src="/assets/ruderalis.jpeg" fill alt="" />
+        </SwiperSlide><SwiperSlide>
+          <Image src="/assets/ruderalis.jpeg" fill alt="" />
+        </SwiperSlide><SwiperSlide>
+          <Image src="/assets/ruderalis.jpeg" fill alt="" />
+        </SwiperSlide> */}
+      </Swiper>
     </SliderWrapS>
   );
 };

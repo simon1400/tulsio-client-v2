@@ -4,8 +4,7 @@ export const ProgressWrapper = styled.div`
   box-sizing: border-box;
   position: absolute;
   top: 135px;
-  max-width: 930px;
-  width: 100%;
+  width: 97.89%;
   height: 25px;
 
   @media (max-width: 499px) {

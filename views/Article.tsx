@@ -14,7 +14,7 @@ import { oembedTransform } from "helpers/oembedTransform";
 import Articles from "components/Articles";
 import Author from "components/Author";
 import AudioPlayer from 'components/Player';
-import PodcastLink from 'components/PodcastsLink';
+import PodcastLink from 'components/PodcastLink';
 
 const DOMAIN = process.env.APP_DOMAIN;
 

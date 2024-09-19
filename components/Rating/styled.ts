@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
 
-export const RatingS = styled.div<{marginBottom?: number}>(({theme, marginBottom = 0}) => `
+export const RatingS = styled.div<{marginBottom?: number, marginTop?: number}>(({theme, marginBottom = 0, marginTop = 0}) => `
   display: flex;
   align-items: center;
   line-height: 1;
   margin-bottom: ${marginBottom}px;
+  margin-top: ${marginBottom}px;
   > div{
     font-size: 24px;
     font-weight: 700;

@@ -8,7 +8,7 @@ const Logo: FC<{image: any}> = ({image}) => {
 
   return (
     <SellerLogoS>
-      <Image src={APP_API+image.data.attributes.url+`?format=webp&resize=80x80`} fill alt="" />
+      <Image src={APP_API+image.data.attributes.url} fill alt="" />
     </SellerLogoS>
   )
 }

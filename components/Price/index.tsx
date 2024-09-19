@@ -1,17 +1,24 @@
+import React from "react"
 import { PriceS } from "./styled"
 
-const Price = () => {
+const Price: React.FC<{ price: number }> = ({ price }) => {
+  const formattedPrice = new Intl.NumberFormat('cs-CZ', {
+    style: 'currency',
+    currency: 'CZK',
+  }).format(price);
+
   return (
     <PriceS>
       <div>
-        <b>560 kc</b>
+        <b>{formattedPrice}</b>
       </div>
       <div>
-        <span>vcetne DPH</span>
-        <label>skladem</label>
+        <span>včetně DPH</span>
+        <label>Skladem</label>
       </div>
     </PriceS>
-  )
-}
+  );
+};
+
 
 export default Price

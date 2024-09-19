@@ -17,10 +17,19 @@ export const SellerS = styled.div(({theme}) => `
   ${theme.breakpoints.down('sm')} {
     border-radius: ${theme.borderRadius['sm']};
   }
+  .button {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    margin-top: 24px;
+  }
   .seller-head{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 24px;
   }
   .logo-wrap{
     display: flex;
