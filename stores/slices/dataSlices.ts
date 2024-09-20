@@ -55,13 +55,13 @@ export const dataReducer = createSlice({
     },
   },
 
-  extraReducers: {
-    [HYDRATE]: (state: DataState, action: any) => {
+  extraReducers: builder => {
+    builder.addCase(HYDRATE, (state: DataState, action: any) => {
       return {
         ...state,
         ...action.payload.data,
       };
-    }
+    })
   }
 })
 

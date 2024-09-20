@@ -62,15 +62,14 @@ export const metaReducer = createSlice({
       state.contentType = action.payload
     },
   },
-
-  extraReducers: {
-    [HYDRATE]: (state: NavState, action: any) => {
+  extraReducers: builder => {
+    builder.addCase(HYDRATE, (state: NavState, action: any) => {
       return {
         ...state,
         ...action.payload.meta,
       };
-    }
-  },
+    })
+  }
 })
 
 export const { 

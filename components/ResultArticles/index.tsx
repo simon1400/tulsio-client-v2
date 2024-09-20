@@ -1,6 +1,6 @@
 import Articles from "components/Articles";
 import NotResult from "components/NotResult";
-import { useHits, UseHitsProps } from "react-instantsearch-hooks-web";
+import { useHits, UseHitsProps } from "react-instantsearch";
 
 const ResultArticles = (props: UseHitsProps) => {
 

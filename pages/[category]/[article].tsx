@@ -1,9 +1,10 @@
 import {getArticle} from '../../queries/articles';
-import { client } from '../../lib/api'
+import { client, getStrapiURL } from '../../lib/api'
 import { NextPage } from 'next'
 import Article from 'views/Article';
 import { wrapper } from 'stores';
 import { changeDescription, changeTitle } from 'stores/slices/dataSlices';
+import { changeImage } from 'stores/slices/metaSlices';
 
 export const getServerSideProps = wrapper.getServerSideProps((store) =>
   async ({params, locale}) => {
@@ -32,6 +33,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) =>
 
   store.dispatch(changeTitle(article.meta?.title || article.title))
   store.dispatch(changeDescription(article.meta?.description || ""))
+  store.dispatch(changeImage(article.meta?.image.data ? getStrapiURL(article.meta.image.data.attributes.url) : ""));
 
   return {
     props: {

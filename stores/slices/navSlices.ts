@@ -21,14 +21,14 @@ export const navReducer = createSlice({
     },
   },
 
-  extraReducers: {
-    [HYDRATE]: (state: NavState, action: any) => {
+  extraReducers: builder => {
+    builder.addCase(HYDRATE, (state: NavState, action: any) => {
       return {
         ...state,
         ...action.payload.nav,
       };
-    }
-  },
+    })
+  }
 })
 
 export const { changeCategoryNav } = navReducer.actions

@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 export const getAllArticles = gql`
   query getAllArticles($locale: I18NLocaleCode!) {
-    articles(sort: "publishedAt:desc", locale: $locale) {
+    articles(sort: "publishedAt:desc", locale: $locale, publicationState: LIVE) {
       data {
         attributes {
           title
@@ -38,7 +38,8 @@ export const getArticlesCategory = gql`
     articles(
       filters: { categories: { slug: { eq: $slug } } },
       sort: "publishedAt:desc",
-      locale: $locale
+      locale: $locale,
+      publicationState: LIVE
     ) {
       data {
         attributes {
@@ -77,6 +78,7 @@ export const getArticlesTag = gql`
       filters: { labels: { slug: { eq: $slug } } }
       sort: "publishedAt:desc"
       locale: $locale
+      publicationState: LIVE
     ) {
       data {
         attributes {
@@ -269,7 +271,7 @@ export const getArticle = gql`
 
 export const getArticleBase = gql`
   query getArticleBase($slug: String!, $locale: I18NLocaleCode!) {
-    articlesBase(filters: { slug: { eq: $slug } }, locale: $locale) {
+    articlesBase(filters: { slug: { eq: $slug } }, locale: $locale, publicationState: LIVE) {
       data {
         attributes {
           title

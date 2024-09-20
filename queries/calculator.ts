@@ -25,6 +25,7 @@ const calculatorQuery = gql`
           commonlyUsed {
             title
             description
+            background
             image{
               data{
                 attributes{
@@ -40,6 +41,18 @@ const calculatorQuery = gql`
               data{
                 attributes{
                   url
+                }
+              }
+            }
+          }
+          meta{
+            title
+            description
+            image{
+              data{
+                attributes{
+                  url
+                  alternativeText
                 }
               }
             }

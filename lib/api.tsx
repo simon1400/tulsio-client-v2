@@ -1,7 +1,6 @@
 import { ApolloClient, createHttpLink, InMemoryCache, ApolloProvider, DefaultOptions } from "@apollo/client";
 import { setContext } from '@apollo/client/link/context';
 import Cookies from 'js-cookie'
-import { ReactNode } from "react";
 
 export function getStrapiURL(path = "") {
   return `${

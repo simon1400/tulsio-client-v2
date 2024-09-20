@@ -5,8 +5,6 @@ import Script from "next/script";
 import { useSelector } from "react-redux";
 import { selectDescription, selectTitle } from "stores/slices/dataSlices";
 import { selectAllMeta } from "stores/slices/metaSlices";
-// import CustomAlert from "components/Alert";
-import { selectModalState } from "stores/slices/modalSlices";
 
 const DOMAIN = process.env.APP_DOMAIN;
 
@@ -20,7 +18,6 @@ const Page: FC<IPage> = ({ children, className = "", id = "" }) => {
   const router = useRouter();
 
   const title = useSelector(selectTitle);
-  const modalState = useSelector(selectModalState);
   const description = useSelector(selectDescription);
   const {
     image,
@@ -143,8 +140,6 @@ const Page: FC<IPage> = ({ children, className = "", id = "" }) => {
         })(window,document,'script','dataLayer','${global.gtm}');`}
       </Script>
       {/*<!-- End Google Tag Manager -->*/}
-
-      {/* <Script type="text/javascript" src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v2.8.0/dist/cookieconsent.js" /> */}
 
       {/*<!-- Google Tag Manager (noscript) -->*/}
       <noscript>

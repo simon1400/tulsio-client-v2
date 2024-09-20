@@ -37,7 +37,6 @@ export const getDictionaryPage = gql`
               data{
                 attributes{
                   url
-                  alternativeText
                 }
               }
             }

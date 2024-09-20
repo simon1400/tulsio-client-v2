@@ -74,11 +74,10 @@ const ModalCopyIframe: FC<IModalCopyIframe> = ({ setOpen, open }) => {
     >
       <Fade in={open}>
         <ModalContent>
-          <IconButton sx={{ color: "white" }}>
+          <IconButton sx={{ color: "white" }} onClick={() => handleClose()}>
             <SvgIcon
               component={CloseIcon}
               fontSize="large"
-              onClick={() => handleClose()}
             />
           </IconButton>
           <Typography variant="h1" marginBottom={6}>Vložte si kalkulačku na váš web</Typography>
@@ -89,7 +88,7 @@ const ModalCopyIframe: FC<IModalCopyIframe> = ({ setOpen, open }) => {
           
           <Typography variant="h3" marginTop={6}>Světlá varianta</Typography>
           <Tooltip title={copyText} placement="top">
-            <code onMouseLeave={() => setCopyText('Click to copy!')} onClick={() => handleCopy('<iframe src="https://tulsio.com/cs/calculator?embed=white" width="100%" height="400" />')}>https://tulsio.com/cs/calculator?embed=black</code>
+            <code onMouseLeave={() => setCopyText('Click to copy!')} onClick={() => handleCopy('<iframe src="https://tulsio.com/cs/calculator?embed=white" width="100%" height="400" />')}>https://tulsio.com/cs/calculator?embed=white</code>
           </Tooltip>
         </ModalContent>
       </Fade>
