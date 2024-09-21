@@ -1,7 +1,9 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import Label from "components/Label";
 import { ArticleWrap } from "./styles";
 import { Typography } from "@mui/material";
+import { useOnMountUnsafe } from "helpers/useOnMountUnsaf";
+import { choiceBackground } from "helpers/choiseBackground";
 
 const APP_API = process.env.APP_API;
 
@@ -30,43 +32,31 @@ const ArticleShort: FC<ArticleShortProps> = ({
   text = "",
   label = undefined,
 }) => {
-  let imgUrl = "/assets/placeholder.svg";
-  const size = "resize=1000x1000";
+  const [imgUrl, setImgUrl] = useState<string>('/assets/placeholder.svg')
+  const [size] = useState<string>("resize=1000x1000");
 
-  if (typeof image === "object" && image) {
-    if (image["attributes"]) {
-      imgUrl = `${APP_API}${image["attributes"]["url"]}?format=webp&${size}`;
-    } else {
-      imgUrl = `${APP_API}${image["url"]}?format=webp&${size}`;
+  const {convert, color} = choiceBackground(background)
+
+  useOnMountUnsafe(() => {
+    if (typeof image === "object" && image) {
+      if (image["attributes"]) {
+        setImgUrl(`${APP_API}${image["attributes"]["url"]}?format=webp&${size}`);
+      } else {
+        setImgUrl(`${APP_API}${image["url"]}?format=webp&${size}`);
+      }
+    } else if (image !== undefined) {
+      setImgUrl(image + `?format=webp&${size}`);
     }
-  } else if (image !== undefined) {
-    imgUrl = image + `?format=webp&${size}`;
-  }
-
-  let convert = "#4545ff",
-    color: string = "#ffffff";
-
-  if (background === "green") {
-    convert = "#9f9";
-    color = "#202020";
-  } else if (background === "yellow") {
-    convert = "#fff899";
-    color = "#202020";
-  } else if (background === "purple") {
-    convert = "#a50d5a";
-  } else if (background === "bluePurpleG") {
-    convert = "linear-gradient(125deg, #a50d5a, #4545ff)";
-  } else if (background === "greenYellowG") {
-    convert = "linear-gradient(to bottom, #fff899, #9f9);";
-    color = "#202020";
-  }
+    
+    
+  })
 
   return (
     <ArticleWrap background={convert} color={color} href={link} passHref>
       <div className="img-wrap">
         <div
           className="img-art"
-          style={{ backgroundImage: `${showShortImg ? `url(${imgUrl})` : ""}` }}
+          style={showShortImg ? { backgroundImage: `url(${imgUrl})` } : {}}
         />
       </div>
 

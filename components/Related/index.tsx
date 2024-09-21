@@ -3,12 +3,14 @@ import { RelatedS } from "./styled"
 import dynamic from "next/dynamic";
 import { FC } from "react";
 import { IImageRoot } from "types/image";
+import { choiceBackground } from "helpers/choiseBackground";
 const Image = dynamic(() => import("../Image"), { suspense: true });
 
 interface IReverse {
   reverse: boolean;
   title: string;
   description: string;
+  background: string;
   image: IImageRoot
 }
 
@@ -18,10 +20,12 @@ const Related: FC<IReverse> = ({
   reverse,
   title,
   description,
-  image
+  image,
+  background
 }) => {
+  const {convert, color} = choiceBackground(background)
   return (
-    <RelatedS reverse={reverse}>
+    <RelatedS reverse={reverse} background={convert} colorText={color}>
       <div className="content-wrap">
         <Typography variant="h3">{title}</Typography>
         <Typography component="div" dangerouslySetInnerHTML={{ __html: description }} />

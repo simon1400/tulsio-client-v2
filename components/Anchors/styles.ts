@@ -14,13 +14,15 @@ export const AnchorsS = styled.div(({theme}) => `
         line-height: 1.84;
         font-weight: 600;
         transition: all .2s ease;
+        display: flex;
+        align-items: start;
         &:hover{
-        color: ${theme.palette.primary.main};
+          color: ${theme.palette.primary.main};
         }
         svg{
           fill: ${theme.palette.primary.main};
           transform: rotate(-45deg);
-          margin-top: 2px;
+          margin-top: -5px;
           margin-right: 10px;
         }
         ${theme.breakpoints.down('xl')} {

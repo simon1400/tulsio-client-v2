@@ -6,7 +6,7 @@ import Page from "layout/Page"
 import searchClient from "lib/meilisearch"
 import Head from "next/head"
 import { useRouter } from "next/router"
-import { Configure, InstantSearch } from "react-instantsearch-hooks-web"
+import { Configure, InstantSearch } from "react-instantsearch"
 
 const DOMAIN = process.env.APP_DOMAIN;
 const meilisearchPrefix = process.env.MEILISEARCH_PREFIX
@@ -22,7 +22,7 @@ const SearchPage = () => {
       <InstantSearch 
         indexName={indexName}
         routing={true} 
-        searchClient={searchClient}
+        searchClient={searchClient.searchClient}
       >
 
         <Configure hitsPerPage={50} />

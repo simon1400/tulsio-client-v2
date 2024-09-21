@@ -29,7 +29,7 @@
     "**/*.ts",
     "**/*.tsx",
     "ecosystem.config.js"
-  ],
+, "redirects.js"  ],
   "exclude": [
     "node_modules",
     "./context/dataStateContext.js"

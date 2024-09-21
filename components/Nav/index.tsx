@@ -34,7 +34,7 @@ const Nav: FC<INav> = ({
         )}
         {data.map((item: any, idx: number) => (
           <li className={router.asPath === '/'+item.slug || router.asPath === item.slug ? "active" : ""} key={idx}>
-            <Link href={'/'+item.slug} onClick={(e) => handle(e, item.slug)}>{item.title}</Link>
+            <Link href={item.slug} onClick={(e) => handle(e, item.slug)}>{item.title}</Link>
           </li>
         ))}
         {icon && (

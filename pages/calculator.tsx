@@ -6,10 +6,11 @@ import ShortContent from "components/ShortContent";
 import InfoBlock from "components/InfoBlock";
 import Related from "components/Related";
 import { wrapper } from "stores";
-import { client } from "lib/api";
+import { client, getStrapiURL } from "lib/api";
 import calculatorQuery from "queries/calculator";
-import { changeTitle } from "stores/slices/dataSlices";
+import { changeDescription, changeTitle } from "stores/slices/dataSlices";
 import Calculator from "components/Calculator";
+import { changeImage } from "stores/slices/metaSlices";
 
 
 export const getServerSideProps = wrapper.getServerSideProps(
@@ -26,9 +27,9 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
     const embed = ctx.query?.embed || ''
 
-
-    store.dispatch(changeTitle("Calculator"));
-    // store.dispatch(changeDescription(""));
+    store.dispatch(changeTitle(calculator.meta?.title || calculator.title));
+    store.dispatch(changeDescription(calculator.meta?.description || ""));
+    store.dispatch(changeImage(calculator.meta?.image.data ? getStrapiURL(calculator.meta.image.data.attributes.url) : ""));
 
     return {
       props: {
@@ -51,6 +52,8 @@ const CalculatorPage: NextPage<ICalculator> = ({calculator, embed}) => {
       <Calculator embed={embed} />
     )
   }
+
+  console.log(calculator.commonlyUsed)
 
   return (
     <Page>
@@ -77,7 +80,7 @@ const CalculatorPage: NextPage<ICalculator> = ({calculator, embed}) => {
       <Container>
         <div style={{marginBottom: 70}}>
           <ShortContent title={"Na co se CBD nejčestěji používá"} />
-          {!!calculator.commonlyUsed.length && calculator.commonlyUsed.map((item: any, idx: number) => <Related key={idx} image={item.image} reverse={!!(idx % 2)} title={item.title} description={item.description} />)}
+          {!!calculator.commonlyUsed.length && calculator.commonlyUsed.map((item: any, idx: number) => <Related key={idx} image={item.image} reverse={!!(idx % 2)} title={item.title} description={item.description} background={item.background} />)}
         </div>
       </Container>
       <Container id="content">

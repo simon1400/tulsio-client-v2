@@ -117,11 +117,10 @@ const ModalNewsletter: FC<IModalNewsletter> = ({ setOpen, open }) => {
     >
       <Fade in={open}>
         <ModalContent>
-          <IconButton sx={{ color: "white" }}>
+          <IconButton sx={{ color: "white" }} onClick={() => handleClose()}>
             <SvgIcon
               component={CloseIcon}
               fontSize="large"
-              onClick={() => handleClose()}
             />
           </IconButton>
           <Typography variant="h2">

@@ -1,7 +1,7 @@
 import { NextPage } from "next";
-import { Configure, InstantSearch } from "react-instantsearch-hooks-web";
+import { Configure, InstantSearch } from "react-instantsearch";
 import searchClient from "../lib/meilisearch";
-import { client } from "../lib/api";
+import { client, getStrapiURL } from "../lib/api";
 import {getAllFaqs, getFaq} from "../queries/faq";
 import PageHead from "components/PageHead";
 import FaqHits from "components/FaqHits";
@@ -10,6 +10,7 @@ import { Container } from "@mui/material";
 import Page from "layout/Page";
 import { wrapper } from "stores";
 import { changeDescription, changeTitle } from "stores/slices/dataSlices";
+import { changeImage } from "stores/slices/metaSlices";
 
 const meilisearchPrefix = process.env.MEILISEARCH_PREFIX;
 
@@ -22,6 +23,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
     store.dispatch(changeTitle(faqData.meta?.title || faqData.title));
     store.dispatch(changeDescription(faqData.meta?.description || ""));
+    store.dispatch(changeImage(faqData.meta?.image.data ? getStrapiURL(faqData.meta.image.data.attributes.url) : ""));
 
     return {
       props: {
@@ -36,11 +38,12 @@ const Faq: NextPage = ({
   // @ts-ignore
   faq, allFaq
 }) => {
+  
   return (
     <Page>
       <InstantSearch
         indexName={meilisearchPrefix + "faq"}
-        searchClient={searchClient}
+        searchClient={searchClient.searchClient}
       >
         <Configure hitsPerPage={50} />
  

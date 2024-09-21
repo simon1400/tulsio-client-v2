@@ -10,7 +10,7 @@ import Page from "layout/Page";
 import { wrapper } from "stores";
 import { changeDescription, changeTitle } from "stores/slices/dataSlices";
 import { Container, Typography } from "@mui/material";
-import styled from "@emotion/styled";
+import { changeImage } from "stores/slices/metaSlices";
 
 enum BANER_POSITION {
   POSITION_1 = "Home_1",
@@ -71,6 +71,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
     store.dispatch(changeTitle(meta?.title || "Úvod"));
     store.dispatch(changeDescription(meta?.description || ""));
+    store.dispatch(changeImage(meta?.image.data ? getStrapiURL(meta.image.data.attributes.url) : ""));
 
     return {
       props: {
@@ -78,7 +79,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
         baner1: baner1 || null,
         baner2: baner2 || null,
         articles,
-        image: meta?.image ? getStrapiURL(meta.image) : null,
+        image: meta?.image ? getStrapiURL(meta.image.data.attributes.url) : null,
       },
     };
   }
@@ -97,60 +98,56 @@ const Homepage: FC<IHomepage> = ({ title, baner1, baner2, articles }) => {
     <Page>
       <section>
         <Container sx={{ mb: 10 }}>
-          <HomeHead variant="h1">{title}</HomeHead>
+          <Typography variant="h1" fontSize={'50px'}>{title}</Typography>
         </Container>
         <GridTop>
           {!!articles?.length &&
             articles.map((item: any, idx: number) => {
               if (idx === 2) {
-                return (
-                  <>
-                    <div key={"banner" + idx}>
-                      <Banner data={baner1} />
-                    </div>
-                    <div key={"gridButton" + idx}>
-                      <GridButton data={gridButtonData[0]} />
-                    </div>
-                    <div key={"article" + idx}>
-                      <ArticleShort
-                        title={item.title}
-                        showShortImg={item.showShortImg}
-                        link={`/blog/${item?.slug}`}
-                        image={item.image.data}
-                        background={item.background}
-                        label={item?.labels?.data.map(
-                          (item: any) => item.attributes
-                        )}
-                      />
-                    </div>
-                    <div key={"gridButton" + idx + 1}>
-                      <GridButton data={gridButtonData[1]} />
-                    </div>
-                  </>
-                );
+                return [
+                  <div key={"banner_" + idx}>
+                    <Banner data={baner1} />
+                  </div>,
+                  <div key={"gridButton_" + idx}>
+                    <GridButton data={gridButtonData[0]} />
+                  </div>,
+                  <div key={"article_" + idx}>
+                    <ArticleShort
+                      title={item.title}
+                      showShortImg={item.showShortImg}
+                      link={`/blog/${item?.slug}`}
+                      image={item.image.data}
+                      background={item.background}
+                      label={item?.labels?.data.map(
+                        (item: any) => item.attributes
+                      )}
+                    />
+                  </div>,
+                  <div key={"gridButton_" + idx + 1}>
+                    <GridButton data={gridButtonData[1]} />
+                  </div>
+                ];
               } else if (idx === 5) {
-                return (
-                  <>
-                    <div key={"banner" + idx}>
-                      <Banner data={baner2} />
-                    </div>
-                    <div key={"article" + idx}>
-                      <ArticleShort
-                        title={item.title}
-                        showShortImg={item.showShortImg}
-                        link={`/blog/${item?.slug}`}
-                        image={item.image.data}
-                        background={item.background}
-                        label={item?.labels?.data.map(
-                          (item: any) => item.attributes
-                        )}
-                      />
-                    </div>
-                  </>
-                );
+                return [
+                  <div key={"banner_" + idx}>
+                    <Banner data={baner2} />
+                  </div>,
+                  <div key={"article_" + idx}>
+                    <ArticleShort
+                      title={item.title}
+                      showShortImg={item.showShortImg}
+                      link={`/blog/${item?.slug}`}
+                      image={item.image.data}
+                      background={item.background}
+                      label={item?.labels?.data.map(
+                        (item: any) => item.attributes
+                      )}
+                    />
+                  </div>
+                ];
               } else {
                 return (
-                  <div key={"article" + idx}>
+                  <div key={"article_" + idx}>
                     <ArticleShort
                       title={item.title}
                       showShortImg={item.showShortImg}
@@ -172,7 +169,3 @@ const Homepage: FC<IHomepage> = ({ title, baner1, baner2, articles }) => {
 };
 
 export default Homepage;
-
-const HomeHead = styled(Typography)`
-  font-size: 50px;
-`;

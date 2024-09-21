@@ -1,13 +1,14 @@
 import { NextPage } from "next";
 import DictionaryHits from "../components/DictionaryHits";
 import DictionaryHead from "../components/DictionaryHead";
-import { client } from "../lib/api";
+import { client, getStrapiURL } from "../lib/api";
 import { getDictionaryPage, getAllDictionaries } from "../queries/dictionary";
 import alphabets from "data/alphabets";
 import numbers from "data/numbers";
 import Page from "layout/Page";
 import { changeDescription, changeTitle } from "stores/slices/dataSlices";
 import { wrapper } from "stores";
+import { changeImage } from "stores/slices/metaSlices";
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async ({locale}) => {
@@ -27,6 +28,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
     store.dispatch(changeTitle(page.meta?.title || page.title));
     store.dispatch(changeDescription(page.meta?.description || ""));
+    store.dispatch(changeImage(page.meta?.image.data ? getStrapiURL(page.meta.image.data.attributes.url) : ""));
 
     const result: string[] = [];
     alphabets.map((symbol) => {

@@ -1,6 +1,6 @@
 "use client"; 
 import React, { useRef, useEffect, useCallback, useState } from 'react';
-import { formatTime } from '../../helpers/formatTime';
+import { formatTime } from '../helpers/formatTime';
 import { ProgressWrapper, RectGen, Rect, HoverRect } from './styles';
 
 interface ProgressContainerProps {

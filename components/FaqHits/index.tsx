@@ -3,7 +3,7 @@ import {
   useHits,
   UseHitsProps,
   useSearchBox,
-} from 'react-instantsearch-hooks-web';
+} from 'react-instantsearch';
 import FaqItem from "components/FaqItem";
 import { FaqHitsS } from "./styles";
 import NotResult from "components/NotResult";

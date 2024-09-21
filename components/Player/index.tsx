@@ -1,9 +1,11 @@
 "use client"; 
 import { css } from '@emotion/react';
 import React, { useRef, useState, useCallback, useEffect } from 'react';
-import ProgressContainer from './components/progress/progress';
 import { formatTime } from './helpers/formatTime';
 import { Container, VolumeControl, SpeedControl, PlayerControl, TimeDisplay } from './styles';
+import ProgressContainer from './progress';
+import Image from 'next/image';
+import { useOnMountUnsafe } from 'helpers/useOnMountUnsaf';
 
 const APP_API = process.env.APP_API
 
@@ -140,12 +142,12 @@ const AudioPlayer: React.FC<{url:string}> = ({ url }) => {
     }
   }, [playbackRate]);
 
-  useEffect(() => {
+  useOnMountUnsafe(() => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, []);
+  });
 
   // player-container
   const handlePlayPause = useCallback(() => {
@@ -222,121 +224,125 @@ const AudioPlayer: React.FC<{url:string}> = ({ url }) => {
 
 
   return (
-    <>
-      <Container>
-        <div className='central-container'>
-          <div className='player-bg'>
-            <div className='top-control'>
-              <audio
-                ref={audioRef}
-                src={APP_API+url}
-                onLoadedMetadata={handleLoadedMetadata}
-                onTimeUpdate={handleTimeUpdate}
-              ></audio>
-              <VolumeControl>
-                <div>
-                <img
+    <Container>
+      <div className='central-container'>
+        <div className='player-bg'>
+          <div className='top-control'>
+            <audio
+              ref={audioRef}
+              src={APP_API+url}
+              onLoadedMetadata={handleLoadedMetadata}
+              onTimeUpdate={handleTimeUpdate}
+            ></audio>
+            <VolumeControl>
+              <div>
+                <Image
                   ref={volumeImgRef}
+                  width={30}
+                  height={30}
                   onClick={handleVolumeIconClick}
                   src="/img/volume.svg"
                   alt="volume"
                 />
-                </div>
-                <input
-                  type="range"
-                  id="volumeControl"
-                  ref={volumeControlRef}
-                  min="0"
-                  max="1"
-                  step="0.01"
-                  value={volume}
-                  onChange={handleVolumeChange}
-                />
-              </VolumeControl>
-            
-              <PlayerControl>
-                <div onClick={handleBackwardClick}>
-                  <img
-                    src="/img/arrow.svg"
-                    alt="backward"
-                    style={{ transform: transformStyle1, transition: 'transform 0.5s' }}
-                  />
-                  <span
-                    css={css`
-                      @media (max-width: 499px) {
-                        width: 7px;
-                      }`}>
-                    10</span>
-                </div>
-                
-                <button onClick={handlePlayPause}>
-                  <img ref={playPauseImgRef} src="/img/play.svg" alt="Play" />
-                </button>
-
-                <div onClick={handleForwardClick}>
-                  <img
-                    src="/img/arrow1.svg"
-                    alt="forward"
-                    style={{ transform: transformStyle, transition: 'transform 0.5s' }}
-                  />
-                  <span>10</span>
-                </div>
-              </PlayerControl>
-
-              <SpeedControl>
-                <div
-                  className={`speed ${showSpeedOptions ? 'speed-dropdown-visible' : ''}`}
-                  onClick={toggleDropdown}
-                  ref={dropdownRef}
-                >
-                  <p>{`${playbackRate}×`}</p>
-                  <img
-                    src="/img/shevron.svg"
-                    alt="speed"
-                    className={`shevron ${showSpeedOptions ? 'clicked' : ''}`}
-                  />
-                  <div className={`dropdown-content ${showSpeedOptions ? 'show' : ''}`}>
-                    {[0.5, 0.75, 1, 1.25, 1.5, 1.75, 2].map((option) => (
-                      <div
-                        key={option}
-                        className="speed-option"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleSpeedChange(option);
-                        }}
-                      >
-                        {`${option}×`}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </SpeedControl>
-            </div>
-            <ProgressContainer
-              audioRef={audioRef}
-              currentTime={currentTime}
-              formatTime={formatTime} 
-              duration={duration}
-              setHoverTime={setHoverTime}
-              onProgressChange={handleProgressChange}
-            />
-            <TimeDisplay>
-              <div>
-                <ul>
-                  <li id="currentTime">
-                    {formatTime(currentTime)}
-                  </li>
-                  <li id="duration">
-                    {formatTime(duration)}
-                  </li>
-                </ul>
               </div>
-            </TimeDisplay>
-          </div>
-        </div>
-      </Container>
+              <input
+                type="range"
+                id="volumeControl"
+                ref={volumeControlRef}
+                min="0"
+                max="1"
+                step="0.01"
+                value={volume}
+                onChange={handleVolumeChange}
+              />
+            </VolumeControl>
+          
+            <PlayerControl>
+              <div onClick={handleBackwardClick}>
+                <Image
+                  src="/img/arrow.svg"
+                  alt="backward"
+                  width={40}
+                  height={40}
+                  style={{ transform: transformStyle1, transition: 'transform 0.5s' }}
+                />
+                <span
+                  css={css`
+                    @media (max-width: 499px) {
+                      width: 7px;
+                    }`}>
+                  10</span>
+              </div>
+              
+              <button onClick={handlePlayPause}>
+                <Image ref={playPauseImgRef} src="/img/play.svg" alt="Play" width={40}
+                  height={40} />
+              </button>
 
-    </>
+              <div onClick={handleForwardClick}>
+                <Image
+                  src="/img/arrow1.svg"
+                  alt="forward"
+                  width={40}
+                  height={40}
+                  style={{ transform: transformStyle, transition: 'transform 0.5s' }}
+                />
+                <span>10</span>
+              </div>
+            </PlayerControl>
+
+            <SpeedControl>
+              <div
+                className={`speed ${showSpeedOptions ? 'speed-dropdown-visible' : ''}`}
+                onClick={toggleDropdown}
+                ref={dropdownRef}
+              >
+                <p>{`${playbackRate}×`}</p>
+                <img
+                  src="/img/shevron.svg"
+                  alt="speed"
+                  className={`shevron ${showSpeedOptions ? 'clicked' : ''}`}
+                />
+                <div className={`dropdown-content ${showSpeedOptions ? 'show' : ''}`}>
+                  {[0.5, 0.75, 1, 1.25, 1.5, 1.75, 2].map((option) => (
+                    <div
+                      key={option}
+                      className="speed-option"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleSpeedChange(option);
+                      }}
+                    >
+                      {`${option}×`}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </SpeedControl>
+          </div>
+          <ProgressContainer
+            audioRef={audioRef}
+            currentTime={currentTime}
+            formatTime={formatTime} 
+            duration={duration}
+            setHoverTime={setHoverTime}
+            onProgressChange={handleProgressChange}
+          />
+          <TimeDisplay>
+            <div>
+              <ul>
+                <li id="currentTime">
+                  {formatTime(currentTime)}
+                </li>
+                <li id="duration">
+                  {formatTime(duration)}
+                </li>
+              </ul>
+            </div>
+          </TimeDisplay>
+        </div>
+      </div>
+    </Container>
   );
 };
 
