@@ -1,20 +1,25 @@
-import { Typography } from "@mui/material"
-import { ShortContentS } from "./styled"
-import { FC } from "react";
+import type { FC } from 'react'
+
+import { Typography } from '@mui/material'
+import DOMPurify from 'isomorphic-dompurify'
+
+import { ShortContentS } from './styled'
 
 interface IShortContent {
-  title: string;
-  description?: string;
+  title: string
+  description?: string
 }
 
-const ShortContent: FC<IShortContent> = ({
-  title,
-  description
-}) => {
+const ShortContent: FC<IShortContent> = ({ title, description }) => {
   return (
     <ShortContentS>
-      <Typography variant="h2">{title}</Typography>
-      {!!description && <Typography component="div" dangerouslySetInnerHTML={{ __html: description }} />}
+      <Typography variant={'h2'}>{title}</Typography>
+      {!!description && (
+        <Typography
+          component={'div'}
+          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(description) }}
+        />
+      )}
     </ShortContentS>
   )
 }

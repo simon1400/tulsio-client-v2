@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client'
 
 export const getCategoryNav = gql`
   query categoryNav($locale: I18NLocaleCode!) {
@@ -15,7 +15,7 @@ export const getCategoryNav = gql`
 `
 
 export const getCategory = gql`
-  query category( $slug: String!, $locale: I18NLocaleCode! ) {
+  query category($slug: String!, $locale: I18NLocaleCode!) {
     categories(filters: { slug: { eq: $slug } }, locale: $locale) {
       data {
         attributes {
@@ -23,12 +23,12 @@ export const getCategory = gql`
           navTitle
           shortTitle
           description
-          meta{
+          meta {
             title
             description
-            image{
-              data{
-                attributes{
+            image {
+              data {
+                attributes {
                   url
                   alternativeText
                 }
@@ -55,7 +55,7 @@ export const getCatalogNav = gql`
 `
 
 export const getShopCategory = gql`
-  query shopCategory( $slug: String!, $locale: I18NLocaleCode! ) {
+  query shopCategory($slug: String!, $locale: I18NLocaleCode!) {
     shopCategories(filters: { slug: { eq: $slug } }, locale: $locale) {
       data {
         attributes {
@@ -63,12 +63,12 @@ export const getShopCategory = gql`
           navTitle
           shortTitle
           description
-          meta{
+          meta {
             title
             description
-            image{
-              data{
-                attributes{
+            image {
+              data {
+                attributes {
                   url
                   alternativeText
                 }

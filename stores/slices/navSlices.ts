@@ -1,14 +1,15 @@
-import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { HYDRATE } from "next-redux-wrapper";
-import { AppState } from 'stores';
+import type { AppState } from 'stores'
+
+import { createSlice } from '@reduxjs/toolkit'
+import { HYDRATE } from 'next-redux-wrapper'
 
 export interface NavState {
   categoryNav: any
 }
 
 const initialState: NavState = {
-  categoryNav: []
+  categoryNav: [],
 }
 
 export const navReducer = createSlice({
@@ -21,18 +22,18 @@ export const navReducer = createSlice({
     },
   },
 
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder.addCase(HYDRATE, (state: NavState, action: any) => {
       return {
         ...state,
         ...action.payload.nav,
-      };
+      }
     })
-  }
+  },
 })
 
 export const { changeCategoryNav } = navReducer.actions
 
-export const selectCategoryNav = (state: AppState) => state.nav.categoryNav;
+export const selectCategoryNav = (state: AppState) => state.nav.categoryNav
 
 export default navReducer.reducer

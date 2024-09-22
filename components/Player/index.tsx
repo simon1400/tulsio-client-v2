@@ -1,239 +1,238 @@
-"use client"; 
-import { css } from '@emotion/react';
-import React, { useRef, useState, useCallback, useEffect } from 'react';
-import { formatTime } from './helpers/formatTime';
-import { Container, VolumeControl, SpeedControl, PlayerControl, TimeDisplay } from './styles';
-import ProgressContainer from './progress';
-import Image from 'next/image';
-import { useOnMountUnsafe } from 'helpers/useOnMountUnsaf';
+'use client'
+import { css } from '@emotion/react'
+import { useOnMountUnsafe } from 'helpers/useOnMountUnsaf'
+import Image from 'next/image'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
+
+import { formatTime } from './helpers/formatTime'
+import ProgressContainer from './progress'
+import { Container, PlayerControl, SpeedControl, TimeDisplay, VolumeControl } from './styles'
 
 const APP_API = process.env.APP_API
 
-const AudioPlayer: React.FC<{url:string}> = ({ url }) => {
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const [volume, setVolume] = useState<number>(0.6);
-  const volumeControlRef = useRef<HTMLInputElement | null>(null);
-  const volumeImgRef = useRef<HTMLImageElement | null>(null);
-  const [currentTime, setCurrentTime] = useState<number>(0);
-  const [duration, setDuration] = useState<number>(0);
-  const [hoverTime, setHoverTime] = useState<number>(0);
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  const [playbackRate, setPlaybackRate] = React.useState<number>(1);
-  const [showSpeedOptions, setShowSpeedOptions] = React.useState<boolean>(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const playPauseImgRef = useRef<HTMLImageElement>(null);
-  const [transformStyle, setTransformStyle] = useState('none');
-  const [transformStyle1, setTransformStyle1] = useState('none');
+const AudioPlayer: React.FC<{ url: string }> = ({ url }) => {
+  const audioRef = useRef<HTMLAudioElement | null>(null)
+  const [volume, setVolume] = useState<number>(0.6)
+  const volumeControlRef = useRef<HTMLInputElement | null>(null)
+  const volumeImgRef = useRef<HTMLImageElement | null>(null)
+  const [currentTime, setCurrentTime] = useState<number>(0)
+  const [duration, setDuration] = useState<number>(0)
+  const [hoverTime, setHoverTime] = useState<number>(0)
+  const [isPlaying, setIsPlaying] = useState<boolean>(false)
+  const [playbackRate, setPlaybackRate] = React.useState<number>(1)
+  const [showSpeedOptions, setShowSpeedOptions] = React.useState<boolean>(false)
+  const dropdownRef = useRef<HTMLDivElement>(null)
+  const playPauseImgRef = useRef<HTMLImageElement>(null)
+  const [transformStyle, setTransformStyle] = useState('none')
+  const [transformStyle1, setTransformStyle1] = useState('none')
 
   // volume
   const updateVolumeImage = useCallback((imgRef: HTMLImageElement | null, volume: number) => {
     if (imgRef) {
       if (volume === 0) {
-        imgRef.src = '/img/volume-xmark-light.svg';
+        imgRef.src = '/img/volume-xmark-light.svg'
       } else if (volume < 0.5) {
-        imgRef.src = '/img/volume-low-light.svg';
+        imgRef.src = '/img/volume-low-light.svg'
       } else {
-        imgRef.src = '/img/volume-light.svg';
+        imgRef.src = '/img/volume-light.svg'
       }
     }
-  }, []);
+  }, [])
 
   const updateVolumeControl = useCallback((controlRef: HTMLInputElement | null, volume: number) => {
     if (controlRef) {
-      const value = volume * 100;
-      controlRef.style.background = `linear-gradient(to right, #4545ff 0%, #4545ff ${value}%, #FFFFFF4D ${value}%, #FFFFFF4D 100%)`;
+      const value = volume * 100
+      controlRef.style.background = `linear-gradient(to right, #4545ff 0%, #4545ff ${value}%, #FFFFFF4D ${value}%, #FFFFFF4D 100%)`
     }
-  }, []);
+  }, [])
 
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const volumeValue = parseFloat(e.target.value);
-    setVolume(volumeValue);
+    const volumeValue = Number.parseFloat(e.target.value)
+    setVolume(volumeValue)
 
     if (audioRef.current) {
-      audioRef.current.volume = volumeValue;
+      audioRef.current.volume = volumeValue
     }
 
-    updateVolumeImage(volumeImgRef.current, volumeValue);
-    updateVolumeControl(volumeControlRef.current, volumeValue);
-  };
+    updateVolumeImage(volumeImgRef.current, volumeValue)
+    updateVolumeControl(volumeControlRef.current, volumeValue)
+  }
 
   const handleVolumeIconClick = () => {
-    const newVolume = volume > 0 ? 0 : 0.6;
-    setVolume(newVolume);
+    const newVolume = volume > 0 ? 0 : 0.6
+    setVolume(newVolume)
 
     if (audioRef.current) {
-      audioRef.current.volume = newVolume;
+      audioRef.current.volume = newVolume
     }
 
-    updateVolumeImage(volumeImgRef.current, newVolume);
-    updateVolumeControl(volumeControlRef.current, newVolume);
-  };
+    updateVolumeImage(volumeImgRef.current, newVolume)
+    updateVolumeControl(volumeControlRef.current, newVolume)
+  }
 
   useEffect(() => {
-    updateVolumeControl(volumeControlRef.current, volume);
-    updateVolumeImage(volumeImgRef.current, volume);
-  }, [volume, updateVolumeControl, updateVolumeImage]);
+    updateVolumeControl(volumeControlRef.current, volume)
+    updateVolumeImage(volumeImgRef.current, volume)
+  }, [volume, updateVolumeControl, updateVolumeImage])
 
-
-// 
+  //
   useEffect(() => {
-    const audioElement = audioRef.current;
+    const audioElement = audioRef.current
     if (audioElement) {
       const handleLoadedMetadata = () => {
-        setDuration(audioElement.duration);
-      };
+        setDuration(audioElement.duration)
+      }
 
-      audioElement.addEventListener('loadedmetadata', handleLoadedMetadata);
+      audioElement.addEventListener('loadedmetadata', handleLoadedMetadata)
 
       if (audioElement.readyState >= 1) {
-        handleLoadedMetadata();
+        handleLoadedMetadata()
       }
 
       return () => {
-        audioElement.removeEventListener('loadedmetadata', handleLoadedMetadata);
-      };
+        audioElement.removeEventListener('loadedmetadata', handleLoadedMetadata)
+      }
     }
-  }, []);
+  }, [])
 
   const handleLoadedMetadata = useCallback(() => {
     if (audioRef.current) {
-      setDuration(audioRef.current.duration);
-      setCurrentTime(0);
+      setDuration(audioRef.current.duration)
+      setCurrentTime(0)
     }
-  }, []);
+  }, [])
 
   const handleTimeUpdate = useCallback(() => {
     if (audioRef.current) {
-      setCurrentTime(audioRef.current.currentTime);
+      setCurrentTime(audioRef.current.currentTime)
     }
-  }, []);
+  }, [])
 
   const handleProgressChange = useCallback((newTime: number) => {
     if (audioRef.current) {
-      audioRef.current.currentTime = newTime;
-      setCurrentTime(newTime);
+      audioRef.current.currentTime = newTime
+      setCurrentTime(newTime)
     }
-  }, []);
-// 
+  }, [])
+  //
 
   // speed
   const toggleDropdown = () => {
-    setShowSpeedOptions(prev => !prev);
-  };
+    setShowSpeedOptions((prev) => !prev)
+  }
 
   const handleSpeedChange = (newRate: number) => {
-    setPlaybackRate(newRate);
-    setShowSpeedOptions(false); 
+    setPlaybackRate(newRate)
+    setShowSpeedOptions(false)
 
     if (audioRef.current) {
-      audioRef.current.playbackRate = newRate;
+      audioRef.current.playbackRate = newRate
     }
-  };
+  }
 
   const handleClickOutside = (event: MouseEvent) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-      setShowSpeedOptions(false);
+      setShowSpeedOptions(false)
     }
-  };
+  }
 
   useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.playbackRate = playbackRate;
+      audioRef.current.playbackRate = playbackRate
     }
-  }, [playbackRate]);
+  }, [playbackRate])
 
   useOnMountUnsafe(() => {
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside)
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  });
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  })
 
   // player-container
   const handlePlayPause = useCallback(() => {
-    if (!audioRef.current) return;
+    if (!audioRef.current) return
 
     if (audioRef.current.paused) {
-      audioRef.current.play();
-      setIsPlaying(true);
+      audioRef.current.play()
+      setIsPlaying(true)
     } else {
-      audioRef.current.pause();
-      setIsPlaying(false);
+      audioRef.current.pause()
+      setIsPlaying(false)
     }
-  }, [audioRef, setIsPlaying]);
+  }, [audioRef, setIsPlaying])
 
   const handleForwardClick = useCallback(() => {
-    if (!audioRef.current) return;
+    if (!audioRef.current) return
 
-    const maxTime = audioRef.current.duration;
+    const maxTime = audioRef.current.duration
     if (maxTime) {
-      const newTime = Math.min(maxTime, audioRef.current.currentTime + 10);
-      audioRef.current.currentTime = newTime;
+      const newTime = Math.min(maxTime, audioRef.current.currentTime + 10)
+      audioRef.current.currentTime = newTime
 
-      setTransformStyle('matrix(0.71, 0.71, -0.71, 0.71, 0, 0)');
+      setTransformStyle('matrix(0.71, 0.71, -0.71, 0.71, 0, 0)')
       setTimeout(() => {
-        setTransformStyle('none');
-      }, 500);
+        setTransformStyle('none')
+      }, 500)
     }
-  }, [audioRef]);
+  }, [audioRef])
 
   const handleBackwardClick = useCallback(() => {
-    if (!audioRef.current) return;
+    if (!audioRef.current) return
 
-    const newTime = Math.max(0, audioRef.current.currentTime - 10);
-    audioRef.current.currentTime = newTime;
+    const newTime = Math.max(0, audioRef.current.currentTime - 10)
+    audioRef.current.currentTime = newTime
 
-    setTransformStyle1('matrix(0.71, -0.71, 0.71, 0.71, 0, 0)');
+    setTransformStyle1('matrix(0.71, -0.71, 0.71, 0.71, 0, 0)')
     setTimeout(() => {
-      setTransformStyle1('none');
-    }, 500);
-  }, [audioRef]);
+      setTransformStyle1('none')
+    }, 500)
+  }, [audioRef])
 
   useEffect(() => {
-    const audioElement = audioRef.current;
+    const audioElement = audioRef.current
 
     if (audioElement) {
       const handleEnded = () => {
-        setIsPlaying(false);
+        setIsPlaying(false)
         if (playPauseImgRef.current) {
-          playPauseImgRef.current.src = '/img/play.svg';
-          playPauseImgRef.current.alt = 'Play';
+          playPauseImgRef.current.src = '/img/play.svg'
+          playPauseImgRef.current.alt = 'Play'
         }
-      };
+      }
 
-      audioElement.addEventListener('ended', handleEnded);
+      audioElement.addEventListener('ended', handleEnded)
 
       return () => {
-        audioElement.removeEventListener('ended', handleEnded);
-      };
+        audioElement.removeEventListener('ended', handleEnded)
+      }
     }
-  }, [audioRef, setIsPlaying]);
+  }, [audioRef, setIsPlaying])
 
   useEffect(() => {
     if (playPauseImgRef.current) {
-      playPauseImgRef.current.src = isPlaying ? '/img/pause.svg' : '/img/play.svg';
-      playPauseImgRef.current.alt = isPlaying ? 'Pause' : 'Play';
+      playPauseImgRef.current.src = isPlaying ? '/img/pause.svg' : '/img/play.svg'
+      playPauseImgRef.current.alt = isPlaying ? 'Pause' : 'Play'
 
       if (isPlaying) {
-        playPauseImgRef.current.style.marginLeft = '0px';
+        playPauseImgRef.current.style.marginLeft = '0px'
       } else {
-        playPauseImgRef.current.style.marginLeft = '5px';
+        playPauseImgRef.current.style.marginLeft = '5px'
       }
     }
-  }, [isPlaying]);
-
+  }, [isPlaying])
 
   return (
     <Container>
-      <div className='central-container'>
-        <div className='player-bg'>
-          <div className='top-control'>
+      <div className={'central-container'}>
+        <div className={'player-bg'}>
+          <div className={'top-control'}>
             <audio
               ref={audioRef}
-              src={APP_API+url}
+              src={APP_API + url}
               onLoadedMetadata={handleLoadedMetadata}
               onTimeUpdate={handleTimeUpdate}
-            ></audio>
+            />
             <VolumeControl>
               <div>
                 <Image
@@ -241,27 +240,27 @@ const AudioPlayer: React.FC<{url:string}> = ({ url }) => {
                   width={30}
                   height={30}
                   onClick={handleVolumeIconClick}
-                  src="/img/volume.svg"
-                  alt="volume"
+                  src={'/img/volume.svg'}
+                  alt={'volume'}
                 />
               </div>
               <input
-                type="range"
-                id="volumeControl"
+                type={'range'}
+                id={'volumeControl'}
                 ref={volumeControlRef}
-                min="0"
-                max="1"
-                step="0.01"
+                min={'0'}
+                max={'1'}
+                step={'0.01'}
                 value={volume}
                 onChange={handleVolumeChange}
               />
             </VolumeControl>
-          
+
             <PlayerControl>
-              <div onClick={handleBackwardClick}>
+              <div onClick={handleBackwardClick} onKeyDown={handleBackwardClick}>
                 <Image
-                  src="/img/arrow.svg"
-                  alt="backward"
+                  src={'/img/arrow.svg'}
+                  alt={'backward'}
                   width={40}
                   height={40}
                   style={{ transform: transformStyle1, transition: 'transform 0.5s' }}
@@ -270,24 +269,32 @@ const AudioPlayer: React.FC<{url:string}> = ({ url }) => {
                   css={css`
                     @media (max-width: 499px) {
                       width: 7px;
-                    }`}>
-                  10</span>
+                    }
+                  `}
+                >
+                  {'10'}
+                </span>
               </div>
-              
-              <button onClick={handlePlayPause}>
-                <Image ref={playPauseImgRef} src="/img/play.svg" alt="Play" width={40}
-                  height={40} />
-              </button>
 
-              <div onClick={handleForwardClick}>
+              <button type={'button'} onClick={handlePlayPause} onKeyDown={handlePlayPause}>
                 <Image
-                  src="/img/arrow1.svg"
-                  alt="forward"
+                  ref={playPauseImgRef}
+                  src={'/img/play.svg'}
+                  alt={'Play'}
                   width={40}
                   height={40}
+                />
+              </button>
+
+              <div onClick={handleForwardClick} onKeyDown={handleForwardClick}>
+                <Image
+                  src={'/img/arrow1.svg'}
+                  alt={'forward'}
+                  width={40}
+                  height={0}
                   style={{ transform: transformStyle, transition: 'transform 0.5s' }}
                 />
-                <span>10</span>
+                <span>{'10'}</span>
               </div>
             </PlayerControl>
 
@@ -295,22 +302,27 @@ const AudioPlayer: React.FC<{url:string}> = ({ url }) => {
               <div
                 className={`speed ${showSpeedOptions ? 'speed-dropdown-visible' : ''}`}
                 onClick={toggleDropdown}
+                onKeyDown={toggleDropdown}
                 ref={dropdownRef}
               >
                 <p>{`${playbackRate}×`}</p>
                 <img
-                  src="/img/shevron.svg"
-                  alt="speed"
+                  src={'/img/shevron.svg'}
+                  alt={'speed'}
                   className={`shevron ${showSpeedOptions ? 'clicked' : ''}`}
                 />
                 <div className={`dropdown-content ${showSpeedOptions ? 'show' : ''}`}>
                   {[0.5, 0.75, 1, 1.25, 1.5, 1.75, 2].map((option) => (
                     <div
                       key={option}
-                      className="speed-option"
+                      className={'speed-option'}
+                      onKeyDown={(e) => {
+                        e.stopPropagation()
+                        handleSpeedChange(option)
+                      }}
                       onClick={(e) => {
-                        e.stopPropagation();
-                        handleSpeedChange(option);
+                        e.stopPropagation()
+                        handleSpeedChange(option)
                       }}
                     >
                       {`${option}×`}
@@ -323,7 +335,7 @@ const AudioPlayer: React.FC<{url:string}> = ({ url }) => {
           <ProgressContainer
             audioRef={audioRef}
             currentTime={currentTime}
-            formatTime={formatTime} 
+            formatTime={formatTime}
             duration={duration}
             setHoverTime={setHoverTime}
             onProgressChange={handleProgressChange}
@@ -331,19 +343,15 @@ const AudioPlayer: React.FC<{url:string}> = ({ url }) => {
           <TimeDisplay>
             <div>
               <ul>
-                <li id="currentTime">
-                  {formatTime(currentTime)}
-                </li>
-                <li id="duration">
-                  {formatTime(duration)}
-                </li>
+                <li id={'currentTime'}>{formatTime(currentTime)}</li>
+                <li id={'duration'}>{formatTime(duration)}</li>
               </ul>
             </div>
           </TimeDisplay>
         </div>
       </div>
     </Container>
-  );
-};
+  )
+}
 
-export default AudioPlayer;
+export default AudioPlayer

@@ -1,9 +1,9 @@
-const { default: axios } = require("axios");
+const { default: axios } = require('axios')
 
 const redirects = async () => {
-  const {data} = await axios.get('http://localhost:1337/api/redirects')
+  const { data } = await axios.get('http://localhost:1337/api/redirects')
   const transformedRedirects = []
-  data.redirects.map(item => {
+  data.redirects.map((item) => {
     transformedRedirects.push({
       source: item.from,
       destination: item.to,
@@ -11,6 +11,6 @@ const redirects = async () => {
     })
   })
   return transformedRedirects
-};
+}
 
-module.exports = redirects;
+module.exports = redirects

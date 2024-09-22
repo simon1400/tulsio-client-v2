@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client'
 
 const homepageQuery = gql`
   query Homepage($locale: I18NLocaleCode!) {
@@ -6,7 +6,7 @@ const homepageQuery = gql`
       data {
         attributes {
           title
-          articles (filters: {article: {publishedAt: {notNull: true}}}) {
+          articles(filters: { article: { publishedAt: { notNull: true } } }) {
             article {
               data {
                 attributes {
@@ -48,9 +48,9 @@ const homepageQuery = gql`
           meta {
             title
             description
-            image{
-              data{
-                attributes{
+            image {
+              data {
+                attributes {
                   url
                 }
               }

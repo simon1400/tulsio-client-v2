@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client'
 
 const globalQuery = gql`
   query getGlobal($locale: I18NLocaleCode!) {

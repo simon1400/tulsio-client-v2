@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client'
 
 const navFooter = gql`
   query NavFooter($locale: I18NLocaleCode!) {

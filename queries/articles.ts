@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client'
 
 export const getAllArticles = gql`
   query getAllArticles($locale: I18NLocaleCode!) {
@@ -31,14 +31,14 @@ export const getAllArticles = gql`
       }
     }
   }
-`;
+`
 
 export const getArticlesCategory = gql`
   query getArticlesCategory($slug: String!, $locale: I18NLocaleCode!) {
     articles(
-      filters: { categories: { slug: { eq: $slug } } },
-      sort: "publishedAt:desc",
-      locale: $locale,
+      filters: { categories: { slug: { eq: $slug } } }
+      sort: "publishedAt:desc"
+      locale: $locale
       publicationState: LIVE
     ) {
       data {
@@ -70,7 +70,7 @@ export const getArticlesCategory = gql`
       }
     }
   }
-`;
+`
 
 export const getArticlesTag = gql`
   query getArticlesTag($slug: String!, $locale: I18NLocaleCode!) {
@@ -109,7 +109,7 @@ export const getArticlesTag = gql`
       }
     }
   }
-`;
+`
 
 export const getArticle = gql`
   query getArticle($slug: String!, $locale: I18NLocaleCode!) {
@@ -127,7 +127,7 @@ export const getArticle = gql`
               data {
                 attributes {
                   url
-              	}
+                }
               }
             }
             podcastLinks {
@@ -153,14 +153,14 @@ export const getArticle = gql`
               }
             }
           }
-          authors{
-            data{
-              attributes{
+          authors {
+            data {
+              attributes {
                 name
                 description
-                image{
-		              data{
-                    attributes{
+                image {
+                  data {
+                    attributes {
                       url
                     }
                   }
@@ -178,12 +178,12 @@ export const getArticle = gql`
               }
             }
           }
-          categories(pagination: {limit: 1}) {
+          categories(pagination: { limit: 1 }) {
             data {
               attributes {
-                articles(pagination: {limit: 4}){
-                  data{
-		                attributes{
+                articles(pagination: { limit: 4 }) {
+                  data {
+                    attributes {
                       title
                       slug
                       perex
@@ -267,7 +267,7 @@ export const getArticle = gql`
       }
     }
   }
-`;
+`
 
 export const getArticleBase = gql`
   query getArticleBase($slug: String!, $locale: I18NLocaleCode!) {
@@ -331,4 +331,4 @@ export const getArticleBase = gql`
       }
     }
   }
-`;
+`

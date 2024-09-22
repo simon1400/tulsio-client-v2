@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client'
 
 export const getAllDictionaries = gql`
   query getDictionary($locale: I18NLocaleCode!) {
@@ -7,14 +7,14 @@ export const getAllDictionaries = gql`
         attributes {
           title
           content
-          image{
-            data{
-              attributes{
+          image {
+            data {
+              attributes {
                 url
               }
             }
           }
-          button{
+          button {
             text
             link
           }
@@ -30,12 +30,12 @@ export const getDictionaryPage = gql`
       data {
         attributes {
           title
-          meta{
+          meta {
             title
             description
-            image{
-              data{
-                attributes{
+            image {
+              data {
+                attributes {
                   url
                 }
               }

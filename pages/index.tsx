@@ -1,171 +1,155 @@
-import ArticleShort from "components/ArticleShort";
-import { FC } from "react";
-import { client, getStrapiURL } from "../lib/api";
-import getBaners from "../queries/baners";
-import homepageQuery from "../queries/homepage";
-import { GridTop } from "styles/grid";
-import Banner from "components/Baner";
-import GridButton from "components/GridButton";
-import Page from "layout/Page";
-import { wrapper } from "stores";
-import { changeDescription, changeTitle } from "stores/slices/dataSlices";
-import { Container, Typography } from "@mui/material";
-import { changeImage } from "stores/slices/metaSlices";
+import type { FC } from 'react'
+
+import { Container, Typography } from '@mui/material'
+import ArticleShort from 'components/ArticleShort'
+import Banner from 'components/Baner'
+import GridButton from 'components/GridButton'
+import Page from 'layout/Page'
+import { wrapper } from 'stores'
+import { changeDescription, changeTitle } from 'stores/slices/dataSlices'
+import { changeImage } from 'stores/slices/metaSlices'
+import { GridTop } from 'styles/grid'
+
+import { client, getStrapiURL } from '../lib/api'
+import getBaners from '../queries/baners'
+import homepageQuery from '../queries/homepage'
 
 enum BANER_POSITION {
-  POSITION_1 = "Home_1",
-  POSITION_2 = "Home_2",
+  POSITION_1 = 'Home_1',
+  POSITION_2 = 'Home_2',
 }
 
 const gridButtonData = [
   {
-    title: " - CBD slovník - CBD slovník ",
-    link: "/dictionary",
+    title: ' - CBD slovník - CBD slovník ',
+    link: '/dictionary',
   },
   {
-    title: " –⁠⁠ FAQ –⁠⁠ FAQ –⁠⁠ FAQ",
-    link: "/faq",
+    title: ' –⁠⁠ FAQ –⁠⁠ FAQ –⁠⁠ FAQ',
+    link: '/faq',
   },
-];
+]
 
-export const getServerSideProps = wrapper.getServerSideProps(
-  (store) => async (ctx) => {
-    ctx.res.setHeader(
-      "Cache-Control",
-      "public, s-maxage=31536000, stale-while-revalidate=59"
-    );
+export const getServerSideProps = wrapper.getServerSideProps((store) => async (ctx) => {
+  ctx.res.setHeader('Cache-Control', 'public, s-maxage=31536000, stale-while-revalidate=59')
 
-    const { data: banersData } = await client.query({
-      query: getBaners,
-      variables: {
-        query: [{ position: { eq: "Home_1" } }, { position: { eq: "Home_2" } }],
-        locale: ctx.locale,
-      },
-    });
+  const { data: banersData } = await client.query({
+    query: getBaners,
+    variables: {
+      query: [{ position: { eq: 'Home_1' } }, { position: { eq: 'Home_2' } }],
+      locale: ctx.locale,
+    },
+  })
 
-    const { data: homepageData } = await client.query({
-      query: homepageQuery,
-      variables: {
-        locale: ctx.locale,
-      },
-    });
+  const { data: homepageData } = await client.query({
+    query: homepageQuery,
+    variables: {
+      locale: ctx.locale,
+    },
+  })
 
-    const homepage = homepageData.homepage.data.attributes;
-    const meta = homepage.meta;
-    const articles = homepage.articles.map(
-      (item: any) => item.article.data.attributes
-    );
-    const baners = banersData.baners.data.map((item: any) => item.attributes);
+  const homepage = homepageData.homepage.data.attributes
+  const meta = homepage.meta
+  const articles = homepage.articles.map((item: any) => item.article.data.attributes)
+  const baners = banersData.baners.data.map((item: any) => item.attributes)
 
-    const filterBaners1 = baners.filter(
-      (item: any) => item.position === BANER_POSITION.POSITION_1
-    );
-    const filterBaners2 = baners.filter(
-      (item: any) => item.position === BANER_POSITION.POSITION_2
-    );
+  const filterBaners1 = baners.filter((item: any) => item.position === BANER_POSITION.POSITION_1)
+  const filterBaners2 = baners.filter((item: any) => item.position === BANER_POSITION.POSITION_2)
 
-    const baner1 =
-      filterBaners1[Math.floor(Math.random() * filterBaners1.length)];
-    const baner2 =
-      filterBaners2[Math.floor(Math.random() * filterBaners2.length)];
+  const baner1 = filterBaners1[Math.floor(Math.random() * filterBaners1.length)]
+  const baner2 = filterBaners2[Math.floor(Math.random() * filterBaners2.length)]
 
-    store.dispatch(changeTitle(meta?.title || "Úvod"));
-    store.dispatch(changeDescription(meta?.description || ""));
-    store.dispatch(changeImage(meta?.image.data ? getStrapiURL(meta.image.data.attributes.url) : ""));
+  store.dispatch(changeTitle(meta?.title || 'Úvod'))
+  store.dispatch(changeDescription(meta?.description || ''))
+  store.dispatch(changeImage(meta?.image.data ? getStrapiURL(meta.image.data.attributes.url) : ''))
 
-    return {
-      props: {
-        title: homepage.title,
-        baner1: baner1 || null,
-        baner2: baner2 || null,
-        articles,
-        image: meta?.image ? getStrapiURL(meta.image.data.attributes.url) : null,
-      },
-    };
+  return {
+    props: {
+      title: homepage.title,
+      baner1: baner1 || null,
+      baner2: baner2 || null,
+      articles,
+      image: meta?.image ? getStrapiURL(meta.image.data.attributes.url) : null,
+    },
   }
-);
-
+})
 
 interface IHomepage {
-  title: string;
-  baner1: any;
-  baner2: any;
-  articles: any;
+  title: string
+  baner1: any
+  baner2: any
+  articles: any
 }
 
-const Homepage: FC<IHomepage> = ({ title, baner1, baner2, articles }) => { 
+const Homepage: FC<IHomepage> = ({ title, baner1, baner2, articles }) => {
   return (
     <Page>
       <section>
         <Container sx={{ mb: 10 }}>
-          <Typography variant="h1" fontSize={'50px'}>{title}</Typography>
+          <Typography variant={'h1'} fontSize={'50px'}>
+            {title}
+          </Typography>
         </Container>
         <GridTop>
           {!!articles?.length &&
             articles.map((item: any, idx: number) => {
               if (idx === 2) {
                 return [
-                  <div key={"banner_" + idx}>
+                  <div key={`banner_${idx}`}>
                     <Banner data={baner1} />
                   </div>,
-                  <div key={"gridButton_" + idx}>
+                  <div key={`gridButton_${idx}`}>
                     <GridButton data={gridButtonData[0]} />
                   </div>,
-                  <div key={"article_" + idx}>
+                  <div key={`article_${idx}`}>
                     <ArticleShort
                       title={item.title}
                       showShortImg={item.showShortImg}
                       link={`/blog/${item?.slug}`}
                       image={item.image.data}
                       background={item.background}
-                      label={item?.labels?.data.map(
-                        (item: any) => item.attributes
-                      )}
+                      label={item?.labels?.data.map((item: any) => item.attributes)}
                     />
                   </div>,
-                  <div key={"gridButton_" + idx + 1}>
+                  <div key={`gridButton_${idx}${1}`}>
                     <GridButton data={gridButtonData[1]} />
-                  </div>
-                ];
+                  </div>,
+                ]
               } else if (idx === 5) {
                 return [
-                  <div key={"banner_" + idx}>
+                  <div key={`banner_${idx}`}>
                     <Banner data={baner2} />
                   </div>,
-                  <div key={"article_" + idx}>
+                  <div key={`article_${idx}`}>
                     <ArticleShort
                       title={item.title}
                       showShortImg={item.showShortImg}
                       link={`/blog/${item?.slug}`}
                       image={item.image.data}
                       background={item.background}
-                      label={item?.labels?.data.map(
-                        (item: any) => item.attributes
-                      )}
+                      label={item?.labels?.data.map((item: any) => item.attributes)}
                     />
-                  </div>
-                ];
+                  </div>,
+                ]
               } else {
                 return (
-                  <div key={"article_" + idx}>
+                  <div key={`article_${idx}`}>
                     <ArticleShort
                       title={item.title}
                       showShortImg={item.showShortImg}
                       link={`/blog/${item?.slug}`}
                       image={item.image.data}
                       background={item.background}
-                      label={item?.labels?.data.map(
-                        (item: any) => item.attributes
-                      )}
+                      label={item?.labels?.data.map((item: any) => item.attributes)}
                     />
                   </div>
-                );
+                )
               }
             })}
         </GridTop>
       </section>
     </Page>
-  );
-};
+  )
+}
 
-export default Homepage;
+export default Homepage

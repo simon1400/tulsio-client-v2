@@ -1,7 +1,12 @@
 import styled from '@emotion/styled'
 import Link from 'next/link'
 
-export const ArticleWrap = styled(Link)<{background: string; color: string;}>(({background, color, theme}) => `
+interface IStyleArticleWrap {
+  background: string; color: string
+}
+
+export const ArticleWrap = styled(Link)<IStyleArticleWrap>(
+  ({ background, color, theme }) => (`
   display: block;
   height: 100%;
   color: ${color};
@@ -20,7 +25,7 @@ export const ArticleWrap = styled(Link)<{background: string; color: string;}>(({
     background: ${background};
     height: 100%;
     width: 100%;
-    border-radius: ${theme.borderRadius['base']};
+    border-radius: ${theme.borderRadius.base};
     overflow: hidden;
     display: block;
     position: absolute;
@@ -28,16 +33,16 @@ export const ArticleWrap = styled(Link)<{background: string; color: string;}>(({
     transform: scale(1);
     transition: all .4s ease-in-out;
     ${theme.breakpoints.down('xxl')} {
-      border-radius: ${theme.borderRadius['xxl']};
+      border-radius: ${theme.borderRadius.xxl};
     }
     ${theme.breakpoints.down('xl')} {
-      border-radius: ${theme.borderRadius['xl']};
+      border-radius: ${theme.borderRadius.xl};
     }
     ${theme.breakpoints.down('lg')} {
-      border-radius: ${theme.borderRadius['lg']};
+      border-radius: ${theme.borderRadius.lg};
     }
     ${theme.breakpoints.down('sm')} {
-      border-radius: ${theme.borderRadius['sm']};
+      border-radius: ${theme.borderRadius.sm};
     }
     .img-art{
       background-size: cover;
@@ -56,17 +61,17 @@ export const ArticleWrap = styled(Link)<{background: string; color: string;}>(({
   }
   .content-wrap-art{
     height: 100%;
-    padding: ${theme.globalPadding['xl']};
+    padding: ${theme.globalPadding.xl};
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     position: relative;
     z-index: 2;
     ${theme.breakpoints.down('md')} {
-      padding: ${theme.globalPadding['lg']};
+      padding: ${theme.globalPadding.lg};
     }
     ${theme.breakpoints.down('sm')} {
-      padding: ${theme.globalPadding['md']};
+      padding: ${theme.globalPadding.md};
     }
   }
   h1{
@@ -80,7 +85,7 @@ export const ArticleWrap = styled(Link)<{background: string; color: string;}>(({
     color: ${color};
   }
   p{
-    color: ${color+'d9'};
+    color: ${`${color}d9`};
   }
   .label-wrap{
     margin-bottom: -8px;
@@ -88,3 +93,4 @@ export const ArticleWrap = styled(Link)<{background: string; color: string;}>(({
     flex-wrap: wrap;
   }
 `)
+)

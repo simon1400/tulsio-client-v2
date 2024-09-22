@@ -1,36 +1,38 @@
-import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { HYDRATE } from "next-redux-wrapper";
-import { AppState } from 'stores';
+import type { AppState } from 'stores'
+
+import { createSlice } from '@reduxjs/toolkit'
+import { HYDRATE } from 'next-redux-wrapper'
 
 export interface NavState {
-  published: string;
-  category: string;
-  updated: string;
+  published: string
+  category: string
+  updated: string
   noCrawl: boolean
-  tags: string;
-  image: string;
-  ogTitle: string;
-  ogDescription: string;
-  contentType: string;
-  themeColor: string;
-  siteName: string;
-  siteUrl: string;
+  tags: string
+  image: string
+  ogTitle: string
+  ogDescription: string
+  contentType: string
+  themeColor: string
+  siteName: string
+  siteUrl: string
 }
 
 const initialState: NavState = {
-  published: "",
-  category: "",
-  updated: "",
+  published: '',
+  category: '',
+  updated: '',
   noCrawl: false,
-  tags: "",
-  image: "",
-  ogTitle: "",
-  ogDescription: "",
-  contentType: "website",
-  themeColor: "#4545ff",
+  tags: '',
+  image: '',
+  ogTitle: '',
+  ogDescription: '',
+  contentType: 'website',
+  themeColor: '#4545ff',
   siteName: 'Tulsio',
-  siteUrl: process.env.NODE_ENV === 'development' ? 'http://localhost:3004/cs' : 'https://tulsio.com/cs'
+  siteUrl:
+    process.env.NODE_ENV === 'development' ? 'http://localhost:3004/cs' : 'https://tulsio.com/cs',
 }
 
 export const metaReducer = createSlice({
@@ -62,17 +64,17 @@ export const metaReducer = createSlice({
       state.contentType = action.payload
     },
   },
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder.addCase(HYDRATE, (state: NavState, action: any) => {
       return {
         ...state,
         ...action.payload.meta,
-      };
+      }
     })
-  }
+  },
 })
 
-export const { 
+export const {
   changePublished,
   changeCategory,
   changeNoCrawl,
@@ -80,9 +82,9 @@ export const {
   changeImage,
   changeOgTitle,
   changeOgDescription,
-  changeContentType
+  changeContentType,
 } = metaReducer.actions
 
-export const selectAllMeta = (state: AppState) => state.meta;
+export const selectAllMeta = (state: AppState) => state.meta
 
 export default metaReducer.reducer

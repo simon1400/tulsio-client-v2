@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client'
 
 export const getFaq = gql`
   query getFaq($locale: I18NLocaleCode!) {
@@ -6,12 +6,12 @@ export const getFaq = gql`
       data {
         attributes {
           title
-          meta{
+          meta {
             title
             description
-            image{
-              data{
-                attributes{
+            image {
+              data {
+                attributes {
                   url
                 }
               }

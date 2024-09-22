@@ -1,32 +1,34 @@
-import { FC } from "react";
-import { CacheProvider, EmotionCache } from "@emotion/react";
-import { ThemeProvider, CssBaseline } from "@mui/material";
-import type { AppProps } from "next/app";
-import { WithGraphQL } from "lib/api";
-import theme from "styles/theme";
-import createEmotionCache from "lib/createEmotionCache";
-import Header from "layout/Header";
-import "styles/global.scss";
-import { globalVariables } from "styles/var";
-import { wrapper } from "../stores";
-import { Provider } from "react-redux";
-import Footer from "layout/Footer";
-import GranimComponent from "components/Granim";
-import lightTheme from "styles/lightTheme";
+import type { EmotionCache } from '@emotion/react'
+import type { AppProps } from 'next/app'
+import type { FC } from 'react'
+
+import { CacheProvider } from '@emotion/react'
+import { CssBaseline, ThemeProvider } from '@mui/material'
+import GranimComponent from 'components/Granim'
+import Footer from 'layout/Footer'
+import Header from 'layout/Header'
+import { WithGraphQL } from 'lib/api'
+import createEmotionCache from 'lib/createEmotionCache'
+import { Provider } from 'react-redux'
+import lightTheme from 'styles/lightTheme'
+import theme from 'styles/theme'
+import { globalVariables } from 'styles/var'
+
+import { wrapper } from '../stores'
+import 'styles/global.scss'
 
 interface MyAppProps extends AppProps {
-  emotionCache?: EmotionCache;
+  emotionCache?: EmotionCache
 }
 
 const MyApp: FC<MyAppProps> = ({ Component, ...rest }) => {
+  const { store, props } = wrapper.useWrappedStore(rest)
+  const clientSideEmotionCache = createEmotionCache()
+  const { emotionCache = clientSideEmotionCache, pageProps } = props
 
-  const { store, props } = wrapper.useWrappedStore(rest);
-  const clientSideEmotionCache = createEmotionCache();
-  const { emotionCache = clientSideEmotionCache, pageProps } = props;
-
-  const selectTheme = pageProps.light || pageProps?.embed === 'white' ? lightTheme : theme;
+  const selectTheme = pageProps.light || pageProps?.embed === 'white' ? lightTheme : theme
   const embed = pageProps?.embed
-  
+
   return (
     <Provider store={store}>
       <CacheProvider value={emotionCache}>
@@ -41,7 +43,7 @@ const MyApp: FC<MyAppProps> = ({ Component, ...rest }) => {
         </ThemeProvider>
       </CacheProvider>
     </Provider>
-  );
-};
+  )
+}
 
-export default MyApp;
+export default MyApp
