@@ -33,7 +33,9 @@ const FaqHits = (props: FaqHitsProps) => {
         {!items.length && query.length >= 3 && <NotResult />}
         {items.length
           ? items.map((item: any) => <FaqItem key={item.title} data={item} />)
-          : props.allFaq.map((item: IFaqItem) => <FaqItem key={item.title} data={item} />)}
+          : query.length < 3
+            ? props.allFaq.map((item: IFaqItem) => <FaqItem key={item.title} data={item} />)
+            : null}
       </FaqHitsS>
     </Container>
   )
