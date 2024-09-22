@@ -7,7 +7,7 @@ import NavDictionary from "components/NavDictionary";
 
 interface IDictionaryHead {
   title: string;
-  data: any;
+  data: string[];
 }
 
 const DictionaryHead: FC<IDictionaryHead> = ({ title, data }) => {

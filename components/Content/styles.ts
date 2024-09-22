@@ -1,26 +1,27 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled'
 
-export const ContentS = styled.div<{removePadding: boolean; smallPadding: boolean}>(({theme, removePadding, smallPadding}) => `
+export const ContentS = styled.div<{ removePadding: boolean; smallPadding: boolean }>(
+  ({ theme, removePadding, smallPadding }) => `
   color: rgba(255, 255, 255, .85);
   padding: ${removePadding ? '0' : smallPadding ? '50px 0 100px' : '100px 0'};
   figure {
     display: block;
     margin: 0;
     overflow: hidden;
-    border-radius: ${theme.borderRadius['base']};
+    border-radius: ${theme.borderRadius.base};
     position: relative;
     margin-top: 40px;
     ${theme.breakpoints.down('xxl')} {
-      border-radius: ${theme.borderRadius['xxl']};
+      border-radius: ${theme.borderRadius.xxl};
     }
     ${theme.breakpoints.down('xl')} {
-      border-radius: ${theme.borderRadius['xl']};
+      border-radius: ${theme.borderRadius.xl};
     }
     ${theme.breakpoints.down('lg')} {
-      border-radius: ${theme.borderRadius['lg']};
+      border-radius: ${theme.borderRadius.lg};
     }
     ${theme.breakpoints.down('sm')} {
-      border-radius: ${theme.borderRadius['sm']};
+      border-radius: ${theme.borderRadius.sm};
     }
     div{
       position: relative;
@@ -29,6 +30,7 @@ export const ContentS = styled.div<{removePadding: boolean; smallPadding: boolea
         width: 100%;
         height: 100%;
         display: block;
+        position: relative!important;
       }
     }
   }
@@ -181,4 +183,5 @@ export const ContentS = styled.div<{removePadding: boolean; smallPadding: boolea
       aspect-ratio: 16 / 9;
     }
   }
-`)
+`,
+)
