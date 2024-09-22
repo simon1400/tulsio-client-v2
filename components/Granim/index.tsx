@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+import styled from '@emotion/styled'
 import Granim from 'granim'
-import styled from "@emotion/styled";
+import { useEffect } from 'react'
 
 const StyledCanvas = styled.canvas`
   position: fixed;
@@ -12,31 +12,28 @@ const StyledCanvas = styled.canvas`
 `
 
 export default function GranimComponent() {
-    useEffect(() => {
-      if(window !== undefined) {
-        const animationGradient = new Granim({
-          element: '#canvas',
-          name: 'granim',
-          states : {
-              "default-state": {
-                  gradients: [
-                      ['#4545ff', '#ff4564'],
-                      ['#ff4564', '#ff8f45'],
-                      ['#ff8f45', '#ffe645'],
-                      ['#ffe645', '#7dff45'],
-                      ['#7dff45', '#45f9ff'],
-                      ['#45f9ff', '#4545ff']
-                  ]
-              }
-          }
-        })
-  
-        animationGradient.play()
-      }
-      
-    }, []);
+  useEffect(() => {
+    if (window !== undefined) {
+      const animationGradient = new Granim({
+        element: '#canvas',
+        name: 'granim',
+        states: {
+          'default-state': {
+            gradients: [
+              ['#4545ff', '#ff4564'],
+              ['#ff4564', '#ff8f45'],
+              ['#ff8f45', '#ffe645'],
+              ['#ffe645', '#7dff45'],
+              ['#7dff45', '#45f9ff'],
+              ['#45f9ff', '#4545ff'],
+            ],
+          },
+        },
+      })
 
-    return <StyledCanvas id="canvas">
+      animationGradient.play()
+    }
+  }, [])
 
-    </StyledCanvas>;
+  return <StyledCanvas id={'canvas'} />
 }

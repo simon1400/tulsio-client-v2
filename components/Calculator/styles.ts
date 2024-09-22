@@ -87,6 +87,7 @@ export const TabsS = styled(Tabs)(({theme}) => `
     font-size: 16px;
     padding: 8px 18px;
     height: 30px;
+    min-height: 30px;
     min-width: 0;
     display: block;
   }

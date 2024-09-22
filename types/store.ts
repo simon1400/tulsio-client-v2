@@ -1,8 +1,3 @@
+export interface TFilesRow {}
 
-export type TFilesRow = {
-  
-}
-
-export type TTagRow = {
- 
-}
+export interface TTagRow {}

@@ -1,17 +1,19 @@
-import { FC, ReactElement } from "react";
-import { CSubMenu } from "./styles";
-import Search from "public/icons/search.svg";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import type { FC, ReactElement } from 'react'
+
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import Search from 'public/icons/search.svg'
+
+import { CSubMenu } from './styles'
 
 interface INav {
-  data: any;
-  subMenu?: boolean;
-  category?: boolean;
-  mobile?: boolean;
-  footer?: boolean;
-  icon?: ReactElement;
-  handle: (e: any, slug: string) => void;
+  data: any
+  subMenu?: boolean
+  category?: boolean
+  mobile?: boolean
+  footer?: boolean
+  icon?: ReactElement
+  handle: (e: any, slug: string) => void
 }
 
 const Nav: FC<INav> = ({
@@ -21,30 +23,41 @@ const Nav: FC<INav> = ({
   mobile = false,
   icon = null,
   handle,
-  footer = false
+  footer = false,
 }) => {
   const router = useRouter()
   return (
     <CSubMenu removeMargin={!subMenu} subMenu={subMenu} mobile={mobile} footer={footer}>
       <ul>
         {category && (
-          <li className={router.asPath === '/blog' || router.asPath === '/tags' ? "active" : ""}>
-            <Link href="/blog" onClick={(e) => handle(e, "/blog")}>Všechny</Link>
+          <li className={router.asPath === '/blog' || router.asPath === '/tags' ? 'active' : ''}>
+            <Link href={'/blog'} onClick={(e) => handle(e, '/blog')}>
+              {'Všechny'}
+            </Link>
           </li>
         )}
         {data.map((item: any, idx: number) => (
-          <li className={router.asPath === '/'+item.slug || router.asPath === item.slug ? "active" : ""} key={idx}>
-            <Link href={'/'+item.slug} onClick={(e) => handle(e, item.slug)}>{item.title}</Link>
+          <li
+            className={
+              router.asPath === `/${item.slug}` || router.asPath === item.slug ? 'active' : ''
+            }
+            key={item.title}
+          >
+            <Link href={item.slug} onClick={(e) => handle(e, item.slug)}>
+              {item.title}
+            </Link>
           </li>
         ))}
         {icon && (
           <li>
-            <Link href="/search" onClick={(e) => handle(e, "/search")}><Search /></Link>
+            <Link href={'/search'} onClick={(e) => handle(e, '/search')}>
+              <Search />
+            </Link>
           </li>
         )}
       </ul>
     </CSubMenu>
-  );
-};
+  )
+}
 
-export default Nav;
+export default Nav

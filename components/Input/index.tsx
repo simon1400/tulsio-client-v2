@@ -1,16 +1,17 @@
-import { OutlinedInputProps } from "@mui/material";
-import { FC } from "react";
-import { InputS } from "./styles";
+import type { OutlinedInputProps } from '@mui/material'
+import type { FC } from 'react'
+
+import { InputS } from './styles'
 
 export interface IInput extends OutlinedInputProps {
-  onChange: (e: any) => void;
-  onBlur?: (type: any) => void;
+  onChange: (e: any) => void
+  onBlur?: (type: any) => void
 }
 
 const Input: FC<IInput> = ({
   placeholder,
   value,
-  type = "text",
+  type = 'text',
   startAdornment,
   endAdornment,
   name,
@@ -23,7 +24,7 @@ const Input: FC<IInput> = ({
       placeholder={placeholder}
       value={value}
       style={{
-        paddingLeft: startAdornment ? "35px" : "10px",
+        paddingLeft: startAdornment ? '35px' : '10px',
       }}
       name={name}
       type={type}
@@ -35,7 +36,7 @@ const Input: FC<IInput> = ({
       endAdornment={endAdornment}
       {...rest}
     />
-  );
-};
+  )
+}
 
-export default Input;
+export default Input

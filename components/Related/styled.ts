@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 
-export const RelatedS = styled.div<{reverse: boolean}>(({theme, reverse}) => `
+export const RelatedS = styled.div<{reverse: boolean; background: string; colorText: string;}>(({theme, reverse, background, colorText}) => `
   display: flex;
   flex-direction: ${reverse ? "row-reverse" : "row"};
-  background: #4545ff;
+  background: ${background};
   overflow: hidden;
   margin-bottom: 20px;
   border-radius: ${theme.borderRadius['base']};
@@ -35,6 +35,9 @@ export const RelatedS = styled.div<{reverse: boolean}>(({theme, reverse}) => `
   }
   .content-wrap{
     padding: 40px;
+    >*{
+      color: ${colorText};
+    }
     h3{
       margin-bottom: 20px;
     }

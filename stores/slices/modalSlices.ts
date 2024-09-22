@@ -1,13 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { AppState } from 'stores';
+import type { AppState } from 'stores'
+
+import { createSlice } from '@reduxjs/toolkit'
 
 export interface ModalState {
-  modalState: "success" | "error" | null
+  modalState: 'success' | 'error' | null
 }
 
 const initialState: ModalState = {
-  modalState: null
+  modalState: null,
 }
 
 export const modalReducer = createSlice({
@@ -18,11 +19,11 @@ export const modalReducer = createSlice({
       state.modalState = action.payload
       return state
     },
-  }
+  },
 })
 
 export const { changeModalState } = modalReducer.actions
 
-export const selectModalState = (state: AppState) => state.modal.modalState;
+export const selectModalState = (state: AppState) => state.modal.modalState
 
 export default modalReducer.reducer

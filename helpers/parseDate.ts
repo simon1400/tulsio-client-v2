@@ -3,6 +3,6 @@ export const parseDate = (date: string) => {
   return {
     day: +dateArr[2].split('T')[0],
     month: +dateArr[1],
-    year: +dateArr[0]
+    year: +dateArr[0],
   }
 }

@@ -1,14 +1,15 @@
-import SellerLogo from "components/Logo";
-import { SellerS } from "./styled";
-import Link from "next/link";
-import { Typography } from "@mui/material";
-import Rating from "components/Rating";
-import Button from "components/Button";
-import { IImageRoot } from "types/image";
-import { FC } from "react";
-import Image from "next/image";
-import Grid from "@mui/material";
+import { Typography } from '@mui/material'
+import Button from 'components/Button'
+import Rating from 'components/Rating'
+import SellerLogo from 'components/Logo'
+import { SellerS } from './styled'
+import Link from 'next/link'
+import { IImageRoot } from 'types/image'
+import { FC } from 'react'
+import Image from 'next/image'
+import Grid from '@mui/material'
 const APP_API = process.env.APP_API;
+
 
 export interface ISellerItem {
   title: string;
@@ -28,15 +29,15 @@ export interface ISellerItem {
 const Seller: FC<{ sellers: ISellerItem }> = ({ sellers }) => {
   return (
     <SellerS>
-      <div className="seller-head">
-        <div className="logo-wrap">
+      <div className={'seller-head'}>
+        <div className={'logo-wrap'}>
           <SellerLogo image={sellers.logo} />
           <Typography variant="h4">{sellers.title}</Typography>
         </div>
         <Rating rating={sellers.rating}/>
       </div>
       <Typography>
-        {sellers.description}
+      {sellers.description}
       </Typography>
       <div className="button">
         <Link href={`/shop/${sellers.slug}`}>
@@ -46,5 +47,4 @@ const Seller: FC<{ sellers: ISellerItem }> = ({ sellers }) => {
     </SellerS>
   );
 };
-
-export default Seller;
+export default Seller

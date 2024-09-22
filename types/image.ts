@@ -1,6 +1,6 @@
 export interface IImage {
-  alternativeText: string;
-  url: string;
+  alternativeText: string
+  url: string
 }
 
 export interface IImageData {

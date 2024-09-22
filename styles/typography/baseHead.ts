@@ -3,7 +3,7 @@ export const baseHead = (theme: any) => ({
   fontWeight: 700,
   color: theme.palette.text.secondary,
   lineHeight: 1.25,
-  "&::selection": {
+  '&::selection': {
     backgroundColor: theme.palette.primary.main,
   },
 })

@@ -1,13 +1,12 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore from "swiper"
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
+import { Swiper, SwiperSlide } from 'swiper/react'
+import SwiperCore from 'swiper'
+import 'swiper/css'
+import 'swiper/css/pagination'
 
-import { Pagination } from "swiper/modules";
-import { SliderWrapS } from "./styled";
-import Image from "next/image";
-import { FC, useRef } from "react";
+import { Pagination } from 'swiper/modules'
+import { SliderWrapS } from './styled'
+import Image from 'next/image'
+import { FC, useRef } from 'react'
 
 const APP_API = process.env.APP_API;
 
@@ -36,7 +35,7 @@ const Slider: React.FC<{url:string}> = ({url}) => {
         </SwiperSlide> */}
       </Swiper>
     </SliderWrapS>
-  );
-};
+  )
+}
 
-export default Slider;
+export default Slider

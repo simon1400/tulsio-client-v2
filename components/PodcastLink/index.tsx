@@ -1,16 +1,18 @@
-import Image from "next/image";
-import { FC } from "react";
-import { LinkS, PodcastLinkS } from "./styles";
+import type { FC } from 'react'
 
-const APP_API = process.env.APP_API;
+import Image from 'next/image'
 
-interface PodcastLink {
-  data: IPodcastLinkItem [];
+import { LinkS, PodcastLinkS } from './styles'
+
+const APP_API = process.env.APP_API
+
+interface IPodcastLink {
+  data: IPodcastLinkItem[]
 }
 
 interface IPodcastLinkItem {
-  name: string;
-  url: string;
+  name: string
+  url: string
   logo: {
     data: {
       attributes: {
@@ -20,30 +22,28 @@ interface IPodcastLinkItem {
   }
 }
 
-const PodcastLink: FC<PodcastLink> = ({ data }) => {
-
+const PodcastLink: FC<IPodcastLink> = ({ data }) => {
   return (
     <PodcastLinkS>
       <div>
-        <span>Poslouchejte na </span>
+        <span>{'Poslouchejte na '}</span>
         <ul>
-          {data.map((item:IPodcastLinkItem, idx: number) => (
-            <li key={idx}>
+          {data.map((item: IPodcastLinkItem, idx: number) => (
+            <li key={item.url}>
               <LinkS href={item.url} passHref>
                 <Image
-                  src={APP_API + item.logo.data?.attributes?.url }
-                  width="33"
-                  height="33"
-                  alt=""
+                  src={APP_API + item.logo.data?.attributes?.url}
+                  width={'33'}
+                  height={'33'}
+                  alt={''}
                 />
               </LinkS>
             </li>
           ))}
         </ul>
       </div>
-      
     </PodcastLinkS>
-  );
-};
+  )
+}
 
-export default PodcastLink;
+export default PodcastLink

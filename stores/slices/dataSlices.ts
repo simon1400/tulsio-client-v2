@@ -1,7 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { HYDRATE } from "next-redux-wrapper";
-import { AppState } from 'stores';
+import type { AppState } from 'stores'
+
+import { createSlice } from '@reduxjs/toolkit'
+import { HYDRATE } from 'next-redux-wrapper'
 
 export interface DataState {
   title: string
@@ -22,7 +23,7 @@ const initialState: DataState = {
   description: '',
   articles: [],
   articleBase: {},
-  type: ''
+  type: '',
 }
 
 export const dataReducer = createSlice({
@@ -55,17 +56,17 @@ export const dataReducer = createSlice({
     },
   },
 
-  extraReducers: {
-    [HYDRATE]: (state: DataState, action: any) => {
+  extraReducers: (builder) => {
+    builder.addCase(HYDRATE, (state: DataState, action: any) => {
       return {
         ...state,
         ...action.payload.data,
-      };
-    }
-  }
+      }
+    })
+  },
 })
 
-export const { 
+export const {
   changeTitle,
   changeCategoryTitle,
   changeShortTitle,
@@ -73,17 +74,17 @@ export const {
   changeDescription,
   changeArticles,
   changeArticleBase,
-  changeType
+  changeType,
 } = dataReducer.actions
 
-export const selectDataState = (state: AppState) => state.data;
-export const selectTitle = (state: AppState) => state.data.title;
-export const selectCategoryTitle = (state: AppState) => state.data.categoryTitle;
-export const selectDescription = (state: AppState) => state.data.description;
-export const selectArticles = (state: AppState) => state.data.articles;
-export const selectArticleBase = (state: AppState) => state.data.articleBase;
-export const selectType = (state: AppState) => state.data.type;
-export const selectShortTitle = (state: AppState) => state.data.shortTitle;
-export const selectShortDescription = (state: AppState) => state.data.shortDescription;
+export const selectDataState = (state: AppState) => state.data
+export const selectTitle = (state: AppState) => state.data.title
+export const selectCategoryTitle = (state: AppState) => state.data.categoryTitle
+export const selectDescription = (state: AppState) => state.data.description
+export const selectArticles = (state: AppState) => state.data.articles
+export const selectArticleBase = (state: AppState) => state.data.articleBase
+export const selectType = (state: AppState) => state.data.type
+export const selectShortTitle = (state: AppState) => state.data.shortTitle
+export const selectShortDescription = (state: AppState) => state.data.shortDescription
 
 export default dataReducer.reducer

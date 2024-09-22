@@ -1,8 +1,8 @@
-import { Typography, Container, Grid } from "@mui/material";
-import { ProductTopS } from "./styled";
-import Button from "components/Button";
-import Image from "components/Image";
-import ColorLabel from "components/ColorLabel";
+import { Typography, Container, Grid } from '@mui/material'
+import { ProductTopS } from './styled'
+import Button from 'components/Button'
+import Image from 'components/Image'
+import ColorLabel from 'components/ColorLabel'
 import Price from "components/Price";
 import Rating from "components/Rating";
 import { FC } from "react";
@@ -68,7 +68,7 @@ const ProductTop: FC<{ product: IProductTopItem }> = ({ product }) => {
               marginBottom={30}
             ></Rating>
             <Typography>{product.description}</Typography>
-            <div className="bottom" style={{ marginTop: "20px" }}>
+            <div className={'bottom'} style={{ marginTop: "20px" }}>
               <Price
                 price={product.price}
                 availability={product.availability}
@@ -84,4 +84,4 @@ const ProductTop: FC<{ product: IProductTopItem }> = ({ product }) => {
   );
 };
 
-export default ProductTop;
+export default ProductTop
