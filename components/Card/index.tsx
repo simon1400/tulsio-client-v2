@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { getStrapiURL } from "lib/api";
 import { Container, Grid, Typography } from "@mui/material";
 import { CardS } from "./styles";
 import AngleRight from "/public/assets/angle-right.svg";
@@ -12,7 +13,13 @@ import Rating from "components/Rating";
 export interface ICardItem {
   title: string;
   slug: string;
-  images: IImageRoot;
+  images: {
+    data: {
+      attributes: {
+        url: string
+      }
+    }[]
+  };
   price: any;
   labels: {
     data: {
@@ -25,16 +32,16 @@ export interface ICardItem {
   sellers: {
     data: {
       attributes: {
-        rating: string;
+        rating: number;
       };
     }[];
   };
 }
 
 const Card: FC<{ product: ICardItem }> = ({ product }) => {
-  const imageUrl = product.images?.data?.[0]?.attributes?.url
-    ? `${process.env.APP_API}${product.images.data[0].attributes.url}`
-    : null;
+  console.log('url:', product.images.data[0])
+  const imageUrl = getStrapiURL(product.images.data[0].attributes.url);
+
 
   return (
     <CardS>
@@ -42,7 +49,7 @@ const Card: FC<{ product: ICardItem }> = ({ product }) => {
         {imageUrl ? (
           <Image src={imageUrl} fill alt={product.title} />
         ) : (
-          <p>No image available</p>
+          <Image src="/assets/placeholder.svg" fill alt={product.title} />
         )}
 
         <div className="label-wrap">

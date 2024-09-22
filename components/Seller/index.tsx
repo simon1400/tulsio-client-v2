@@ -21,7 +21,7 @@ export interface ISellerItem {
     };
   };
   description: string;
-  rating: string;
+  rating: number;
   web: string;
 }
 
@@ -36,12 +36,6 @@ const Seller: FC<{ sellers: ISellerItem }> = ({ sellers }) => {
         <Rating rating={sellers.rating}/>
       </div>
       <Typography>
-        {/* <p>
-          CBD (kanabidiol) je po známějším THC druhý nejrozšířenější kanabinoid,
-          který obsahuje rostlina konopí. Pro blahodárný vliv bez žádných
-          omamných účinků se získává na výrobu olejů, tinktur či prášků a jeho
-          květy se kouří s čím dál větší oblibou.
-        </p> */}
         {sellers.description}
       </Typography>
       <div className="button">

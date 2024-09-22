@@ -10,7 +10,7 @@ const Price: React.FC<{ price: number, availability?: boolean }> = ({ price, ava
   const availabilityLabel = availability ? "Skladem" : "Není skladem";
 
   return (
-    <PriceS>
+    <PriceS availability={availability}>
       <div>
         <b>{formattedPrice}</b>
       </div>
@@ -22,5 +22,4 @@ const Price: React.FC<{ price: number, availability?: boolean }> = ({ price, ava
   );
 };
 
-
-export default Price
+export default Price;

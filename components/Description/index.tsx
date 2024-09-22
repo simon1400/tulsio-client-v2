@@ -18,7 +18,7 @@ export interface IDescription {
     }[];
   };
   description: string;
-  rating: string;
+  rating: number;
   web: string;
   shopCategories: {
     data: {

@@ -6,7 +6,7 @@ import ColorLabel from "components/ColorLabel";
 import Price from "components/Price";
 import Rating from "components/Rating";
 import { FC } from "react";
-import { IImageRoot } from "types/image";
+import { IImageArray } from "types/image";
 import Link from "next/link";
 import { ISellerItem } from "components/Seller";
 
@@ -16,7 +16,7 @@ export interface IProductTopItem {
   title: string;
   slug: string;
   description: string;
-  images: IImageRoot;
+  images: IImageArray;
   link: string;
   shopCategories: {
     data: {

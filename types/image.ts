@@ -8,5 +8,9 @@ export interface IImageData {
 }
 
 export interface IImageRoot {
+  data: IImageData
+}
+
+export interface IImageArray {
   data: IImageData[]
 }

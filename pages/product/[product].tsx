@@ -57,10 +57,7 @@ interface IProductItem {
 }
 
 const Product: FC<IProduct> = ({ data }) => {
-  console.log(
-    "sellers",
-    data.products.data[0].attributes.sellers.data[0].attributes.title
-  );
+  const productVariable = data?.products?.data?.[0]?.attributes;
   return (
     <Page>
       <Container maxWidth="xl">
@@ -68,11 +65,8 @@ const Product: FC<IProduct> = ({ data }) => {
           {!!data?.products?.data.length && (
             <Breadcrumbs
               category={{
-                title:
-                  data.products.data[0].attributes.shopCategories.data[0]
-                    .attributes.title,
-                slug: data.products.data[0].attributes.shopCategories.data[0]
-                  .attributes.slug,
+                title: productVariable.shopCategories.data[0].attributes.title,
+                slug: productVariable.shopCategories.data[0].attributes.slug,
               }}
               color="#000"
               product={{
@@ -86,11 +80,7 @@ const Product: FC<IProduct> = ({ data }) => {
 
         <Grid container spacing={4}>
           <Grid item xs={4}>
-            <Slider
-              url={
-                data.products.data[0].attributes.images.data[0].attributes.url
-              }
-            />
+            <Slider url={productVariable.images.data[0].attributes.url} />
           </Grid>
           <Grid item xs={8}>
             {data.products?.data.map((item: IProductItem, idx: number) => (
@@ -99,12 +89,12 @@ const Product: FC<IProduct> = ({ data }) => {
           </Grid>
         </Grid>
       </Container>
-      <Container maxWidth="md" >
+      <Container maxWidth="md">
         <Content removePadding>
           <Typography variant="h2">
             {data.products.data[0].attributes.title}
           </Typography>
-          <Typography  sx={{mb: "66px"}}>
+          <Typography sx={{ mb: "66px" }}>
             Česká legislativa umožňuje pěstovat všechny druhy CBD, které jsou
             uvedeny v Evropském katalogu odrůd technického konopí. Pěstování pod
             lampou (indoor) povoluje bez omezení. Na polích větších než 10 m2
@@ -123,13 +113,12 @@ const Product: FC<IProduct> = ({ data }) => {
         </Content>
         {data.products.data.map((item: IProductItem, idx: number) => (
           <Seller
-          
             key={idx}
             sellers={item.attributes.sellers.data[0].attributes}
           />
         ))}
       </Container>
-      <Container maxWidth="xl" sx={{mt: "80px"}}>
+      <Container maxWidth="xl" sx={{ mt: "80px" }}>
         <PageHead title="Produkty" category />
         <GridShop>
           <Container maxWidth="xl">

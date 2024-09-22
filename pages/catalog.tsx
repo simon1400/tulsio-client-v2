@@ -4,13 +4,11 @@ import PageHead from "components/PageHead"
 import Page from "layout/Page"
 import { client } from "lib/api"
 import { NextPage } from "next"
-import { getShopCategory } from "queries/category"
 import { wrapper } from "stores"
 import { fetchNavCatalog } from "stores/fetch/navFetch"
 import { GridShop } from "styles/grid"
-import { useQuery } from '@apollo/client';
 import { productsQuery } from 'queries/product';
-import {IImageRoot} from 'types/image';
+import { getShopCategory } from "queries/category"
 import { ICardItem } from 'components/Card';
 
 export const getServerSideProps = wrapper.getServerSideProps(
@@ -48,7 +46,6 @@ const ShopCatalog: NextPage<IShopCatalog> = ({
   // categoryNav
   data
 }) => {
-  console.log(data)
   return (
     <Page>
       

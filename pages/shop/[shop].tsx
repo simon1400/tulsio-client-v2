@@ -54,7 +54,6 @@ export interface IShopSellerItem {
 }
 
 const ShopSeller: FC<IShopSeller> = ({ data }) => {
-  console.log(data.sellers);
   return (
     <Page>
       <Container maxWidth="xl">
@@ -81,7 +80,7 @@ const ShopSeller: FC<IShopSeller> = ({ data }) => {
           </Grid>
           <Grid item xs={6}>
             {/* <ProductTop /> */}
-            {data.sellers.data.map((item: IShopSellerItem, idx: number) => <Description description={item.attributes}/>)}
+            {data.sellers.data.map((item: IShopSellerItem, idx: number) => <Description key={idx} description={item.attributes}/>)}
           </Grid>
         </Grid>
       </Container>
