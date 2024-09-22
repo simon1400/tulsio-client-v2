@@ -54,7 +54,7 @@ const ArticleShort: FC<ArticleShortProps> = ({
   })
 
   return (
-    <ArticleWrap background={convert} color={color} href={link} passHref>
+    <ArticleWrap background={convert} color={color} href={link}>
       <div className={'img-wrap'}>
         <div
           className={'img-art'}

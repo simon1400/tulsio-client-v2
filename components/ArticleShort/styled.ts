@@ -1,12 +1,13 @@
 import styled from '@emotion/styled'
-import Link from 'next/link'
+// import Link from 'next/link'
 
 interface IStyleArticleWrap {
-  background: string; color: string
+  background: string
+  color: string
 }
 
-export const ArticleWrap = styled(Link)<IStyleArticleWrap>(
-  ({ background, color, theme }) => (`
+export const ArticleWrap = styled.a<IStyleArticleWrap>(
+  ({ background, color, theme }) => `
   display: block;
   height: 100%;
   color: ${color};
@@ -92,5 +93,5 @@ export const ArticleWrap = styled(Link)<IStyleArticleWrap>(
     display: flex;
     flex-wrap: wrap;
   }
-`)
+`,
 )

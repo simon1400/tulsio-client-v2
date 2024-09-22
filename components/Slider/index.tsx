@@ -6,7 +6,6 @@ import 'swiper/css/pagination'
 
 // import { Pagination } from "swiper/modules";
 import { SliderWrapS } from './styled'
-// import Image from "next/image";
 // import { useRef } from "react";
 
 const Slider = () => {

@@ -75,10 +75,10 @@ const Article = ({
                       <BannerStatic data={item.banners_static.data.attributes} />
                     )}
                     {!!item.galery?.data?.length &&
-                      item.galery.data.map((img: any, indexImg: number) => (
+                      item.galery.data.map((img: any) => (
                         <figure key={img}>
                           <div>
-                            <Image format={'&width=960'} image={img} />
+                            <Image format={'&width=960'} image={img} fill />
                           </div>
                           {!!img.caption?.length && <figcaption>{img.caption}</figcaption>}
                         </figure>

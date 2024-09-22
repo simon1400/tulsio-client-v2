@@ -1,3 +1,4 @@
+import type { IFaqItem } from 'pages/faq'
 import type { UseHitsProps } from 'react-instantsearch'
 
 import { Container } from '@mui/material'
@@ -15,11 +16,11 @@ const transformItems = (items: any) =>
   })
 
 interface FaqHitsProps extends UseHitsProps {
-  allFaq: any
+  allFaq: IFaqItem[]
 }
 
 const FaqHits = (props: FaqHitsProps) => {
-  const { hits } = useHits({
+  const { items } = useHits({
     ...props,
     transformItems,
   })
@@ -29,11 +30,10 @@ const FaqHits = (props: FaqHitsProps) => {
   return (
     <Container maxWidth={'md'}>
       <FaqHitsS>
-        {!hits.length && query.length >= 3 && <NotResult />}
-        {query.length >= 3 &&
-          hits.map((item: any, idx: number) => <FaqItem key={idx} data={item} />)}
-        {query.length < 3 &&
-          props.allFaq.map((item: any, idx: number) => <FaqItem key={idx} data={item} />)}
+        {!items.length && query.length >= 3 && <NotResult />}
+        {items.length
+          ? items.map((item: any) => <FaqItem key={item.title} data={item} />)
+          : props.allFaq.map((item: IFaqItem) => <FaqItem key={item.title} data={item} />)}
       </FaqHitsS>
     </Container>
   )

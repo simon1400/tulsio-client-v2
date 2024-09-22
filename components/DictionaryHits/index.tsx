@@ -43,7 +43,7 @@ const DictionaryHits: FC<{ data: any }> = ({ data }) => {
                   <Box>
                     {item.image?.data && (
                       <div className="img-wrap">
-                        <Image image={item.image.data} format="&width=620" />
+                        <Image image={item.image.data} fill format="&width=620" />
                       </div>
                     )}
                     <Content removePadding>
