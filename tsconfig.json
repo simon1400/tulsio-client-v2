@@ -1,37 +1,29 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "baseUrl": ".",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
     "incremental": true,
+    "target": "es5",
     "jsx": "preserve",
     "jsxImportSource": "@emotion/react",
-    "types": [
-      "@emotion/react/types/css-prop"
-    ]
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "baseUrl": ".",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "types": ["@emotion/react/types/css-prop"],
+    "allowJs": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "skipLibCheck": true
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "ecosystem.config.js"
-, "redirects.js"  ],
-  "exclude": [
-    "node_modules",
-    "./context/dataStateContext.js"
-  ]
+    "ecosystem.config.js",
+    "redirects.js"
+, "eslintConfigFlat.mjs"  ],
+  "exclude": ["node_modules", "./context/dataStateContext.js"]
 }

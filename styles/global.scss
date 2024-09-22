@@ -1,8 +1,7 @@
 @font-face {
-  font-family: "Manrope";
+  font-family: 'Manrope';
   font-display: swap;
-  src: url("./fonts/Manrope-VariableFont_wght.ttf")
-    format("truetype-variations");
+  src: url('./fonts/Manrope-VariableFont_wght.ttf') format('truetype-variations');
   font-weight: 1 999;
 }
 
@@ -10,15 +9,15 @@ main {
   min-height: 60vh;
 }
 
-header{
+header {
   height: 270.44px;
-  @media(max-width: 1920px) {
+  @media (max-width: 1920px) {
     height: 170.44px;
   }
-  @media(max-width: 1440px) {
+  @media (max-width: 1440px) {
     height: 150.44px;
   }
-  @media(max-width: 980px) {
+  @media (max-width: 980px) {
     height: 88px;
   }
 }
@@ -63,27 +62,27 @@ input:-webkit-autofill {
   -webkit-text-fill-color: white !important;
 }
 
-figure.table{
+figure.table {
   display: block;
   width: 100%;
   padding: 8px 30px;
   background: rgba(255, 255, 255, 0.1);
-  table{
+  table {
     width: 100%;
     border-collapse: collapse;
-    tbody{
-      tr{
+    tbody {
+      tr {
         &:not(:first-of-type) {
-          td{
+          td {
             border-top: 3px solid rgba(255, 255, 255, 0.05);
           }
         }
-        td{
+        td {
           padding-top: 23px;
           padding-bottom: 23px;
           font-size: 19px;
           text-align: right;
-          &:first-of-type{
+          &:first-of-type {
             text-align: left;
           }
         }

@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client'
 
 const getBaners = gql`
   query getBaners($query: [BanerFiltersInput!]!, $locale: I18NLocaleCode!) {
@@ -9,9 +9,9 @@ const getBaners = gql`
           darkMode
           link
           position
-          image{
-            data{
-              attributes{
+          image {
+            data {
+              attributes {
                 url
                 alternativeText
               }

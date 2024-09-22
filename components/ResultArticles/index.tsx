@@ -1,17 +1,17 @@
-import Articles from "components/Articles";
-import NotResult from "components/NotResult";
-import { useHits, UseHitsProps } from "react-instantsearch";
+import type { UseHitsProps } from 'react-instantsearch'
+
+import Articles from 'components/Articles'
+import NotResult from 'components/NotResult'
+import { useHits } from 'react-instantsearch'
 
 const ResultArticles = (props: UseHitsProps) => {
+  const { hits } = useHits(props)
 
-  const { hits } = useHits(props);
-
-  if(!hits.length) {
+  if (!hits.length) {
     return <NotResult />
-  }else{
+  } else {
     return <Articles data={hits} searchResult />
   }
-  
 }
 
 export default ResultArticles

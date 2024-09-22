@@ -1,14 +1,14 @@
-import { PriceS } from "./styled"
+import { PriceS } from './styled'
 
 const Price = () => {
   return (
     <PriceS>
       <div>
-        <b>560 kc</b>
+        <b>{'560 kc'}</b>
       </div>
       <div>
-        <span>vcetne DPH</span>
-        <label>skladem</label>
+        <span>{'vcetne DPH'}</span>
+        <label>{'skladem'}</label>
       </div>
     </PriceS>
   )

@@ -1,50 +1,57 @@
-import {getArticle} from '../../queries/articles';
+import type { NextPage } from 'next'
+
+import { wrapper } from 'stores'
+import { changeDescription, changeTitle } from 'stores/slices/dataSlices'
+import { changeImage } from 'stores/slices/metaSlices'
+import Article from 'views/Article'
+
 import { client, getStrapiURL } from '../../lib/api'
-import { NextPage } from 'next'
-import Article from 'views/Article';
-import { wrapper } from 'stores';
-import { changeDescription, changeTitle } from 'stores/slices/dataSlices';
-import { changeImage } from 'stores/slices/metaSlices';
+import { getArticle } from '../../queries/articles'
 
-export const getServerSideProps = wrapper.getServerSideProps((store) =>
-  async ({params, locale}) => {
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) =>
+    async ({ params, locale }) => {
+      if (!params?.article || params?.category !== 'blog') {
+        return {
+          notFound: true,
+        }
+      }
 
-  if(!params?.article || params?.category !== 'blog') {
-    return {
-      notFound: true
-    }
-  }
+      const { data } = await client.query({
+        query: getArticle,
+        variables: {
+          slug: params.article,
+          locale,
+        },
+      })
 
-  const { data } = await client.query({
-    query: getArticle,
-    variables: {
-      slug: params.article,
-      locale: locale 
-    }
-  });
+      if (!data.articles.data.length) {
+        return {
+          notFound: true,
+        }
+      }
 
-  if(!data.articles.data.length) {
-    return {
-      notFound: true
-    }
-  }
+      const article = data.articles.data[0].attributes
 
-  const article = data.articles.data[0].attributes
+      store.dispatch(changeTitle(article.meta?.title || article.title))
+      store.dispatch(changeDescription(article.meta?.description || ''))
+      store.dispatch(
+        changeImage(
+          article.meta?.image.data ? getStrapiURL(article.meta.image.data.attributes.url) : '',
+        ),
+      )
 
-  store.dispatch(changeTitle(article.meta?.title || article.title))
-  store.dispatch(changeDescription(article.meta?.description || ""))
-  store.dispatch(changeImage(article.meta?.image.data ? getStrapiURL(article.meta.image.data.attributes.url) : ""));
-
-  return {
-    props: {
-      article: article
-    }
-  }
-})
+      return {
+        props: {
+          article,
+        },
+      }
+    },
+)
 
 const ArticlePage: NextPage = ({
-  // @ts-ignore
-  article, 
+  // @ts-expect-error: some error
+  article,
 }) => {
   return <Article article={article} />
 }

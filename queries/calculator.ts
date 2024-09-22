@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client'
 
 const calculatorQuery = gql`
   query Calculator($locale: I18NLocaleCode!) {
@@ -11,12 +11,12 @@ const calculatorQuery = gql`
             title
             description
           }
-          tutorialItem{
+          tutorialItem {
             title
             description
-            image{
-              data{
-                attributes{
+            image {
+              data {
+                attributes {
                   url
                 }
               }
@@ -26,9 +26,9 @@ const calculatorQuery = gql`
             title
             description
             background
-            image{
-              data{
-                attributes{
+            image {
+              data {
+                attributes {
                   url
                 }
               }
@@ -37,20 +37,20 @@ const calculatorQuery = gql`
           alert {
             title
             description
-            image{
-              data{
-                attributes{
+            image {
+              data {
+                attributes {
                   url
                 }
               }
             }
           }
-          meta{
+          meta {
             title
             description
-            image{
-              data{
-                attributes{
+            image {
+              data {
+                attributes {
                   url
                   alternativeText
                 }

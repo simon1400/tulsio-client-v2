@@ -1,18 +1,18 @@
-import { IImageRoot } from "./image";
-import { ILabelsRoot } from "./labels";
+import type { IImageRoot } from './image'
+import type { ILabelsRoot } from './labels'
 
 export interface ICategoryNav {
-  title: string;
-  slug: string;
+  title: string
+  slug: string
 }
 
 export interface IDataArticles {
-  background: string;
-  perex: string;
-  slug: string;
-  title: string;
-  image: IImageRoot;
-  labels: ILabelsRoot;
+  background: string
+  perex: string
+  slug: string
+  title: string
+  image: IImageRoot
+  labels: ILabelsRoot
 }
 
 export interface ICategoryPage {

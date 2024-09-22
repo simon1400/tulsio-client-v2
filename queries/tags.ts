@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client'
 
 export const getTagNav = gql`
   query tagNav($locale: I18NLocaleCode!) {
@@ -8,9 +8,9 @@ export const getTagNav = gql`
           title
           navTitle
           slug
-          articles{
-            data{
-              attributes{
+          articles {
+            data {
+              attributes {
                 publishedAt
               }
             }
@@ -22,7 +22,7 @@ export const getTagNav = gql`
 `
 
 export const getTag = gql`
-  query tag( $slug: String!, $locale: I18NLocaleCode! ) {
+  query tag($slug: String!, $locale: I18NLocaleCode!) {
     labels(filters: { slug: { eq: $slug } }, locale: $locale) {
       data {
         attributes {
@@ -30,12 +30,12 @@ export const getTag = gql`
           navTitle
           shortTitle
           description
-          meta{
+          meta {
             title
             description
-            image{
-              data{
-                attributes{
+            image {
+              data {
+                attributes {
                   url
                   alternativeText
                 }

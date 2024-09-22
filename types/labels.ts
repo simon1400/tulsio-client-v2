@@ -1,6 +1,6 @@
 export interface ILabel {
-  title: string;
-  slug: string;
+  title: string
+  slug: string
 }
 
 export interface ILabelsData {

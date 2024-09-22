@@ -1,11 +1,11 @@
-import { paragraph } from "./paragraph";
+import { paragraph } from './paragraph'
 
 export const baseBody2 = (theme: any) => ({
   color: theme.palette.text.secondary,
-  fontSize: "18px",
+  fontSize: '18px',
   lineHeight: 1.8,
   fontFamily: theme.typography.fontFamily,
-  "&::selection": {
+  '&::selection': {
     backgroundColor: theme.palette.primary.main,
   },
   p: paragraph(theme),
