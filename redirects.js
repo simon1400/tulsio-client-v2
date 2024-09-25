@@ -1,7 +1,9 @@
 const { default: axios } = require('axios')
 
+const APP_API = process.env.APP_API
+
 const redirects = async () => {
-  const { data } = await axios.get('http://localhost:1337/api/redirects')
+  const { data } = await axios.get(`${APP_API}/api/redirects`)
   const transformedRedirects = []
   data.redirects.map((item) => {
     transformedRedirects.push({
