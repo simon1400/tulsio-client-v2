@@ -4,6 +4,7 @@ import { SvgIcon } from '@mui/material'
 import Link from 'next/link'
 import Chevron from 'public/icons/chevron.svg'
 
+// export default Breadcrumbs
 import { BreadcrumbsS } from './styles'
 
 export interface IBreadcrumb {
@@ -12,11 +13,13 @@ export interface IBreadcrumb {
 }
 
 export interface IBreadcrumbs {
-  category: IBreadcrumb
   color: string
+  category?: IBreadcrumb
+  product?: IBreadcrumb
+  isCatalog?: boolean
 }
 
-const Breadcrumbs: FC<IBreadcrumbs> = ({ category, color }) => {
+const Breadcrumbs: FC<IBreadcrumbs> = ({ category, color, product, isCatalog }) => {
   return (
     <BreadcrumbsS
       color={color}
@@ -31,8 +34,12 @@ const Breadcrumbs: FC<IBreadcrumbs> = ({ category, color }) => {
         />
       }
     >
-      <Link href={'/blog'}>{'Blog'}</Link>
-      <Link href={`/${category?.slug}`}>{category?.title}</Link>
+      {isCatalog && <Link href={'/'}>{'Tulsio'}</Link>}
+      {isCatalog && <Link href={'/catalog'}>{'Produkty'}</Link>}
+      {isCatalog && category && <Link href={`/${category.slug}`}>{category.title}</Link>}
+      {product && <Link href={`/product/${product.slug}`}>{product.title}</Link>}
+
+      {!isCatalog && <Link href={'/blog'}>{'Blog'}</Link>}
     </BreadcrumbsS>
   )
 }

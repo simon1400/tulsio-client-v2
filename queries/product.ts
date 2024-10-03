@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client'
 
 export const productQuery = gql`
   query product($slug: String!, $locale: I18NLocaleCode!) {
@@ -50,9 +50,50 @@ export const productQuery = gql`
           price
           labels {
             data {
+              id
               attributes {
                 title
                 color
+              }
+            }
+          }
+          products {
+            data {
+              attributes {
+                title
+                slug
+                images {
+                  data {
+                    attributes {
+                      url
+                    }
+                  }
+                }
+                price
+                labels {
+                  data {
+                    attributes {
+                      color
+                      title
+                    }
+                  }
+                }
+                sellers {
+                  data {
+                    attributes {
+                      rating
+                    }
+                  }
+                }
+                shopCategories {
+                  data {
+                    attributes {
+                      title
+                      slug
+                      description
+                    }
+                  }
+                }
               }
             }
           }
@@ -60,7 +101,7 @@ export const productQuery = gql`
       }
     }
   }
-`;
+`
 
 export const productsQuery = gql`
   query product {
@@ -85,6 +126,15 @@ export const productsQuery = gql`
               }
             }
           }
+          shopCategories {
+            data {
+              attributes {
+                title
+                slug
+                description
+              }
+            }
+          }
           sellers {
             data {
               attributes {
@@ -96,4 +146,4 @@ export const productsQuery = gql`
       }
     }
   }
-`;
+`

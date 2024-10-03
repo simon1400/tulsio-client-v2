@@ -1,11 +1,12 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled'
 
-export const RatingS = styled.div<{marginBottom?: number, marginTop?: number}>(({theme, marginBottom = 0, marginTop = 0}) => `
+export const RatingS = styled.div<{ marginBottom?: number; marginTop?: number }>(
+  ({ theme, marginBottom = 0, marginTop = 0 }) => `
   display: flex;
   align-items: center;
   line-height: 1;
   margin-bottom: ${marginBottom}px;
-  margin-top: ${marginBottom}px;
+  margin-top: ${marginTop}px;
   > div{
     font-size: 24px;
     font-weight: 700;
@@ -17,4 +18,5 @@ export const RatingS = styled.div<{marginBottom?: number, marginTop?: number}>((
   .MuiRating-iconEmpty{
     color: rgba(0, 0, 0, 0.2);
   }
-`)
+`,
+)

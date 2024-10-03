@@ -29,23 +29,6 @@ export const ProductTopS = styled.div(({theme}) => `
       }
     }
   }
-  .rating-wrap{
-    display: flex;
-    align-items: center;
-    line-height: 1;
-    margin-bottom: 30px;
-    > div{
-      font-size: 24px;
-      font-weight: 700;
-      margin-right: 15px;
-    }
-    .MuiRating-iconFilled{
-      color: ${theme.palette.primary.main};
-    }
-    .MuiRating-iconEmpty{
-      color: rgba(0, 0, 0, 0.2);
-    }
-  }
   .bottom{
     display: flex;
     justify-content: space-between;

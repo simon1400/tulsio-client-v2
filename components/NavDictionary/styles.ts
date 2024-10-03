@@ -106,4 +106,5 @@ export const CSubMenu = styled.div<{removeMargin?: boolean; mobile: boolean; sub
         }
       }
     }
+  }
 `)

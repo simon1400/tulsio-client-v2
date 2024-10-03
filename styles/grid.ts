@@ -66,9 +66,9 @@ export const GridShop = styled.div(
   ({ theme }) => `
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-auto-rows: 1fr;
-  grid-column-gap: 30px;
-  grid-row-gap: 30px;
+  grid-auto-rows: minmax(30vh, auto);
+  grid-column-gap: ${theme.globalGap.xxl};
+  grid-row-gap: ${theme.globalGap.xxl};
 
   > div {
     &:nth-of-type(1) { grid-area: 1 / 1 / 2 / 2; }
@@ -86,5 +86,19 @@ export const GridShop = styled.div(
     &:nth-of-type(13) { grid-area: 3 / 4 / 4 / 5; }
     &:nth-of-type(14) { grid-area: 3 / 5 / 4 / 6; } */
   }
+
+  ${theme.breakpoints.down('xl')} {
+    grid-column-gap: ${theme.globalGap.xl};
+    grid-row-gap: ${theme.globalGap.xl};
+  } 
+  ${theme.breakpoints.down('lg')} {
+    grid-column-gap: ${theme.globalGap.lg};
+    grid-row-gap: ${theme.globalGap.lg};
+  } 
+  ${theme.breakpoints.down('md')} {
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: ${theme.globalGap.md};
+    grid-row-gap: ${theme.globalGap.md};
+  } 
 `,
 )

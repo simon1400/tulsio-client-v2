@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client'
 
 export const sellerQuery = gql`
   query seller($slug: String!, $locale: I18NLocaleCode!) {
@@ -45,66 +45,19 @@ export const sellerQuery = gql`
                     }
                   }
                 }
-                price
-                labels {
+                shopCategories {
                   data {
                     attributes {
-                      color
                       title
+                      slug
                     }
                   }
                 }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
-export const sellersQuery = gql`
-  query seller {
-    sellers {
-      data {
-        id
-        attributes {
-          title
-          slug
-          logo {
-            data {
-              attributes {
-                url
-              }
-            }
-          }
-          description
-          rating
-          web
-          shopCategories {
-            data {
-              attributes {
-                title
-                slug
-              }
-            }
-          }
-          galery {
-            data {
-              attributes {
-                url
-              }
-            }
-          }
-          products {
-            data {
-              attributes {
-                title
-                slug
-                images {
+                sellers {
                   data {
                     attributes {
-                      url
+                      rating
+                      slug
                     }
                   }
                 }
@@ -124,4 +77,4 @@ export const sellersQuery = gql`
       }
     }
   }
-`;
+`

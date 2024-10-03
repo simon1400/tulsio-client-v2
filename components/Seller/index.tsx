@@ -1,29 +1,31 @@
+import type { ICardItem } from 'components/Card'
+import type { IShopCategories } from 'components/ProductNav'
+import type { FC } from 'react'
+
 import { Typography } from '@mui/material'
 import Button from 'components/Button'
-import Rating from 'components/Rating'
 import SellerLogo from 'components/Logo'
-import { SellerS } from './styled'
+import Rating from 'components/Rating'
+import DOMPurify from 'isomorphic-dompurify'
 import Link from 'next/link'
-import { IImageRoot } from 'types/image'
-import { FC } from 'react'
-import Image from 'next/image'
-import Grid from '@mui/material'
-const APP_API = process.env.APP_API;
 
+import { SellerS } from './styled'
 
 export interface ISellerItem {
-  title: string;
-  slug: string;
+  title: string
+  slug: string
   logo: {
     data: {
       attributes: {
-        url: string;
-      };
-    };
-  };
-  description: string;
-  rating: number;
-  web: string;
+        url: string
+      }
+    }
+  }
+  description: string
+  rating: number
+  web: string
+  shopCategories: IShopCategories
+  products: ICardItem
 }
 
 const Seller: FC<{ sellers: ISellerItem }> = ({ sellers }) => {
@@ -32,19 +34,25 @@ const Seller: FC<{ sellers: ISellerItem }> = ({ sellers }) => {
       <div className={'seller-head'}>
         <div className={'logo-wrap'}>
           <SellerLogo image={sellers.logo} />
-          <Typography variant="h4">{sellers.title}</Typography>
+          <Typography variant={'h4'}>{sellers.title}</Typography>
         </div>
-        <Rating rating={sellers.rating}/>
+        <Rating rating={sellers.rating} />
       </div>
-      <Typography>
-      {sellers.description}
-      </Typography>
-      <div className="button">
+      <Typography
+        variant={'body2'}
+        dangerouslySetInnerHTML={{
+          __html: DOMPurify.sanitize(sellers.description),
+        }}
+      />
+      <div className={'button'}>
         <Link href={`/shop/${sellers.slug}`}>
-          <Button>více o prodejci {sellers.title}</Button>
+          <Button>
+            {'více o prodejci '}
+            {sellers.title}
+          </Button>
         </Link>
       </div>
     </SellerS>
-  );
-};
+  )
+}
 export default Seller

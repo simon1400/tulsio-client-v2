@@ -1,22 +1,23 @@
-import { Container, Grid, Typography } from "@mui/material";
-import Breadcrumbs from "components/BreadcrumbsCard";
-import Content from "components/Content";
-import PageHead from "components/PageHead";
-import ProductTop from "components/ProductTop";
-import Seller from "components/Seller";
-import Slider from "components/Slider";
-import Page from "layout/Page";
-import { wrapper } from "stores";
-import { GridShop } from "styles/grid";
-import { client } from "lib/api";
-import { productQuery } from "queries/product";
-import { FC } from "react";
-import { IProductTopItem } from "components/ProductTop";
-import { Breadcrumb } from "react-instantsearch-hooks-web/dist/es/ui/Breadcrumb";
-import Card from "components/Card";
-import ShopCatalog from "pages/catalog";
+/* eslint-disable format/prettier */
+import type { ICardItem } from 'components/Card'
+import type { IProductTopItem } from 'components/ProductTop'
+import type { FC } from 'react'
 
-const APP_API = process.env.APP_API;
+import { Container, Grid, Typography } from '@mui/material'
+import Breadcrumbs from 'components/Breadcrumbs'
+import Card from 'components/Card'
+import Content from 'components/Content'
+import ProductNav from 'components/ProductNav'
+import ProductTop from 'components/ProductTop'
+import Seller from 'components/Seller'
+import Slider from 'components/Slider'
+import Page from 'layout/Page'
+import { client } from 'lib/api'
+import { productQuery } from 'queries/product'
+import React from 'react'
+import { wrapper } from 'stores'
+import { fetchNavCatalog } from 'stores/fetch/navFetch'
+import { GridShop } from 'styles/grid'
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
@@ -24,114 +25,153 @@ export const getServerSideProps = wrapper.getServerSideProps(
       if (!params?.product) {
         return {
           notFound: true,
-        };
+        }
       }
       const { data } = await client.query({
         query: productQuery,
         variables: {
           slug: params.product,
-          locale: locale,
+          locale,
         },
-      });
-
+      })
+      await store.dispatch(fetchNavCatalog(locale as string))
       return {
         props: {
           light: true,
           data,
         },
-      };
-    }
-);
+      }
+    },
+)
 
 interface IProduct {
   data: {
     products: {
-      data: IProductItem[];
-    };
-  };
+      data: IProductItem[]
+    }
+  }
 }
 
 interface IProductItem {
-  id: number;
-  attributes: IProductTopItem;
+  id: number
+  attributes: IProductTopItem
 }
 
 const Product: FC<IProduct> = ({ data }) => {
-  const productVariable = data?.products?.data?.[0]?.attributes;
+
+  const imageUrls = data.products.data[0].attributes.images.data.map(
+    (image: any) => image.attributes.url,
+  )
+  const productVariable = data?.products?.data?.[0]?.attributes
+
+  const [filteredProducts, setFilteredProducts] = React.useState<{ attributes: ICardItem }[]>([]);
+
+  const allCategories = Array.from(
+    new Set(
+      data.products.data.flatMap((item) =>
+        item.attributes.products.data.flatMap((product) =>
+          product.attributes.shopCategories.data.map((category) => category),
+        ),
+      ),
+    ),
+  );
+
+  const uniqueCategories = Array.from(
+    new Set(allCategories.map((category) => category.attributes.slug)),
+  ).map((slug) =>
+    allCategories.find((category) => category.attributes.slug === slug),
+  ).filter((category): category is IShopCategory => category !== undefined);
+
+  const filterProducts = (category: string) => {
+    const allProducts = data.products.data.flatMap((item) => item.attributes.products.data);
+
+    if (category === '') {
+      setFilteredProducts(allProducts);
+    } else {
+      const filtered = allProducts.filter((product) =>
+        product.attributes.shopCategories.data.some(
+          (shopCategory) => shopCategory.attributes.slug === category,
+        ),
+      );
+      setFilteredProducts(filtered);
+    }
+  };
+
   return (
     <Page>
-      <Container maxWidth="xl">
-        <Container maxWidth="lg">
+      <Container maxWidth={'xl'}>
+        <Container maxWidth={'lg'}>
           {!!data?.products?.data.length && (
             <Breadcrumbs
+              isCatalog
               category={{
                 title: productVariable.shopCategories.data[0].attributes.title,
                 slug: productVariable.shopCategories.data[0].attributes.slug,
               }}
-              color="#000"
+              color={'#000'}
               product={{
                 title: data.products.data[0].attributes.title,
                 slug: data.products.data[0].attributes.slug,
               }}
-              categoryLabel="Produkty"
             />
           )}
         </Container>
 
         <Grid container spacing={4}>
           <Grid item xs={4}>
-            <Slider url={productVariable.images.data[0].attributes.url} />
+            <Slider urls={imageUrls} />
           </Grid>
           <Grid item xs={8}>
-            {data.products?.data.map((item: IProductItem, idx: number) => (
-              <ProductTop key={idx} product={item.attributes} />
+            {data.products?.data.map((item: IProductItem) => (
+              <ProductTop key={item.id} product={item.attributes} />
             ))}
           </Grid>
         </Grid>
       </Container>
-      <Container maxWidth="md">
+      <Container maxWidth={'md'}>
         <Content removePadding>
-          <Typography variant="h2">
-            {data.products.data[0].attributes.title}
-          </Typography>
-          <Typography sx={{ mb: "66px" }}>
-            Česká legislativa umožňuje pěstovat všechny druhy CBD, které jsou
-            uvedeny v Evropském katalogu odrůd technického konopí. Pěstování pod
-            lampou (indoor) povoluje bez omezení. Na polích větších než 10 m2
-            mohou pěstitelé zákonně hospodařit, pouze pokud je nahlásí na celní
-            správu. Kvůli stále nedostatečnému množství výzkumů zatím obchody v
-            ČR nemohou výpěstky a výrobky z CBD prodávat jako lék. Kapky z jeho
-            olejů zákon schvaluje distribuovat pouze jako doplněk stravy, který
-            mohou uživatelé volně konzumovat. Legální ovšem není kouření CBD
-            květů. Čeští prodejci ho mohou nabízet jako sběratelský předmět ale
-            uživatele nesmí nabádat ke kouření. I když EU definuje, že u konopí
-            s obsahem do 0,3 % THC se stále jedná o CBD rostlinu, každý stát má
-            ohledně množství THC vlastní zákony. Česká republika jako technické
-            konopí nově vnímá rostliny s obsahem THC do 1 %. Slovensko naopak za
-            technické konopí uznává pouze ty s obsahem do 0,2 THC.
+          <Typography variant={'h2'}>{data.products.data[0].attributes.title}</Typography>
+          <Typography sx={{ mb: '66px' }}>
+            {'Česká legislativa umožňuje pěstovat všechny druhy CBD, které jsou'}
+            {'uvedeny v Evropském katalogu odrůd technického konopí. Pěstování pod'}
+            {'lampou (indoor) povoluje bez omezení. Na polích větších než 10 m2'}
+            {'mohou pěstitelé zákonně hospodařit, pouze pokud je nahlásí na celní'}
+            {'správu. Kvůli stále nedostatečnému množství výzkumů zatím obchody v'}
+            {'ČR nemohou výpěstky a výrobky z CBD prodávat jako lék. Kapky z jeho'}
+            {'olejů zákon schvaluje distribuovat pouze jako doplněk stravy, který'}
+            {'mohou uživatelé volně konzumovat. Legální ovšem není kouření CBD'}
+            {'květů. Čeští prodejci ho mohou nabízet jako sběratelský předmět ale'}
+            {'uživatele nesmí nabádat ke kouření. I když EU definuje, že u konopí'}
+            {'s obsahem do 0,3 % THC se stále jedná o CBD rostlinu, každý stát má'}
+            {'ohledně množství THC vlastní zákony. Česká republika jako technické'}
+            {'konopí nově vnímá rostliny s obsahem THC do 1 %. Slovensko naopak za'}
+            {'technické konopí uznává pouze ty s obsahem do 0,2 THC.'}
           </Typography>
         </Content>
-        {data.products.data.map((item: IProductItem, idx: number) => (
-          <Seller
-            key={idx}
-            sellers={item.attributes.sellers.data[0].attributes}
-          />
+        {data.products.data.map((item: IProductItem) => (
+          <Seller key={item.id} sellers={item.attributes.sellers.data[0].attributes} />
         ))}
       </Container>
-      <Container maxWidth="xl" sx={{ mt: "80px" }}>
-        <PageHead title="Produkty" category />
+      <Container maxWidth={'xl'} sx={{ mt: '80px' }}>
+        <ProductNav
+          shopName={data.products.data[0].attributes.sellers.data[0].attributes.title}
+          shopCategories={{ data: uniqueCategories }}
+          filterProducts={filterProducts}
+        />
         <GridShop>
-          <Container maxWidth="xl">
-            <Grid container spacing={3}>
-              {data.products.data.map((item: IProductItem, idx: number) => (
-                <Card key={idx} product={item.attributes} />
-              ))}
-            </Grid>
-          </Container>
+          {filteredProducts.length > 0
+            ? filteredProducts.map((productItem, idx: number) => (
+                <Card key={idx} product={productItem.attributes} />
+              ))
+            : data.products.data.map((item: IProductItem) =>
+                item.attributes.products.data.map((productItem, idx: number) => (
+                  <Card key={idx} product={productItem.attributes} />
+                )),
+              )}
         </GridShop>
-      </Container>
+    </Container>
     </Page>
-  );
-};
+  )
+}
 
-export default Product;
+export default Product
