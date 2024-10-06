@@ -6,7 +6,6 @@ import { Grid, Typography } from '@mui/material'
 import Button from 'components/Button'
 import RatingComponent from 'components/Rating'
 import DOMPurify from 'isomorphic-dompurify'
-import Link from 'next/link'
 
 import { DescriptionS } from './styled'
 
@@ -69,9 +68,7 @@ const Description: FC<{ description: IDescription; staticBlock?: boolean }> = ({
               }}
             />
             <div className={'content-bottom'}>
-              <Link href={description.web}>
-                <Button>{description.title}</Button>
-              </Link>
+              <Button href={description.web}>{description.title}</Button>
             </div>
           </div>
         </Grid>

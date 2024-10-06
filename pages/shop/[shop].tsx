@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/no-array-index-key */
 import type { ICardItem } from 'components/Card'
 import type { IDescription } from 'components/Description'
 import type { IShopCategory } from 'components/ProductNav'
@@ -67,21 +68,17 @@ const ShopSeller: FC<IShopSeller> = ({ data }) => {
 
   const [filteredProducts, setFilteredProducts] = React.useState<{ attributes: ICardItem }[]>([])
 
-  const allCategories = Array.from(
-    new Set(
-      data.sellers.data.flatMap((item) =>
-        item.attributes.products.data.flatMap((seller) =>
-          seller.attributes.shopCategories.data.map((category) => category),
-        ),
-      ),
-    ),
-  )
+  const categoryMap = new Map<string, IShopCategory>()
 
-  const uniqueCategories = Array.from(
-    new Set(allCategories.map((category) => category.attributes.slug)),
-  )
-    .map((slug) => allCategories.find((category) => category.attributes.slug === slug))
-    .filter((category): category is IShopCategory => category !== undefined)
+  for (const item of data.sellers.data) {
+    for (const seller of item.attributes.products.data) {
+      for (const category of seller.attributes.shopCategories.data) {
+        categoryMap.set(category.attributes.slug, category)
+      }
+    }
+  }
+
+  const uniqueCategories = Array.from(categoryMap.values())
 
   const filterProducts = (category: string) => {
     const allProducts = data.sellers.data.flatMap((item) => item.attributes.products.data)
@@ -97,6 +94,8 @@ const ShopSeller: FC<IShopSeller> = ({ data }) => {
       setFilteredProducts(filtered)
     }
   }
+  const crumbs =  data.sellers.data[0].attributes
+
   return (
     <Page>
       <Container maxWidth={'xl'}>
@@ -105,13 +104,13 @@ const ShopSeller: FC<IShopSeller> = ({ data }) => {
             <Breadcrumbs
               isCatalog
               category={{
-                title: data.sellers.data[0].attributes.shopCategories.data[0].attributes.title,
-                slug: data.sellers.data[0].attributes.shopCategories.data[0].attributes.slug,
+                title: crumbs.shopCategories.data[0].attributes.title,
+                slug: crumbs.shopCategories.data[0].attributes.slug,
               }}
               color={'#000'}
               product={{
-                title: data.sellers.data[0].attributes.products.data[0].attributes.title,
-                slug: data.sellers.data[0].attributes.products.data[0].attributes.slug,
+                title: crumbs.products.data[0].attributes.title,
+                slug: crumbs.products.data[0].attributes.slug,
               }}
             />
           )}

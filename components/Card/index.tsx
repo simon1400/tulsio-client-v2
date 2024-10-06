@@ -3,14 +3,13 @@ import type { FC } from 'react'
 import { Typography } from '@mui/material'
 import ColorLabel from 'components/ColorLabel'
 import Rating from 'components/Rating'
+import { getStrapiURL } from 'lib/api'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
 import { CardS } from './styles'
 import AngleRight from '/public/assets/angle-right.svg'
-
-const APP_API = process.env.APP_API
 
 export interface ICardItem {
   title: string
@@ -36,6 +35,7 @@ export interface ICardItem {
       attributes: {
         title: string
         slug: string
+        description?: string
       }
     }[]
   }
@@ -51,12 +51,14 @@ export interface ICardItem {
 
 const Card: FC<{ product: ICardItem }> = ({ product }) => {
   const sellerRating = product.sellers?.data?.[0]?.attributes?.rating || 0
-  const imageUrl = APP_API + product.images.data[0].attributes.url
+  const imageUrl = getStrapiURL(
+    product.images?.data?.[0]?.attributes?.url || '/assets/placeholder.svg',
+  )
 
   return (
     <CardS>
       <div className={'img-wrap'}>
-        <Image src={imageUrl || '/assets/placeholder.svg'} fill alt={product.title} />
+        <Image src={imageUrl} fill alt={product.title} />
 
         <div className={'label-wrap'}>
           <ColorLabel labels={product.labels.data} direction={'column'} />

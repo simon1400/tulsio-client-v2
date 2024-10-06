@@ -1,7 +1,6 @@
 /* eslint-disable react/prefer-shorthand-fragment */
 import type { ICardItem } from 'components/Card'
 import type { NextPage } from 'next'
-import type { ParsedUrlQuery } from 'node:querystring'
 
 import { Container } from '@mui/material'
 import Card from 'components/Card'
@@ -16,14 +15,10 @@ import { wrapper } from 'stores'
 import { fetchNavCatalog } from 'stores/fetch/navFetch'
 import { GridShop } from 'styles/grid'
 
-interface IParams extends ParsedUrlQuery {
-  slug: string
-}
-
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ params, locale }) => {
-      const { slug } = params as IParams
+      const { slug } = params as { slug: string }
       const { data: categoryData } = await client.query({
         query: getShopCategory,
         variables: { slug, locale },
@@ -62,11 +57,7 @@ export interface IShopItem {
 const ShopCatalog: NextPage<{
   products: IShopItem[]
   categorySlug: string
-  shortInfo?: {
-    title: string
-    description: string
-  }
-}> = ({ products, categorySlug, shortInfo }) => {
+}> = ({ products, categorySlug }) => {
   const categoryDescription = products
     .map((product) =>
       product.attributes.shopCategories?.data.find(

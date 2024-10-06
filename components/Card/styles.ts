@@ -53,7 +53,6 @@ export const CardS = styled.div(
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 20px;
     p{
       font-weight: 600;
       color: #2B2B2B;
@@ -77,8 +76,24 @@ export const CardS = styled.div(
 
   ${theme.breakpoints.up('lg')} {
     .img-wrap {
-      height: 350px; 
+      height: auto;
     }
   }
+  ${theme.breakpoints.up('md')} {
+    .img-wrap {
+      height: auto;
+      aspect-ratio: 1;
+    }
+  }
+  ${theme.breakpoints.down('sm')} {
+    .card-content {
+      padding: 10px 15px;
+    }
+    .img-wrap {
+      height: auto;
+      aspect-ratio: 1; 
+    }
+  }
+  
 `,
 )

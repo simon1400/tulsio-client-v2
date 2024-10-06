@@ -1,5 +1,7 @@
+/* eslint-disable sonarjs/no-array-index-key */
 /* eslint-disable format/prettier */
 import type { ICardItem } from 'components/Card'
+import type { IShopCategory } from 'components/ProductNav';
 import type { IProductTopItem } from 'components/ProductTop'
 import type { FC } from 'react'
 
@@ -66,21 +68,17 @@ const Product: FC<IProduct> = ({ data }) => {
 
   const [filteredProducts, setFilteredProducts] = React.useState<{ attributes: ICardItem }[]>([]);
 
-  const allCategories = Array.from(
-    new Set(
-      data.products.data.flatMap((item) =>
-        item.attributes.products.data.flatMap((product) =>
-          product.attributes.shopCategories.data.map((category) => category),
-        ),
-      ),
-    ),
-  );
+  const categoryMap = new Map<string, IShopCategory>();
 
-  const uniqueCategories = Array.from(
-    new Set(allCategories.map((category) => category.attributes.slug)),
-  ).map((slug) =>
-    allCategories.find((category) => category.attributes.slug === slug),
-  ).filter((category): category is IShopCategory => category !== undefined);
+  for (const item of data.products.data) {
+    for (const product of item.attributes.products.data) {
+      for (const category of product.attributes.shopCategories.data) {
+        categoryMap.set(category.attributes.slug, category);
+      }
+    }
+  }
+
+  const uniqueCategories = Array.from(categoryMap.values());
 
   const filterProducts = (category: string) => {
     const allProducts = data.products.data.flatMap((item) => item.attributes.products.data);
@@ -105,13 +103,13 @@ const Product: FC<IProduct> = ({ data }) => {
             <Breadcrumbs
               isCatalog
               category={{
-                title: productVariable.shopCategories.data[0].attributes.title,
-                slug: productVariable.shopCategories.data[0].attributes.slug,
+                title: productVariable.shopCategories.data[0]?.attributes.title,
+                slug: productVariable.shopCategories.data[0]?.attributes.slug,
               }}
               color={'#000'}
               product={{
-                title: data.products.data[0].attributes.title,
-                slug: data.products.data[0].attributes.slug,
+                title: data.products.data[0]?.attributes.title,
+                slug: data.products.data[0]?.attributes.slug,
               }}
             />
           )}

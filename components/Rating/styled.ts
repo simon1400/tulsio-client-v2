@@ -6,7 +6,6 @@ export const RatingS = styled.div<{ marginBottom?: number; marginTop?: number }>
   align-items: center;
   line-height: 1;
   margin-bottom: ${marginBottom}px;
-  margin-top: ${marginTop}px;
   > div{
     font-size: 24px;
     font-weight: 700;

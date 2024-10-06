@@ -10,11 +10,8 @@ import ColorLabel from 'components/ColorLabel'
 import Price from 'components/Price'
 import Rating from 'components/Rating'
 import DOMPurify from 'isomorphic-dompurify'
-import Link from 'next/link'
 
 import { ProductTopS } from './styled'
-
-// const APP_API = process.env.APP_API
 
 export interface IProductTopItem {
   title: string
@@ -75,12 +72,10 @@ const ProductTop: FC<{ product: IProductTopItem }> = ({ product }) => {
           />
           <div className={'bottom'} style={{ marginTop: '20px' }}>
             <Price price={product.price} availability={product.availability} />
-            <Link href={product.link}>
-              <Button>
-                {'koupit na '}
-                {product.brand}
-              </Button>
-            </Link>
+            <Button href={product.link}>
+              {'koupit na '}
+              {product.brand}
+            </Button>
           </div>
         </Grid>
       </Grid>

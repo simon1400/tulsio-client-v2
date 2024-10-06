@@ -4,7 +4,6 @@ import { SvgIcon } from '@mui/material'
 import Link from 'next/link'
 import Chevron from 'public/icons/chevron.svg'
 
-// export default Breadcrumbs
 import { BreadcrumbsS } from './styles'
 
 export interface IBreadcrumb {

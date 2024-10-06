@@ -7,7 +7,6 @@ import Button from 'components/Button'
 import SellerLogo from 'components/Logo'
 import Rating from 'components/Rating'
 import DOMPurify from 'isomorphic-dompurify'
-import Link from 'next/link'
 
 import { SellerS } from './styled'
 
@@ -45,12 +44,10 @@ const Seller: FC<{ sellers: ISellerItem }> = ({ sellers }) => {
         }}
       />
       <div className={'button'}>
-        <Link href={`/shop/${sellers.slug}`}>
-          <Button>
-            {'více o prodejci '}
-            {sellers.title}
-          </Button>
-        </Link>
+        <Button href={`/shop/${sellers.slug}`}>
+          {'více o prodejci '}
+          {sellers.title}
+        </Button>
       </div>
     </SellerS>
   )
