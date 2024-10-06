@@ -5,7 +5,7 @@ import FaqHits from 'components/FaqHits'
 import PageHead from 'components/PageHead'
 import SearchBox from 'components/SearchBox'
 import Page from 'layout/Page'
-import { Configure, InstantSearch } from 'react-instantsearch'
+import { InstantSearch } from 'react-instantsearch'
 import { wrapper } from 'stores'
 import { changeDescription, changeTitle } from 'stores/slices/dataSlices'
 import { changeImage } from 'stores/slices/metaSlices'
@@ -38,24 +38,32 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
   }
 })
 
-const Faq: NextPage = ({
-  // @ts-expect-error: some problem
-  faq,
-  // @ts-expect-error: some problem
-  allFaq,
-}) => {
+interface IFaqPage {
+  faq: {
+    title: string
+  }
+  allFaq: IFaqItem[]
+}
+
+export interface IFaqItem {
+  answer: string
+  title: string
+}
+
+const Faq: NextPage<IFaqPage> = ({ faq, allFaq }) => {
   return (
     <Page>
-      <InstantSearch indexName={`${meilisearchPrefix}faq`} searchClient={searchClient.searchClient}>
-        <Configure hitsPerPage={50} />
-
-        <Container maxWidth={'md'}>
-          <PageHead title={faq.title} />
+      <Container maxWidth={'md'}>
+        <PageHead title={faq.title} />
+        <InstantSearch
+          indexName={`${meilisearchPrefix}faq`}
+          searchClient={searchClient.searchClient}
+        >
+          {/* <Configure hitsPerPage={50} /> */}
           <SearchBox placeholder={'Hledat dotaz...'} />
-        </Container>
-
-        <FaqHits allFaq={allFaq} />
-      </InstantSearch>
+          <FaqHits allFaq={allFaq} />
+        </InstantSearch>
+      </Container>
     </Page>
   )
 }

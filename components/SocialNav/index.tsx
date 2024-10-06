@@ -1,14 +1,26 @@
 import type { FC } from 'react'
 
-import Image from 'next/image'
+import Image from 'components/Image'
 
 import { LinkS, SocialNavS } from './styles'
 
-const APP_API = process.env.APP_API
-
 interface ISocialNav {
-  data: any
+  data: {
+    navigation: {
+      data: {
+        attributes: {
+          socNav: { item: INavItems[] }
+        }
+      }
+    }
+  }
   loading: boolean
+}
+
+interface INavItems {
+  link: string
+  background: string
+  icon: IImageRoot
 }
 
 const SocialNav: FC<ISocialNav> = ({ data, loading }) => {
@@ -16,20 +28,15 @@ const SocialNav: FC<ISocialNav> = ({ data, loading }) => {
     return null
   }
 
-  const nav = data.navigation.data.attributes.socNav.item
+  const nav: INavItems[] = data.navigation.data.attributes.socNav.item
 
   return (
     <SocialNavS>
       <ul>
-        {nav.map((item: any, idx: number) => (
+        {nav.map((item: INavItems) => (
           <li key={item.link}>
             <LinkS background={item.background} href={item.link} passHref>
-              <Image
-                src={APP_API + item.icon.data.attributes.url}
-                width={'25'}
-                height={'25'}
-                alt={''}
-              />
+              <Image image={item.icon.data} width={25} height={25} alt={''} />
             </LinkS>
           </li>
         ))}

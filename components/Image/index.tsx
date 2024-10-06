@@ -1,30 +1,16 @@
 import type { FC } from 'react'
 
+import Image from 'next/image'
+
 const APP_API = process.env.APP_API
 
-export interface ImageAttr {
-  url: string
-  alternativeText?: string
-  name?: string
-}
-
-export interface Attr {
-  attributes: ImageAttr
-}
-
-export interface IImage {
-  attributes: ImageAttr
-  data?: Attr
-  indexOf?: () => void
-}
-
 interface ImageProps {
-  image?: IImage
-  svg?: boolean
+  image?: IImageData
   url?: string
   format?: string
-  width?: string
-  height?: string
+  alt?: string
+  width?: number | `${number}`
+  height?: number | `${number}`
   fill?: boolean
 }
 
@@ -32,12 +18,18 @@ const ImageComponent: FC<ImageProps> = ({
   image = undefined,
   url = '/assets/placeholder.svg',
   format = '',
+  alt = 'Placeholder Tulsio',
+  fill = false,
+  width,
+  height,
 }) => {
-  let altText = ''
+  if (url !== '/assets/placeholder.svg') {
+    url = APP_API + url
+  }
 
   if (image) {
     url = APP_API + image.attributes.url
-    altText = image.attributes.alternativeText || ''
+    alt = image.attributes.alternativeText || ''
   }
 
   if (url.indexOf('.mp4') > 0) {
@@ -48,7 +40,15 @@ const ImageComponent: FC<ImageProps> = ({
       </video>
     )
   }
-  return <img src={`${url}?format=webp${format}`} alt={altText} />
+  return (
+    <Image
+      src={`${url}?format=${url.indexOf('.svg') > 0 ? 'svg' : 'webp'}${format}`}
+      fill={fill}
+      alt={alt || ''}
+      width={width}
+      height={height}
+    />
+  )
 }
 
 export default ImageComponent

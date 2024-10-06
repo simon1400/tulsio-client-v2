@@ -94,7 +94,7 @@ const ShopSeller: FC<IShopSeller> = ({ data }) => {
       setFilteredProducts(filtered)
     }
   }
-  const crumbs =  data.sellers.data[0].attributes
+  const crumbs = data.sellers.data[0].attributes
 
   return (
     <Page>

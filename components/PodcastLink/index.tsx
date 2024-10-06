@@ -1,10 +1,8 @@
 import type { FC } from 'react'
 
-import Image from 'next/image'
+import Image from 'components/Image'
 
 import { LinkS, PodcastLinkS } from './styles'
-
-const APP_API = process.env.APP_API
 
 interface IPodcastLink {
   data: IPodcastLinkItem[]
@@ -13,13 +11,7 @@ interface IPodcastLink {
 interface IPodcastLinkItem {
   name: string
   url: string
-  logo: {
-    data: {
-      attributes: {
-        url: string
-      }
-    }
-  }
+  logo: IImageRoot
 }
 
 const PodcastLink: FC<IPodcastLink> = ({ data }) => {
@@ -31,12 +23,7 @@ const PodcastLink: FC<IPodcastLink> = ({ data }) => {
           {data.map((item: IPodcastLinkItem, idx: number) => (
             <li key={item.url}>
               <LinkS href={item.url} passHref>
-                <Image
-                  src={APP_API + item.logo.data?.attributes?.url}
-                  width={'33'}
-                  height={'33'}
-                  alt={''}
-                />
+                <Image image={item.logo.data} width={33} height={33} alt={''} />
               </LinkS>
             </li>
           ))}

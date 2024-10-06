@@ -1,5 +1,4 @@
 import type { NextPage } from 'next'
-import type { ICategoryPage } from 'types/category'
 
 import { useSelector } from 'react-redux'
 import { wrapper } from 'stores'
