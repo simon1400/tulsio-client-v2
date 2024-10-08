@@ -1,13 +1,14 @@
-import React from "react"
-import { PriceS } from "./styled"
+import React from 'react'
 
-const Price: React.FC<{ price: number, availability?: boolean }> = ({ price, availability }) => {
+import { PriceS } from './styled'
+
+const Price: React.FC<{ price: number; availability?: boolean }> = ({ price, availability }) => {
   const formattedPrice = new Intl.NumberFormat('cs-CZ', {
     style: 'currency',
     currency: 'CZK',
-  }).format(price);
+  }).format(price)
 
-  const availabilityLabel = availability ? "Skladem" : "Není skladem";
+  const availabilityLabel = availability ? 'Skladem' : 'Není skladem'
 
   return (
     <PriceS availability={availability}>
@@ -15,11 +16,11 @@ const Price: React.FC<{ price: number, availability?: boolean }> = ({ price, ava
         <b>{formattedPrice}</b>
       </div>
       <div>
-        <span>včetně DPH</span>
-         <label>{availability !== undefined ? availabilityLabel : ""}</label>
+        <span>{'včetně DPH'}</span>
+        <label>{availability !== undefined ? availabilityLabel : ''}</label>
       </div>
     </PriceS>
-  );
-};
+  )
+}
 
-export default Price;
+export default Price

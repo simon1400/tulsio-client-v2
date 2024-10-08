@@ -29,7 +29,7 @@ export const CategoryDescriptionS = styled.div<{
     .img-wrap {
       height: 100%;
       width: 100%;
-      ${backgroundStyle} /* Apply the background style here */
+      ${backgroundStyle}
       border-radius: ${theme.borderRadius.base};
       overflow: hidden;
       display: block;

@@ -70,7 +70,7 @@ const ProductTop: FC<{ product: IProductTopItem }> = ({ product }) => {
               __html: DOMPurify.sanitize(product.description),
             }}
           />
-          <div className={'bottom'} style={{ marginTop: '20px' }}>
+          <div className={'bottom'}>
             <Price price={product.price} availability={product.availability} />
             <Button href={product.link}>
               {'koupit na '}

@@ -46,6 +46,7 @@ export const CardS = styled.div(
     padding: 20px 30px;
     h3{
       color: #2B2B2B;
+      font-size: 24px;
     }
   }
 
@@ -55,6 +56,7 @@ export const CardS = styled.div(
     align-items: center;
     p{
       font-weight: 600;
+      font-size: 19px;
       color: #2B2B2B;
     }
   }
@@ -85,7 +87,7 @@ export const CardS = styled.div(
       aspect-ratio: 1;
     }
   }
-  ${theme.breakpoints.down('sm')} {
+  ${theme.breakpoints.between('xs', 'md')} {
     .card-content {
       padding: 10px 15px;
     }
@@ -94,6 +96,24 @@ export const CardS = styled.div(
       aspect-ratio: 1; 
     }
   }
-  
+  ${theme.breakpoints.down('sm')} { 
+    a {
+      width: 42px;
+      height: 42px;
+      svg {
+        height: 22px;
+      }
+    }
+    .card-control{
+      p {
+        font-size: 13px;
+      }
+    }
+    .card-content {
+    h3{
+      font-size: 16px;
+    }
+  }
+  }
 `,
 )

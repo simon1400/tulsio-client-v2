@@ -48,14 +48,6 @@ const NavShop: FC<INav> = ({
         )}
 
         {isCatalogPage && renderLinks('/catalog')}
-
-        {/* {category && isProductPage && (
-          <li className={getActiveClass('/product')}>
-            <Link href={'/product'}>{'Všechny'}</Link>
-          </li>
-        )}
-
-        {isProductPage && renderLinks('/product')} */}
       </ul>
     </CSubMenu>
   )

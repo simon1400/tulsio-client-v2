@@ -90,7 +90,9 @@ const ShopCatalog: NextPage<{
             {categoryData && (
               <div
                 style={{
+                  display: 'grid',
                   gridArea: `auto / ${descriptionPosition <= 5 ? descriptionPosition : 4} / span 1 / span 2`,
+                  gridRow: `auto`,
                 }}
               >
                 <CategoryShort

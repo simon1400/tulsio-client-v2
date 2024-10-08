@@ -1,21 +1,22 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled'
 
-export const SellerS = styled.div(({theme}) => `
+export const SellerS = styled.div(
+  ({ theme }) => `
   background-color: rgba(43, 43, 43, 0.07);
   padding: 40px 45px;
 
-  border-radius: ${theme.borderRadius['base']};
+  border-radius: ${theme.borderRadius.base};
   ${theme.breakpoints.down('xxl')} {
-    border-radius: ${theme.borderRadius['xxl']};
+    border-radius: ${theme.borderRadius.xxl};
   }
   ${theme.breakpoints.down('xl')} {
-    border-radius: ${theme.borderRadius['xl']};
+    border-radius: ${theme.borderRadius.xl};
   }
   ${theme.breakpoints.down('lg')} {
-    border-radius: ${theme.borderRadius['lg']};
+    border-radius: ${theme.borderRadius.lg};
   }
   ${theme.breakpoints.down('sm')} {
-    border-radius: ${theme.borderRadius['sm']};
+    border-radius: ${theme.borderRadius.sm};
   }
   .button {
     display: flex;
@@ -30,6 +31,11 @@ export const SellerS = styled.div(({theme}) => `
     justify-content: space-between;
     align-items: center;
     margin-bottom: 24px;
+    // ${theme.breakpoints.down('sm')} {
+    //   flex-direction: column;
+      
+    // }
+
   }
   .logo-wrap{
     display: flex;
@@ -38,4 +44,5 @@ export const SellerS = styled.div(({theme}) => `
       margin-right: 20px;
     }
   }
-`)
+`,
+)

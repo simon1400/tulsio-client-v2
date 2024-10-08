@@ -80,7 +80,7 @@ export const CSubMenu = styled.div<{
           display: none;
           position: absolute;
           width: calc(100% + 30px);
-          left: -15px;
+          left: -14px;
           top: -5px;
           height: calc(100% + 10px);
           background: ${mobile ? 'transparent' : theme.palette.primary.main};
@@ -106,12 +106,21 @@ export const CSubMenu = styled.div<{
   }
 
   ${[theme.breakpoints.down('md')]} {
-    display: flex;
-    justify-content: ${subMenu ? 'flex-start' : 'flex-end'};
-    height: ${subMenu ? '41px' : 'auto'};
-    &.active {
-      a {
-        color: ${subMenu ? '#ffffff' : theme.palette.primary.main};
+    margin-left: ${mobile ? 0 : '-10px'};
+    width: ${mobile ? 'auto' : 'calc(100% + 20px)'};
+    ul {
+      margin: 0;
+      padding: ${subMenu ? '3px 15px 0 15px' : ''};
+      li {
+        button {
+          font-size: 24px;
+          &:before {
+            width: calc(100% + 20px);
+            left: -8px;
+            height: 40px;
+            top: -4px;
+          }
+        }
       }
     }
   }
@@ -121,22 +130,15 @@ export const CSubMenu = styled.div<{
     width: ${mobile ? 'auto' : 'calc(100% + 20px)'};
     ul {
       margin: 0;
-      padding: 0 ${subMenu ? '15px' : ''};
-      padding-top: ${subMenu ? '3px' : ''};
+      padding: ${subMenu ? '3px 15px 0 15px' : ''};
       li {
-        &:not(:first-of-type) {
-          margin-left: ${subMenu ? '10px' : '0'};
-        }
-        &:not(:last-of-type) {
-          margin-right: ${subMenu ? '10px' : '0'};
-        }
         button {
-          font-size: ${subMenu ? '15px' : '27px'};
+          font-size: 18px;
           &:before {
             width: calc(100% + 15px);
-            left: -7px;
+            left: -8px;
             height: 30px;
-            top: -5px;
+            top: -4px;
           }
         }
       }

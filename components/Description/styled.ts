@@ -40,6 +40,10 @@ export const DescriptionS = styled.div(
     display: flex;
     justify-content: space-between;
     align-items: center;
+    ${theme.breakpoints.down('sm')} {
+     flex-direction: column;
+     align-items: flex-start;
+    }
   }
   .content-wrap-art{
     height: 100%;

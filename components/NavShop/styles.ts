@@ -99,10 +99,26 @@ export const CSubMenu = styled.div<{
   ${[theme.breakpoints.down('md')]} {
     display: flex;
     justify-content: ${subMenu ? 'flex-start' : 'flex-end'};
-    height: ${subMenu ? '41px' : 'auto'};
+    height: ${subMenu ? '43px' : 'auto'};
     &.active{
       a{
         color: ${subMenu ? '#ffffff' : theme.palette.primary.main};
+      }
+    }
+    ul{
+      margin: 0;
+      padding: 0${subMenu ? ' 15px' : ''};
+      padding-top: ${subMenu ? '3px' : ''};
+      li{
+        a{
+          font-size: ${subMenu ? '18px' : '25px'};
+          &:before{
+            width: calc(100% + 15px);
+            left: -7px;
+            height: 30px;
+            top: -3px;
+          }
+        }
       }
     }
   }
