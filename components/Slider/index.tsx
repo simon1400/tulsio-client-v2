@@ -1,18 +1,26 @@
-// import { Swiper, SwiperSlide } from "swiper/react";
-// import SwiperCore from "swiper"
-// Import Swiper styles
+import type { FC } from 'react'
+import type SwiperCore from 'swiper'
+
+import { getStrapiURL } from 'lib/api'
+import Image from 'next/image'
+import { useRef } from 'react'
+import { Pagination } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
+
+import { SliderWrapS } from './styled'
 import 'swiper/css'
 import 'swiper/css/pagination'
 
-// import { Pagination } from "swiper/modules";
-import { SliderWrapS } from './styled'
-// import { useRef } from "react";
+interface ISliderProps {
+  urls: string[]
+}
 
-const Slider = () => {
-  // const swiper = useRef() as any;
+const Slider: FC<ISliderProps> = ({ urls }) => {
+  const swiper = useRef() as any
+
   return (
     <SliderWrapS>
-      {/* <Swiper
+      <Swiper
         onInit={(core: SwiperCore) => {
           swiper.current = core.el
         }}
@@ -21,16 +29,12 @@ const Slider = () => {
         }}
         modules={[Pagination]}
       >
-        <SwiperSlide>
-          <Image src="/assets/ruderalis.jpeg" fill alt="" />
-        </SwiperSlide><SwiperSlide>
-          <Image src="/assets/ruderalis.jpeg" fill alt="" />
-        </SwiperSlide><SwiperSlide>
-          <Image src="/assets/ruderalis.jpeg" fill alt="" />
-        </SwiperSlide><SwiperSlide>
-          <Image src="/assets/ruderalis.jpeg" fill alt="" />
-        </SwiperSlide>
-      </Swiper> */}
+        {urls.map((url, index) => (
+          <SwiperSlide key={index}>
+            <Image src={getStrapiURL(url)} fill alt={`Image ${index + 1}`} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </SliderWrapS>
   )
 }
