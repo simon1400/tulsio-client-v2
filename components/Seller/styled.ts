@@ -42,6 +42,9 @@ export const SellerS = styled.div(
     align-items: center;
     > div{
       margin-right: 20px;
+
+      >svg {
+      width: 20px;}
     }
   }
 `,

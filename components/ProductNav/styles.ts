@@ -138,7 +138,7 @@ export const CSubMenu = styled.div<{
             width: calc(100% + 15px);
             left: -8px;
             height: 30px;
-            top: -4px;
+            top: -2px;
           }
         }
       }

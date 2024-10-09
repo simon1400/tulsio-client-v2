@@ -1,14 +1,13 @@
 import type { FC } from 'react'
 
-import { getStrapiURL } from 'lib/api'
-import Image from 'next/image'
+import Image from 'components/Image'
 
 import { SellerLogoS } from './styled'
 
 const Logo: FC<{ image: any }> = ({ image }) => {
   return (
     <SellerLogoS>
-      <Image src={getStrapiURL(image.data.attributes.url)} fill alt={''} />
+      <Image image={image.data} format={'&resize=80x80'} fill alt={'Tulsio'} />
     </SellerLogoS>
   )
 }

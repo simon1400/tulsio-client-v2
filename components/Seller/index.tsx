@@ -4,7 +4,7 @@ import type { FC } from 'react'
 
 import { Typography } from '@mui/material'
 import Button from 'components/Button'
-import SellerLogo from 'components/Logo'
+import SellerLogo from 'components/Logo/SellerLogo'
 import Rating from 'components/Rating'
 import DOMPurify from 'isomorphic-dompurify'
 
