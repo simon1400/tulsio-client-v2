@@ -1,3 +1,4 @@
+/* eslint-disable import/no-mutable-exports */
 import type { Theme as MuiTheme, ThemeOptions } from '@mui/material'
 import type { IBorderRadius, IGlobalGap, IGlobalPadding } from './types'
 import { createTheme } from '@mui/material'

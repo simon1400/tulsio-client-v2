@@ -10,9 +10,7 @@ export const SellerLogoS = styled.div(({theme}) => `
   background: white;
   overflow: hidden;
   img{
-    object-fit: cover;
-    width: 100%;
     height: 100%;
-    margin: auto;
+    padding: 10px;
   }
 `)

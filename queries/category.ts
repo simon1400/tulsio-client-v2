@@ -59,6 +59,7 @@ export const getShopCategory = gql`
     shopCategories(filters: { slug: { eq: $slug } }, locale: $locale) {
       data {
         attributes {
+          slug
           title
           navTitle
           shortTitle

@@ -47,11 +47,7 @@ export const fetchNavTag =
         const filterPublish = item.attributes.articles.data.filter(
           (itemPublish: any) => itemPublish.attributes.publishedAt,
         )
-        if (filterPublish.length) {
-          return true
-        } else {
-          return false
-        }
+        return !!(filterPublish.length);
       } else {
         return false
       }
