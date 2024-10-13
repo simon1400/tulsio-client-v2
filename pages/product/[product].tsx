@@ -115,16 +115,19 @@ const Product: FC<IProduct> = ({ data }) => {
           )}
         </Container>
 
-        <Grid container spacing={4}>
-          <Grid item xs={4}>
-            <Slider urls={imageUrls} />
+        <Container maxWidth={'xl'}>
+          <Grid container spacing={5}>
+            <Grid item xs={12} md={4}>
+              <Slider urls={imageUrls} />
+            </Grid>
+            <Grid item xs={12} md={8}>
+              {data.products?.data.map((item: IProductItem) => (
+                <ProductTop key={item.id} product={item.attributes} />
+              ))}
+            </Grid>
           </Grid>
-          <Grid item xs={8}>
-            {data.products?.data.map((item: IProductItem) => (
-              <ProductTop key={item.id} product={item.attributes} />
-            ))}
-          </Grid>
-        </Grid>
+        </Container>
+
       </Container>
       <Container maxWidth={'md'}>
         <Content removePadding>

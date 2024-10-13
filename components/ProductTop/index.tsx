@@ -57,11 +57,13 @@ const ProductTop: FC<{ product: IProductTopItem }> = ({ product }) => {
   return (
     <ProductTopS>
       <Grid container spacing={4}>
-        <Grid item xs={12} style={{ display: 'flex', flexDirection: 'column' }}>
+        <Grid item xs={12}>
           <Typography variant={'h1'} marginBottom={2}>
             {product.title}
           </Typography>
-          <ColorLabel labels={product.labels.data} direction={'row'} />
+          <div className={'labels-wrap'}>
+            <ColorLabel labels={product.labels.data} direction={'row'} />
+          </div>
 
           <Rating rating={product.sellers.data[0].attributes.rating} />
           <Typography

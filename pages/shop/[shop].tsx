@@ -116,16 +116,18 @@ const ShopSeller: FC<IShopSeller> = ({ data }) => {
           )}
         </Container>
 
-        <Grid container spacing={6}>
-          <Grid item xs={6}>
-            <Slider urls={imageUrls} />
+        <Container maxWidth={'xl'}>
+          <Grid container spacing={6}>
+            <Grid item xs={12} md={6}>
+              <Slider urls={imageUrls} />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              {data.sellers.data.map((item: IShopSellerItem) => (
+                <Description key={item.id} description={item.attributes} />
+              ))}
+            </Grid>
           </Grid>
-          <Grid item xs={6}>
-            {data.sellers.data.map((item: IShopSellerItem) => (
-              <Description key={item.id} description={item.attributes} />
-            ))}
-          </Grid>
-        </Grid>
+        </Container>
 
         <Container maxWidth={'xl'} sx={{ mt: '80px' }}>
           <ProductNav

@@ -51,9 +51,7 @@ export interface ICardItem {
 
 const Card: FC<{ product: ICardItem }> = ({ product }) => {
   const sellerRating = product.sellers?.data?.[0]?.attributes?.rating || 0
-  const imageUrl = getStrapiURL(
-    product.images?.data?.[0]?.attributes?.url || '/assets/placeholder.svg',
-  )
+  const imageUrl = getStrapiURL(product.images.data[0]?.attributes.url || '/assets/placeholder.svg')
 
   return (
     <CardS>

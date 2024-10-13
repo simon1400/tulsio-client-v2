@@ -4,6 +4,8 @@ export const ProductTopS = styled.div(
   ({ theme }) => `
   border-radius: ${theme.borderRadius.base};
   background: white;
+  display: flex;
+  flex-dirtection: column;
   height: 100%;
   padding: 40px 50px;
   ${theme.breakpoints.down('xxl')} {
@@ -19,16 +21,7 @@ export const ProductTopS = styled.div(
     border-radius: ${theme.borderRadius.sm};
   }
   .labels-wrap{
-    margin-top: 15px;
-    margin-bottom: 30px;
-    > label{
-      &:not(:first-of-type) {
-        margin-left: 5px;
-      }
-      &:not(:last-of-type) {
-        margin-right: 5px;
-      }
-    }
+    margin-bottom: 15px;
   }
   .bottom{
     display: flex;
