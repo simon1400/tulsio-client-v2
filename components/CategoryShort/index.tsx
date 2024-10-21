@@ -8,12 +8,22 @@ import { CategoryDescriptionS } from './styles'
 interface ICategoryShort {
   data: any
   staticBlock?: boolean
+  descriptionBlock?: boolean
   removeHover?: boolean
 }
 
-const CategoryShort: FC<ICategoryShort> = ({ data, staticBlock = false, removeHover = false }) => {
+const CategoryShort: FC<ICategoryShort> = ({
+  data,
+  staticBlock = false,
+  removeHover = false,
+  descriptionBlock = false,
+}) => {
   return (
-    <CategoryDescriptionS removeHover={removeHover} staticBlock={staticBlock}>
+    <CategoryDescriptionS
+      removeHover={removeHover}
+      staticBlock={staticBlock}
+      descriptionBlock={descriptionBlock}
+    >
       <div className={'img-wrap'} />
       <div className={'content-wrap-art'}>
         <Typography marginBottom={staticBlock ? 5 : 0} variant={staticBlock ? 'h1' : 'h2'}>

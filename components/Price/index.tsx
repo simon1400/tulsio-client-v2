@@ -1,14 +1,23 @@
+import React from 'react'
+
 import { PriceS } from './styled'
 
-const Price = () => {
+const Price: React.FC<{ price: number; availability?: boolean }> = ({ price, availability }) => {
+  const formattedPrice = new Intl.NumberFormat('cs-CZ', {
+    style: 'currency',
+    currency: 'CZK',
+  }).format(price)
+
+  const availabilityLabel = availability ? 'Skladem' : 'Není skladem'
+
   return (
-    <PriceS>
+    <PriceS availability={availability}>
       <div>
-        <b>{'560 kc'}</b>
+        <b>{formattedPrice}</b>
       </div>
       <div>
-        <span>{'vcetne DPH'}</span>
-        <label>{'skladem'}</label>
+        <span>{'včetně DPH'}</span>
+        <label>{availability !== undefined ? availabilityLabel : ''}</label>
       </div>
     </PriceS>
   )

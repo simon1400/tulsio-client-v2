@@ -1,34 +1,86 @@
-import { Typography } from '@mui/material'
+/* eslint-disable react-dom/no-dangerously-set-innerhtml */
+import type { ICardItem } from 'components/Card'
+import type { ISellerItem } from 'components/Seller'
+import type { FC } from 'react'
+import type { IImageArray } from 'types/image'
+
+import { Grid, Typography } from '@mui/material'
 import Button from 'components/Button'
 import ColorLabel from 'components/ColorLabel'
 import Price from 'components/Price'
 import Rating from 'components/Rating'
+import DOMPurify from 'isomorphic-dompurify'
 
 import { ProductTopS } from './styled'
 
-const ProductTop = () => {
+export interface IProductTopItem {
+  title: string
+  slug: string
+  description: string
+  images: IImageArray
+  link: string
+  shopCategories: {
+    data: {
+      attributes: {
+        title: string
+        slug: string
+      }
+    }[]
+  }
+  sellers: {
+    data: {
+      attributes: ISellerItem
+    }[]
+  }
+  customId: string
+  availability: boolean
+  brand: string
+  gtin: string
+  mpn: string
+  price: number
+  labels: {
+    data: {
+      attributes: {
+        title: string
+        color: string
+      }
+    }[]
+  }
+  products: {
+    data: {
+      attributes: ICardItem
+    }[]
+  }
+}
+
+const ProductTop: FC<{ product: IProductTopItem }> = ({ product }) => {
   return (
     <ProductTopS>
-      <Typography variant={'h1'}>{'Skywalker 12 %'}</Typography>
-      <div className={'labels-wrap'}>
-        <ColorLabel color={'#a50d5a'}>{'asddsa'}</ColorLabel>
-        <ColorLabel color={'#99ff99'}>{'asddsa sdadg'}</ColorLabel>
-        <ColorLabel color={'#fff899'}>{'asddsa1232'}</ColorLabel>
-      </div>
-      <Rating marginBottom={30} />
-      <Typography>
-        {
-          'Rostoucí popularita užívání CBD spočívá v mnoha pozitivních účincích na lidský organismus.'
-        }
-        {
-          'Ale začněme pěkně popořadě. Kanabidiol je jeden z desítek typů kanabinoidů obsaženýcpočívá v'
-        }
-        {'mnoha pozitivních účincích na lidský organismus. Ale začněme pěkně popořadě...'}
-      </Typography>
-      <div className={'bottom'}>
-        <Price />
-        <Button>{'koupit na (shopname)'}</Button>
-      </div>
+      <Grid container spacing={4}>
+        <Grid item xs={12}>
+          <Typography variant={'h1'} marginBottom={2}>
+            {product.title}
+          </Typography>
+          <div className={'labels-wrap'}>
+            <ColorLabel labels={product.labels.data} direction={'row'} />
+          </div>
+
+          <Rating rating={product.sellers.data[0].attributes.rating} />
+          <Typography
+            variant={'body2'}
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(product.description),
+            }}
+          />
+          <div className={'bottom'}>
+            <Price price={product.price} availability={product.availability} />
+            <Button href={product.link}>
+              {'koupit na '}
+              {product.brand}
+            </Button>
+          </div>
+        </Grid>
+      </Grid>
     </ProductTopS>
   )
 }
