@@ -7,7 +7,6 @@ export const Container = styled.div`
   justify-content: center;
 
   .central-container {
-    max-width: 950px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -15,7 +14,6 @@ export const Container = styled.div`
 
   .player-bg {
     position: relative;
-    max-width: 950px;
     width: 100%;
     height: 159px;
     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.05);
@@ -33,8 +31,7 @@ export const Container = styled.div`
   }
   .top-control {
     position: relative;
-    max-width: 900px;
-    width: 100%;
+    width: 94.7%;
     height: 101px;
     margin: 0 15px;
     display: flex;
@@ -52,8 +49,7 @@ export const Container = styled.div`
 export const TimeDisplay = styled.div`
   position: absolute;
   top: 85px;
-  max-width: 930px;
-  width: 100%;
+  width: 97.89%;
 
   @media (max-width: 499px) {
     top: 55px;
