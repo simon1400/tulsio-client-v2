@@ -80,7 +80,7 @@ const ArticleShort: FC<ArticleShortProps> = ({
           {!!label && !Array.isArray(label) && <Label data={label} color={color} />}
           {!!label &&
             Array.isArray(label) &&
-            label.map((item, idx) => <Label color={color} key={`${item}`} data={item} />)}
+            label.map((item, idx) => <Label color={color} key={`${item}_${idx}`} data={item} />)}
         </div>
       </div>
     </ArticleWrap>
