@@ -23,11 +23,9 @@ const Chapter = styled.div`
   margin-bottom: 60px;
 `
 
-const Article = ({
-  // @ts-expect-error: some erorr
-  article,
-}) => {
+const Article = ({ article, relative = false }: { article: any; relative?: any }) => {
   const router = useRouter()
+  console.log(relative)
 
   return (
     <Page>
@@ -98,18 +96,14 @@ const Article = ({
               )}
             </Content>
           </Container>
-          {!!article.categories?.data[0]?.attributes.articles.data.length && (
+          {relative && (
             <>
               <Container maxWidth={'md'}>
                 <Typography component={'h2'} variant={'h1'} marginBottom={10}>
                   {'Dále by vás mohlo zajímat'}
                 </Typography>
               </Container>
-              <Articles
-                data={article.categories.data[0].attributes.articles.data
-                  .splice(0, 4)
-                  .map((item: any) => item.attributes)}
-              />
+              <Articles data={relative.map((item: any) => item.attributes)} />
             </>
           )}
         </article>

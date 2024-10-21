@@ -1,7 +1,9 @@
 import type { FC, ReactNode } from 'react'
 
+import { redirects } from 'helpers/redirects'
+import { useOnMountUnsafe } from 'helpers/useOnMountUnsaf'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
+import { usePathname } from 'next/navigation'
 import Script from 'next/script'
 import { useSelector } from 'react-redux'
 import { selectDescription, selectTitle } from 'stores/slices/dataSlices'
@@ -16,7 +18,7 @@ interface IPage {
 }
 
 const Page: FC<IPage> = ({ children, className = '', id = '' }) => {
-  const router = useRouter()
+  const pathname = usePathname()
 
   const title = useSelector(selectTitle)
   const description = useSelector(selectDescription)
@@ -50,6 +52,16 @@ const Page: FC<IPage> = ({ children, className = '', id = '' }) => {
   const theDescription = description || global.defaultDescription
   const theImage = image || global.defaultImage
 
+  useOnMountUnsafe(async () => {
+    const redirectsData = await redirects()
+    redirectsData.map((item: any) => {
+      if (item.source === pathname) {
+        window.location.href = item.destination
+      }
+      return true
+    })
+  })
+
   return (
     <>
       <Head>
@@ -71,12 +83,9 @@ const Page: FC<IPage> = ({ children, className = '', id = '' }) => {
         <link
           rel={'alternate'}
           hrefLang={'cs'}
-          href={`${DOMAIN}/cs${router.asPath !== '/' ? router.asPath : ''}`}
+          href={`${DOMAIN}/cs${pathname !== '/' ? pathname : ''}`}
         />
-        <link
-          rel={'canonical'}
-          href={global.site_url + (router.asPath !== '/' ? router.asPath : '')}
-        />
+        <link rel={'canonical'} href={global.site_url + (pathname !== '/' ? pathname : '')} />
         <meta itemProp={'name'} content={theTitle} />
         <meta itemProp={'description'} content={theDescription} />
         <meta itemProp={'image'} content={theImage} />
@@ -88,10 +97,7 @@ const Page: FC<IPage> = ({ children, className = '', id = '' }) => {
         <meta name={'twitter:image:src'} content={theImage} />
         <meta property={'og:title'} content={ogTitle || theTitle} />
         <meta property={'og:type'} content={contentType} />
-        <meta
-          property={'og:url'}
-          content={global.site_url + (router.asPath !== '/' ? router.asPath : '')}
-        />
+        <meta property={'og:url'} content={global.site_url + (pathname !== '/' ? pathname : '')} />
         <meta property={'og:image'} content={theImage} />
         <meta property={'og:description'} content={ogDescription || theDescription} />
         <meta property={'og:site_name'} content={siteName.toUpperCase()} />

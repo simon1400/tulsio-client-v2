@@ -1,26 +1,33 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled'
 
-export const FooterS = styled.footer(({theme}) => `
+export const FooterS = styled.footer(
+  ({ theme }) => `
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-left: ${theme.globalGap['xxl']};
-  margin-right: ${theme.globalGap['xxl']};
-  border-top-left-radius: ${theme.borderRadius['base']};
-  border-top-right-radius: ${theme.borderRadius['base']};
+  margin-left: ${theme.globalGap.xxl};
+  margin-right: ${theme.globalGap.xxl};
+  border-top-left-radius: ${theme.borderRadius.base};
+  border-top-right-radius: ${theme.borderRadius.base};
   background: ${theme.palette.secondary.main};
   padding: 60px 40px;
+  >div{
+    width: 100%;
+  }
+  >nav ul{
+    white-space: nowrap;
+  }
   ${theme.breakpoints.down('xl')} {
-    margin-left: ${theme.globalGap['xl']};
-    margin-right: ${theme.globalGap['xl']};
-    border-top-left-radius: ${theme.borderRadius['xl']};
-    border-top-right-radius: ${theme.borderRadius['xl']};
+    margin-left: ${theme.globalGap.xl};
+    margin-right: ${theme.globalGap.xl};
+    border-top-left-radius: ${theme.borderRadius.xl};
+    border-top-right-radius: ${theme.borderRadius.xl};
   }
   ${theme.breakpoints.down('lg')} {
-    margin-left: ${theme.globalGap['lg']};
-    margin-right: ${theme.globalGap['lg']};
-    border-top-left-radius: ${theme.borderRadius['lg']};
-    border-top-right-radius: ${theme.borderRadius['lg']};
+    margin-left: ${theme.globalGap.lg};
+    margin-right: ${theme.globalGap.lg};
+    border-top-left-radius: ${theme.borderRadius.lg};
+    border-top-right-radius: ${theme.borderRadius.lg};
   }
   ${theme.breakpoints.down('md')} {
     flex-wrap: wrap;
@@ -35,10 +42,10 @@ export const FooterS = styled.footer(({theme}) => `
     }
   }
   ${theme.breakpoints.down('sm')} {
-    margin-left: ${theme.globalGap['sm']};
-    margin-right: ${theme.globalGap['sm']};
-    border-top-left-radius: ${theme.borderRadius['sm']};
-    border-top-right-radius: ${theme.borderRadius['sm']};
+    margin-left: ${theme.globalGap.sm};
+    margin-right: ${theme.globalGap.sm};
+    border-top-left-radius: ${theme.borderRadius.sm};
+    border-top-right-radius: ${theme.borderRadius.sm};
     div{
       justify-content: center;
       > ul{
@@ -60,4 +67,5 @@ export const FooterS = styled.footer(({theme}) => `
       }
     }
   }
-`)
+`,
+)

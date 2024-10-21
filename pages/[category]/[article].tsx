@@ -1,5 +1,3 @@
-import type { NextPage } from 'next'
-
 import { wrapper } from 'stores'
 import { changeDescription, changeTitle } from 'stores/slices/dataSlices'
 import { changeImage } from 'stores/slices/metaSlices'
@@ -32,6 +30,8 @@ export const getServerSideProps = wrapper.getServerSideProps(
       }
 
       const article = data.articles.data[0].attributes
+      const relative =
+        data.articles.data[0].attributes.categories.data[0].attributes.articles.data.splice(0, 4)
 
       store.dispatch(changeTitle(article.meta?.title || article.title))
       store.dispatch(changeDescription(article.meta?.description || ''))
@@ -44,16 +44,14 @@ export const getServerSideProps = wrapper.getServerSideProps(
       return {
         props: {
           article,
+          relative,
         },
       }
     },
 )
 
-const ArticlePage: NextPage = ({
-  // @ts-expect-error: some error
-  article,
-}) => {
-  return <Article article={article} />
+const ArticlePage = ({ article, relative }: { article: any; relative: any }) => {
+  return <Article article={article} relative={relative} />
 }
 
 export default ArticlePage

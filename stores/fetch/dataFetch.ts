@@ -24,11 +24,15 @@ export const fetchAllArticles =
 
     if (link === 'blog' || link === 'tags') {
       if (link === 'blog') {
-        ;(title = 'Blog'), (categoryTitle = 'Blog')
-        ;(description = 'Blog'), (type = 'blog')
+        title = 'Blog'
+        categoryTitle = 'Blog'
+        description = 'Blog'
+        type = 'blog'
       } else {
-        ;(title = 'Štítky'), (categoryTitle = 'Štítky')
-        ;(description = 'Štítky'), (type = 'tag')
+        title = 'Štítky'
+        categoryTitle = 'Štítky'
+        description = 'Štítky'
+        type = 'tag'
       }
 
       const { data: articleData } = await client.query({
@@ -115,12 +119,15 @@ export const fetchCategoryOrArticles =
 
     if (link === 'blog' || link === 'tags') {
       if (link === 'blog') {
-        ;(dataTitle = 'Blog'), (categoryTitle = 'Blog'), (dataDescription = 'Blog'), (type = 'blog')
+        dataTitle = 'Blog'
+        categoryTitle = 'Blog'
+        dataDescription = 'Blog'
+        type = 'blog'
       } else {
-        ;(dataTitle = 'Štítky'),
-          (categoryTitle = 'Štítky'),
-          (dataDescription = 'Štítky'),
-          (type = 'tag')
+        dataTitle = 'Štítky'
+        categoryTitle = 'Štítky'
+        dataDescription = 'Štítky'
+        type = 'tag'
       }
       const { data: articleData } = await client.query({
         query: getAllArticles,

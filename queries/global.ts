@@ -12,6 +12,7 @@ const globalQuery = gql`
               text
             }
           }
+          additionalContent
         }
       }
     }

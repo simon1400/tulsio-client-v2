@@ -9,7 +9,7 @@ export default function Document() {
         <Main />
         <NextScript />
         <Script
-          strategy={'beforeInteractive'}
+          strategy={'afterInteractive'}
           src={`https://cdn-cookieyes.com/client_data/fa94095f15c62f6fd1c7afac/script.js`}
         />
       </body>
