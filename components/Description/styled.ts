@@ -12,6 +12,13 @@ export const DescriptionS = styled.div(
       transform: scale(.98);
     }
   }
+  ${theme.breakpoints.up('lg')} {
+    .content-bottom {
+      position: absolute;
+      bottom: 20px;
+      right: 40px;
+    }
+  }
   .img-wrap{
     background: white;
     height: 100%;
@@ -51,7 +58,6 @@ export const DescriptionS = styled.div(
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    position: relative;
     z-index: 2;
     ${theme.breakpoints.down('md')} {
       padding: ${theme.globalPadding.lg};
@@ -68,9 +74,7 @@ export const DescriptionS = styled.div(
     }
     .content-bottom {
       display: flex;
-      height: 100%;
       justify-content: flex-end;
-      align-items: flex-end;
     }
   }
 `,

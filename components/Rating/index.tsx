@@ -5,12 +5,13 @@ import { Rating } from '@mui/material'
 
 import { RatingS } from './styled'
 
-const RatingComponent: FC<{ rating: number; showNumber?: boolean }> = ({
+const RatingComponent: FC<{ rating: number; showNumber?: boolean; big?: boolean }> = ({
   rating,
   showNumber = true,
+  big = false,
 }) => {
   return (
-    <RatingS>
+    <RatingS big={big}>
       {showNumber && <div style={{ color: '#2B2B2B' }}>{rating}</div>}
       <Rating
         name={'read-only'}

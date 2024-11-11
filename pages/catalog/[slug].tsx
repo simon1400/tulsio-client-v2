@@ -1,4 +1,3 @@
-/* eslint-disable react/prefer-shorthand-fragment */
 import type { ICardItem } from 'components/Card'
 import type { NextPage } from 'next'
 
@@ -53,7 +52,6 @@ export interface IShopItem {
   id: number
   attributes: ICardItem
 }
-
 const ShopCatalog: NextPage<{
   products: IShopItem[]
   categorySlug: string
@@ -73,38 +71,27 @@ const ShopCatalog: NextPage<{
       (category) => category?.attributes?.slug === categorySlug,
     ),
   )
-  const descriptionPosition = filteredProducts.length < 9 ? filteredProducts.length + 1 : 9
 
   return (
     <Page>
       <Container maxWidth={'xxl'}>
         <PageShop title={'Produkty'} category />
         <GridShop>
-          <React.Fragment>
-            {filteredProducts.map((item: IShopItem) => (
-              <div key={item.id}>
-                <Card product={item.attributes} />
-              </div>
-            ))}
+          {filteredProducts.map((item: IShopItem) => (
+            <Card key={item.id} product={item.attributes} />
+          ))}
 
-            {categoryData && (
-              <div
-                style={{
-                  display: 'grid',
-                  gridArea: `auto / ${descriptionPosition <= 5 ? descriptionPosition : 4} / span 1 / span 2`,
-                  gridRow: `auto`,
+          {categoryData && (
+            <div className={'category-short'}>
+              <CategoryShort
+                descriptionBlock
+                data={{
+                  title: categoryData.title,
+                  description: categoryData.description,
                 }}
-              >
-                <CategoryShort
-                  descriptionBlock
-                  data={{
-                    title: categoryData.title,
-                    description: categoryData.description,
-                  }}
-                />
-              </div>
-            )}
-          </React.Fragment>
+              />
+            </div>
+          )}
         </GridShop>
       </Container>
     </Page>
