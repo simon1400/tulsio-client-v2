@@ -35,7 +35,7 @@ const Seller: FC<{ sellers: ISellerItem }> = ({ sellers }) => {
           <SellerLogo image={sellers.logo} />
           <Typography variant={'h4'}>{sellers.title}</Typography>
         </div>
-        <Rating rating={sellers.rating} />
+        <Rating rating={sellers.rating} big />
       </div>
       <Typography
         variant={'body2'}
