@@ -55,7 +55,7 @@ export const NewsletterS = styled.div(
   p{
     font-size: 50px;
     line-height: 1.2;
-    color: ${theme.palette.mode === 'light' ? '#fff' : '#000'};
+    color: ${theme.palette.mode === 'dark' ? '#fff' : '#000'};
   }
 `,
 )

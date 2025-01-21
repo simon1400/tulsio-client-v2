@@ -185,6 +185,7 @@ export const getArticle = gql`
                   data {
                     attributes {
                       title
+                      locale
                       slug
                       perex
                       background

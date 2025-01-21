@@ -33,7 +33,7 @@ const Articles: FC<IArticles> = ({ data, searchResult = false, shortInfo }) => {
                     <ArticleShort
                       title={item?.title}
                       showShortImg={item.showShortImg}
-                      link={`/blog/${item.slug}`}
+                      link={`${item.locale ? '/'+item.locale : ''}/blog/${item.slug}`}
                       background={item.background}
                       image={searchResult ? item?.image : item?.image.data?.attributes}
                       label={
@@ -51,7 +51,7 @@ const Articles: FC<IArticles> = ({ data, searchResult = false, shortInfo }) => {
                   <ArticleShort
                     title={item?.title}
                     showShortImg={item.showShortImg}
-                    link={`/blog/${item.slug}`}
+                    link={`${item.locale ? '/'+item.locale : ''}/blog/${item.slug}`}
                     background={item.background}
                     image={searchResult ? item?.image : item?.image.data?.attributes}
                     label={

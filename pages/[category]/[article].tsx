@@ -33,8 +33,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
       }
 
       const article = data.articles.data[0].attributes
-      const relative =
-        data.articles.data[0].attributes.categories.data[0].attributes.articles.data.splice(0, 4)
+      const relative = article.categories.data[0].attributes.articles.data.splice(0, 4)
 
       store.dispatch(changeTitle(article.meta?.title || article.title))
       store.dispatch(changeDescription(article.meta?.description || ''))
