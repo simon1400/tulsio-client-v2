@@ -68,22 +68,9 @@ export const GridShop = styled.div(
   grid-template-columns: repeat(5, 1fr);
   grid-column-gap: ${theme.globalGap.xxl};
   grid-row-gap: ${theme.globalGap.xxl};
-
-  > div {
-    &:nth-of-type(1) { grid-area: 1 / 1 / 2 / 2; }
-    &:nth-of-type(2) { grid-area: 1 / 2 / 2 / 3; }
-    &:nth-of-type(3) { grid-area: 1 / 3 / 2 / 4; }
-    &:nth-of-type(4) { grid-area: 1 / 4 / 2 / 5; }
-    &:nth-of-type(5) { grid-area: 1 / 5 / 2 / 6; }
-    &:nth-of-type(6) { grid-area: 2 / 1 / 3 / 2; }
-    &:nth-of-type(7) { grid-area: 2 / 2 / 3 / 3; }
-    &:nth-of-type(8) { grid-area: 2 / 3 / 3 / 4; }
-    &:nth-of-type(9) { grid-area: 2 / 4 / 3 / 6; }
-    /* &:nth-of-type(10) { grid-area: 3 / 1 / 4 / 2; }
-    &:nth-of-type(11) { grid-area: 3 / 2 / 4 / 3; }
-    &:nth-of-type(12) { grid-area: 3 / 3 / 4 / 4; }
-    &:nth-of-type(13) { grid-area: 3 / 4 / 4 / 5; }
-    &:nth-of-type(14) { grid-area: 3 / 5 / 4 / 6; } */
+  .category-short {
+    grid-column: span 2;
+    grid-row: auto;
   }
 
   ${theme.breakpoints.down('xl')} {

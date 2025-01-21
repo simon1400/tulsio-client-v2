@@ -65,7 +65,7 @@ const ProductTop: FC<{ product: IProductTopItem }> = ({ product }) => {
             <ColorLabel labels={product.labels.data} direction={'row'} />
           </div>
 
-          <Rating rating={product.sellers.data[0].attributes.rating} />
+          <Rating rating={product.sellers.data[0].attributes.rating} big />
           <Typography
             variant={'body2'}
             dangerouslySetInnerHTML={{

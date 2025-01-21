@@ -29,7 +29,6 @@ const Breadcrumbs: FC<IBreadcrumbs> = ({ category, color, product, isCatalog }) 
             fill: color,
             transform: 'rotate(-90deg)',
           }}
-          fontSize={'medium'}
         />
       }
     >

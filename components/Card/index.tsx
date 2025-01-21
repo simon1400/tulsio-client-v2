@@ -6,7 +6,7 @@ import Rating from 'components/Rating'
 import { getStrapiURL } from 'lib/api'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import { useRouter } from 'next/router'
 
 import { CardS } from './styles'
 import AngleRight from '/public/assets/angle-right.svg'
@@ -53,8 +53,14 @@ const Card: FC<{ product: ICardItem }> = ({ product }) => {
   const sellerRating = product.sellers?.data?.[0]?.attributes?.rating || 0
   const imageUrl = getStrapiURL(product.images.data[0]?.attributes.url || '/assets/placeholder.svg')
 
+  const router = useRouter()
+
+  const handleCardClick = () => {
+    router.push(`/product/${product.slug}`)
+  }
+
   return (
-    <CardS>
+    <CardS onClick={handleCardClick} role={'button'} tabIndex={0}>
       <div className={'img-wrap'}>
         <Image src={imageUrl} fill alt={product.title} />
 
@@ -64,7 +70,7 @@ const Card: FC<{ product: ICardItem }> = ({ product }) => {
       </div>
       <div className={'card-content'}>
         <Typography variant={'h3'}>{product.title}</Typography>
-        <Rating showNumber={false} rating={sellerRating} />
+        <Rating showNumber={false} rating={sellerRating} big={false} />
         <div className={'card-control'}>
           <Typography>
             {product.price}

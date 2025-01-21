@@ -156,9 +156,9 @@ const Product: FC<IProduct> = ({ data }) => {
 
       </Container>
       <Container maxWidth={'md'}>
-        <Content removePadding>
-          <Typography variant={'h2'}>{data.products.data[0].attributes.title}</Typography>
-          <Typography sx={{ mb: '66px' }}>
+        <Content>
+          <Typography  maxWidth={'md'} sx={{ mt: '80px' }} variant={'h2'}>{data.products.data[0].attributes.title}</Typography>
+          <Typography sx={{ mt:'40px' }}>
             {'Česká legislativa umožňuje pěstovat všechny druhy CBD, které jsou'}
             {'uvedeny v Evropském katalogu odrůd technického konopí. Pěstování pod'}
             {'lampou (indoor) povoluje bez omezení. Na polích větších než 10 m2'}

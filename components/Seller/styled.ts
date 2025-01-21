@@ -31,15 +31,18 @@ export const SellerS = styled.div(
     justify-content: space-between;
     align-items: center;
     margin-bottom: 24px;
-    // ${theme.breakpoints.down('sm')} {
-    //   flex-direction: column;
-      
-    // }
+    ${theme.breakpoints.down('sm')} {
+      flex-direction: column;
+      align-items: flex-start;
+    }
 
   }
   .logo-wrap{
     display: flex;
     align-items: center;
+    ${theme.breakpoints.down('sm')} {
+      margin-bottom: 20px;
+    }
     > div{
       margin-right: 20px;
 

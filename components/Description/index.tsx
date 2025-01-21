@@ -59,7 +59,7 @@ const Description: FC<{ description: IDescription; staticBlock?: boolean }> = ({
                 {'O prodejci '}
                 {description.title}
               </Typography>
-              <RatingComponent rating={description.rating} showNumber />
+              <RatingComponent big rating={description.rating} showNumber />
             </div>
             <Typography
               variant={'body2'}

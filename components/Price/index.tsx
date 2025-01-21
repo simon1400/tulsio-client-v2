@@ -6,6 +6,8 @@ const Price: React.FC<{ price: number; availability?: boolean }> = ({ price, ava
   const formattedPrice = new Intl.NumberFormat('cs-CZ', {
     style: 'currency',
     currency: 'CZK',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
   }).format(price)
 
   const availabilityLabel = availability ? 'Skladem' : 'Není skladem'
