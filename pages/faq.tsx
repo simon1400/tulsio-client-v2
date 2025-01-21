@@ -105,6 +105,21 @@ const Faq: NextPage<IFaqPage> = ({ faq, allFaq }) => {
     <Page>
       <Container maxWidth={'md'}>
         <PageHead title={faq.title} />
+        
+        {/* Резервное статическое отображение вопросов и ответов для пользователей без JS */}
+        <noscript>
+          <div>
+            <h2>Frequently Asked Questions</h2>
+            {allFaq.map((faqItem, index) => (
+              <div key={index} style={{ marginBottom: '20px' }}>
+                <h3>{faqItem.title}</h3>
+                <p>{faqItem.answer}</p>
+              </div>
+            ))}
+          </div>
+        </noscript>
+
+        {/* Интерфейс поиска для пользователей с включенным JS */}
         <InstantSearch
           indexName={`${meilisearchPrefix}faq`}
           searchClient={searchClient.searchClient}
