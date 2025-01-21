@@ -1,48 +1,57 @@
-import type { FC } from 'react'
+import type { FC } from 'react';
+import Image from 'components/Image';
 
-import Image from 'components/Image'
-
-import { LinkS, SocialNavS } from './styles'
+import { LinkS, SocialNavS } from './styles';
 
 interface ISocialNav {
   data: {
     navigation: {
       data: {
-        attributes: {
-          socNav: { item: INavItems[] }
-        }
-      }
-    }
-  }
-  loading: boolean
+        attributes: any;
+      };
+    };
+  };
+  loading?: boolean;
 }
 
-interface INavItems {
-  link: string
-  background: string
-  icon: IImageRoot
+interface INavItem {
+  link: string;
+  background: string;
+  icon: {
+    data: {
+      attributes: {
+        url: string;
+        alternativeText: string;
+      };
+    };
+  };
 }
 
 const SocialNav: FC<ISocialNav> = ({ data, loading }) => {
   if (loading) {
-    return null
+    return null;
   }
 
-  const nav: INavItems[] = data.navigation.data.attributes.socNav.item
+  const nav = data?.navigation?.data?.attributes?.socNav?.item || [];
 
   return (
     <SocialNavS>
       <ul>
-        {nav.map((item: INavItems) => (
-          <li key={item.link}>
-            <LinkS background={item.background} href={item.link} passHref>
-              <Image image={item.icon.data} width={25} height={25} alt={''} />
+        {nav.map(({ link, background, icon }: {link: string; background: string; icon: any}) => (
+          <li key={link}>
+            <LinkS background={background} href={link} passHref>
+              <Image
+                image={icon.data}
+                width={25}
+                height={25}
+                alt={icon.data.attributes.alternativeText || 'Social Icon'}
+              />
             </LinkS>
           </li>
         ))}
       </ul>
     </SocialNavS>
-  )
-}
+  );
+};
 
-export default SocialNav
+export default SocialNav;

@@ -10,6 +10,9 @@ import { productsQuery } from 'queries/product'
 import { wrapper } from 'stores'
 import { fetchNavCatalog } from 'stores/fetch/navFetch'
 import { GridShop } from 'styles/grid'
+import navHeader from 'queries/navHeader'
+import navFooter from 'queries/navFooter'
+import globalQuery from 'queries/global'
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
@@ -20,10 +23,31 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
       await store.dispatch(fetchNavCatalog(locale as string))
 
+      const { data: headerData } = await client.query({query: navHeader, 
+        variables: {
+          locale: locale,
+        },}
+      )
+    
+      const { data: footerData } = await client.query({query: navFooter,
+        variables: {
+          locale: locale,
+        },
+      })
+    
+      const { data: newsletterData } = await client.query({query: globalQuery, 
+        variables: {
+          locale: locale,
+        },
+      })
+
       return {
         props: {
           light: true,
           data,
+          headerData,
+          footerData,
+          newsletterData
         },
       }
     },

@@ -19,17 +19,12 @@ interface Props {
   mobileOpen: boolean
   handleDrawerToggle: () => void
   data: any
-  loading: boolean
   handleMenu: (e: SyntheticEvent, slug: string) => void
   value: number
 }
 
 const Menu: FC<Props> = (props) => {
-  const { mobileOpen, handleDrawerToggle, data, loading, handleMenu } = props
-
-  if (loading) {
-    return <></>
-  }
+  const { mobileOpen, handleDrawerToggle, data, handleMenu } = props
 
   return (
     <Drawer

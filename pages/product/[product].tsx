@@ -5,6 +5,10 @@ import type { IShopCategory } from 'components/ProductNav';
 import type { IProductTopItem } from 'components/ProductTop'
 import type { FC } from 'react'
 
+import globalQuery from 'queries/global'
+import navFooter from 'queries/navFooter'
+import navHeader from 'queries/navHeader'
+
 import { Container, Grid, Typography } from '@mui/material'
 import Breadcrumbs from 'components/Breadcrumbs'
 import Card from 'components/Card'
@@ -37,10 +41,32 @@ export const getServerSideProps = wrapper.getServerSideProps(
         },
       })
       await store.dispatch(fetchNavCatalog(locale as string))
+
+      const { data: headerData } = await client.query({query: navHeader, 
+        variables: {
+          locale: locale,
+        },}
+      )
+    
+      const { data: footerData } = await client.query({query: navFooter,
+        variables: {
+          locale: locale,
+        },
+      })
+    
+      const { data: newsletterData } = await client.query({query: globalQuery, 
+        variables: {
+          locale: locale,
+        },
+      })
+
       return {
         props: {
           light: true,
           data,
+          headerData,
+          footerData,
+          newsletterData
         },
       }
     },

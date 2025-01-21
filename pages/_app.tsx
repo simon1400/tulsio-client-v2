@@ -35,9 +35,9 @@ const MyApp: FC<MyAppProps> = ({ Component, ...rest }) => {
         <ThemeProvider theme={{ ...selectTheme, ...globalVariables }}>
           <CssBaseline />
           <WithGraphQL>
-            {!embed?.length && <Header />}
+            {!embed?.length && <Header data={pageProps.headerData} />}
             <Component {...pageProps} />
-            {!embed?.length && <Footer />}
+            {!embed?.length && <Footer data={pageProps.footerData} dataGlobal={pageProps.newsletterData} />}
             {!embed?.length && <GranimComponent />}
           </WithGraphQL>
         </ThemeProvider>

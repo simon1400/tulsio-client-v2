@@ -1,59 +1,61 @@
-import type { SyntheticEvent } from 'react'
+import type { SyntheticEvent, FC } from 'react';
+import { Container, Typography } from '@mui/material';
+import Content from 'components/Content';
+import Nav from 'components/Nav';
+import Newsletter from 'components/Newsletter';
+import SocialNav from 'components/SocialNav';
+import { useRouter } from 'next/router';
 
-import { useQuery } from '@apollo/client'
-import { Container, Typography } from '@mui/material'
-import Content from 'components/Content'
-import Nav from 'components/Nav'
-import Newsletter from 'components/Newsletter'
-import SocialNav from 'components/SocialNav'
-import { useRouter } from 'next/router'
-import globalQuery from 'queries/global'
+import { FooterS } from './styles';
 
-import navFooter from '../../queries/navFooter'
+// Типизация для props
+interface FooterProps {
+  dataGlobal: {
+    global: {
+      data: {
+        attributes: {
+          additionalContent?: string;
+          newsletter: any;
+        };
+      };
+    };
+  };
+  data: {
+    navigation: {
+      data: {
+        attributes: any;
+      };
+    };
+  };
+}
 
-import { FooterS } from './styles'
+const Footer: FC<FooterProps> = ({ dataGlobal, data }) => {
+  const router = useRouter();
 
-const Footer = () => {
-  const router = useRouter()
-  const { loading, data } = useQuery(navFooter, {
-    variables: {
-      locale: router.locale,
-    },
-  })
+  // Трансформация данных меню навигации
+  const transformData = data?.navigation.data.attributes?.footer?.item.map(({ name, link }: {name: string; link: string}) => ({
+    title: name,
+    slug: link,
+  }));
 
-  const { loading: loadingNewsletter, data: dataGlobal } = useQuery(globalQuery, {
-    variables: {
-      locale: router.locale,
-    },
-  })
-
-  if (loading || loadingNewsletter) {
-    return <footer />
-  }
-
-  const transformData = data.navigation.data.attributes.footer.item.map(
-    (item: any, idx: number) => ({
-      title: item.name,
-      slug: item.link,
-    }),
-  )
-
+  // Обработчик навигации
   const handleNav = (e: SyntheticEvent, slug: string) => {
-    e.preventDefault()
-    router.push(slug)
-  }
+    e.preventDefault();
+    router.push(slug);
+  };
 
-  const additionalContent = dataGlobal.global.data.attributes?.additionalContent
+  // Дополнительный контент
+  const additionalContent = dataGlobal?.global.data.attributes?.additionalContent;
 
   return (
     <>
       {additionalContent && (
-        <Container maxWidth={'md'}>
+        <Container maxWidth="md">
           <Content smallPadding>
             <Typography
-              component={'div'}
-              variant={'body2'}
-              style={{ fontSize: '13px' }}
+              component="div"
+              variant="body2"
+              sx={{ fontSize: '13px' }} // Используем sx вместо style
               dangerouslySetInnerHTML={{
                 __html: additionalContent,
               }}
@@ -61,13 +63,13 @@ const Footer = () => {
           </Content>
         </Container>
       )}
-      <Newsletter newsletter={dataGlobal.global.data.attributes.newsletter} />
+      <Newsletter newsletter={dataGlobal?.global.data.attributes?.newsletter || ''} />
       <FooterS>
         <Nav data={transformData} handle={handleNav} footer />
-        <SocialNav data={data} loading={loading} />
+        <SocialNav data={data} />
       </FooterS>
     </>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

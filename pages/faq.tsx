@@ -13,28 +13,67 @@ import { changeImage } from 'stores/slices/metaSlices'
 import { client, getStrapiURL } from '../lib/api'
 import searchClient from '../lib/meilisearch'
 import { getAllFaqs, getFaq } from '../queries/faq'
+import globalQuery from 'queries/global'
+import navFooter from 'queries/navFooter'
+import navHeader from 'queries/navHeader'
 
-const meilisearchPrefix = process.env.MEILISEARCH_PREFIX
+const meilisearchPrefix = process.env.MEILISEARCH_PREFIX || '' // fallback для переменной окружения
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
-  const { data } = await client.query({ query: getFaq, variables: { locale } })
-  const { data: allFaq } = await client.query({ query: getAllFaqs, variables: { locale } })
+  try {
+    const { data } = await client.query({ query: getFaq, variables: { locale } })
+    const { data: allFaq } = await client.query({ query: getAllFaqs, variables: { locale } })
 
-  const faqData = data.faqPage.data.attributes
+    const faqData = data.faqPage.data.attributes
 
-  store.dispatch(changeTitle(faqData.meta?.title || faqData.title))
-  store.dispatch(changeDescription(faqData.meta?.description || ''))
-  store.dispatch(
-    changeImage(
-      faqData.meta?.image.data ? getStrapiURL(faqData.meta.image.data.attributes.url) : '',
-    ),
-  )
+    store.dispatch(changeTitle(faqData.meta?.title || faqData.title))
+    store.dispatch(changeDescription(faqData.meta?.description || ''))
+    store.dispatch(
+      changeImage(
+        faqData.meta?.image.data ? getStrapiURL(faqData.meta.image.data.attributes.url) : '',
+      ),
+    )
 
-  return {
-    props: {
-      faq: faqData,
-      allFaq: allFaq.faqs.data.map((item: any) => ({ ...item.attributes })),
-    },
+    const { data: headerData } = await client.query({query: navHeader, 
+      variables: {
+        locale: locale,
+      },}
+    )
+  
+    const { data: footerData } = await client.query({query: navFooter,
+      variables: {
+        locale: locale,
+      },
+    })
+  
+    const { data: newsletterData } = await client.query({query: globalQuery, 
+      variables: {
+        locale: locale,
+      },
+    })
+
+    return {
+      props: {
+        faq: faqData,
+        allFaq: allFaq.faqs.data.map((item: any) => ({
+          ...item.attributes,
+        })),
+        headerData,
+        footerData,
+        newsletterData
+      },
+    }
+  } catch (error) {
+    console.error('Error fetching FAQ data:', error)
+    return {
+      props: {
+        faq: null,
+        allFaq: [],
+        headerData: null,
+        footerData: null,
+        newsletterData: null
+      },
+    }
   }
 })
 
@@ -51,6 +90,17 @@ export interface IFaqItem {
 }
 
 const Faq: NextPage<IFaqPage> = ({ faq, allFaq }) => {
+  if (!faq) {
+    return (
+      <Page>
+        <Container maxWidth={'md'}>
+          <PageHead title="FAQ not found" />
+          <p>Sorry, the FAQ page is not available right now.</p>
+        </Container>
+      </Page>
+    )
+  }
+
   return (
     <Page>
       <Container maxWidth={'md'}>
@@ -59,7 +109,6 @@ const Faq: NextPage<IFaqPage> = ({ faq, allFaq }) => {
           indexName={`${meilisearchPrefix}faq`}
           searchClient={searchClient.searchClient}
         >
-          {/* <Configure hitsPerPage={50} /> */}
           <SearchBox placeholder={'Hledat dotaz...'} />
           <FaqHits allFaq={allFaq} />
         </InstantSearch>

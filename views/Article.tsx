@@ -1,20 +1,20 @@
-import Head from "next/head"
-import { Container, Typography } from '@mui/material';
+import styled from '@emotion/styled'
+import { Container, Typography } from '@mui/material'
+import Anchors from 'components/Anchors'
 import ArticleTop from 'components/ArticleTop';
-import Content from 'components/Content';
-import ShareButton from 'components/ShareButtons';
-import { useRouter } from "next/router";
-import Image from 'components/Image'
-import styled from "@emotion/styled";
-import Page from "layout/Page";
-import Button from "components/Button";
-import BannerStatic from "components/BanerStatic";
-import Anchors from "components/Anchors";
-import { oembedTransform } from "helpers/oembedTransform";
 import Articles from "components/Articles";
-import Author from "components/Author";
-import AudioPlayer from 'components/Player';
-import PodcastLink from 'components/PodcastLink';
+import Author from 'components/Author'
+import BannerStatic from 'components/BanerStatic'
+import Button from 'components/Button'
+import Content from 'components/Content'
+import Image from 'components/Image'
+import AudioPlayer from 'components/Player'
+import PodcastLink from 'components/PodcastLink'
+import ShareButton from 'components/ShareButtons'
+import { oembedTransform } from 'helpers/oembedTransform'
+import Page from 'layout/Page'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
 
 const DOMAIN = process.env.APP_DOMAIN
 
@@ -24,7 +24,6 @@ const Chapter = styled.div`
 
 const Article = ({ article, relative = false }: { article: any; relative?: any }) => {
   const router = useRouter()
-  console.log(relative)
 
   return (
     <Page>

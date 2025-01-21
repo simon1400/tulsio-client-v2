@@ -1,6 +1,9 @@
 /* eslint-disable react/prefer-shorthand-fragment */
 import type { ICardItem } from 'components/Card'
 import type { NextPage } from 'next'
+import globalQuery from 'queries/global'
+import navFooter from 'queries/navFooter'
+import navHeader from 'queries/navHeader'
 
 import { Container } from '@mui/material'
 import Card from 'components/Card'
@@ -39,11 +42,32 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
       await store.dispatch(fetchNavCatalog(locale as string))
 
+      const { data: headerData } = await client.query({query: navHeader, 
+        variables: {
+          locale: locale,
+        },}
+      )
+    
+      const { data: footerData } = await client.query({query: navFooter,
+        variables: {
+          locale: locale,
+        },
+      })
+    
+      const { data: newsletterData } = await client.query({query: globalQuery, 
+        variables: {
+          locale: locale,
+        },
+      })
+
       return {
         props: {
           light: true,
           categorySlug,
           products: productsData.products.data,
+          headerData,
+          footerData,
+          newsletterData
         },
       }
     },

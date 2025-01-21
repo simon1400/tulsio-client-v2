@@ -11,6 +11,9 @@ import DictionaryHead from '../components/DictionaryHead'
 import DictionaryHits from '../components/DictionaryHits'
 import { client, getStrapiURL } from '../lib/api'
 import { getAllDictionaries, getDictionaryPage } from '../queries/dictionary'
+import navHeader from 'queries/navHeader'
+import navFooter from 'queries/navFooter'
+import globalQuery from 'queries/global'
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
   const { data: dataPage } = await client.query({
@@ -40,11 +43,32 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
 
   const data: any = filterDictionaryData(transfromDictionaries)
 
+  const { data: headerData } = await client.query({query: navHeader, 
+    variables: {
+      locale: locale,
+    },}
+  )
+
+  const { data: footerData } = await client.query({query: navFooter,
+    variables: {
+      locale: locale,
+    },
+  })
+
+  const { data: newsletterData } = await client.query({query: globalQuery, 
+    variables: {
+      locale: locale,
+    },
+  })
+
   return {
     props: {
       dictionaryPage: page,
       dictionaries: data,
       nav: navFiltered,
+      headerData,
+      footerData,
+      newsletterData
     },
   }
 })

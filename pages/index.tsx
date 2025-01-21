@@ -13,6 +13,9 @@ import { GridTop } from 'styles/grid'
 import { client, getStrapiURL } from '../lib/api'
 import getBaners from '../queries/baners'
 import homepageQuery from '../queries/homepage'
+import navHeader from 'queries/navHeader'
+import navFooter from 'queries/navFooter'
+import globalQuery from 'queries/global'
 
 enum BANER_POSITION {
   POSITION_1 = 'Home_1',
@@ -37,6 +40,24 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async (c
     query: getBaners,
     variables: {
       query: [{ position: { eq: 'Home_1' } }, { position: { eq: 'Home_2' } }],
+      locale: ctx.locale,
+    },
+  })
+
+  const { data: headerData } = await client.query({query: navHeader, 
+    variables: {
+      locale: ctx.locale,
+    },}
+  )
+
+  const { data: footerData } = await client.query({query: navFooter,
+    variables: {
+      locale: ctx.locale,
+    },
+  })
+
+  const { data: newsletterData } = await client.query({query: globalQuery, 
+    variables: {
       locale: ctx.locale,
     },
   })
@@ -70,6 +91,9 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async (c
       baner2: baner2 || null,
       articles,
       image: meta?.image ? getStrapiURL(meta.image.data.attributes.url) : null,
+      headerData,
+      footerData,
+      newsletterData
     },
   }
 })

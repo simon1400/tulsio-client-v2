@@ -2,7 +2,7 @@ import { Typography, useMediaQuery } from "@mui/material";
 import dynamic from "next/dynamic";
 import { FC, useEffect, useState } from "react";
 import { AlphabetWrap, Box, DictionaryHitsS } from "./styles";
-import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+import Masonry from "react-responsive-masonry";
 import Content from "components/Content";
 import { useTheme } from "@emotion/react";
 
@@ -12,6 +12,7 @@ const DictionaryHits: FC<{ data: any }> = ({ data }) => {
   const theme = useTheme();
 
   const [gutter, setGutter] = useState(theme.globalGap["xxl"]);
+  const [columnsCount, setColumnsCount] = useState(4);
 
   const xl = useMediaQuery(theme.breakpoints.between("lg", "xl"));
   const lg = useMediaQuery(theme.breakpoints.between("md", "lg"));
@@ -21,12 +22,16 @@ const DictionaryHits: FC<{ data: any }> = ({ data }) => {
   useEffect(() => {
     if (xl) {
       setGutter(theme.globalGap["xl"]);
+      setColumnsCount(4);
     } else if (lg) {
       setGutter(theme.globalGap["lg"]);
+      setColumnsCount(3);
     } else if (md) {
       setGutter(theme.globalGap["md"]);
+      setColumnsCount(2);
     } else if (sm) {
       setGutter(theme.globalGap["sm"]);
+      setColumnsCount(1);
     }
   }, [xl, lg, md, sm]);
 
@@ -34,34 +39,32 @@ const DictionaryHits: FC<{ data: any }> = ({ data }) => {
     <DictionaryHitsS>
       {Object.keys(data).map((key, index) => (
         <AlphabetWrap id={key} key={index}>
-          <ResponsiveMasonry
-            columnsCountBreakPoints={{ 320: 1, 760: 2, 980: 3, 1280: 4 }}
-          >
-            <Masonry gutter={gutter}>
-              {data[key].map((item: any, indexChild: number) => (
-                <div key={indexChild}>
-                  <Box>
-                    {item.image?.data && (
-                      <div className="img-wrap">
-                        <Image image={item.image.data} fill format="&width=620" />
-                      </div>
+          <Masonry gutter={gutter} columnsCount={columnsCount}>
+            {data[key].map((item: any, indexChild: number) => (
+              <div key={indexChild}>
+                <Box>
+                  {item.image?.data && (
+                    <div className="img-wrap">
+                      <Image image={item.image.data} fill format="&width=620" />
+                    </div>
+                  )}
+                  <Content removePadding>
+                    <Typography component="h2" variant="h3">
+                      {item.title}
+                    </Typography>
+                    <Typography
+                      component="div"
+                      variant="body2"
+                      dangerouslySetInnerHTML={{ __html: item.content }}
+                    />
+                    {item.textLink && item.link && (
+                      <a href={item.link}>{item.textLink}</a>
                     )}
-                    <Content removePadding>
-                      <Typography component="h2" variant="h3">{item.title}</Typography>
-                      <Typography
-                        component="div"
-                        variant="body2"
-                        dangerouslySetInnerHTML={{ __html: item.content }}
-                      />
-                      {item.textLink && item.link && (
-                        <a href={item.link}>{item.textLink}</a>
-                      )}
-                    </Content>
-                  </Box>
-                </div>
-              ))}
-            </Masonry>
-          </ResponsiveMasonry>
+                  </Content>
+                </Box>
+              </div>
+            ))}
+          </Masonry>
         </AlphabetWrap>
       ))}
     </DictionaryHitsS>

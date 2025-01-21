@@ -12,6 +12,9 @@ import calculatorQuery from 'queries/calculator'
 import { wrapper } from 'stores'
 import { changeDescription, changeTitle } from 'stores/slices/dataSlices'
 import { changeImage } from 'stores/slices/metaSlices'
+import navHeader from 'queries/navHeader'
+import navFooter from 'queries/navFooter'
+import globalQuery from 'queries/global'
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => async (ctx) => {
   const { data } = await client.query({
@@ -33,10 +36,31 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async (c
     ),
   )
 
+  const { data: headerData } = await client.query({query: navHeader, 
+    variables: {
+      locale: ctx.locale,
+    },}
+  )
+
+  const { data: footerData } = await client.query({query: navFooter,
+    variables: {
+      locale: ctx.locale,
+    },
+  })
+
+  const { data: newsletterData } = await client.query({query: globalQuery, 
+    variables: {
+      locale: ctx.locale,
+    },
+  })
+
   return {
     props: {
       calculator,
       embed,
+      headerData,
+      footerData,
+      newsletterData
     },
   }
 })
