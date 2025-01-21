@@ -62,6 +62,28 @@ input:-webkit-autofill {
   -webkit-text-fill-color: white !important;
 }
 
+.desktop-only {
+  display: none;
+}
+
+.mobile-only {
+  display: none;
+}
+
+/* Показываем десктопную навигацию только на экранах шире 960px */
+@media (min-width: 960px) {
+  .desktop-only {
+    display: flex;
+  }
+}
+
+/* Показываем мобильное меню только на экранах уже 960px */
+@media (max-width: 959px) {
+  .mobile-only {
+    display: flex;
+  }
+}
+
 figure.table {
   display: block;
   width: 100%;

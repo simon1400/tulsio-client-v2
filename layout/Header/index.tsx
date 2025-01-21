@@ -1,95 +1,100 @@
-import type { SyntheticEvent } from 'react'
-
-import { Container, IconButton, SvgIcon, useMediaQuery } from '@mui/material'
-import { useTheme } from '@mui/material/styles'
-import Lang from 'components/Lang'
+import { useState, useEffect } from 'react'
+import { Container, IconButton, SvgIcon } from '@mui/material'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+
+import Lang from 'components/Lang'
+import Nav from 'components/Nav'
 import MenuIcon from 'public/icons/menu.svg'
 import Search from 'public/icons/search.svg'
-import { useEffect, useState } from 'react'
 
 import { ControlWrap, HeaderWrap, Logo, NavWrap } from './styles'
 
-const Nav = dynamic(() => import('components/Nav'), { ssr: false })
 const Menu = dynamic(() => import('layout/Menu'), { ssr: false })
 
-const Header = ({data}: {data: any}) => {
-  const theme = useTheme()
-  const mediaMd = useMediaQuery(theme.breakpoints.up('md'))
+type HeaderProps = {
+  data: {
+    navigation: {
+      data: {
+        attributes: {
+          topNav: {
+            item: { name: string; link: string }[]
+          }
+        }
+      }
+    }
+  }
+}
+
+const Header = ({ data }: HeaderProps) => {
   const router = useRouter()
 
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [selectedNavIndex, setSelectedNavIndex] = useState<number>(-1)
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen)
-  }
+  const topNavItems = data?.navigation?.data?.attributes?.topNav?.item || []
 
-  const [value, setValue] = useState<number>(-1)
-
+  // Синхронизация выбранного элемента меню с текущим путем
   useEffect(() => {
-    const topNavItems = data?.navigation.data.attributes?.topNav.item || []
+    const currentPath = router.asPath
+    const navIndex = topNavItems.findIndex((item) => `/${item.link}` === currentPath)
+    setSelectedNavIndex(currentPath === '/search' ? 0 : navIndex >= 0 ? navIndex + 1 : -1)
+  }, [topNavItems, router.asPath])
 
-    if (topNavItems.length) {
-      const idx = topNavItems.findIndex((el: any) => `/${el.link}` === router.asPath)
-      setValue(router.asPath === '/search' ? 0 : idx >= 0 ? idx + 1 : false)
-    }
-  }, [data, router])
+  const handleDrawerToggle = () => setMobileOpen((prev) => !prev)
 
-  const transformData = data?.navigation.data.attributes?.topNav.item.map(
-    (item: any, idx: number) => ({
-      title: item.name,
-      slug: item.link,
-    }),
-  )
-
-  const handleMenu = (e: SyntheticEvent, slug: string) => {
+  const handleMenu = (e: React.SyntheticEvent, slug: string) => {
     e.preventDefault()
     router.push(`/${slug}`)
     setMobileOpen(false)
   }
+
+  const transformedData = topNavItems.map((item) => ({
+    title: item.name,
+    slug: item.link,
+  }))
 
   return (
     <header>
       <Container>
         <HeaderWrap>
           <Logo>
-            <Link href={'/'}>
-              <Image src={'/assets/logo-tulsio.svg'} width={'211'} height={'61'} alt={'Tulsio'} />
+            <Link href="/" passHref>
+              <Image src="/assets/logo-tulsio.svg" width={211} height={61} alt="Tulsio" />
             </Link>
           </Logo>
           <NavWrap>
-            {mediaMd && <Nav data={transformData} handle={handleMenu} icon={Search} />}
-            <Lang />
-            {!mediaMd && (
+            {/* Десктопная навигация */}
+            <div className="desktop-only">
+              <Nav data={transformedData} handle={handleMenu} icon={Search} />
+            </div>
+            {/* Мобильное меню */}
+            <div className="mobile-only">
               <Menu
                 mobileOpen={mobileOpen}
-                data={transformData}
+                data={transformedData}
                 handleMenu={handleMenu}
-                value={value}
+                value={selectedNavIndex}
                 handleDrawerToggle={handleDrawerToggle}
               />
-            )}
-            {!mediaMd && (
               <ControlWrap>
-                <IconButton href={'/search'} sx={{ ml: 0 }}>
+                <IconButton href="/search" sx={{ ml: 0 }}>
                   <SvgIcon component={Search} sx={{ fontSize: 32 }} />
                 </IconButton>
               </ControlWrap>
-            )}
-            {!mediaMd && (
               <IconButton
-                color={'inherit'}
-                aria-label={'open drawer'}
-                edge={'start'}
+                color="inherit"
+                aria-label="open drawer"
+                edge="start"
                 onClick={handleDrawerToggle}
-                sx={{ mr: 2, display: { md: 'none' } }}
+                sx={{ mr: 2 }}
               >
                 <SvgIcon component={MenuIcon} />
               </IconButton>
-            )}
+            </div>
+            <Lang />
           </NavWrap>
         </HeaderWrap>
       </Container>
