@@ -53,7 +53,7 @@ const Header = ({ data }: HeaderProps) => {
 
   const transformedData = topNavItems.map((item) => ({
     title: item.name,
-    slug: item.link,
+    slug: '/'+item.link,
   }))
 
   return (

@@ -44,13 +44,14 @@ const Nav: FC<INav> = ({
             </Link>
           </li>
         )}
-        {!!data?.length && data.map(({ slug, title }) => (
+        {!!data?.length && data.map(({ slug, title }) => {
+          return (
           <li className={isActive(slug) ? 'active' : ''} key={title}>
             <Link href={slug} onClick={(e) => handle(e, slug)}>
               {title}
             </Link>
           </li>
-        ))}
+        )})}
         {icon && (
           <li>
             <Link href="/search" onClick={(e) => handle(e, '/search')}>
