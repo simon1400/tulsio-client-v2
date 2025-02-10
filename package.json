@@ -13,7 +13,7 @@
     "@apollo/client": "^3.11.5",
     "@availity/element": "^0.44.18",
     "@emotion/babel-preset-css-prop": "^11.12.0",
-    "@emotion/react": "^11.13.3",
+    "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.13.0",
     "@meilisearch/instant-meilisearch": "^0.20.1",
     "@mui/base": "^5.0.0-beta.40",

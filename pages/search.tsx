@@ -1,6 +1,7 @@
 import { Container } from '@mui/material'
 import PageHead from 'components/PageHead'
 import ResultArticles from 'components/ResultArticles'
+import ResultDictionary from 'components/ResultDictionary'
 import SearchBox from 'components/SearchBox'
 import Page from 'layout/Page'
 import { client } from 'lib/api'
@@ -10,8 +11,9 @@ import { useRouter } from 'next/router'
 import globalQuery from 'queries/global'
 import navFooter from 'queries/navFooter'
 import navHeader from 'queries/navHeader'
-import { Configure, InstantSearch } from 'react-instantsearch'
+import { Configure, InstantSearch, Index } from 'react-instantsearch'
 import { wrapper } from 'stores'
+import { useState } from 'react'
 
 const DOMAIN = process.env.APP_DOMAIN
 const meilisearchPrefix = process.env.MEILISEARCH_PREFIX
@@ -50,10 +52,11 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
 
 const SearchPage = () => {
   const router = useRouter()
+  const [isSearching, setIsSearching] = useState(false)
 
   return (
     <Page>
-      <InstantSearch indexName={indexName} routing={true} searchClient={searchClient.searchClient}>
+      <InstantSearch routing={true} searchClient={searchClient.searchClient}>
         <Configure hitsPerPage={50} />
 
         <Head>
@@ -63,10 +66,19 @@ const SearchPage = () => {
         <PageHead title={'Vyhledávání'} />
 
         <Container>
-          <SearchBox placeholder={'Zadejte hledaný text...'} />
+          <SearchBox placeholder={'Zadejte hledaný text...'} onSearch={(query) => setIsSearching(query.length >= 3)} />
+          
         </Container>
 
-        <ResultArticles />
+        
+        <Index indexName="dictionary">
+          {isSearching && <ResultDictionary />}
+        </Index>
+        <Index indexName={`${meilisearchPrefix}article`}>
+          <ResultArticles />
+        </Index>
+
+      {/*  */}
       </InstantSearch>
     </Page>
   )

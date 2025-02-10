@@ -11,21 +11,25 @@ interface ISearchBox extends UseSearchBoxProps {
   placeholder?: string;
 }
 
-const SearchBox = (props: ISearchBox) => {
+const SearchBox = (props: ISearchBox & { onSearch?: (query: string) => void }) => {
   const { refine } = useSearchBox(props);
-  const {placeholder} = props
-
-  const [value, setValue] = useState<string>('')
+  const {placeholder, onSearch} = props
+  const [value, setValue] = useState('')
 
   const router = useRouter()
 
   useEffect(() => {
-    if(value.length >= 3) {
-      refine(value)
-    }else{
+    const query = value.trim()
+
+    if (query.length >= 3 && /^[a-zA-Z0-9]+$/.test(query)) {
+      refine(query)
+      onSearch?.(query)
+    } else {
       refine('')
+      onSearch?.('')
     }
-  }, [value])
+  }, [value, refine, onSearch])
+
 
   useEffect(() => {
     if(router.query['tulsio_article[query]']) {

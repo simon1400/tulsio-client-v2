@@ -22,13 +22,44 @@ const Chapter = styled.div`
   margin-bottom: 60px;
 `
 
-const Article = ({ article, relative = false }: { article: any; relative?: any }) => {
+const Article = ({ article, relative = false }: { article: any; relative?: any}) => {
   const router = useRouter()
+
+  const schema = {
+   "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": article.title,
+    "author": {
+      "@type": "Person",
+      "name": article.authors?.data.attributes?.name,
+    },
+    "datePublished": article.publishedAt,
+    "dateModified": article.updatedAt,
+    "description": article.perex,
+    "articleSection": Array.isArray(article.categories) ? article.categories.join(', ') : article.categories,
+    "publisher": {
+      "@type": "Organization",
+      "name": "Tulsio",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "/assets/logo-tulsio.svg"
+      }
+    },
+    "image": article.image?.data.attributes.url,
+    "mainEntityOfPage": "https://tulsio.com/cs",
+  };
+
 
   return (
     <Page>
       <Head>
         <link rel={'alternate'} hrefLang={'cs'} href={`${DOMAIN}/cs${router.asPath}`} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(schema),
+          }}
+        />
       </Head>
 
       {!!article && (
