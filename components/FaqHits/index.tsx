@@ -30,12 +30,13 @@ const FaqHits = (props: FaqHitsProps) => {
   return (
     <Container maxWidth={'md'}>
       <FaqHitsS>
-        {!items.length && query.length >= 3 && <NotResult />}
-        {items.length
-          ? items.map((item: any) => <FaqItem key={item.title} data={item} />)
-          : query.length < 3
-            ? props.allFaq.map((item: IFaqItem) => <FaqItem key={item.title} data={item} />)
-            : null}
+    {query.length < 3 
+      ? props.allFaq.map((item: IFaqItem) => <FaqItem key={item.title} data={item} />)
+      : items.length > 0
+      ? items.map((item: any) => <FaqItem key={item.title} data={item} />) 
+      : <NotResult /> 
+    }
+
       </FaqHitsS>
     </Container>
   )

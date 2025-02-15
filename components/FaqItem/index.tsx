@@ -29,7 +29,7 @@ const FaqItem: FC<{ data: IFaqItem }> = ({ data }) => {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntityOfPage": "https://tulsio.com/cs",
+    "mainEntityOfPage": "https://tulsio.com/cs/faq",
     "mainEntity": faqData.map(item => ({
       "@type": "Question",
       "name": item.question,

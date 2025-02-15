@@ -53,6 +53,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
 const SearchPage = () => {
   const router = useRouter()
   const [isSearching, setIsSearching] = useState(false)
+  const onSearch = (query: any) => setIsSearching(query.length >= 3)
 
   return (
     <Page>
@@ -66,9 +67,10 @@ const SearchPage = () => {
         <PageHead title={'Vyhledávání'} />
 
         <Container>
-          <SearchBox placeholder={'Zadejte hledaný text...'} onSearch={(query) => setIsSearching(query.length >= 3)} />
+          <SearchBox placeholder={'Zadejte hledaný text...'} onSearch={onSearch} />
           
         </Container>
+
 
         
         <Index indexName="dictionary">

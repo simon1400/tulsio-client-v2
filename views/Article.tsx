@@ -24,10 +24,10 @@ const Chapter = styled.div`
 
 const Article = ({ article, relative = false }: { article: any; relative?: any}) => {
   const router = useRouter()
-
+  
   const schema = {
    "@context": "https://schema.org",
-    "@type": "BlogPosting",
+    "@type": "Article",
     "headline": article.title,
     "author": {
       "@type": "Person",
@@ -36,13 +36,18 @@ const Article = ({ article, relative = false }: { article: any; relative?: any})
     "datePublished": article.publishedAt,
     "dateModified": article.updatedAt,
     "description": article.perex,
-    "articleSection": Array.isArray(article.categories) ? article.categories.join(', ') : article.categories,
+    "articleSection": {
+      "title": article.labels.data.attributes?.title,
+      "navTitle": article.labels.data.attributes?.navTitle,
+      "slug": article.labels.data.attributes?.slug,
+      "color": article.labels.data.attributes?.color
+    },
     "publisher": {
       "@type": "Organization",
       "name": "Tulsio",
       "logo": {
         "@type": "ImageObject",
-        "url": "/assets/logo-tulsio.svg"
+        "url": "/assets/logo-tulsio-png.png"
       }
     },
     "image": article.image?.data.attributes.url,

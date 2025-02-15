@@ -20,8 +20,12 @@ const SearchBox = (props: ISearchBox & { onSearch?: (query: string) => void }) =
 
   useEffect(() => {
     const query = value.trim()
+    const input = /^[a-zA-Z0-9]+$/
+    const queryWords = query.split(/\s+/)
 
-    if (query.length >= 3 && /^[a-zA-Z0-9]+$/.test(query)) {
+    const isValidQuery = queryWords.length > 0 && queryWords.every(word => input.test(word));
+
+    if (query.length >= 3 && isValidQuery) {
       refine(query)
       onSearch?.(query)
     } else {

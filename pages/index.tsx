@@ -16,6 +16,7 @@ import homepageQuery from '../queries/homepage'
 import navHeader from 'queries/navHeader'
 import navFooter from 'queries/navFooter'
 import globalQuery from 'queries/global'
+import Head from 'next/head'
 
 enum BANER_POSITION {
   POSITION_1 = 'Home_1',
@@ -106,8 +107,32 @@ interface IHomepage {
 }
 
 const Homepage: FC<IHomepage> = ({ title, baner1, baner2, articles }) => {
+
+  const schemaHome = {
+    "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Tulsio",
+      "url": "https://tulsio.com/cs",
+      "logo": {
+          "@type": "ImageObject",
+          "url": "/assets/logo-tulsio-png.png"
+      }, 
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+420732347464",
+        "email": "tulsio.mkt@gmail.com"
+      }
+
+   };
+
   return (
     <Page>
+      <Head>
+      <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaHome) }}
+        />
+      </Head>
       <section>
         <Container sx={{ mb: 10 }}>
           <Typography variant={'h1'} fontSize={'50px'}>
