@@ -4,7 +4,7 @@ import { Container, Typography } from '@mui/material'
 import Nav from 'components/Nav'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchAllArticles } from 'stores/fetch/dataFetch'
+import { fetchAllArticles } from 'stores/fetch/articlesData/dataFetch'
 import { selectType } from 'stores/slices/dataSlices'
 import { selectCategoryNav } from 'stores/slices/navSlices'
 
@@ -29,7 +29,7 @@ const PageHead: FC<PageHeadProps> = ({ title, category, center }) => {
     } else {
       router.push(slug)
       // @ts-expect-error: some error
-      dispatch(fetchAllArticles(slug))
+      dispatch(fetchAllArticles(slug, router.locale))
     }
   }
 

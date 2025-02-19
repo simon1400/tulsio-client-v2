@@ -6,7 +6,7 @@ import navHeader from 'queries/navHeader'
 
 import { useSelector } from 'react-redux'
 import { wrapper } from 'stores'
-import { fetchCategoryOrArticles } from 'stores/fetch/dataFetch'
+import { fetchCategoryOrArticles } from 'stores/fetch/articlesData/dataFetch'
 import { fetchNavCategory, fetchNavTag } from 'stores/fetch/navFetch'
 import { selectArticleBase, selectArticles } from 'stores/slices/dataSlices'
 import Article from 'views/Article'
