@@ -14,10 +14,14 @@ const groupByFirstLetter = (items: any[]) => {
   }, {})
 }
 
-const ResultDictionary = (props: UseHitsProps) => {
+const ResultDictionary = (props: UseHitsProps & { query: string }) => {
   const { hits } = useHits(props)
   const limitedHits = hits.slice(0, 4);
   const groupedData = groupByFirstLetter(limitedHits);
+  
+  if (limitedHits.length === 0) {
+    return null
+  }
   
   return (
     <>
@@ -25,7 +29,7 @@ const ResultDictionary = (props: UseHitsProps) => {
       <Typography
         variant={'h2'}
         style={{ marginBottom: '40px' }}
-        >Slovník: {limitedHits.length} výsledky</Typography>
+        >Slovník ({limitedHits.length})</Typography>
     </Container>
       <DictionaryHits data={groupedData} />
     </>)

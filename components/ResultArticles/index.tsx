@@ -6,23 +6,23 @@ import { useHits } from 'react-instantsearch'
 import { Container, Typography } from '@mui/material'
 import ResultDictionary from 'components/ResultDictionary'
 
-const ResultArticles = (props: UseHitsProps) => {
+const ResultArticles = (props: UseHitsProps & { query: string }) => {
   const { hits } = useHits(props)
   const limitedHits = hits.slice(0, 15);
 
-  if (!hits.length && ResultDictionary == null){
-    return <NotResult />
-  } else {
-    return (
-      <><Container>
-          <Typography
-            variant={'h2'}
-            style={{ marginBottom: '40px' }}
-            >Články: {limitedHits.length} výsledky</Typography>
-        </Container>
-        <Articles data={limitedHits} searchResult />
-      </>)
+  if (limitedHits.length === 0) {
+    return <NotResult/>
   }
+
+  return (
+    <><Container>
+        {props.query && (
+        <Typography variant="h2" style={{ marginBottom: '40px' }}>
+          Články ({limitedHits.length})
+        </Typography>)}
+      </Container>
+      <Articles data={limitedHits} searchResult />
+    </>)
 }
 
 export default ResultArticles

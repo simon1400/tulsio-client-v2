@@ -20,7 +20,7 @@ const SearchBox = (props: ISearchBox & { onSearch?: (query: string) => void }) =
 
   useEffect(() => {
     const query = value.trim()
-    const input = /^[a-zA-Z0-9]+$/
+    const input = /^[a-zA-Z0-9!?.,;:()'"-]+$/
     const queryWords = query.split(/\s+/)
 
     const isValidQuery = queryWords.length > 0 && queryWords.every(word => input.test(word));

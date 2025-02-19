@@ -15,6 +15,7 @@ import { oembedTransform } from 'helpers/oembedTransform'
 import Page from 'layout/Page'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import { stripHtmlTags } from 'components/StripHTMLTags';
 
 const DOMAIN = process.env.APP_DOMAIN
 
@@ -27,21 +28,16 @@ const Article = ({ article, relative = false }: { article: any; relative?: any})
   
   const schema = {
    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": article.title,
+    "@type": "BlogPosting",
+    "headline": stripHtmlTags(article.title),
     "author": {
       "@type": "Person",
-      "name": article.authors?.data.attributes?.name,
+      "name": stripHtmlTags(article.authors?.data[0].attributes.name),
     },
     "datePublished": article.publishedAt,
     "dateModified": article.updatedAt,
-    "description": article.perex,
-    "articleSection": {
-      "title": article.labels.data.attributes?.title,
-      "navTitle": article.labels.data.attributes?.navTitle,
-      "slug": article.labels.data.attributes?.slug,
-      "color": article.labels.data.attributes?.color
-    },
+    "description": stripHtmlTags(article.perex),
+    "articleSection": article.labels.data[0].attributes.title,
     "publisher": {
       "@type": "Organization",
       "name": "Tulsio",

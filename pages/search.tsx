@@ -11,7 +11,7 @@ import { useRouter } from 'next/router'
 import globalQuery from 'queries/global'
 import navFooter from 'queries/navFooter'
 import navHeader from 'queries/navHeader'
-import { Configure, InstantSearch, Index } from 'react-instantsearch'
+import { Configure, InstantSearch, Index, useSearchBox } from 'react-instantsearch'
 import { wrapper } from 'stores'
 import { useState } from 'react'
 
@@ -53,7 +53,11 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
 const SearchPage = () => {
   const router = useRouter()
   const [isSearching, setIsSearching] = useState(false)
-  const onSearch = (query: any) => setIsSearching(query.length >= 3)
+  const [searchQuery, setSearchQuery] = useState('');
+  const onSearch = (query: any) => {
+    setSearchQuery(query)
+    setIsSearching(query.length >= 3)
+  }
 
   return (
     <Page>
@@ -71,13 +75,11 @@ const SearchPage = () => {
           
         </Container>
 
-
-        
         <Index indexName="dictionary">
-          {isSearching && <ResultDictionary />}
+          {isSearching && <ResultDictionary query={searchQuery} />}
         </Index>
         <Index indexName={`${meilisearchPrefix}article`}>
-          <ResultArticles />
+          <ResultArticles query={searchQuery}/>
         </Index>
 
       {/*  */}

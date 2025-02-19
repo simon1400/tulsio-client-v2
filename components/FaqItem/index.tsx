@@ -5,6 +5,7 @@ import { SvgIcon, Typography } from '@mui/material'
 import Content from 'components/Content'
 import DOMPurify from 'isomorphic-dompurify'
 import Chevron from 'public/icons/chevron.svg'
+import { stripHtmlTags } from 'components/StripHTMLTags'
 
 import { Accordion, AccordionDetails, AccordionSummary, FaqItemS } from './styles'
 
@@ -35,7 +36,7 @@ const FaqItem: FC<{ data: IFaqItem }> = ({ data }) => {
       "name": item.question,
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": item.answer
+        "text": stripHtmlTags(item.answer)
       }
     }))
     
