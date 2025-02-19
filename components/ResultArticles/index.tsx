@@ -5,10 +5,15 @@ import NotResult from 'components/NotResult'
 import { useHits } from 'react-instantsearch'
 import { Container, Typography } from '@mui/material'
 import ResultDictionary from 'components/ResultDictionary'
+import { useEffect } from 'react'
 
-const ResultArticles = (props: UseHitsProps & { query: string }) => {
+const ResultArticles = (props: UseHitsProps & { query: string, onResults: any  }) => {
   const { hits } = useHits(props)
   const limitedHits = hits.slice(0, 15);
+
+  useEffect(() => {
+    props.onResults(limitedHits); 
+  }, [limitedHits, props.onResults]);
   
   if (limitedHits.length === 0)  {
     return null

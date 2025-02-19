@@ -13,7 +13,8 @@ import navFooter from 'queries/navFooter'
 import navHeader from 'queries/navHeader'
 import { Configure, InstantSearch, Index, useSearchBox, UseHitsProps, Hits } from 'react-instantsearch'
 import { wrapper } from 'stores'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import NotResult from 'components/NotResult'
 
 const DOMAIN = process.env.APP_DOMAIN
 const meilisearchPrefix = process.env.MEILISEARCH_PREFIX
@@ -58,6 +59,32 @@ const SearchPage = (props: UseHitsProps) => {
     setSearchQuery(query)
     setIsSearching(query.length >= 3)
   }
+  const [noResults1, setNoResults1] = useState<boolean | null>(null); 
+  const [noResults2, setNoResults2] = useState<boolean | null>(null); 
+  const [loadingComplete, setLoadingComplete] = useState(false);
+  const [debouncedResults, setDebouncedResults] = useState<boolean | null>(null);
+
+  const handleResults1 = (results: any[]) => {
+    setNoResults1(results.length === 0);
+  };
+
+  const handleResults2 = (results: any[]) => {
+    setNoResults2(results.length === 0);
+  };
+
+  useEffect(() => {
+    if (noResults1 !== null && noResults2 !== null) {
+      const timer = setTimeout(() => {
+        setLoadingComplete(true);
+        setDebouncedResults(noResults1 && noResults2); 
+      }, 300); 
+
+      return () => clearTimeout(timer); 
+    }
+  }, [noResults1, noResults2]);
+
+  const shouldShowNoResults = loadingComplete && debouncedResults;
+
 
   return (
     <Page>
@@ -76,12 +103,14 @@ const SearchPage = (props: UseHitsProps) => {
         </Container>
 
         <Index indexName="dictionary">
-          {isSearching && <ResultDictionary query={searchQuery} />}
+          {isSearching && <ResultDictionary query={searchQuery} onResults={handleResults1}/>}
         </Index>
         <Index indexName={`${meilisearchPrefix}article`}>
-          <ResultArticles query={searchQuery}/>
+          <ResultArticles query={searchQuery} onResults={handleResults2}/>
         </Index>
+        {shouldShowNoResults && <p>No Results Found</p>}
 
+      {!loadingComplete && <p>Loading...</p>}
       {/*  */}
       </InstantSearch>
     </Page>
