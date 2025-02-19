@@ -15,6 +15,7 @@ import { oembedTransform } from 'helpers/oembedTransform'
 import Page from 'layout/Page'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import { stripHtmlTags } from 'components/StripHTMLTags';
 
 const DOMAIN = process.env.APP_DOMAIN
 
@@ -22,13 +23,44 @@ const Chapter = styled.div`
   margin-bottom: 60px;
 `
 
-const Article = ({ article, relative = false }: { article: any; relative?: any }) => {
+const Article = ({ article, relative = false }: { article: any; relative?: any}) => {
   const router = useRouter()
+  
+  const schema = {
+   "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": stripHtmlTags(article.title),
+    "author": {
+      "@type": "Person",
+      "name": stripHtmlTags(article.authors?.data[0].attributes.name),
+    },
+    "datePublished": article.publishedAt,
+    "dateModified": article.updatedAt,
+    "description": stripHtmlTags(article.perex),
+    "articleSection": article.labels.data[0].attributes.title,
+    "publisher": {
+      "@type": "Organization",
+      "name": "Tulsio",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "/assets/logo-tulsio-png.png"
+      }
+    },
+    "image": article.image?.data.attributes.url,
+    "mainEntityOfPage": "https://tulsio.com/cs",
+  };
+
 
   return (
     <Page>
       <Head>
         <link rel={'alternate'} hrefLang={'cs'} href={`${DOMAIN}/cs${router.asPath}`} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(schema),
+          }}
+        />
       </Head>
 
       {!!article && (

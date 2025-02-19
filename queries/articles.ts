@@ -121,6 +121,7 @@ export const getArticle = gql`
           perex
           background
           showShortImg
+          publishedAt
           updatedAt
           media {
             audio {
