@@ -8,6 +8,7 @@ import DOMPurify from 'isomorphic-dompurify'
 import { useState } from 'react'
 
 import { ArticleWrap } from './styled'
+import { useRouter } from 'next/router'
 
 const APP_API = process.env.APP_API
 
@@ -36,6 +37,7 @@ const ArticleShort: FC<ArticleShortProps> = ({
   text = '',
   label = undefined,
 }) => {
+  const router = useRouter()
   const [imgUrl, setImgUrl] = useState<string>('/assets/placeholder.svg')
   const [size] = useState<string>('resize=1000x1000')
 
@@ -54,7 +56,7 @@ const ArticleShort: FC<ArticleShortProps> = ({
   })
 
   return (
-    <ArticleWrap background={convert} color={color} href={link}>
+    <ArticleWrap background={convert} color={color} href={`/${router.locale}${link}`}>
       <div className={'img-wrap'}>
         <div
           className={'img-art'}

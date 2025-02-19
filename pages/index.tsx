@@ -1,15 +1,13 @@
 import type { FC } from 'react'
-
 import { Container, Typography } from '@mui/material'
 import ArticleShort from 'components/ArticleShort'
-import Banner from 'components/Baner'
+import Banner, { IBanner } from 'components/Baner'
 import GridButton from 'components/GridButton'
 import Page from 'layout/Page'
 import { wrapper } from 'stores'
 import { changeDescription, changeTitle } from 'stores/slices/dataSlices'
 import { changeImage } from 'stores/slices/metaSlices'
 import { GridTop } from 'styles/grid'
-
 import { client, getStrapiURL } from '../lib/api'
 import getBaners from '../queries/baners'
 import homepageQuery from '../queries/homepage'
@@ -18,92 +16,59 @@ import navFooter from 'queries/navFooter'
 import globalQuery from 'queries/global'
 import Head from 'next/head'
 
-enum BANER_POSITION {
-  POSITION_1 = 'Home_1',
-  POSITION_2 = 'Home_2',
-}
+const BANER_POSITION = { POSITION_1: 'Home_1', POSITION_2: 'Home_2' }
 
 const gridButtonData = [
-  {
-    title: ' - CBD slovník - CBD slovník ',
-    link: '/dictionary',
-  },
-  {
-    title: ' –⁠⁠ FAQ –⁠⁠ FAQ –⁠⁠ FAQ',
-    link: '/faq',
-  },
+  { title: ' - CBD slovník - CBD slovník ', link: '/dictionary' },
+  { title: ' –⁠⁠ FAQ –⁠⁠ FAQ –⁠⁠ FAQ', link: '/faq' },
 ]
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => async (ctx) => {
   ctx.res.setHeader('Cache-Control', 'public, s-maxage=31536000, stale-while-revalidate=59')
 
-  const { data: banersData } = await client.query({
-    query: getBaners,
-    variables: {
-      query: [{ position: { eq: 'Home_1' } }, { position: { eq: 'Home_2' } }],
-      locale: ctx.locale,
-    },
-  })
+  const locale = ctx.locale
+  const queries = [
+    client.query({ query: getBaners, variables: { query: [{ position: { eq: 'Home_1' } }, { position: { eq: 'Home_2' } }], locale } }),
+    client.query({ query: homepageQuery, variables: { locale } }),
+    client.query({ query: navHeader, variables: { locale } }),
+    client.query({ query: navFooter, variables: { locale } }),
+    client.query({ query: globalQuery, variables: { locale } }),
+  ]
 
-  const { data: headerData } = await client.query({query: navHeader, 
-    variables: {
-      locale: ctx.locale,
-    },}
-  )
-
-  const { data: footerData } = await client.query({query: navFooter,
-    variables: {
-      locale: ctx.locale,
-    },
-  })
-
-  const { data: newsletterData } = await client.query({query: globalQuery, 
-    variables: {
-      locale: ctx.locale,
-    },
-  })
-
-  const { data: homepageData } = await client.query({
-    query: homepageQuery,
-    variables: {
-      locale: ctx.locale,
-    },
-  })
+  const [{ data: banersData }, { data: homepageData }, { data: headerData }, { data: footerData }, { data: newsletterData }] =
+    await Promise.all(queries)
 
   const homepage = homepageData.homepage.data.attributes
   const meta = homepage.meta
   const articles = homepage.articles.map((item: any) => item.article.data.attributes)
+
   const baners = banersData.baners.data.map((item: any) => item.attributes)
-
-  const filterBaners1 = baners.filter((item: any) => item.position === BANER_POSITION.POSITION_1)
-  const filterBaners2 = baners.filter((item: any) => item.position === BANER_POSITION.POSITION_2)
-
-  const baner1 = filterBaners1[Math.floor(Math.random() * filterBaners1.length)]
-  const baner2 = filterBaners2[Math.floor(Math.random() * filterBaners2.length)]
+  const getRandomBanner = (position: string) =>
+    baners.filter((item: any) => item.position === position)[Math.floor(Math.random() * baners.length)] || null
 
   store.dispatch(changeTitle(meta?.title || 'Úvod'))
   store.dispatch(changeDescription(meta?.description || ''))
-  store.dispatch(changeImage(meta?.image.data ? getStrapiURL(meta.image.data.attributes.url) : ''))
+  store.dispatch(changeImage(meta?.image?.data ? getStrapiURL(meta.image.data.attributes.url) : ''))
 
   return {
     props: {
       title: homepage.title,
-      baner1: baner1 || null,
-      baner2: baner2 || null,
+      baner1: getRandomBanner(BANER_POSITION.POSITION_1),
+      baner2: getRandomBanner(BANER_POSITION.POSITION_2),
       articles,
       image: meta?.image ? getStrapiURL(meta.image.data.attributes.url) : null,
       headerData,
       footerData,
-      newsletterData
+      newsletterData,
     },
   }
 })
 
 interface IHomepage {
   title: string
-  baner1: any
-  baner2: any
-  articles: any
+  baner1: IBanner
+  baner2: IBanner
+  articles: any[]
 }
 
 const Homepage: FC<IHomepage> = ({ title, baner1, baner2, articles }) => {
