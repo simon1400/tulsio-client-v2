@@ -60,8 +60,7 @@ const SearchPage = (props: UseHitsProps) => {
     setIsSearching(query.length >= 3)
   }
   const [noResults1, setNoResults1] = useState<boolean | null>(null); 
-  const [noResults2, setNoResults2] = useState<boolean | null>(null); 
-  const [loadingComplete, setLoadingComplete] = useState(false);
+  const [noResults2, setNoResults2] = useState<boolean | null>(null);
   const [debouncedResults, setDebouncedResults] = useState<boolean | null>(null);
 
   const handleResults1 = (results: any[]) => {
@@ -74,16 +73,11 @@ const SearchPage = (props: UseHitsProps) => {
 
   useEffect(() => {
     if (noResults1 !== null && noResults2 !== null) {
-      const timer = setTimeout(() => {
-        setLoadingComplete(true);
-        setDebouncedResults(noResults1 && noResults2); 
-      }, 300); 
-
-      return () => clearTimeout(timer); 
+      setDebouncedResults(noResults1 && noResults2);
     }
-  }, [noResults1, noResults2]);
+  }, [noResults1, noResults2]);  
 
-  const shouldShowNoResults = loadingComplete && debouncedResults;
+  const shouldShowNoResults = debouncedResults;
 
 
   return (
@@ -108,9 +102,7 @@ const SearchPage = (props: UseHitsProps) => {
         <Index indexName={`${meilisearchPrefix}article`}>
           <ResultArticles query={searchQuery} onResults={handleResults2}/>
         </Index>
-        {shouldShowNoResults && <p>No Results Found</p>}
-
-      {!loadingComplete && <p>Loading...</p>}
+        {shouldShowNoResults && <NotResult/>}
       {/*  */}
       </InstantSearch>
     </Page>
