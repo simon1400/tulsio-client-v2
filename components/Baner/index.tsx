@@ -7,15 +7,24 @@ import { BannerS } from './styles'
 
 const APP_API = process.env.APP_API
 
-interface IBanner {
-  data: any
+export interface IBanner{
+  darkMode: boolean
+  image: {
+    data: {
+      attributes: {
+        url: string
+      }
+    }
+  }
+  link: string
+  title: string
 }
 
-const Banner: FC<IBanner> = ({ data }) => {
+const Banner: FC<{data: IBanner}> = ({ data }) => {
   let color: string = '#202020'
   let background: string = '#ffffff'
 
-  if (data.darkMode) {
+  if (data?.darkMode) {
     color = '#ffffff'
     background = '#202020'
   }
