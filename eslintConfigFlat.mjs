@@ -2,7 +2,7 @@ import antfu from '@antfu/eslint-config'
 import stylistic from '@stylistic/eslint-plugin'
 import eslintPluginQuery from '@tanstack/eslint-plugin-query'
 import format from 'eslint-plugin-format'
-import eslintPluginSonarjs from 'eslint-plugin-sonarjs'
+import sonarjs from 'eslint-plugin-sonarjs'
 
 function getPrettierDefaults() {
   return {
@@ -40,7 +40,7 @@ export default function getConfig(...additionalConfigs) {
       formatters: { prettierOptions: getPrettierDefaults() },
     },
     ...getPrettierConfig(),
-    eslintPluginSonarjs.configs.recommended,
+    sonarjs.configs.recommended,
     ...eslintPluginQuery.configs['flat/recommended'],
     {
       name: 'default',
@@ -55,6 +55,7 @@ export default function getConfig(...additionalConfigs) {
         'unicorn/no-array-for-each': ['error'],
         'object-shorthand': ['warn', 'always', { avoidQuotes: false }],
         'sonarjs/no-duplicate-string': ['off'], // too many positives with tailwind classes
+        "sonarjs/no-empty-function": "off",
         'style/jsx-curly-brace-presence': [
           'warn',
           { props: 'always', children: 'always', propElementValues: 'always' },
