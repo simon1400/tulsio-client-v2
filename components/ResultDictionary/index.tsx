@@ -5,19 +5,14 @@ import NotResult from 'components/NotResult'
 import { useHits } from 'react-instantsearch'
 import { Container, Typography } from '@mui/material'
 
-const groupByFirstLetter = (items: any[]) => {
-  return items.reduce((acc, item) => {
-    const letter = item.title?.charAt(0).toUpperCase() || "#"
-    if (!acc[letter]) acc[letter] = []
-    acc[letter].push(item)
-    return acc
-  }, {})
+const group= (items: any[]) => {
+    return { all: items }
 }
 
 const ResultDictionary = (props: UseHitsProps & { query: string }) => {
   const { hits } = useHits(props)
-  const limitedHits = hits.slice(0, 4);
-  const groupedData = groupByFirstLetter(limitedHits);
+  const limitedHits = hits.slice(0, 4)
+  const groupedData = group(limitedHits)
   
   if (limitedHits.length === 0) {
     return null

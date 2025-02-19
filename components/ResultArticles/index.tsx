@@ -9,9 +9,9 @@ import ResultDictionary from 'components/ResultDictionary'
 const ResultArticles = (props: UseHitsProps & { query: string }) => {
   const { hits } = useHits(props)
   const limitedHits = hits.slice(0, 15);
-
-  if (limitedHits.length === 0) {
-    return <NotResult/>
+  
+  if (limitedHits.length === 0)  {
+    return null
   }
 
   return (

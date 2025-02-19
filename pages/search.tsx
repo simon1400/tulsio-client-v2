@@ -11,7 +11,7 @@ import { useRouter } from 'next/router'
 import globalQuery from 'queries/global'
 import navFooter from 'queries/navFooter'
 import navHeader from 'queries/navHeader'
-import { Configure, InstantSearch, Index, useSearchBox } from 'react-instantsearch'
+import { Configure, InstantSearch, Index, useSearchBox, UseHitsProps, Hits } from 'react-instantsearch'
 import { wrapper } from 'stores'
 import { useState } from 'react'
 
@@ -50,7 +50,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
   }
 })
 
-const SearchPage = () => {
+const SearchPage = (props: UseHitsProps) => {
   const router = useRouter()
   const [isSearching, setIsSearching] = useState(false)
   const [searchQuery, setSearchQuery] = useState('');
