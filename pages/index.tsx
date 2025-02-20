@@ -28,21 +28,21 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async (c
 
   const locale = ctx.locale
   const queries = [
-    client.query({ query: getBaners, variables: { query: [{ position: { eq: 'Home_1' } }, { position: { eq: 'Home_2' } }], locale } }),
     client.query({ query: homepageQuery, variables: { locale } }),
     client.query({ query: navHeader, variables: { locale } }),
     client.query({ query: navFooter, variables: { locale } }),
     client.query({ query: globalQuery, variables: { locale } }),
   ]
 
-  const [{ data: banersData }, { data: homepageData }, { data: headerData }, { data: footerData }, { data: newsletterData }] =
-    await Promise.all(queries)
+  const banersData = await client.query({ query: getBaners, variables: { query: [{ position: { eq: 'Home_1' } }, { position: { eq: 'Home_2' } }], locale } })
+
+  const [{ data: homepageData }, { data: headerData }, { data: footerData }, { data: newsletterData }] = await Promise.all(queries)
 
   const homepage = homepageData.homepage.data.attributes
   const meta = homepage.meta
   const articles = homepage.articles.map((item: any) => item.article.data.attributes)
 
-  const baners = banersData.baners.data.map((item: any) => item.attributes)
+  const baners = banersData.data.baners.data.map((item: any) => item.attributes)
   const getRandomBanner = (position: string) =>
     baners.filter((item: any) => item.position === position)[Math.floor(Math.random() * baners.length)] || null
 
@@ -71,29 +71,29 @@ interface IHomepage {
   articles: any[]
 }
 
+const schemaHome = {
+  "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Tulsio",
+    "url": "https://tulsio.com/cs",
+    "logo": {
+        "@type": "ImageObject",
+        "url": "/assets/logo-tulsio-png.png"
+    }, 
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+420732347464",
+      "email": "tulsio.mkt@gmail.com"
+    }
+
+ };
+
 const Homepage: FC<IHomepage> = ({ title, baner1, baner2, articles }) => {
-
-  const schemaHome = {
-    "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Tulsio",
-      "url": "https://tulsio.com/cs",
-      "logo": {
-          "@type": "ImageObject",
-          "url": "/assets/logo-tulsio-png.png"
-      }, 
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+420732347464",
-        "email": "tulsio.mkt@gmail.com"
-      }
-
-   };
 
   return (
     <Page>
       <Head>
-      <script
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaHome) }}
         />

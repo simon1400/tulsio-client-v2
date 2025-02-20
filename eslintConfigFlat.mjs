@@ -55,7 +55,7 @@ export default function getConfig(...additionalConfigs) {
         'unicorn/no-array-for-each': ['error'],
         'object-shorthand': ['warn', 'always', { avoidQuotes: false }],
         'sonarjs/no-duplicate-string': ['off'], // too many positives with tailwind classes
-        "sonarjs/no-empty-function": "off",
+        'sonarjs/no-empty-function': 'off',
         'style/jsx-curly-brace-presence': [
           'warn',
           { props: 'always', children: 'always', propElementValues: 'always' },

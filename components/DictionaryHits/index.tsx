@@ -2,9 +2,14 @@ import { Typography, useMediaQuery } from "@mui/material";
 import dynamic from "next/dynamic";
 import { FC, useEffect, useState } from "react";
 import { AlphabetWrap, Box, DictionaryHitsS } from "./styles";
-import Masonry from "react-responsive-masonry";
+import { MasonryProps } from 'react-responsive-masonry';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import _Masonry from 'react-responsive-masonry/lib/Masonry';
 import Content from "components/Content";
 import { useTheme } from "@emotion/react";
+
+const Masonry: React.FC<MasonryProps> = (props) => <_Masonry {...props} />;
 
 const Image = dynamic(() => import("../Image"), { suspense: true });
 
