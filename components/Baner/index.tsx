@@ -21,6 +21,11 @@ export interface IBanner{
 }
 
 const Banner: FC<{data: IBanner}> = ({ data }) => {
+
+  if(!data) {
+    return null
+  }
+
   let color: string = '#202020'
   let background: string = '#ffffff'
 
@@ -29,7 +34,7 @@ const Banner: FC<{data: IBanner}> = ({ data }) => {
     background = '#202020'
   }
 
-  const imgUrl = `${APP_API}${data.image.data?.attributes.url}?format=webp&resize=1000x1000`
+  const imgUrl = `${APP_API}${data?.image?.data?.attributes.url}?format=webp&resize=1000x1000`
 
   return (
     <BannerS background={background} color={color} href={data.link} passHref target={'_blank'}>
