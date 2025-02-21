@@ -24,6 +24,7 @@ const Chapter = styled.div`
 `
 
 const Article = ({ article, relative = false }: { article: any; relative?: any}) => {
+  console.log(article)
   const router = useRouter()
   
   const schema = {
@@ -32,12 +33,12 @@ const Article = ({ article, relative = false }: { article: any; relative?: any})
     "headline": stripHtmlTags(article.title),
     "author": {
       "@type": "Person",
-      "name": stripHtmlTags(article.authors?.data[0].attributes.name),
+      "name": stripHtmlTags(article.authors?.data[0].attributes.name || ""),
     },
     "datePublished": article.publishedAt,
     "dateModified": article.updatedAt,
     "description": stripHtmlTags(article.perex),
-    "articleSection": article.labels.data[0].attributes.title,
+    "articleSection": article.labels?.data[0].attributes.title,
     "publisher": {
       "@type": "Organization",
       "name": "Tulsio",
@@ -46,7 +47,7 @@ const Article = ({ article, relative = false }: { article: any; relative?: any})
         "url": "/assets/logo-tulsio-png.png"
       }
     },
-    "image": article.image?.data.attributes.url,
+    "image": article.image?.data?.attributes.url,
     "mainEntityOfPage": "https://tulsio.com/cs",
   };
 
