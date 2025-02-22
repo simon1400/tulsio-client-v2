@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/sitemap/index.xml",
-      "destination": "https://admin.tulsio.cz/api/custom-sitemap"
+      "destination": "https://admin.tulsio.cz/sitemap/index.xml"
     }
   ]
 }
