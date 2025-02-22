@@ -25,12 +25,20 @@ const nextConfig = {
     APP_DOMAIN: process.env.APP_DOMAIN,
     MEILISEARCH_DOMAIN: process.env.MEILISEARCH_DOMAIN,
   },
+  async rewrites() {
+    return [
+      {
+        source: '/sitemap/index.xml',
+        destination: 'https://admin.tulsio.cz/sitemap/index.xml',
+      },
+    ]
+  },
   i18n: {
     locales: ['default', 'cs', 'en', 'sk', 'de'],
     defaultLocale: 'default',
     localeDetection: false,
   },
-  trailingSlash: false,
+  trailingSlash: true,
   images: {
     domains: ['localhost', 'admin.tulsio.cz'],
   },

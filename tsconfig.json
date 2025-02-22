@@ -24,6 +24,6 @@
     "**/*.tsx",
     "ecosystem.config.js",
     "helpers/redirects.js"
-, "eslintConfigFlat.mjs"  ],
+, "eslintConfigFlat.mjs" ],
   "exclude": ["node_modules", "./context/dataStateContext.js"]
 }
