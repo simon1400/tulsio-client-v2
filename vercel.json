@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/sitemap/index.xml",
+      "destination": "https://admin.tulsio.cz/api/custom-sitemap"
+    }
+  ]
+}
