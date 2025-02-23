@@ -54,7 +54,6 @@ const Article = ({ article, relative = false }: { article: any; relative?: any})
   return (
     <Page>
       <Head>
-        <link rel={'alternate'} hrefLang={'cs'} href={`${DOMAIN}/cs${router.asPath}`} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

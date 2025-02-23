@@ -3,7 +3,7 @@ import type { FC, ReactNode } from 'react'
 import { redirects } from 'helpers/redirects'
 import { useOnMountUnsafe } from 'helpers/useOnMountUnsaf'
 import Head from 'next/head'
-import { usePathname } from 'next/navigation'
+import { useRouter } from 'next/router'
 import Script from 'next/script'
 import { useSelector } from 'react-redux'
 import { selectDescription, selectTitle } from 'stores/slices/dataSlices'
@@ -18,7 +18,7 @@ interface IPage {
 }
 
 const Page: FC<IPage> = ({ children, className = '', id = '' }) => {
-  const pathname = usePathname()
+  const {pathname, asPath} = useRouter()
 
   const title = useSelector(selectTitle)
   const description = useSelector(selectDescription)
@@ -62,6 +62,8 @@ const Page: FC<IPage> = ({ children, className = '', id = '' }) => {
     })
   })
 
+  const url = global.site_url+ '/cs' + (asPath !== '/' ? asPath : '')
+
   return (
     <>
       <Head>
@@ -81,9 +83,9 @@ const Page: FC<IPage> = ({ children, className = '', id = '' }) => {
         <link
           rel={'alternate'}
           hrefLang={'cs'}
-          href={`${DOMAIN}/cs${pathname !== '/' ? pathname : ''}`}
+          href={url}
         />
-        <link rel={'canonical'} href={global.site_url + (pathname !== '/' ? pathname : '')} />
+        <link rel={'canonical'} href={url} />
         <meta itemProp={'name'} content={theTitle} />
         <meta itemProp={'description'} content={theDescription} />
         <meta itemProp={'image'} content={theImage} />
@@ -95,7 +97,7 @@ const Page: FC<IPage> = ({ children, className = '', id = '' }) => {
         <meta name={'twitter:image:src'} content={theImage} />
         <meta property={'og:title'} content={ogTitle || theTitle} />
         <meta property={'og:type'} content={contentType} />
-        <meta property={'og:url'} content={global.site_url + (pathname !== '/' ? pathname : '')} />
+        <meta property={'og:url'} content={url} />
         <meta property={'og:image'} content={theImage} />
         <meta property={'og:description'} content={ogDescription || theDescription} />
         <meta property={'og:site_name'} content={siteName.toUpperCase()} />
