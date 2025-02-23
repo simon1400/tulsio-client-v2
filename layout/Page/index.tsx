@@ -3,11 +3,11 @@ import type { FC, ReactNode } from 'react'
 import { redirects } from 'helpers/redirects'
 import { useOnMountUnsafe } from 'helpers/useOnMountUnsaf'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
 import Script from 'next/script'
 import { useSelector } from 'react-redux'
 import { selectDescription, selectTitle } from 'stores/slices/dataSlices'
 import { selectAllMeta } from 'stores/slices/metaSlices'
+import { usePathname } from 'next/navigation'
 
 const DOMAIN = process.env.APP_DOMAIN
 
@@ -18,7 +18,7 @@ interface IPage {
 }
 
 const Page: FC<IPage> = ({ children, className = '', id = '' }) => {
-  const {pathname, asPath} = useRouter()
+  const pathname = usePathname()
 
   const title = useSelector(selectTitle)
   const description = useSelector(selectDescription)
@@ -62,7 +62,9 @@ const Page: FC<IPage> = ({ children, className = '', id = '' }) => {
     })
   })
 
-  const url = global.site_url + (asPath !== '/' ? asPath : '')
+  const url = global.site_url + (pathname !== '/' ? pathname : '')
+
+  console.log(url)
 
   return (
     <>
