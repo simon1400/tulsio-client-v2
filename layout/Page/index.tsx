@@ -62,7 +62,7 @@ const Page: FC<IPage> = ({ children, className = '', id = '' }) => {
     })
   })
 
-  const url = global.site_url+ '/cs' + (asPath !== '/' ? asPath : '')
+  const url = global.site_url + (asPath !== '/' ? asPath : '')
 
   return (
     <>
@@ -80,12 +80,10 @@ const Page: FC<IPage> = ({ children, className = '', id = '' }) => {
 
         <meta name={'viewport'} content={'width=device-width, initial-scale=1'} />
         <title>{theTitle}</title>
-        <link
-          rel={'alternate'}
-          hrefLang={'cs'}
-          href={url}
-        />
+
+        <link rel={'alternate'} hrefLang={'cs'} href={url} />
         <link rel={'canonical'} href={url} />
+
         <meta itemProp={'name'} content={theTitle} />
         <meta itemProp={'description'} content={theDescription} />
         <meta itemProp={'image'} content={theImage} />
