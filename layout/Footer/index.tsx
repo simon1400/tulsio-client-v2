@@ -32,19 +32,16 @@ interface FooterProps {
 const Footer: FC<FooterProps> = ({ dataGlobal, data }) => {
   const router = useRouter();
 
-  // Трансформация данных меню навигации
   const transformData = data?.navigation.data.attributes?.footer?.item.map(({ name, link }: {name: string; link: string}) => ({
     title: name,
     slug: link,
   }));
 
-  // Обработчик навигации
   const handleNav = (e: SyntheticEvent, slug: string) => {
     e.preventDefault();
     router.push(slug);
   };
 
-  // Дополнительный контент
   const additionalContent = dataGlobal?.global.data.attributes?.additionalContent;
 
   return (
@@ -55,7 +52,6 @@ const Footer: FC<FooterProps> = ({ dataGlobal, data }) => {
             <Typography
               component="div"
               variant="body2"
-              sx={{ fontSize: '13px' }} // Используем sx вместо style
               dangerouslySetInnerHTML={{
                 __html: additionalContent,
               }}

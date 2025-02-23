@@ -69,11 +69,9 @@ const Page: FC<IPage> = ({ children, className = '', id = '' }) => {
 
         {/* FAVICON */}
         <link rel={'apple-touch-icon'} sizes={'180x180'} href={'/favicon/apple-touch-icon.png'} />
-        <link rel={'icon'} type={'image/png'} sizes={'32x32'} href={'/favicon/favicon-32x32.png'} />
-        <link rel={'icon'} type={'image/png'} sizes={'16x16'} href={'/favicon/favicon-16x16.png'} />
         <link rel={'manifest'} href={'/favicon/site.webmanifest'} />
         <link rel={'mask-icon'} href={'/favicon/safari-pinned-tab.svg'} color={'#5bbad5'} />
-        <link rel={'shortcut icon'} href={'/favicon/favicon.ico'} />
+        <link rel={'shortcut icon'} href={'/favicon.ico'} />
         <meta name={'msapplication-config'} content={'/favicon/browserconfig.xml'} />
         <meta name={'msapplication-TileColor'} content={themeColor} />
         <meta name={'theme-color'} content={themeColor} />
@@ -134,21 +132,6 @@ const Page: FC<IPage> = ({ children, className = '', id = '' }) => {
       <main id={id} className={className}>
         {children}
       </main>
-
-      {/* {modalState === "success" && (
-        <CustomAlert
-          openData={modalState === "success"}
-          type="success"
-          content="Váš e-mail je v pořádku odeslán."
-        />
-      )} */}
-      {/* {modalState === "error" && (
-        <CustomAlert
-          openData={modalState === "error"}
-          type="error"
-          content="Zadaný e-mail není platný."
-        />
-      )} */}
     </>
   )
 }

@@ -67,7 +67,6 @@ export interface IShopCatalog {
 }
 
 const ShopCatalog: NextPage<IShopCatalog> = ({
-  // categoryNav
   data,
 }) => {
   return (

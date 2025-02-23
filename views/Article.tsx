@@ -24,7 +24,6 @@ const Chapter = styled.div`
 `
 
 const Article = ({ article, relative = false }: { article: any; relative?: any}) => {
-  console.log(article)
   const router = useRouter()
   
   const schema = {
@@ -44,7 +43,7 @@ const Article = ({ article, relative = false }: { article: any; relative?: any})
       "name": "Tulsio",
       "logo": {
         "@type": "ImageObject",
-        "url": "/assets/logo-tulsio-png.png"
+        "url": "https://tulsio.com/logo-tulsio-png.png"
       }
     },
     "image": article.image?.data?.attributes.url,

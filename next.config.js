@@ -38,7 +38,7 @@ const nextConfig = {
     defaultLocale: 'default',
     localeDetection: false,
   },
-  trailingSlash: true,
+  trailingSlash: false,
   images: {
     domains: ['localhost', 'admin.tulsio.cz'],
   },

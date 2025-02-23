@@ -14,7 +14,6 @@ import navHeader from 'queries/navHeader'
 import { Configure, InstantSearch, Index, useSearchBox, UseHitsProps, Hits } from 'react-instantsearch'
 import { wrapper } from 'stores'
 import { useEffect, useState } from 'react'
-import NotResult from 'components/NotResult'
 
 const DOMAIN = process.env.APP_DOMAIN
 const meilisearchPrefix = process.env.MEILISEARCH_PREFIX
