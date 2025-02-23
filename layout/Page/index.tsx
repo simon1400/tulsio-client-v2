@@ -62,7 +62,7 @@ const Page: FC<IPage> = ({ children, className = '', id = '' }) => {
     })
   })
 
-  const url = global.site_url + (pathname !== '/' ? pathname : '')
+  const url = global.site_url + '/cs' + (pathname !== '/' ? pathname : '')
 
   console.log(url)
 
