@@ -1,13 +1,13 @@
+import globalQuery from 'queries/global'
+import navFooter from 'queries/navFooter'
+import navHeader from 'queries/navHeader'
 import { wrapper } from 'stores'
-import { changeDescription, changeTitle } from 'stores/slices/dataSlices'
+import { changeCategoryTitle, changeDescription, changeTitle } from 'stores/slices/dataSlices'
 import { changeImage } from 'stores/slices/metaSlices'
 import Article from 'views/Article'
 
 import { client, getStrapiURL } from '../../lib/api'
 import { getArticle } from '../../queries/articles'
-import navHeader from 'queries/navHeader'
-import navFooter from 'queries/navFooter'
-import globalQuery from 'queries/global'
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
@@ -42,22 +42,26 @@ export const getServerSideProps = wrapper.getServerSideProps(
           article.meta?.image.data ? getStrapiURL(article.meta.image.data.attributes.url) : '',
         ),
       )
+      store.dispatch(changeCategoryTitle(article.categories.data[0].attributes.title))
 
-      const { data: headerData } = await client.query({query: navHeader, 
+      const { data: headerData } = await client.query({
+        query: navHeader,
         variables: {
-          locale: locale,
-        },}
-      )
-    
-      const { data: footerData } = await client.query({query: navFooter,
-        variables: {
-          locale: locale,
+          locale,
         },
       })
-    
-      const { data: newsletterData } = await client.query({query: globalQuery, 
+
+      const { data: footerData } = await client.query({
+        query: navFooter,
         variables: {
-          locale: locale,
+          locale,
+        },
+      })
+
+      const { data: newsletterData } = await client.query({
+        query: globalQuery,
+        variables: {
+          locale,
         },
       })
 
@@ -67,7 +71,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
           relative,
           headerData,
           footerData,
-          newsletterData
+          newsletterData,
         },
       }
     },

@@ -11,7 +11,7 @@ import { useTheme } from "@emotion/react";
 
 const Masonry: React.FC<MasonryProps> = (props) => <_Masonry {...props} />;
 
-const Image = dynamic(() => import("../Image"), { suspense: true });
+const Image = dynamic(() => import("../Image"));
 
 const DictionaryHits: FC<{ data: any }> = ({ data }) => {
   const theme = useTheme();
