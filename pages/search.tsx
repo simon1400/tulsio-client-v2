@@ -1,4 +1,7 @@
-import { Container } from '@mui/material'
+import type { UseHitsProps } from 'react-instantsearch'
+
+import { Container, debounce } from '@mui/material'
+import NotResult from 'components/NotResult'
 import PageHead from 'components/PageHead'
 import ResultArticles from 'components/ResultArticles'
 import ResultDictionary from 'components/ResultDictionary'
@@ -11,34 +14,32 @@ import { useRouter } from 'next/router'
 import globalQuery from 'queries/global'
 import navFooter from 'queries/navFooter'
 import navHeader from 'queries/navHeader'
-import { Configure, InstantSearch, Index, useSearchBox, UseHitsProps, Hits } from 'react-instantsearch'
+import { useRef, useState } from 'react'
+import { Configure, Index, InstantSearch } from 'react-instantsearch'
 import { wrapper } from 'stores'
-import { useEffect, useState } from 'react'
-import NotResult from 'components/NotResult'
 
 const DOMAIN = process.env.APP_DOMAIN
 const meilisearchPrefix = process.env.MEILISEARCH_PREFIX
 
-const indexName = `${meilisearchPrefix}article`
-
 export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
-  
-
-  const { data: headerData } = await client.query({query: navHeader, 
+  const { data: headerData } = await client.query({
+    query: navHeader,
     variables: {
-      locale: locale,
-    },}
-  )
-
-  const { data: footerData } = await client.query({query: navFooter,
-    variables: {
-      locale: locale,
+      locale,
     },
   })
 
-  const { data: newsletterData } = await client.query({query: globalQuery, 
+  const { data: footerData } = await client.query({
+    query: navFooter,
     variables: {
-      locale: locale,
+      locale,
+    },
+  })
+
+  const { data: newsletterData } = await client.query({
+    query: globalQuery,
+    variables: {
+      locale,
     },
   })
 
@@ -46,7 +47,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
     props: {
       headerData,
       footerData,
-      newsletterData
+      newsletterData,
     },
   }
 })
@@ -54,35 +55,38 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
 const SearchPage = (props: UseHitsProps) => {
   const router = useRouter()
   const [isSearching, setIsSearching] = useState(false)
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState('')
   const onSearch = (query: any) => {
     setSearchQuery(query)
     setIsSearching(query.length >= 3)
   }
-  const [noResults1, setNoResults1] = useState<boolean | null>(null); 
-  const [noResults2, setNoResults2] = useState<boolean | null>(null);
-  const [debouncedResults, setDebouncedResults] = useState<boolean | null>(null);
+  const [debouncedResults, setDebouncedResults] = useState<boolean | null>(null)
+
+  const lastNoResults = useRef<{ noResults1: boolean | null; noResults2: boolean | null }>({
+    noResults1: null,
+    noResults2: null,
+  })
+
+  const handleDebouncedResults = debounce(() => {
+    const combinedNoResults = lastNoResults.current.noResults1 && lastNoResults.current.noResults2
+    setDebouncedResults(combinedNoResults)
+  }, 300)
 
   const handleResults1 = (results: any[]) => {
-    setNoResults1(results.length === 0);
-  };
+    lastNoResults.current.noResults1 = results.length === 0
+    handleDebouncedResults()
+  }
 
   const handleResults2 = (results: any[]) => {
-    setNoResults2(results.length === 0);
-  };
+    lastNoResults.current.noResults2 = results.length === 0
+    handleDebouncedResults()
+  }
 
-  useEffect(() => {
-    if (noResults1 !== null && noResults2 !== null) {
-      setDebouncedResults(noResults1 && noResults2);
-    }
-  }, [noResults1, noResults2]);  
-
-  const shouldShowNoResults = debouncedResults;
-
+  const showNoResults = debouncedResults
 
   return (
     <Page>
-      <InstantSearch routing={true} searchClient={searchClient.searchClient}>
+      <InstantSearch routing searchClient={searchClient.searchClient}>
         <Configure hitsPerPage={50} />
 
         <Head>
@@ -93,17 +97,15 @@ const SearchPage = (props: UseHitsProps) => {
 
         <Container>
           <SearchBox placeholder={'Zadejte hledaný text...'} onSearch={onSearch} />
-          
         </Container>
 
-        <Index indexName="dictionary">
-          {isSearching && <ResultDictionary query={searchQuery} onResults={handleResults1}/>}
+        <Index indexName={'dictionary'}>
+          {isSearching && <ResultDictionary query={searchQuery} onResults={handleResults1} />}
         </Index>
         <Index indexName={`${meilisearchPrefix}article`}>
-          <ResultArticles query={searchQuery} onResults={handleResults2}/>
+          <ResultArticles query={searchQuery} onResults={handleResults2} />
         </Index>
-        {shouldShowNoResults && <NotResult/>}
-      {/*  */}
+        {showNoResults && <NotResult />}
       </InstantSearch>
     </Page>
   )

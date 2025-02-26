@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
 import { Container, Typography } from '@mui/material'
 import Anchors from 'components/Anchors'
-import ArticleTop from 'components/ArticleTop';
-import Articles from "components/Articles";
+import Articles from 'components/Articles'
+import ArticleTop from 'components/ArticleTop'
 import Author from 'components/Author'
 import BannerStatic from 'components/BanerStatic'
 import Button from 'components/Button'
@@ -11,11 +11,13 @@ import Image from 'components/Image'
 import AudioPlayer from 'components/Player'
 import PodcastLink from 'components/PodcastLink'
 import ShareButton from 'components/ShareButtons'
+import { stripHtmlTags } from 'components/StripHTMLTags'
 import { oembedTransform } from 'helpers/oembedTransform'
 import Page from 'layout/Page'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { stripHtmlTags } from 'components/StripHTMLTags';
+import { useSelector } from 'react-redux'
+import { selectCategoryTitle } from 'stores/slices/dataSlices'
 
 const DOMAIN = process.env.APP_DOMAIN
 
@@ -23,41 +25,40 @@ const Chapter = styled.div`
   margin-bottom: 60px;
 `
 
-const Article = ({ article, relative = false }: { article: any; relative?: any}) => {
-  console.log(article)
+const Article = ({ article, relative = false }: { article: any; relative?: any }) => {
+  const categTitle = useSelector(selectCategoryTitle)
   const router = useRouter()
-  
-  const schema = {
-   "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": stripHtmlTags(article.title),
-    "author": {
-      "@type": "Person",
-      "name": stripHtmlTags(article.authors?.data[0].attributes.name || ""),
-    },
-    "datePublished": article.publishedAt,
-    "dateModified": article.updatedAt,
-    "description": stripHtmlTags(article.perex),
-    "articleSection": article.labels?.data[0].attributes.title,
-    "publisher": {
-      "@type": "Organization",
-      "name": "Tulsio",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "/assets/logo-tulsio-png.png"
-      }
-    },
-    "image": article.image?.data?.attributes.url,
-    "mainEntityOfPage": "https://tulsio.com/cs",
-  };
 
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: stripHtmlTags(article.title),
+    author: {
+      '@type': 'Person',
+      name: stripHtmlTags(article.authors?.data[0].attributes.name || ''),
+    },
+    datePublished: article.publishedAt,
+    dateModified: article.updatedAt,
+    description: stripHtmlTags(article.perex),
+    articleSection: categTitle,
+    publisher: {
+      '@type': 'Organization',
+      name: 'Tulsio',
+      logo: {
+        '@type': 'ImageObject',
+        url: '/assets/logo-tulsio-png.png',
+      },
+    },
+    image: article.image?.data?.attributes.url,
+    mainEntityOfPage: 'https://tulsio.com/cs',
+  }
 
   return (
     <Page>
       <Head>
         <link rel={'alternate'} hrefLang={'cs'} href={`${DOMAIN}/cs${router.asPath}`} />
         <script
-          type="application/ld+json"
+          type={'application/ld+json'}
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(schema),
           }}

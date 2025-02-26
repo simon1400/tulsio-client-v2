@@ -182,6 +182,7 @@ export const getArticle = gql`
           categories(pagination: { limit: 1 }) {
             data {
               attributes {
+                title
                 articles(pagination: { limit: 4 }) {
                   data {
                     attributes {
