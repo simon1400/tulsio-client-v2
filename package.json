@@ -77,8 +77,4 @@
   "lint-staged": {
     "*": "eslint --fix"
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> c02f53e8f873ed14fe7ff9296078c4a84d9762c7
