@@ -3,6 +3,7 @@ import type { FC } from 'react'
 import { useRouter } from 'next/router'
 
 import { LabelS } from './styles'
+import Link from 'next/link'
 
 export interface LabelProps {
   title: string
@@ -20,12 +21,17 @@ const Label: FC<LabelDataProps> = ({ data, color }) => {
 
   const handleClick = (e: any) => {
     e.preventDefault()
-    router.push(`/${data.slug}`)
+    router.push(`/cs/${data.slug}`)
+  }
+
+  if (!data?.navTitle) {
+    console.log('error: no title')
+    return null
   }
 
   return (
-    <LabelS onClick={(e) => handleClick(e)} color={color}>
-      {data.navTitle}
+    <LabelS color={color} onClick={(e) => handleClick(e)} href={`/cs/${data.slug}`}>
+      {data?.navTitle || ''}
     </LabelS>
   )
 }

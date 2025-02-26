@@ -3,11 +3,11 @@ import type { FC, ReactNode } from 'react'
 import { redirects } from 'helpers/redirects'
 import { useOnMountUnsafe } from 'helpers/useOnMountUnsaf'
 import Head from 'next/head'
-import { usePathname } from 'next/navigation'
 import Script from 'next/script'
 import { useSelector } from 'react-redux'
 import { selectDescription, selectTitle } from 'stores/slices/dataSlices'
 import { selectAllMeta } from 'stores/slices/metaSlices'
+import { usePathname } from 'next/navigation'
 
 const DOMAIN = process.env.APP_DOMAIN
 
@@ -62,6 +62,12 @@ const Page: FC<IPage> = ({ children, className = '', id = '' }) => {
     })
   })
 
+  let url = global.site_url + '/cs' + (pathname !== '/' ? pathname : '')
+
+  url = url.replaceAll('/cs/cs', '/cs')
+
+  console.log(url)
+
   return (
     <>
       <Head>
@@ -69,23 +75,19 @@ const Page: FC<IPage> = ({ children, className = '', id = '' }) => {
 
         {/* FAVICON */}
         <link rel={'apple-touch-icon'} sizes={'180x180'} href={'/favicon/apple-touch-icon.png'} />
-        <link rel={'icon'} type={'image/png'} sizes={'32x32'} href={'/favicon/favicon-32x32.png'} />
-        <link rel={'icon'} type={'image/png'} sizes={'16x16'} href={'/favicon/favicon-16x16.png'} />
         <link rel={'manifest'} href={'/favicon/site.webmanifest'} />
         <link rel={'mask-icon'} href={'/favicon/safari-pinned-tab.svg'} color={'#5bbad5'} />
-        <link rel={'shortcut icon'} href={'/favicon/favicon.ico'} />
+        <link rel={'shortcut icon'} href={'/favicon.ico'} />
         <meta name={'msapplication-config'} content={'/favicon/browserconfig.xml'} />
         <meta name={'msapplication-TileColor'} content={themeColor} />
         <meta name={'theme-color'} content={themeColor} />
 
         <meta name={'viewport'} content={'width=device-width, initial-scale=1'} />
         <title>{theTitle}</title>
-        <link
-          rel={'alternate'}
-          hrefLang={'cs'}
-          href={`${DOMAIN}/cs${pathname !== '/' ? pathname : ''}`}
-        />
-        <link rel={'canonical'} href={global.site_url + (pathname !== '/' ? pathname : '')} />
+
+        <link rel={'alternate'} hrefLang={'cs'} href={url} />
+        <link rel={'canonical'} href={url} />
+
         <meta itemProp={'name'} content={theTitle} />
         <meta itemProp={'description'} content={theDescription} />
         <meta itemProp={'image'} content={theImage} />
@@ -97,7 +99,7 @@ const Page: FC<IPage> = ({ children, className = '', id = '' }) => {
         <meta name={'twitter:image:src'} content={theImage} />
         <meta property={'og:title'} content={ogTitle || theTitle} />
         <meta property={'og:type'} content={contentType} />
-        <meta property={'og:url'} content={global.site_url + (pathname !== '/' ? pathname : '')} />
+        <meta property={'og:url'} content={url} />
         <meta property={'og:image'} content={theImage} />
         <meta property={'og:description'} content={ogDescription || theDescription} />
         <meta property={'og:site_name'} content={siteName.toUpperCase()} />
@@ -134,21 +136,6 @@ const Page: FC<IPage> = ({ children, className = '', id = '' }) => {
       <main id={id} className={className}>
         {children}
       </main>
-
-      {/* {modalState === "success" && (
-        <CustomAlert
-          openData={modalState === "success"}
-          type="success"
-          content="Váš e-mail je v pořádku odeslán."
-        />
-      )} */}
-      {/* {modalState === "error" && (
-        <CustomAlert
-          openData={modalState === "error"}
-          type="error"
-          content="Zadaný e-mail není platný."
-        />
-      )} */}
     </>
   )
 }

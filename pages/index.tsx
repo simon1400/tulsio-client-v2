@@ -88,7 +88,7 @@ const schemaHome = {
     "url": "https://tulsio.com/cs",
     "logo": {
         "@type": "ImageObject",
-        "url": "/assets/logo-tulsio-png.png"
+        "url": "https://tulsio.com/logo-tulsio-png.png"
     }, 
     "contactPoint": {
       "@type": "ContactPoint",

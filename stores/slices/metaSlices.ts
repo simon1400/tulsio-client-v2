@@ -31,8 +31,7 @@ const initialState: NavState = {
   contentType: 'website',
   themeColor: '#4545ff',
   siteName: 'Tulsio',
-  siteUrl:
-    process.env.NODE_ENV === 'development' ? 'http://localhost:3004/cs' : 'https://tulsio.com/cs',
+  siteUrl: process.env.APP_DOMAIN || 'http://localhost:3011/cs',
 }
 
 export const metaReducer = createSlice({
