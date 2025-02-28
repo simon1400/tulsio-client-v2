@@ -1,23 +1,24 @@
-import type { FC, ReactElement } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import SearchIcon from 'public/icons/search.svg';
+import type { FC, ReactElement } from 'react'
 
-import { CSubMenu } from './styles';
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import SearchIcon from 'public/icons/search.svg'
+
+import { CSubMenu } from './styles'
 
 interface INavItem {
-  slug: string;
-  title: string;
+  slug: string
+  title: string
 }
 
 interface INav {
-  data: INavItem[];
-  subMenu?: boolean;
-  category?: boolean;
-  mobile?: boolean;
-  footer?: boolean;
-  icon?: ReactElement;
-  handle: (e: React.MouseEvent<HTMLAnchorElement>, slug: string) => void;
+  data: INavItem[]
+  subMenu?: boolean
+  category?: boolean
+  mobile?: boolean
+  footer?: boolean
+  icon?: ReactElement
+  handle: (e: React.MouseEvent<HTMLAnchorElement>, slug: string) => void
 }
 
 const Nav: FC<INav> = ({
@@ -29,39 +30,40 @@ const Nav: FC<INav> = ({
   icon = null,
   handle,
 }) => {
-  const router = useRouter();
+  const router = useRouter()
 
-  const isActive = (slug: string): boolean =>
-    router.asPath === `/${slug}` || router.asPath === slug;
+  const isActive = (slug: string): boolean => router.asPath === `/${slug}` || router.asPath === slug
 
   return (
     <CSubMenu removeMargin={!subMenu} subMenu={subMenu} mobile={mobile} footer={footer}>
       <ul>
         {category && (
           <li className={router.asPath === '/blog' || router.asPath === '/tags' ? 'active' : ''}>
-            <Link href="/blog" onClick={(e) => handle(e, '/blog')}>
-              Všechny
+            <Link href={'/blog'} onClick={(e) => handle(e, '/blog')}>
+              {'Všechny'}
             </Link>
           </li>
         )}
-        {!!data?.length && data.map(({ slug, title }) => {
-          return (
-          <li className={isActive(slug) ? 'active' : ''} key={title}>
-            <Link href={slug} onClick={(e) => handle(e, slug)}>
-              {title}
-            </Link>
-          </li>
-        )})}
+        {!!data?.length &&
+          data.map(({ slug, title }) => {
+            return (
+              <li className={isActive(slug) ? 'active' : ''} key={title}>
+                <Link href={slug} onClick={(e) => handle(e, slug)}>
+                  {title}
+                </Link>
+              </li>
+            )
+          })}
         {icon && (
           <li>
-            <Link href="/search" onClick={(e) => handle(e, '/search')}>
+            <Link href={'/search'} onClick={(e) => handle(e, '/search')}>
               <SearchIcon />
             </Link>
           </li>
         )}
       </ul>
     </CSubMenu>
-  );
-};
+  )
+}
 
-export default Nav;
+export default Nav
