@@ -3,11 +3,11 @@ import type { FC, ReactNode } from 'react'
 import { redirects } from 'helpers/redirects'
 import { useOnMountUnsafe } from 'helpers/useOnMountUnsaf'
 import Head from 'next/head'
+import { usePathname } from 'next/navigation'
 import Script from 'next/script'
 import { useSelector } from 'react-redux'
 import { selectDescription, selectTitle } from 'stores/slices/dataSlices'
 import { selectAllMeta } from 'stores/slices/metaSlices'
-import { usePathname } from 'next/navigation'
 
 const DOMAIN = process.env.APP_DOMAIN
 
@@ -62,7 +62,7 @@ const Page: FC<IPage> = ({ children, className = '', id = '' }) => {
     })
   })
 
-  let url = global.site_url + '/cs' + (pathname !== '/' ? pathname : '')
+  let url = `${global.site_url}/cs${pathname !== '/' ? pathname : ''}`
 
   url = url.replaceAll('/cs/cs', '/cs')
 

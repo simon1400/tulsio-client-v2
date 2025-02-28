@@ -1,17 +1,19 @@
-import { FC, useEffect, useState } from 'react';
-import { Typography } from '@mui/material';
-import DOMPurify from 'isomorphic-dompurify';
+import type { FC } from 'react'
 
-import { CategoryDescriptionS } from './styles';
+import { Typography } from '@mui/material'
+import DOMPurify from 'isomorphic-dompurify'
+import { useEffect, useState } from 'react'
+
+import { CategoryDescriptionS } from './styles'
 
 interface ICategoryShort {
   data: {
-    title?: string;
-    description?: string;
-  };
-  staticBlock?: boolean;
-  descriptionBlock?: boolean;
-  removeHover?: boolean;
+    title?: string
+    description?: string
+  }
+  staticBlock?: boolean
+  descriptionBlock?: boolean
+  removeHover?: boolean
 }
 
 const CategoryShort: FC<ICategoryShort> = ({
@@ -20,15 +22,15 @@ const CategoryShort: FC<ICategoryShort> = ({
   removeHover = false,
   descriptionBlock = false,
 }) => {
-  const [sanitizedDescription, setSanitizedDescription] = useState<string | null>(null);
+  const [sanitizedDescription, setSanitizedDescription] = useState<string | null>(null)
 
   useEffect(() => {
     if (data?.description) {
-      setSanitizedDescription(DOMPurify.sanitize(data.description));
+      setSanitizedDescription(DOMPurify.sanitize(data.description))
     }
-  }, [data?.description]);
+  }, [data?.description])
 
-  if (!data?.title && !data?.description) return null; // Защита от рендера пустого блока
+  if (!data?.title && !data?.description) return null // Защита от рендера пустого блока
 
   return (
     <CategoryDescriptionS
@@ -36,8 +38,8 @@ const CategoryShort: FC<ICategoryShort> = ({
       staticBlock={!!staticBlock}
       descriptionBlock={!!descriptionBlock}
     >
-      <div className="img-wrap" />
-      <div className="content-wrap-art">
+      <div className={'img-wrap'} />
+      <div className={'content-wrap-art'}>
         {data.title && (
           <Typography marginBottom={staticBlock ? 5 : 0} variant={staticBlock ? 'h1' : 'h2'}>
             {data.title}
@@ -45,11 +47,14 @@ const CategoryShort: FC<ICategoryShort> = ({
         )}
 
         {sanitizedDescription && (
-          <Typography variant="body2" dangerouslySetInnerHTML={{ __html: sanitizedDescription }} />
+          <Typography
+            variant={'body2'}
+            dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
+          />
         )}
       </div>
     </CategoryDescriptionS>
-  );
-};
+  )
+}
 
-export default CategoryShort;
+export default CategoryShort
