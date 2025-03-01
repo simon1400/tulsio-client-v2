@@ -6,7 +6,7 @@ import DOMPurify from 'isomorphic-dompurify'
 import dynamic from 'next/dynamic'
 
 import { RelatedS } from './styled'
-const Image = dynamic(() => import('../Image'))
+const Image = dynamic(() => import('../Image'), { suspense: true })
 
 interface IReverse {
   reverse: boolean
