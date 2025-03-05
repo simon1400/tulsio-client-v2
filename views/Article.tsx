@@ -51,7 +51,7 @@ const Article = ({ article, relative = false }: { article: any; relative?: any }
       },
     },
     image: `${APP_API}${article.image?.data?.attributes.url}`,
-    mainEntityOfPage: 'https://tulsio.com/cs',
+    mainEntityOfPage: `${DOMAIN}/cs${router.asPath}`,
   }
   const schemaArticles = {
     '@context': 'https://schema.org',
@@ -68,8 +68,7 @@ const Article = ({ article, relative = false }: { article: any; relative?: any }
         url: logo,
       },
     },
-    image: `${APP_API}${article.image?.data?.attributes.url}`,
-    mainEntityOfPage: 'https://tulsio.com/cs',
+    mainEntityOfPage: `${DOMAIN}/cs${router.asPath}`,
   }
   const isBlogPage = router.asPath === `/blog/${article.slug}`
   return (
