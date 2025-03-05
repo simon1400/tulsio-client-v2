@@ -62,8 +62,8 @@ const Menu: FC<Props> = (props) => {
         </Link>
       </Logo>
       <CloseMenuS>
-        <Lang />
-        <IconButton href={'/search'} sx={{ ml: 0, p: 0 }}>
+        {/* <Lang /> */}
+        <IconButton href={'/cs/search'} sx={{ ml: 0, p: 0 }}>
           <SvgIcon component={Search} sx={{ fontSize: 32 }} />
         </IconButton>
         <IconButton onClick={() => handleDrawerToggle()} sx={{ ml: 0, p: 0 }}>

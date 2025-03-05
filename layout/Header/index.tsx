@@ -80,7 +80,7 @@ const Header = ({ data }: HeaderProps) => {
                 handleDrawerToggle={handleDrawerToggle}
               />
               <ControlWrap>
-                <IconButton href="/search" sx={{ ml: 0 }}>
+                <IconButton href="/cs/search" sx={{ ml: 0 }}>
                   <SvgIcon component={Search} sx={{ fontSize: 32 }} />
                 </IconButton>
               </ControlWrap>
@@ -94,7 +94,7 @@ const Header = ({ data }: HeaderProps) => {
                 <SvgIcon component={MenuIcon} />
               </IconButton>
             </div>
-            <Lang />
+            {/* <Lang /> */}
           </NavWrap>
         </HeaderWrap>
       </Container>
