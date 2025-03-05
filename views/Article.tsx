@@ -20,6 +20,7 @@ import { useSelector } from 'react-redux'
 import { selectCategoryTitle } from 'stores/slices/dataSlices'
 
 const DOMAIN = process.env.APP_DOMAIN
+const APP_API = process.env.APP_API
 
 const Chapter = styled.div`
   margin-bottom: 60px;
@@ -28,7 +29,7 @@ const Chapter = styled.div`
 const Article = ({ article, relative = false }: { article: any; relative?: any }) => {
   const categTitle = useSelector(selectCategoryTitle)
   const router = useRouter()
-
+  const logo = `${APP_API}/assets/logo-tulsio-png.png`
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -46,23 +47,50 @@ const Article = ({ article, relative = false }: { article: any; relative?: any }
       name: 'Tulsio',
       logo: {
         '@type': 'ImageObject',
-        url: '/assets/logo-tulsio-png.png',
+        url: logo,
       },
     },
-    image: article.image?.data?.attributes.url,
+    image: `${APP_API}${article.image?.data?.attributes.url}`,
     mainEntityOfPage: 'https://tulsio.com/cs',
   }
-
+  const schemaArticles = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: stripHtmlTags(article.title),
+    datePublished: article.publishedAt,
+    dateModified: article.updatedAt,
+    description: stripHtmlTags(article.perex),
+    publisher: {
+      '@type': 'Organization',
+      name: 'Tulsio',
+      logo: {
+        '@type': 'ImageObject',
+        url: logo,
+      },
+    },
+    image: `${APP_API}${article.image?.data?.attributes.url}`,
+    mainEntityOfPage: 'https://tulsio.com/cs',
+  }
+  const isBlogPage = router.asPath === `/blog/${article.slug}`
   return (
     <Page>
       <Head>
         <link rel={'alternate'} hrefLang={'cs'} href={`${DOMAIN}/cs${router.asPath}`} />
-        <script
-          type={'application/ld+json'}
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(schema),
-          }}
-        />
+        {isBlogPage ? (
+          <script
+            type={'application/ld+json'}
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(schema),
+            }}
+          />
+        ) : (
+          <script
+            type={'application/ld+json'}
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(schemaArticles),
+            }}
+          />
+        )}
       </Head>
 
       {!!article && (
