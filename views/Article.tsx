@@ -98,7 +98,10 @@ const Article = ({ article, relative = false }: { article: any; relative?: any }
 
           <Container maxWidth={'md'}>
             {article.media?.audio?.data && (
-              <AudioPlayer url={article.media.audio.data.attributes.url} />
+              <AudioPlayer
+                removeMargin={article.media?.podcastLinks?.length === 0}
+                url={article.media.audio.data.attributes.url}
+              />
             )}
             {!!article.media?.podcastLinks?.length && (
               <PodcastLink data={article.media.podcastLinks} />
