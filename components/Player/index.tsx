@@ -10,7 +10,7 @@ import { Container, PlayerControl, SpeedControl, TimeDisplay, VolumeControl } fr
 
 const APP_API = process.env.APP_API
 
-const AudioPlayer: React.FC<{ url: string }> = ({ url }) => {
+const AudioPlayer: React.FC<{ url: string, removeMargin?:boolean }> = ({ url, removeMargin=false }) => {
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const [volume, setVolume] = useState<number>(0.6)
   const volumeControlRef = useRef<HTMLInputElement | null>(null)
@@ -223,7 +223,7 @@ const AudioPlayer: React.FC<{ url: string }> = ({ url }) => {
   }, [isPlaying])
 
   return (
-    <Container>
+    <Container removeMargin={removeMargin}>
       <div className={'central-container'}>
         <div className={'player-bg'}>
           <div className={'top-control'}>

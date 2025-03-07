@@ -1,10 +1,15 @@
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
 
-export const Container = styled.div`
+interface ContainerProps {
+  removeMargin?: boolean
+}
+
+export const Container = styled.div<ContainerProps>`
   margin-top: 6em;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-bottom: ${({ removeMargin }) => (removeMargin ? '-5em' : '0')};
 
   .central-container {
     width: 100%;
@@ -44,7 +49,7 @@ export const Container = styled.div`
     }
   }
   
-`;
+`
 
 export const TimeDisplay = styled.div`
   position: absolute;

@@ -5,10 +5,10 @@ import Label from 'components/Label'
 import { choiceBackground } from 'helpers/choiseBackground'
 import { useOnMountUnsafe } from 'helpers/useOnMountUnsaf'
 import DOMPurify from 'isomorphic-dompurify'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 import { ArticleWrap } from './styled'
-import { useRouter } from 'next/router'
 
 const APP_API = process.env.APP_API
 
