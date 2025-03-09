@@ -66,8 +66,6 @@ const Page: FC<IPage> = ({ children, className = '', id = '' }) => {
 
   url = url.replaceAll('/cs/cs', '/cs')
 
-  console.log(url)
-
   return (
     <>
       <Head>
