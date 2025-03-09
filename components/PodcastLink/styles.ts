@@ -1,7 +1,6 @@
-import styled from "@emotion/styled";
-import Link from "next/link";
+import styled from '@emotion/styled'
 
-export const PodcastLinkS = styled.div `
+export const PodcastLinkS = styled.div`
   margin-top: 18px;
   max-height: 54px;
   display: flex;
@@ -19,7 +18,7 @@ export const PodcastLinkS = styled.div `
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 22px; 
+    gap: 22px;
     margin-right: 25px;
 
     @media (max-width: 499px) {
@@ -27,17 +26,17 @@ export const PodcastLinkS = styled.div `
     }
   }
   span {
-    color: #FFFFFFB3;
+    color: #ffffffb3;
     font-size: 16px;
-      @media (max-width: 499px) {
-        font-size: 13px;
-      }
+    @media (max-width: 499px) {
+      font-size: 13px;
+    }
   }
-  ul{
+  ul {
     margin: 0;
     padding-left: 0px;
     display: flex;
-    li{
+    li {
       display: inline-block;
       list-style-type: none;
       &:not(:first-of-type) {
@@ -50,31 +49,31 @@ export const PodcastLinkS = styled.div `
   }
 `
 
-export const LinkS = styled(Link)`
-  position: relative; 
-  display: block; 
+export const LinkS = styled.a`
+  position: relative;
+  display: block;
   transition: all 0.3s ease;
 
   img {
     display: block;
-    
+
     @media (max-width: 499px) {
       width: 24px;
     }
   }
 
   &:hover::before {
-    content: "";
+    content: '';
     position: absolute;
     top: -10px;
     left: -10px;
     width: 54px;
     height: 54px;
-    background-color: #ffffff14; 
+    background-color: #ffffff14;
     border-radius: 50%;
     z-index: -1;
     @media (max-width: 499px) {
       display: none;
     }
   }
-`;
+`

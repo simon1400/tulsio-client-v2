@@ -22,7 +22,11 @@ const PodcastLink: FC<IPodcastLink> = ({ data }) => {
         <ul>
           {data.map((item: IPodcastLinkItem, idx: number) => (
             <li key={item.url}>
-              <LinkS href={item.url} passHref>
+              <LinkS
+                href={item.url.startsWith('http') ? item.url : `https://${item.url}`}
+                target={'_blank'}
+                rel={'noopener noreferrer'}
+              >
                 <Image image={item.logo.data} width={33} height={33} alt={''} />
               </LinkS>
             </li>
