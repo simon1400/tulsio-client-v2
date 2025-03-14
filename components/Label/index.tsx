@@ -21,7 +21,7 @@ const Label: FC<LabelDataProps> = ({ data, color }) => {
 
   const handleClick = (e: any) => {
     e.preventDefault()
-    router.push(`/cs/${data.slug}`)
+    router.push(`/${router.locale}/${data.slug}`)
   }
 
   if (!data?.navTitle) {
@@ -30,7 +30,7 @@ const Label: FC<LabelDataProps> = ({ data, color }) => {
   }
 
   return (
-    <LabelS color={color} onClick={(e) => handleClick(e)} href={`/cs/${data.slug}`}>
+    <LabelS color={color} onClick={(e) => handleClick(e)} href={`/${router.locale}/${data.slug}`} >
       {data?.navTitle || ''}
     </LabelS>
   )

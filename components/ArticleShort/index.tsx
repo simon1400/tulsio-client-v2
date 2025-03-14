@@ -57,15 +57,15 @@ const ArticleShort: FC<ArticleShortProps> = ({
 
   return (
     <ArticleWrap background={convert} color={color} href={`/${router.locale}${link}`}>
-      <div className={'img-wrap'}>
-        <div
+      <span className={'img-wrap'}>
+        <span
           className={'img-art'}
           style={showShortImg ? { backgroundImage: `url(${imgUrl})` } : {}}
         />
-      </div>
+      </span>
 
-      <div className={'content-wrap-art'}>
-        <div>
+      <span className={'content-wrap-art'}>
+        <span>
           <Typography variant={'h2'}>
             <span>{title}</span>
           </Typography>
@@ -77,14 +77,14 @@ const ArticleShort: FC<ArticleShortProps> = ({
               dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(text) }}
             />
           )}
-        </div>
-        <div className={'label-wrap'}>
+        </span>
+        <span className={'label-wrap'}>
           {!!label && !Array.isArray(label) && <Label data={label} color={color} />}
           {!!label &&
             Array.isArray(label) &&
             label.map((item, idx) => <Label color={color} key={`${item}_${idx}`} data={item} />)}
-        </div>
-      </div>
+        </span>
+      </span>
     </ArticleWrap>
   )
 }

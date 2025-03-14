@@ -1,5 +1,4 @@
 import styled from '@emotion/styled'
-// import Link from 'next/link'
 
 interface IStyleArticleWrap {
   background: string
@@ -46,6 +45,7 @@ export const ArticleWrap = styled.a<IStyleArticleWrap>(
       border-radius: ${theme.borderRadius.sm};
     }
     .img-art{
+      display: block;
       background-size: cover;
       background-position: center;
       height: 110%;
@@ -74,6 +74,9 @@ export const ArticleWrap = styled.a<IStyleArticleWrap>(
     ${theme.breakpoints.down('sm')} {
       padding: ${theme.globalPadding.md};
     }
+    > * {
+      display: block
+    }
   }
   h1{
     margin-top: 0;
@@ -90,7 +93,7 @@ export const ArticleWrap = styled.a<IStyleArticleWrap>(
   }
   .label-wrap{
     margin-bottom: -8px;
-    display: flex;
+    display: flex!important;
     flex-wrap: wrap;
   }
 `,

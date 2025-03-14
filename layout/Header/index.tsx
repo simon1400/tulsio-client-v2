@@ -1,18 +1,19 @@
 import { useState, useEffect } from 'react'
 import { Container, IconButton, SvgIcon } from '@mui/material'
-import dynamic from 'next/dynamic'
+// import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import Lang from 'components/Lang'
+// import Lang from 'components/Lang'
 import Nav from 'components/Nav'
+import Menu from 'layout/Menu'
 import MenuIcon from 'public/icons/menu.svg'
 import Search from 'public/icons/search.svg'
 
 import { ControlWrap, HeaderWrap, Logo, NavWrap } from './styles'
 
-const Menu = dynamic(() => import('layout/Menu'), { ssr: false })
+// const Menu = dynamic(() => import('layout/Menu'), { ssr: false })
 
 type HeaderProps = {
   data: {
@@ -89,9 +90,9 @@ const Header = ({ data }: HeaderProps) => {
                 aria-label="open drawer"
                 edge="start"
                 onClick={handleDrawerToggle}
-                sx={{ mr: 2 }}
+                sx={{ mr: 0 }}
               >
-                <SvgIcon component={MenuIcon} />
+                <SvgIcon fontSize={'large'} component={MenuIcon} />
               </IconButton>
             </div>
             {/* <Lang /> */}
