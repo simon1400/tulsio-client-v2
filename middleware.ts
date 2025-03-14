@@ -5,6 +5,7 @@ import { NextResponse } from 'next/server'
 
 // eslint-disable-next-line sonarjs/slow-regex, regexp/no-unused-capturing-group
 const PUBLIC_FILE = /\.(.*)$/
+const APP_API = process.env.APP_API
 
 // Простое кеширование редиректов (5 минут)
 let cachedRedirects: Array<{ from: string; to: string }> | null = null
@@ -18,7 +19,7 @@ async function fetchRedirects() {
     return cachedRedirects
   }
 
-  const res = await fetch('https://admin.tulsio.cz/api/redirects')
+  const res = await fetch(`${APP_API}/api/redirects`)
   const data = await res.json()
 
   cachedRedirects = data.redirects

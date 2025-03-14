@@ -7,6 +7,7 @@ import {
   getArticlesCategory,
   getArticlesTag,
 } from 'queries/articles'
+import blogpageQuery from 'queries/blogpage'
 import { getCategory } from 'queries/category'
 import { getTag } from 'queries/tags'
 
@@ -28,6 +29,14 @@ export const fetchDataByType = async (link: string, locale: string): Promise<Fet
   let articleBase = {}
 
   if (link === 'blog' || link === 'tags') {
+    if (link === 'blog') {
+      const { data: blogPageData } = await client.query({
+        query: blogpageQuery,
+      })
+      categoryTitle = blogPageData.blogPage.data.attributes.title
+      title = blogPageData.blogPage.data.attributes.meta.title
+      description = blogPageData.blogPage.data.attributes.meta.description
+    }
     const { data: articleData } = await client.query({
       query: getAllArticles,
       variables: { locale },
