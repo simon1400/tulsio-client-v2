@@ -1,9 +1,9 @@
-import { client } from 'lib/api'
 import type { NextPage } from 'next'
+
+import { client } from 'lib/api'
 import globalQuery from 'queries/global'
 import navFooter from 'queries/navFooter'
 import navHeader from 'queries/navHeader'
-
 import { useSelector } from 'react-redux'
 import { wrapper } from 'stores'
 import { fetchCategoryOrArticles } from 'stores/fetch/articlesData/dataFetch'
@@ -36,21 +36,24 @@ export const getServerSideProps = wrapper.getServerSideProps(
         if (state.type === 'tag') await store.dispatch(fetchNavTag(locale as string))
       }
 
-      const { data: headerData } = await client.query({query: navHeader, 
+      const { data: headerData } = await client.query({
+        query: navHeader,
         variables: {
-          locale: locale,
-        },}
-      )
-    
-      const { data: footerData } = await client.query({query: navFooter,
-        variables: {
-          locale: locale,
+          locale,
         },
       })
-    
-      const { data: newsletterData } = await client.query({query: globalQuery, 
+
+      const { data: footerData } = await client.query({
+        query: navFooter,
         variables: {
-          locale: locale,
+          locale,
+        },
+      })
+
+      const { data: newsletterData } = await client.query({
+        query: globalQuery,
+        variables: {
+          locale,
         },
       })
 
@@ -58,7 +61,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
         props: {
           headerData,
           footerData,
-          newsletterData
+          newsletterData,
         },
       }
     },

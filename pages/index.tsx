@@ -1,20 +1,23 @@
+import type { IBanner } from 'components/Baner'
 import type { FC } from 'react'
+
 import { Container, Typography } from '@mui/material'
 import ArticleShort from 'components/ArticleShort'
-import Banner, { IBanner } from 'components/Baner'
+import Banner from 'components/Baner'
 import GridButton from 'components/GridButton'
 import Page from 'layout/Page'
+import Head from 'next/head'
+import globalQuery from 'queries/global'
+import navFooter from 'queries/navFooter'
+import navHeader from 'queries/navHeader'
 import { wrapper } from 'stores'
 import { changeDescription, changeTitle } from 'stores/slices/dataSlices'
 import { changeImage } from 'stores/slices/metaSlices'
 import { GridTop } from 'styles/grid'
+
 import { client, getStrapiURL } from '../lib/api'
 import getBaners from '../queries/baners'
 import homepageQuery from '../queries/homepage'
-import navHeader from 'queries/navHeader'
-import navFooter from 'queries/navFooter'
-import globalQuery from 'queries/global'
-import Head from 'next/head'
 
 const BANER_POSITION = { POSITION_1: 'Home_1', POSITION_2: 'Home_2' }
 
@@ -28,15 +31,15 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async (c
 
   const locale = ctx.locale
   const queries = [
-    client.query({ 
-      query: getBaners, 
-      variables: { 
+    client.query({
+      query: getBaners,
+      variables: {
         query: [
-          { position: { eq: BANER_POSITION.POSITION_1 } }, 
-          { position: { eq: BANER_POSITION.POSITION_2 } }
-        ], 
-        locale 
-      } 
+          { position: { eq: BANER_POSITION.POSITION_1 } },
+          { position: { eq: BANER_POSITION.POSITION_2 } },
+        ],
+        locale,
+      },
     }),
     client.query({ query: homepageQuery, variables: { locale } }),
     client.query({ query: navHeader, variables: { locale } }),
@@ -44,7 +47,13 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async (c
     client.query({ query: globalQuery, variables: { locale } }),
   ]
 
-  const [{ data: banersData }, { data: homepageData }, { data: headerData }, { data: footerData }, { data: newsletterData }] = await Promise.all(queries)
+  const [
+    { data: banersData },
+    { data: homepageData },
+    { data: headerData },
+    { data: footerData },
+    { data: newsletterData },
+  ] = await Promise.all(queries)
 
   const homepage = homepageData.homepage.data.attributes
   const meta = homepage.meta
@@ -82,29 +91,27 @@ interface IHomepage {
 }
 
 const schemaHome = {
-  "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Tulsio",
-    "url": "https://tulsio.com/cs",
-    "logo": {
-        "@type": "ImageObject",
-        "url": "https://tulsio.com/logo-tulsio-png.png"
-    }, 
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+420732347464",
-      "email": "tulsio.mkt@gmail.com"
-    }
-
- };
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Tulsio',
+  url: 'https://tulsio.com/cs',
+  logo: {
+    '@type': 'ImageObject',
+    url: 'https://tulsio.com/logo-tulsio-png.png',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+420732347464',
+    email: 'tulsio.mkt@gmail.com',
+  },
+}
 
 const Homepage: FC<IHomepage> = ({ title, baner1, baner2, articles }) => {
-
   return (
     <Page>
       <Head>
         <script
-          type="application/ld+json"
+          type={'application/ld+json'}
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaHome) }}
         />
       </Head>

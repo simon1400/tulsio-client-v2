@@ -1,3 +1,4 @@
 export const stripHtmlTags = (str: any) => {
-  return str.replace(/<.*?>/g, ''); 
-};
+  // eslint-disable-next-line sonarjs/slow-regex
+  return str.replace(/<.*?>/g, '')
+}

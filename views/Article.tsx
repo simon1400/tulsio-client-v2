@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
 import { Container, Typography } from '@mui/material'
 import Anchors from 'components/Anchors'
-import ArticleTop from 'components/ArticleTop';
-import Articles from "components/Articles";
+import Articles from 'components/Articles'
+import ArticleTop from 'components/ArticleTop'
 import Author from 'components/Author'
 import BannerStatic from 'components/BanerStatic'
 import Button from 'components/Button'
@@ -11,55 +11,85 @@ import Image from 'components/Image'
 import AudioPlayer from 'components/Player'
 import PodcastLink from 'components/PodcastLink'
 import ShareButton from 'components/ShareButtons'
+import { stripHtmlTags } from 'components/StripHTMLTags'
 import { oembedTransform } from 'helpers/oembedTransform'
 import Page from 'layout/Page'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { stripHtmlTags } from 'components/StripHTMLTags';
+import { useSelector } from 'react-redux'
+import { selectCategoryTitle } from 'stores/slices/dataSlices'
 
 const DOMAIN = process.env.APP_DOMAIN
+const APP_API = process.env.APP_API
 
 const Chapter = styled.div`
   margin-bottom: 60px;
 `
 
-const Article = ({ article, relative = false }: { article: any; relative?: any}) => {
+const Article = ({ article, relative = false }: { article: any; relative?: any }) => {
+  const categTitle = useSelector(selectCategoryTitle)
   const router = useRouter()
-  
+  const logo = `${APP_API}/assets/logo-tulsio-png.png`
   const schema = {
-   "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": stripHtmlTags(article.title),
-    "author": {
-      "@type": "Person",
-      "name": stripHtmlTags(article.authors?.data[0].attributes.name || ""),
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: stripHtmlTags(article.title),
+    author: {
+      '@type': 'Person',
+      name: stripHtmlTags(article.authors?.data[0].attributes.name || ''),
     },
-    "datePublished": article.publishedAt,
-    "dateModified": article.updatedAt,
-    "description": stripHtmlTags(article.perex),
-    "articleSection": article.labels?.data[0].attributes.title,
-    "publisher": {
-      "@type": "Organization",
-      "name": "Tulsio",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://tulsio.com/logo-tulsio-png.png"
-      }
+    datePublished: article.publishedAt,
+    dateModified: article.updatedAt,
+    description: stripHtmlTags(article.perex),
+    articleSection: categTitle,
+    publisher: {
+      '@type': 'Organization',
+      name: 'Tulsio',
+      logo: {
+        '@type': 'ImageObject',
+        url: logo,
+      },
     },
-    "image": article.image?.data?.attributes.url,
-    "mainEntityOfPage": "https://tulsio.com/cs",
-  };
-
-
+    image: `${APP_API}${article.image?.data?.attributes.url}`,
+    mainEntityOfPage: `${DOMAIN}/cs${router.asPath}`,
+  }
+  const schemaArticles = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: stripHtmlTags(article.title),
+    datePublished: article.publishedAt,
+    dateModified: article.updatedAt,
+    description: stripHtmlTags(article.perex),
+    publisher: {
+      '@type': 'Organization',
+      name: 'Tulsio',
+      logo: {
+        '@type': 'ImageObject',
+        url: logo,
+      },
+    },
+    mainEntityOfPage: `${DOMAIN}/cs${router.asPath}`,
+  }
+  const isBlogPage = router.asPath === `/blog/${article.slug}`
   return (
     <Page>
       <Head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(schema),
-          }}
-        />
+        <link rel={'alternate'} hrefLang={'cs'} href={`${DOMAIN}/cs${router.asPath}`} />
+        {isBlogPage ? (
+          <script
+            type={'application/ld+json'}
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(schema),
+            }}
+          />
+        ) : (
+          <script
+            type={'application/ld+json'}
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(schemaArticles),
+            }}
+          />
+        )}
       </Head>
 
       {!!article && (
@@ -68,7 +98,10 @@ const Article = ({ article, relative = false }: { article: any; relative?: any})
 
           <Container maxWidth={'md'}>
             {article.media?.audio?.data && (
-              <AudioPlayer url={article.media.audio.data.attributes.url} />
+              <AudioPlayer
+                removeMargin={article.media?.podcastLinks?.length === 0}
+                url={article.media.audio.data.attributes.url}
+              />
             )}
             {!!article.media?.podcastLinks?.length && (
               <PodcastLink data={article.media.podcastLinks} />
