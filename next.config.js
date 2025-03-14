@@ -14,7 +14,7 @@ const nextConfig = {
     scrollRestoration: true,
   },
   eslint: { ignoreDuringBuilds: true },
-  reactStrictMode: true,
+  reactStrictMode: false,
   swcMinify: true,
   productionBrowserSourceMaps: true,
   env: {
