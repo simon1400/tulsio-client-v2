@@ -1,8 +1,6 @@
 import type { FC } from 'react'
-
 import { Typography } from '@mui/material'
 import DOMPurify from 'isomorphic-dompurify'
-import { useEffect, useState } from 'react'
 
 import { CategoryDescriptionS } from './styles'
 
@@ -22,15 +20,10 @@ const CategoryShort: FC<ICategoryShort> = ({
   removeHover = false,
   descriptionBlock = false,
 }) => {
-  const [sanitizedDescription, setSanitizedDescription] = useState<string | null>(null)
-
-  useEffect(() => {
-    if (data?.description) {
-      setSanitizedDescription(DOMPurify.sanitize(data.description))
-    }
-  }, [data?.description])
-
   if (!data?.title && !data?.description) return null // Защита от рендера пустого блока
+
+  // Очистка HTML описания сразу (чтобы контент был доступен без JS)
+  const sanitizedDescription = data?.description ? DOMPurify.sanitize(data.description) : null
 
   return (
     <CategoryDescriptionS
@@ -38,8 +31,8 @@ const CategoryShort: FC<ICategoryShort> = ({
       staticBlock={!!staticBlock}
       descriptionBlock={!!descriptionBlock}
     >
-      <div className={'img-wrap'} />
-      <div className={'content-wrap-art'}>
+      <div className="img-wrap" />
+      <div className="content-wrap-art">
         {data.title && (
           <Typography marginBottom={staticBlock ? 5 : 0} variant={staticBlock ? 'h1' : 'h2'}>
             {data.title}
@@ -47,10 +40,7 @@ const CategoryShort: FC<ICategoryShort> = ({
         )}
 
         {sanitizedDescription && (
-          <Typography
-            variant={'body2'}
-            dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
-          />
+          <Typography variant="body2" dangerouslySetInnerHTML={{ __html: sanitizedDescription }} />
         )}
       </div>
     </CategoryDescriptionS>

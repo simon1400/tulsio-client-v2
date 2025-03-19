@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 
-const blogpageQuery = gql`
+export const blogpageQuery = gql`
   query BlogPage {
     blogPage {
       data {
@@ -22,5 +22,25 @@ const blogpageQuery = gql`
     }
   }
 `
-
-export default blogpageQuery
+export const tagpageQuery = gql`
+  query TagsPage {
+    tagsPage {
+      data {
+        attributes {
+          title
+          meta {
+            title
+            description
+            image {
+              data {
+                attributes {
+                  url
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`

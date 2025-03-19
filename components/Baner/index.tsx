@@ -52,7 +52,7 @@ const Banner: FC<{data: IBanner}> = ({ data }) => {
             data={{
               title: 'Reklama',
               navTitle: 'Reklama',
-              slug: '/tulsio-promo',
+              slug: 'tulsio-promo',
             }}
             color={color}
           />

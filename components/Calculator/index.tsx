@@ -175,7 +175,7 @@ const Calculator: FC<{ embed?: string }> = ({ embed = '' }) => {
         <EmbedHeader>
           <Typography variant={'h1'}>{'CBD kalkulačka'}</Typography>
           <div className={'embed-logo'}>
-            <Link href={'/'}>
+            <Link href={'/'} target='_blank'>
               <Image src={'/assets/logo-tulsio.svg'} width={'211'} height={'61'} alt={'Tulsio'} />
             </Link>
           </div>
