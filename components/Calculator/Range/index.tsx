@@ -1,7 +1,7 @@
 import type { ChangeEvent, FC, HTMLAttributes } from 'react'
 
 import { SliderThumb, Typography } from '@mui/material'
-import BlockValue from 'components/BlockValue'
+import BlockValue from 'components/Calculator/BlockValue'
 
 import { AirbnbSlider, RangeS } from './styled'
 
@@ -12,14 +12,14 @@ const AirbnbThumbComponent = (props: AirbnbThumbComponentProps) => {
   return (
     <SliderThumb {...other}>
       {children}
-      <span className={'airbnb-bar'} />
-      <span className={'airbnb-bar'} />
-      <span className={'airbnb-bar'} />
+      <span className="airbnb-bar" />
+      <span className="airbnb-bar" />
+      <span className="airbnb-bar" />
     </SliderThumb>
   )
 }
 
-const lavelData = {
+const lavelData: Record<number, string> = {
   0: 'nízký',
   3: 'střední',
   6: 'velký',
@@ -32,20 +32,19 @@ const Range: FC<{
   min: number
   max: number
   step: number
-  defaultValue: number
+  defaultValue?: number // Делаем defaultValue НЕОБЯЗАТЕЛЬНЫМ
   kg?: boolean
 }> = ({ value, handle, label, min, max, step, defaultValue, kg = false }) => {
   return (
     <RangeS>
-      <div className={'labels'}>
+      <div className="labels">
         <Typography gutterBottom>{label}</Typography>
-        {/* @ts-expect-error: some error */}
-        {!kg && <Typography gutterBottom>{lavelData[value]}</Typography>}
-        {kg && <BlockValue state={'has'} value={`${value}`} type={'kg'} handle={handle} />}
+        {!kg && <Typography gutterBottom>{lavelData[value as number] || ''}</Typography>}
+        {kg && <BlockValue state="has" value={`${value}`} type="kg" handle={handle} />}
       </div>
       <AirbnbSlider
         slots={{ thumb: AirbnbThumbComponent }}
-        defaultValue={defaultValue}
+        defaultValue={defaultValue ?? min} // Используем min, если defaultValue не передан
         value={value}
         onChange={handle}
         step={step}

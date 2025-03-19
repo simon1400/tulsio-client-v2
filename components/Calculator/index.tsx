@@ -1,34 +1,28 @@
 import type { ChangeEvent, FC, SyntheticEvent } from 'react'
 
 import { Grid, Tab, Typography } from '@mui/material'
-import BlockValue from 'components/BlockValue'
-import ModalCopyIframe from 'components/ModalCopyIframe'
-import Range from 'components/Range'
-import Image from 'next/image'
-import Link from 'next/link'
-import CopyLight from 'public/assets/copy-light.svg'
+import BlockValue from './BlockValue'
+import Range from './Range'
+
 import KapkaIcon from 'public/assets/kapka.svg'
 import MgCbd from 'public/assets/mlCbd.svg'
 import ObjemIcon from 'public/assets/objem.svg'
 import PipetaIcon from 'public/assets/pipeta.svg'
-import TriangleAlert from 'public/assets/triangle-alert.svg'
+
 import { useEffect, useState } from 'react'
 
 import {
-  BottomButtons,
   CalculatorS,
-  EmbedHeader,
   InputsBlockWrap,
   ResultCalculate,
   TabsS,
 } from './styles'
-
-const objemKapatka = 0.04
-const baseKg = 75
-const tinktura = 10
+import { baseKg, objemKapatka, tinktura } from './constants'
+import { EmbedHeader } from './EmbedHeader'
+import { BottomButtons } from './BottomButtons'
 
 const Calculator: FC<{ embed?: string }> = ({ embed = '' }) => {
-  const [openModal, setOpenModal] = useState(false)
+  
   const [who, setWho] = useState('human')
   const [kapekText, setKapekText] = useState<string>('kapka')
 
@@ -159,28 +153,13 @@ const Calculator: FC<{ embed?: string }> = ({ embed = '' }) => {
     }
   }, [kapek])
 
-  const handleClick = (e: any) => {
-    e.preventDefault()
-    const element = document.getElementById('content')
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
+  
 
   const pipeta = +(kapek * objemKapatka).toFixed(2)
 
   return (
     <CalculatorS embed={embed}>
-      {!!embed.length && (
-        <EmbedHeader>
-          <Typography variant={'h1'}>{'CBD kalkulačka'}</Typography>
-          <div className={'embed-logo'}>
-            <Link href={'/'} target='_blank'>
-              <Image src={'/assets/logo-tulsio.svg'} width={'211'} height={'61'} alt={'Tulsio'} />
-            </Link>
-          </div>
-        </EmbedHeader>
-      )}
+      {!!embed.length && <EmbedHeader />}
       {!embed.length && (
         <div className={'wrap-tabs'}>
           <TabsS value={state} onChange={handleState}>
@@ -306,20 +285,7 @@ const Calculator: FC<{ embed?: string }> = ({ embed = '' }) => {
           </ResultCalculate>
         </Grid>
       </Grid>
-      {!embed.length && (
-        <BottomButtons>
-          <Link href={'/'} onClick={(e) => handleClick(e)}>
-            <TriangleAlert />
-            <span>{'Přečíst upozornění'}</span>
-          </Link>
-          {/* <div onClick={() => {navigator.clipboard.writeText('<iframe src="https://tulsio.com/cs/calculator?embed=black" width="100%" height="400" />')}}> */}
-          <div onClick={() => setOpenModal(true)}>
-            <CopyLight />
-            <span>{'Vložte si kalkulačku na váš web'}</span>
-          </div>
-          <ModalCopyIframe open={openModal} setOpen={setOpenModal} />
-        </BottomButtons>
-      )}
+      {!embed.length && <BottomButtons />}
     </CalculatorS>
   )
 }

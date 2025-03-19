@@ -1,7 +1,8 @@
-import styled from "@emotion/styled";
-import { Tabs } from "@mui/material";
+import styled from '@emotion/styled'
+import { Tabs } from '@mui/material'
 
-export const CalculatorS = styled.div<{embed?: string}>(({theme, embed = ''}) => `
+export const CalculatorS = styled.div<{ embed?: string }>(
+  ({ theme, embed = '' }) => `
   background-color: ${theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.1)' : 'rgba(255, 255, 255, 0.1)'};
   padding: 40px;
   display: flex;
@@ -20,18 +21,21 @@ export const CalculatorS = styled.div<{embed?: string}>(({theme, embed = ''}) =>
     font-size: 16px;
     margin-bottom: 11px;
   }
-  ${!embed.length && `
-    border-radius: ${theme.borderRadius['base']};
+  ${
+    !embed.length &&
+    `
+    border-radius: ${theme.borderRadius.base};
     ${theme.breakpoints.down('xxl')} {
-      border-radius: ${theme.borderRadius['xxl']};
+      border-radius: ${theme.borderRadius.xxl};
     }
     ${theme.breakpoints.down('xl')} {
-      border-radius: ${theme.borderRadius['xl']};
+      border-radius: ${theme.borderRadius.xl};
     }
     ${theme.breakpoints.down('lg')} {
-      border-radius: ${theme.borderRadius['lg']};
+      border-radius: ${theme.borderRadius.lg};
     }
-  `}
+  `
+  }
   
   ${theme.breakpoints.down('md')} {
     padding: 20px;
@@ -41,12 +45,14 @@ export const CalculatorS = styled.div<{embed?: string}>(({theme, embed = ''}) =>
     }
   }
   ${theme.breakpoints.down('sm')} {
-    border-radius: ${theme.borderRadius['sm']};
+    border-radius: ${theme.borderRadius.sm};
   }
   
-`)
+`,
+)
 
-export const TabsS = styled(Tabs)(({theme}) => `
+export const TabsS = styled(Tabs)(
+  ({ theme }) => `
 
   > div{
     height: 40px;
@@ -118,16 +124,17 @@ export const TabsS = styled(Tabs)(({theme}) => `
       bottom: 6px;
     }
   }
-`)
+`,
+)
 
-
-export const ResultCalculate = styled.div<{delay: number; animation: boolean;}>(({theme, delay, animation}) => `
+export const ResultCalculate = styled.div<{ delay: number; animation: boolean }>(
+  ({ theme, delay, animation }) => `
   padding-top: 35px;
   
   svg{
     margin-bottom: 0px;
     animation: bounce 1.5s ease infinite;
-    animation-play-state: ${animation ? "running" : "paused"};
+    animation-play-state: ${animation ? 'running' : 'paused'};
     animation-delay: ${delay}s;
   }
   span{
@@ -156,28 +163,11 @@ export const ResultCalculate = styled.div<{delay: number; animation: boolean;}>(
       font-size: 14px;
     }
   }
-`)
+`,
+)
 
-export const BottomButtons = styled.div(({theme}) => `
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 65px;
-    justify-content: center;
-    align-items: center;
-    gap: 25px;
-    >* {
-      display: flex;
-      align-items: center;
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.55);
-      text-decoration: none;
-      cursor: pointer;
-      svg{
-        margin-right: 5px;
-      }
-    }
-`)
-export const InputsBlockWrap = styled.div(({theme}) => `
+export const InputsBlockWrap = styled.div(
+  ({ theme }) => `
     display: flex;
     width: 100%;
     margin-top: 30px;
@@ -188,17 +178,5 @@ export const InputsBlockWrap = styled.div(({theme}) => `
     > div > div {
       max-width: 100%;
     }
-`)
-
-export const EmbedHeader = styled.div(({theme}) => `
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    align-items: center;
-    margin-bottom: 50px;
-    .embed-logo{
-      img{
-        width: 150px!important;
-      }
-    }
-`)
+`,
+)
