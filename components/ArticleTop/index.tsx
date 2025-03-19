@@ -31,13 +31,13 @@ const ArticleTop = ({
           <Image format={'&resize=920x920'} fill image={article.image.data} />
         )}
         {/* {article?.image?.data && <Image format={'&resize=920x920'} image={article.image.data} />} */}
-        <Container maxWidth={'md'}>
+        <Container maxWidth={'md'} sx={{zIndex: 10}}>
           {!!article.categories?.data.length && (
             <Breadcrumbs category={article.categories.data[0]?.attributes} color={color} />
           )}
           <Typography variant={'h1'}>{article.title}</Typography>
           {!!article?.labels?.data?.length &&
-            article.labels.data.map((item: any, index: number) => (
+            article.labels.data.map((item: any) => (
               <Label
                 color={color}
                 key={item.attributes.title}
