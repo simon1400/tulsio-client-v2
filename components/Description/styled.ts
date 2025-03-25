@@ -17,6 +17,7 @@ export const DescriptionS = styled.div(
       position: absolute;
       bottom: 20px;
       right: 40px;
+      width: calc(100% - 80px);
     }
   }
   .img-wrap{
@@ -73,8 +74,37 @@ export const DescriptionS = styled.div(
       color: #2B2B2B;
     }
     .content-bottom {
+      img {
+        display: block;
+        height: 40px;
+        width: 40px;
+        ${theme.breakpoints.down('md')} {
+          height: 36px;
+          width: 36px;
+        }
+        ${theme.breakpoints.down('sm')} {
+          height: 30px;
+          width: 30px;
+        }
+      }
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
+      align-items: center;
+      ul {
+        margin: 0;
+        padding-left: 0px;
+        display: flex;
+        li {
+          display: inline-block;
+          list-style-type: none;
+          &:not(:first-of-type) {
+            margin-left: 17px;
+            @media (max-width: 499px) {
+              margin-left: 12px;
+            }
+          }
+        }
+      }
     }
   }
 `,
