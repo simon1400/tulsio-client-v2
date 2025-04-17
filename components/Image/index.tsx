@@ -1,7 +1,5 @@
 import type { FC } from 'react'
 
-import Image from 'next/image'
-
 const APP_API = process.env.APP_API
 
 interface ImageProps {
@@ -41,9 +39,9 @@ const ImageComponent: FC<ImageProps> = ({
     )
   }
   return (
-    <Image
+    <img
       src={`${url}?format=${url.indexOf('.svg') > 0 ? 'svg' : 'webp'}${format}`}
-      fill={fill}
+      className={fill ? 'img-absolute' : ''}
       alt={alt || ''}
       width={width}
       height={height}

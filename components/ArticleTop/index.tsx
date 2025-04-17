@@ -30,7 +30,6 @@ const ArticleTop = ({
         {article?.image?.data && (
           <Image format={'&resize=920x920'} fill image={article.image.data} />
         )}
-        {/* {article?.image?.data && <Image format={'&resize=920x920'} image={article.image.data} />} */}
         <Container maxWidth={'md'}>
           {!!article.categories?.data.length && (
             <Breadcrumbs category={article.categories.data[0]?.attributes} color={color} />
