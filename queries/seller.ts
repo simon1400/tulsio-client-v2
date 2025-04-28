@@ -33,6 +33,17 @@ export const sellerQuery = gql`
               }
             }
           }
+          socLinks {
+            name
+            url
+            logo {
+              data {
+                attributes {
+                  url
+                }
+              }
+            }
+          }
           products {
             data {
               attributes {
