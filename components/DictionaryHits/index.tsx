@@ -61,6 +61,7 @@ const DictionaryHits: FC<{ data: any }> = ({ data }) => {
                       component="div"
                       variant="body2"
                       dangerouslySetInnerHTML={{ __html: item.content }}
+                      suppressHydrationWarning
                     />
                     {item.textLink && item.link && (
                       <a href={item.link}>{item.textLink}</a>

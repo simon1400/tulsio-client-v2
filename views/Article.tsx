@@ -115,6 +115,7 @@ const Article = ({ article, relative = false }: { article: any; relative?: any }
                   component={'div'}
                   variant={'body1'}
                   dangerouslySetInnerHTML={{ __html: oembedTransform(article.perex) }}
+                  suppressHydrationWarning
                 />
               )}
               {!!article.chapters?.length &&
@@ -129,6 +130,7 @@ const Article = ({ article, relative = false }: { article: any; relative?: any }
                         component={'div'}
                         variant={'body1'}
                         dangerouslySetInnerHTML={{ __html: oembedTransform(item.text) }}
+                        suppressHydrationWarning
                       />
                     )}
                     {item.banners_static.data && (

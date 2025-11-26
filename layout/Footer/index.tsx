@@ -55,6 +55,7 @@ const Footer: FC<FooterProps> = ({ dataGlobal, data }) => {
               dangerouslySetInnerHTML={{
                 __html: additionalContent,
               }}
+              suppressHydrationWarning
             />
           </Content>
         </Container>

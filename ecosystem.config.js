@@ -1,20 +1,29 @@
 module.exports = {
   apps: [
     {
-      name: 'Tulsio client',
-      script: 'npm start',
-      env_production: {},
+      name: 'tulsio-client',
+      script: 'node_modules/next/dist/bin/next',
+      args: 'start -p 3011',
+      cwd: '/opt/tulsio/client',
+      instances: 1,
+      exec_mode: 'fork',
+      watch: false,
+      max_memory_restart: '1G',
+      env_production: {
+        NODE_ENV: 'production',
+        PORT: 3011,
+      },
+      error_file: '/opt/tulsio/client/logs/error.log',
+      out_file: '/opt/tulsio/client/logs/out.log',
+      log_date_format: 'YYYY-MM-DD HH:mm:ss Z',
+      merge_logs: true,
+      autorestart: true,
+      max_restarts: 10,
+      min_uptime: '10s',
+      listen_timeout: 10000,
+      kill_timeout: 5000,
+      wait_ready: true,
+      shutdown_with_message: true,
     },
   ],
-
-  deploy: {
-    production: {
-      user: 'dimi',
-      host: ['89.221.216.23'],
-      ref: 'origin/main',
-      repo: 'git@github.com:simon1400/tulsio-client-v2.git',
-      path: '/home/dimi/app/tulsio/client',
-      'post-deploy': 'npm i && npm run build && pm2 reload ecosystem.config.js --env production',
-    },
-  },
 }

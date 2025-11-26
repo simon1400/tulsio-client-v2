@@ -50,6 +50,7 @@ const CategoryShort: FC<ICategoryShort> = ({
           <Typography
             variant={'body2'}
             dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
+            suppressHydrationWarning
           />
         )}
       </div>

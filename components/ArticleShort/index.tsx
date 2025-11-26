@@ -75,6 +75,7 @@ const ArticleShort: FC<ArticleShortProps> = ({
               component={'div'}
               className={'article-short-content'}
               dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(text) }}
+              suppressHydrationWarning
             />
           )}
         </span>

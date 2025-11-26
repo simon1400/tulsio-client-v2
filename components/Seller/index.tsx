@@ -42,6 +42,7 @@ const Seller: FC<{ sellers: ISellerItem }> = ({ sellers }) => {
         dangerouslySetInnerHTML={{
           __html: DOMPurify.sanitize(sellers.description),
         }}
+        suppressHydrationWarning
       />
       <div className={'button'}>
         <Button href={`/shop/${sellers.slug}`}>

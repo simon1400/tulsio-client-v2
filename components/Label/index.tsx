@@ -21,6 +21,7 @@ const Label: FC<LabelDataProps> = ({ data, color }) => {
 
   const handleClick = (e: any) => {
     e.preventDefault()
+    e.stopPropagation()
     router.push(`/${router.locale}/${data.slug}`)
   }
 
@@ -30,7 +31,18 @@ const Label: FC<LabelDataProps> = ({ data, color }) => {
   }
 
   return (
-    <LabelS color={color} onClick={(e) => handleClick(e)} href={`/${router.locale}/${data.slug}`} >
+    <LabelS
+      color={color}
+      onClick={(e) => handleClick(e)}
+      as="span"
+      role="link"
+      tabIndex={0}
+      onKeyDown={(e: any) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          handleClick(e)
+        }
+      }}
+    >
       {data?.navTitle || ''}
     </LabelS>
   )

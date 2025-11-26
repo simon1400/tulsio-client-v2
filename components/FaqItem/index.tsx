@@ -61,6 +61,7 @@ const FaqItem: FC<{ data: IFaqItem }> = ({ data }) => {
             dangerouslySetInnerHTML={{
               __html: DOMPurify.sanitize(data?._highlightResult?.title.value || data.title),
             }}
+            suppressHydrationWarning
           />
         </AccordionSummary>
         <AccordionDetails>
@@ -68,6 +69,7 @@ const FaqItem: FC<{ data: IFaqItem }> = ({ data }) => {
             <Typography
               variant={'body2'}
               dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(data.answer) }}
+              suppressHydrationWarning
             />
           </Content>
         </AccordionDetails>

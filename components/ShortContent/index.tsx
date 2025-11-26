@@ -18,6 +18,7 @@ const ShortContent: FC<IShortContent> = ({ title, description }) => {
         <Typography
           component={'div'}
           dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(description) }}
+          suppressHydrationWarning
         />
       )}
     </ShortContentS>

@@ -25,6 +25,7 @@ const Related: FC<IReverse> = ({ reverse, title, description, image, background 
         <Typography
           component={'div'}
           dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(description) }}
+          suppressHydrationWarning
         />
       </div>
       <div className={'img-wrap'}>
